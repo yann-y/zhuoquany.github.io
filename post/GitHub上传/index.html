@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | EdenBlog
+    GitHub上传 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582538700100">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -99,30 +99,94 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            关于
+                            GitHub上传
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
+                            <time class="post-time">2019-08-17</time>
                             
+                                <a href="https://zhuoquany.github.io/tag/rId5dAplJ/" class="post-tag i-tag
+                            i-tag-error">
+                            #GitHub
+                        </a>
+                                
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>本站是我的Blog，如有问题希望大家多多指正。</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>本人在读程序猿一枚。习惯面向百度编程，api工程师。</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>平时喜欢打打羽毛球，唱歌很难听但是喜欢唱（也没机会唱）。</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>联系qq:1316944090</p>
+                                    <h1 id="github-上传项目">GitHub 上传项目</h1>
+<h2 id="问题集合">问题集合</h2>
+<h3 id="添加追踪文件">添加追踪文件</h3>
+<p>错误代码：</p>
+<!--more-->
+<pre><code>$ git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+        add
+
+</code></pre>
+<p>正确代码为：</p>
+<pre><code>$ git add .
+</code></pre>
+<h3 id="仓库为空">仓库为空</h3>
+<p>问题的内容是：</p>
+<p>错误：SRC ReFSPEC主控器不匹配任何。<br>
+错误：未能将某些引用推到'git @ Github.com：HaHaa/ftpMal.git’</p>
+<p>也就是仓库为空。</p>
+<pre><code>$ git push -u origin master
+error: src refspec master does not match any
+error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git'
+
+</code></pre>
+<p>解决办法：</p>
+<p>利用git add xxx.py 指令，将所有的文件全部都添加，然后再进行git commit -m &quot;init&quot;将所有的文件commit,</p>
+<pre><code>git commit -m &quot;init&quot;
+</code></pre>
+<p>提示 nothing added to commit but untracked files present 检查git  add . 是否执行。</p>
+<p>然后在执行</p>
+<pre><code>git remote add origin xxxxxxxx.git
+</code></pre>
+<p>最后使用</p>
+<pre><code>git push -u origin master大功告成。
+</code></pre>
+<h2 id="更新仓库">更新仓库</h2>
+<p>更新代码</p>
+<p>第一步：查看当前的git仓库状态，可以使用git status</p>
+<pre><code>git status
+</code></pre>
+<p>第二步：更新全部</p>
+<pre><code>git add *
+</code></pre>
+<p>第三步：接着输入git commit -m &quot;更新说明&quot;</p>
+<pre><code>git commit -m &quot;更新说明&quot;
+</code></pre>
+<p>第四步：先git pull,拉取当前分支最新代码</p>
+<pre><code>git pull
+</code></pre>
+<p>第五步：push到远程master分支上</p>
+<pre><code>git push origin master
+</code></pre>
+<p>不出意外，打开GitHub已经同步了</p>
+<h2 id="总结">总结：</h2>
+<p>其实只需要进行下面几步就能把本地项目上传到Github</p>
+<p>1、在本地创建一个版本库（即文件夹），通过git init把它变成Git仓库；</p>
+<p>2、把项目复制到这个文件夹里面，再通过git add .把项目添加到仓库；</p>
+<p>3、再通过git commit -m &quot;注释内容&quot;把项目提交到仓库；</p>
+<p>4、在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/zhuoquany/tensorflow2.git将本地仓库和远程仓库进行关联；</p>
+<p>5、最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上；（若新建远程仓库的时候自动创建了README文件会报错，解决办法看上面）。</p>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://zhuoquany.github.io/post/pip-换源/">
+                                <h3 class="post-title">
+                                    pip 换源
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -137,12 +201,16 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li>
+<li><a href="#github-%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE">GitHub 上传项目</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88">问题集合</a>
+<ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%BD%E8%B8%AA%E6%96%87%E4%BB%B6">添加追踪文件</a></li>
+<li><a href="#%E4%BB%93%E5%BA%93%E4%B8%BA%E7%A9%BA">仓库为空</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E4%BB%93%E5%BA%93">更新仓库</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结：</a></li>
 </ul>
 </li>
 </ul>

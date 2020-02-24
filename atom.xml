@@ -1,15 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-02-24T08:52:47.713Z</updated>
+    <title>EdenBlog</title>
+    <updated>2020-02-24T10:05:11.975Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://zhuoquany.github.io/images/avatar.png</logo>
     <icon>https://zhuoquany.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, EdenBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[GitHub上传]]></title>
+        <id>https://zhuoquany.github.io/post/GitHub上传/</id>
+        <link href="https://zhuoquany.github.io/post/GitHub上传/">
+        </link>
+        <updated>2019-08-17T11:03:44.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="github-上传项目">GitHub 上传项目</h1>
+<h2 id="问题集合">问题集合</h2>
+<h3 id="添加追踪文件">添加追踪文件</h3>
+<p>错误代码：</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="github-上传项目">GitHub 上传项目</h1>
+<h2 id="问题集合">问题集合</h2>
+<h3 id="添加追踪文件">添加追踪文件</h3>
+<p>错误代码：</p>
+<!--more-->
+<pre><code>$ git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+        add
+
+</code></pre>
+<p>正确代码为：</p>
+<pre><code>$ git add .
+</code></pre>
+<h3 id="仓库为空">仓库为空</h3>
+<p>问题的内容是：</p>
+<p>错误：SRC ReFSPEC主控器不匹配任何。<br>
+错误：未能将某些引用推到'git @ Github.com：HaHaa/ftpMal.git’</p>
+<p>也就是仓库为空。</p>
+<pre><code>$ git push -u origin master
+error: src refspec master does not match any
+error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git'
+
+</code></pre>
+<p>解决办法：</p>
+<p>利用git add xxx.py 指令，将所有的文件全部都添加，然后再进行git commit -m &quot;init&quot;将所有的文件commit,</p>
+<pre><code>git commit -m &quot;init&quot;
+</code></pre>
+<p>提示 nothing added to commit but untracked files present 检查git  add . 是否执行。</p>
+<p>然后在执行</p>
+<pre><code>git remote add origin xxxxxxxx.git
+</code></pre>
+<p>最后使用</p>
+<pre><code>git push -u origin master大功告成。
+</code></pre>
+<h2 id="更新仓库">更新仓库</h2>
+<p>更新代码</p>
+<p>第一步：查看当前的git仓库状态，可以使用git status</p>
+<pre><code>git status
+</code></pre>
+<p>第二步：更新全部</p>
+<pre><code>git add *
+</code></pre>
+<p>第三步：接着输入git commit -m &quot;更新说明&quot;</p>
+<pre><code>git commit -m &quot;更新说明&quot;
+</code></pre>
+<p>第四步：先git pull,拉取当前分支最新代码</p>
+<pre><code>git pull
+</code></pre>
+<p>第五步：push到远程master分支上</p>
+<pre><code>git push origin master
+</code></pre>
+<p>不出意外，打开GitHub已经同步了</p>
+<h2 id="总结">总结：</h2>
+<p>其实只需要进行下面几步就能把本地项目上传到Github</p>
+<p>1、在本地创建一个版本库（即文件夹），通过git init把它变成Git仓库；</p>
+<p>2、把项目复制到这个文件夹里面，再通过git add .把项目添加到仓库；</p>
+<p>3、再通过git commit -m &quot;注释内容&quot;把项目提交到仓库；</p>
+<p>4、在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/zhuoquany/tensorflow2.git将本地仓库和远程仓库进行关联；</p>
+<p>5、最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上；（若新建远程仓库的时候自动创建了README文件会报错，解决办法看上面）。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pip 换源]]></title>
+        <id>https://zhuoquany.github.io/post/pip-换源/</id>
+        <link href="https://zhuoquany.github.io/post/pip-换源/">
+        </link>
+        <updated>2019-08-17T11:01:20.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="pip换源">pip换源</h2>
+<h3 id="linux-下pip换源">Linux 下pip换源</h3>
+<p>在 <em>~/.pip/pip.conf</em> 中编辑如下内容，如果文件不存在，使用命令创建改文件</p>
+<p><strong>pip国内的一些镜像</strong></p>
+<p>阿里云 http://mirrors.aliyun.com/pypi/simple/<br>
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/<br>
+豆瓣(douban) http://pypi.douban.com/simple/<br>
+清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="pip换源">pip换源</h2>
+<h3 id="linux-下pip换源">Linux 下pip换源</h3>
+<p>在 <em>~/.pip/pip.conf</em> 中编辑如下内容，如果文件不存在，使用命令创建改文件</p>
+<p><strong>pip国内的一些镜像</strong></p>
+<p>阿里云 http://mirrors.aliyun.com/pypi/simple/<br>
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/<br>
+豆瓣(douban) http://pypi.douban.com/simple/<br>
+清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</p>
+<!--more-->
+<p><strong>修改源方法：</strong></p>
+<p><strong>临时使用：</strong><br>
+可以在使用pip的时候在后面加上-i参数，指定pip源<br>
+eg: pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple</p>
+<p><strong>永久修改：</strong><br>
+<strong>linux:</strong><br>
+修改 ~/.pip/pip.conf (没有就创建一个)， 内容如下：</p>
+<pre><code>[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+<p><strong>windows:</strong><br>
+直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，在pip 目录下新建文件pip.ini，内容如下，或者按照网友的建议：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下</p>
+<pre><code>[global]
+timeout = 6000
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+trusted-host = pypi.tuna.tsinghua.edu.cn
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[next 主题修改]]></title>
+        <id>https://zhuoquany.github.io/post/next-主题修改/</id>
+        <link href="https://zhuoquany.github.io/post/next-主题修改/">
+        </link>
+        <updated>2019-08-01T12:02:03.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+<p>language: zh-Hans<br>
+然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+<p>language: zh-Hans<br>
+然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
+<!--more-->
+<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
+<p>zh-CN.yml<br>
+zh-HK.yml<br>
+zh-TW.yml<br>
+那么有两种解决方法</p>
+<p>1.是将language属性配置成zh-CN</p>
+<p>2.将zh-CN.yml文件名改成zh-Hans</p>
+<p>language: zh-Hans</p>
+<p>亲测第二种可以。</p>
+<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
+<h3 id="添加网站访问量">添加网站访问量</h3>
+<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
+<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
+&lt;div class=&quot;busuanzi-count&quot;&gt;
+    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
+    &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
+      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
+    &lt;/span&gt;
+    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
+    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
+      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
+    &lt;/span&gt; --&gt;
+    &lt;!-- 博客字数统计 --&gt;
+    &lt;span class=&quot;site-pv&quot;&gt;
+      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
+      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>实际效果：</p>
+<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
+<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
+&lt;!--{% if theme.footer.powered.enable %}
+  &lt;div class=&quot;powered-by&quot;&gt;{#
+  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
+  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
+ #}&lt;/div&gt;
+{% endif %}
+
+{% if theme.footer.powered.enable and theme.footer.theme.enable %}
+  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
+{% endif %}
+
+{% if theme.footer.theme.enable %}
+  &lt;div class=&quot;theme-info&quot;&gt;{#
+  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
+  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
+#}&lt;/div&gt;
+{% endif %}--&gt;
+</code></pre>
+<h3 id="记录建站时间">记录建站时间</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
+&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
+&lt;script&gt;
+    var now = new Date();
+    function createtime() {
+        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
+        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
+        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
+    }
+setInterval(&quot;createtime()&quot;,250);
+&lt;/script&gt;
+</code></pre>
+<h2 id="参考文献">参考文献</h2>
+<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[hexo next 主题修改语言]]></title>
+        <id>https://zhuoquany.github.io/post/hexo-next-主题修改语言/</id>
+        <link href="https://zhuoquany.github.io/post/hexo-next-主题修改语言/">
+        </link>
+        <updated>2019-07-24T12:28:37.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
+<h3 id="中文语言修改失败">中文语言修改失败</h3>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
+<h3 id="中文语言修改失败">中文语言修改失败</h3>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+<!--more-->
+<p>language: zh-Hans<br>
+然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
+<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
+<p>zh-CN.yml<br>
+zh-HK.yml<br>
+zh-TW.yml<br>
+那么有两种解决方法</p>
+<p>1.是将language属性配置成zh-CN</p>
+<p>2.将zh-CN.yml文件名改成zh-Hans</p>
+<p>language: zh-Hans</p>
+<p>亲测第二种可以。</p>
+<h2 id="新建标签和分类页面">新建标签和分类页面</h2>
+<p>https://www.jianshu.com/p/f138032e7539</p>
+<h2 id="参考文献">参考文献</h2>
+<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[github-配置SSH-key]]></title>
+        <id>https://zhuoquany.github.io/post/github-配置SSH-key/</id>
+        <link href="https://zhuoquany.github.io/post/github-配置SSH-key/">
+        </link>
+        <updated>2019-07-24T09:45:46.000Z</updated>
+        <summary type="html"><![CDATA[<pre><code class="language-shell">ssh-keygen -t rsa -C &quot;邮件地址&quot;
+</code></pre>
+<p>这个邮件地址是你GitHub的邮件地址。</p>
+<p>连续三次回车（这样默认不会更改ssh的保存路径）。</p>
+]]></summary>
+        <content type="html"><![CDATA[<pre><code class="language-shell">ssh-keygen -t rsa -C &quot;邮件地址&quot;
+</code></pre>
+<p>这个邮件地址是你GitHub的邮件地址。</p>
+<p>连续三次回车（这样默认不会更改ssh的保存路径）。</p>
+<!--more-->
+<p>三处回车的英语翻译：</p>
+<ul>
+<li>输入保存密钥的文件（/c/users/eden/.ssh/id_rsa）：</li>
+<li>输入密码短语（无密码短语为空）：</li>
+<li>再次输入相同的密码：</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538362894.png" alt="" loading="lazy"></figure>
+<p>打开ssh key 的保存路径，找到id_rsa.pub文件，用记事本打开并复制里面的内容。打开你的GitHub主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
+<figure data-type="image" tabindex="2"><img src="https://zhuoquany.github.io/post-images/1582538389820.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://zhuoquany.github.io/post-images/1582538401948.png" alt="" loading="lazy"></figure>
+<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
+<pre><code class="language-git">ssh -T git@github.com
+</code></pre>
+<p>如果提示 Are you sure you want to continue connecting (yes/no)?  输入yes</p>
+<p>提示 You've successfully authenticated, but GitHub does not provide shell access.表示成功了。</p>
+<p>此时还需要配置：</p>
+<pre><code class="language-git">$ git config --global user.name &quot;liuxianan&quot;// 你的github用户名，非昵称
+$ git config --global user.email  &quot;xxx@qq.com&quot;// 填写你的github注册邮箱
+</code></pre>
+<p>完成以上步骤  GitHub ssh ket 就配置好了。😍😍</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://zhuoquany.github.io/post/hello-gridea/</id>

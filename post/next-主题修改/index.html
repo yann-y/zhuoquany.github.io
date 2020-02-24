@@ -1,0 +1,303 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    next 主题修改 | EdenBlog
+</title>
+<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582538700100">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://zhuoquany.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://zhuoquany.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://zhuoquany.github.io">
+                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1582538700100" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    EdenBlog
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            next 主题修改
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-08-01</time>
+                            
+                                <a href="https://zhuoquany.github.io/tag/8OwI8dI8Ji/" class="post-tag i-tag
+                            i-tag-other_3">
+                            #hexo
+                        </a>
+                                
+                                <a href="https://zhuoquany.github.io/tag/Tb3U0z-oX5/" class="post-tag i-tag
+                            i-tag-other_4">
+                            #next
+                        </a>
+                                
+                        </div>
+                        
+                                <div class="post-content">
+                                    <h2 id="next-主题修改">next 主题修改</h2>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+<p>language: zh-Hans<br>
+然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
+<!--more-->
+<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
+<p>zh-CN.yml<br>
+zh-HK.yml<br>
+zh-TW.yml<br>
+那么有两种解决方法</p>
+<p>1.是将language属性配置成zh-CN</p>
+<p>2.将zh-CN.yml文件名改成zh-Hans</p>
+<p>language: zh-Hans</p>
+<p>亲测第二种可以。</p>
+<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
+<h3 id="添加网站访问量">添加网站访问量</h3>
+<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
+<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
+&lt;div class=&quot;busuanzi-count&quot;&gt;
+    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
+    &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
+      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
+    &lt;/span&gt;
+    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
+    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
+      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
+    &lt;/span&gt; --&gt;
+    &lt;!-- 博客字数统计 --&gt;
+    &lt;span class=&quot;site-pv&quot;&gt;
+      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
+      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>实际效果：</p>
+<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
+<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
+&lt;!--{% if theme.footer.powered.enable %}
+  &lt;div class=&quot;powered-by&quot;&gt;{#
+  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
+  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
+ #}&lt;/div&gt;
+{% endif %}
+
+{% if theme.footer.powered.enable and theme.footer.theme.enable %}
+  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
+{% endif %}
+
+{% if theme.footer.theme.enable %}
+  &lt;div class=&quot;theme-info&quot;&gt;{#
+  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
+  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
+#}&lt;/div&gt;
+{% endif %}--&gt;
+</code></pre>
+<h3 id="记录建站时间">记录建站时间</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
+&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
+&lt;script&gt;
+    var now = new Date();
+    function createtime() {
+        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
+        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
+        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
+    }
+setInterval(&quot;createtime()&quot;,250);
+&lt;/script&gt;
+</code></pre>
+<h2 id="参考文献">参考文献</h2>
+<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://zhuoquany.github.io/post/hexo-next-主题修改语言/">
+                                <h3 class="post-title">
+                                    hexo next 主题修改语言
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
+<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
+<ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
+<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
+<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://zhuoquany.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | EdenBlog
+    pip | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582538700100">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -19,7 +19,6 @@
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-        
 </head>
 
 <body>
@@ -94,93 +93,98 @@
     });
 </script>
 
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
+            <div id="main-content" class="post-container main-container">
                 <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            关于
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
-                            
-                        </div>
-                        
-                                <div class="post-content">
-                                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>本站是我的Blog，如有问题希望大家多多指正。</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>本人在读程序猿一枚。习惯面向百度编程，api工程师。</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>平时喜欢打打羽毛球，唱歌很难听但是喜欢唱（也没机会唱）。</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>联系qq:1316944090</p>
-
-                                </div>
-                    </article>
-                    <!--  -->
                     
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
-                </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
-                    
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
+    <div class="i-card">
+        <b>标签：#
+        pip</b>
     </div>
     
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://zhuoquany.github.io/post/pip-换源/">
+                        pip 换源
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-17</time>
+                    
+                        <a href="https://zhuoquany.github.io/tag/4hqVHniauU/" class="post-tag i-tag
+                            i-tag-other_3">
+            #pip
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="pip换源">pip换源</h2>
+<h3 id="linux-下pip换源">Linux 下pip换源</h3>
+<p>在 <em>~/.pip/pip.conf</em> 中编辑如下内容，如果文件不存在，使用命令创建改文件</p>
+<p><strong>pip国内的一些镜像</strong></p>
+<p>阿里云 http://mirrors.aliyun.com/pypi/simple/<br>
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/<br>
+豆瓣(douban) http://pypi.douban.com/simple/<br>
+清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://zhuoquany.github.io/post/pip-换源/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://zhuoquany.github.io/images/avatar.png?v=1582538700100)">
+        </div>
+        <h1 class="id_card-title">
+            EdenBlog
+        </h1>
+        <h2 class="id_card-description">
+            温故而知新
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
                             
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+    <div class="notice-card i-card ">
+        <div class="notice-title i-card-title">公告</div>
+        <div class="notice-content">
+            广而告之
+        </div>
+    </div>
+    
 
                 </div>
-
-
-
-
             </div>
+
 
 
             <div class="site-footer">
@@ -192,7 +196,6 @@
   hljs.initHighlightingOnLoad()
 </script>
 
-
     </div>
     <script>
         $('#sidebar').stickySidebar({
@@ -200,7 +203,6 @@
             // bottomSpacing: 60
         });
     </script>
-    
 </body>
 
 </html>
