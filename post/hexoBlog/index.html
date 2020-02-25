@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    next 主题修改 | EdenBlog
+     基于hexo 搭建博客 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582598577024">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,108 +110,111 @@ var _hmt = _hmt || [];
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            next 主题修改
+                             基于hexo 搭建博客
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-01</time>
+                            <time class="post-time">2019-07-25</time>
                             
                                 <a href="https://zhuoquany.github.io/tag/8OwI8dI8Ji/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
                             #hexo
                         </a>
                                 
-                                <a href="https://zhuoquany.github.io/tag/Tb3U0z-oX5/" class="post-tag i-tag
-                            i-tag-success">
-                            #next
+                                <a href="https://zhuoquany.github.io/tag/NVxqSWSmnI/" class="post-tag i-tag
+                            i-tag-other_2">
+                            #github
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-<!--more-->
-<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
-<p>zh-CN.yml<br>
-zh-HK.yml<br>
-zh-TW.yml<br>
-那么有两种解决方法</p>
-<p>1.是将language属性配置成zh-CN</p>
-<p>2.将zh-CN.yml文件名改成zh-Hans</p>
-<p>language: zh-Hans</p>
-<p>亲测第二种可以。</p>
-<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
-<h3 id="添加网站访问量">添加网站访问量</h3>
-<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
-<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
-&lt;div class=&quot;busuanzi-count&quot;&gt;
-    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
-    &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
-      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
-    &lt;/span&gt;
-    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
-    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
-      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
-    &lt;/span&gt; --&gt;
-    &lt;!-- 博客字数统计 --&gt;
-    &lt;span class=&quot;site-pv&quot;&gt;
-      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
-      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
-    &lt;/span&gt;
-&lt;/div&gt;
+                                    <h3 id="实验环境">🏡实验环境</h3>
+<pre><code>* windows10
+* node v10.16.0
+* git version 2.21.0.windows.1
 </code></pre>
-<p>实际效果：</p>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
-<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
-&lt;!--{% if theme.footer.powered.enable %}
-  &lt;div class=&quot;powered-by&quot;&gt;{#
-  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
-  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
- #}&lt;/div&gt;
-{% endif %}
-
-{% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
-{% endif %}
-
-{% if theme.footer.theme.enable %}
-  &lt;div class=&quot;theme-info&quot;&gt;{#
-  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
-  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
-#}&lt;/div&gt;
-{% endif %}--&gt;
+<!-- more -->
+<h3 id="前沿准备">前沿准备</h3>
+<ul>
+<li>准备 git</li>
+<li>准备  node ,npm</li>
+</ul>
+<h3 id="hexo简介">hexo简介</h3>
+<p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+<p>官网： http://hexo.io</p>
+<p>github: https://github.com/hexojs/hexo</p>
+<p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
+<h3 id="npm换源">npm换源</h3>
+<p>npm是node自带的包管理器，node安装插件是从国外服务器下载，速度慢可能出现问题。</p>
+<ol>
+<li>使用ali定制的cnpm 命令行工具替代默认的 npm，输入下面的代码安装。</li>
+</ol>
+<pre><code class="language-shell"> npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre>
-<h3 id="记录建站时间">记录建站时间</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
-&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
-&lt;script&gt;
-    var now = new Date();
-    function createtime() {
-        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
-        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
-        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
-    }
-setInterval(&quot;createtime()&quot;,250);
-&lt;/script&gt;
+<ol start="2">
+<li>检测cnpm版本，如果安装成功可以看到cnpm的基本信息</li>
+</ol>
+<h3 id="安装">安装</h3>
+<pre><code class="language-shell">cnpm install -g hexo
 </code></pre>
-<h2 id="参考文献">参考文献</h2>
-<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+<p>在电脑的某一个地方新建一个文件夹，名字可以随便取，比如我的是 D:\code\hexo，这个文件夹就是我存放代码的地方。</p>
+<p>我用的是git bash来执行的命令，没有用cmd</p>
+<p>这条命令式切换路径到 d:\code\hexo</p>
+<pre><code class="language-shell">cd /d/code/hexo
+</code></pre>
+<p>用cmd的命令应该是</p>
+<pre><code class="language-shell">cd /d D:\code\hexo
+</code></pre>
+<p>然后执行hexo 初始化语句 hexo init。</p>
+<p>hexo 会自动下载一些文件到当前目录。</p>
+<p>hexo g #生成</p>
+<p>hexo  s  #启动</p>
+<p>hexo s`是开启本地预览服务，打开浏览器访问 http://localhost:4000 即可看到内容，很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故，因为4000这个端口太常见了，解决端口冲突问题请参考这篇文章：</p>
+<p><a href="http://blog.liuxianan.com/windows-port-bind.html">解决端口冲突</a></p>
+<pre><code>hexo init
+hexo g
+hexo s
+</code></pre>
+<p>第一次初始化的时候hexo已经帮我们写了一篇名为 Hello World 的文章，默认的主题比较丑，打开时就是这个样子：<br>
+<img src="https://zhuoquany.github.io/post-images/1582594567589.png" alt="" loading="lazy"></p>
+<h3 id="修改主题">修改主题</h3>
+<p>​	上面那个是我已经修改过的界面，原版的界面相当的丑。</p>
+<p>​	官方主题：<a href="https://hexo.io/themes/">主题</a></p>
+<p>​	这人推荐主题：<a href="https://github.com/litten/hexo-theme-yilia">hexo-theme-yilia</a></p>
+<p>​	一定要保证在存放的代码目录下</p>
+<pre><code class="language-shell">git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
+</code></pre>
+<p>修改<code>_config.yml</code>中的<code>theme: landscape</code>改为<code>theme: yilia</code>，然后重新执行<code>hexo g</code>来重新生成，<strong>：后面必须要有一个空格</strong>。</p>
+<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582594602953.png" alt="" loading="lazy"></figure>
+<p>如果出现一些莫名其妙的问题，可以先执行<code>hexo clean</code>来清理一下public的内容，然后再来重新生成和发布。</p>
+<h3 id="常用的hexo命令">常用的hexo命令</h3>
+<p>常见命令</p>
+<pre><code class="language-shell">hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+</code></pre>
+<p>常见缩写：</p>
+<pre><code class="language-shell">hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
+</code></pre>
+<p>组合命令</p>
+<pre><code class="language-shell">hexo s -g #生成并本地预览
+hexo d -g #生成并上传
+</code></pre>
+<h3 id="注意事项">注意事项</h3>
+<p>这里面都是一些全局配置，每个参数的意思都比较简单明了，所以就不作详细介绍了。</p>
+<p>需要特别注意的地方是，<strong>冒号后面必须有一个空格</strong>，否则可能会出问题。</p>
+<h3 id="上传到github">上传到GitHub</h3>
+<h3 id="我的博客">我的博客</h3>
+<p>😁😁欢迎大家访问<a href="hexo.youis.top">我的博客</a></p>
+<h3 id="参考文献">参考文献</h3>
+<p>https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</p>
 
                                 </div>
                     </article>
@@ -219,9 +222,9 @@ setInterval(&quot;createtime()&quot;,250);
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://zhuoquany.github.io/post/hexoBlog/">
+                            <a href="https://zhuoquany.github.io/post/hexo-next-主题修改语言/">
                                 <h3 class="post-title">
-                                     基于hexo 搭建博客
+                                    hexo next 主题修改语言
                                 </h3>
                             </a>
                         </div>
@@ -242,15 +245,21 @@ setInterval(&quot;createtime()&quot;,250);
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
-<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
+<li>
 <ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
-<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
-<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83">🏡实验环境</a></li>
+<li><a href="#%E5%89%8D%E6%B2%BF%E5%87%86%E5%A4%87">前沿准备</a></li>
+<li><a href="#hexo%E7%AE%80%E4%BB%8B">hexo简介</a></li>
+<li><a href="#npm%E6%8D%A2%E6%BA%90">npm换源</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98">修改主题</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%91%BD%E4%BB%A4">常用的hexo命令</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+<li><a href="#%E4%B8%8A%E4%BC%A0%E5%88%B0github">上传到GitHub</a></li>
+<li><a href="#%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2">我的博客</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
 </ul>
 </li>
 </ul>

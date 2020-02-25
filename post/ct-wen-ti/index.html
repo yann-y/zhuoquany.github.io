@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    next 主题修改 | EdenBlog
+    CT问题 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582598577024">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,108 +110,39 @@ var _hmt = _hmt || [];
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            next 主题修改
+                            CT问题
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-01</time>
+                            <time class="post-time">2019-02-25</time>
                             
-                                <a href="https://zhuoquany.github.io/tag/8OwI8dI8Ji/" class="post-tag i-tag
-                            i-tag-error">
-                            #hexo
+                                <a href="https://zhuoquany.github.io/tag/BjSWwAAdi/" class="post-tag i-tag
+                            i-tag-other_2">
+                            #matlab
                         </a>
                                 
-                                <a href="https://zhuoquany.github.io/tag/Tb3U0z-oX5/" class="post-tag i-tag
+                                <a href="https://zhuoquany.github.io/tag/auLoeHgt65/" class="post-tag i-tag
                             i-tag-success">
-                            #next
+                            #数学建模
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-<!--more-->
-<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
-<p>zh-CN.yml<br>
-zh-HK.yml<br>
-zh-TW.yml<br>
-那么有两种解决方法</p>
-<p>1.是将language属性配置成zh-CN</p>
-<p>2.将zh-CN.yml文件名改成zh-Hans</p>
-<p>language: zh-Hans</p>
-<p>亲测第二种可以。</p>
-<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
-<h3 id="添加网站访问量">添加网站访问量</h3>
-<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
-<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
-&lt;div class=&quot;busuanzi-count&quot;&gt;
-    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
-    &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
-      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
-    &lt;/span&gt;
-    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
-    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
-      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
-    &lt;/span&gt; --&gt;
-    &lt;!-- 博客字数统计 --&gt;
-    &lt;span class=&quot;site-pv&quot;&gt;
-      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
-      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
-    &lt;/span&gt;
-&lt;/div&gt;
+                                    <h3 id="问题一">问题一</h3>
+<h4 id="什么是高通滤波">什么是高通滤波？？？</h4>
+<p>高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频</p>
+<!-- more -->
+<p>信号则被阻隔、减弱。但是阻隔、减弱的幅度则会依据不同的频率以及不同的滤波程序（目的）而改变。它有的时候也被叫做低频去除过滤（low-cut filter）。高通滤波是<strong>低通滤波</strong>的对立。</p>
+<h4 id="matlab-绘制热力图">MATLAB 绘制热力图</h4>
+<pre><code class="language-matlab">a=xlsread('A.xls','附件2'); %读取矩阵
+b=xlsread('A.xls','附件1'); %读取矩阵
+[m,n]= size(a)
+figure(1)
+imagesc(a)
+colorbar; %显示色阶
+figure(2)
+imagesc(b)
 </code></pre>
-<p>实际效果：</p>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
-<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
-&lt;!--{% if theme.footer.powered.enable %}
-  &lt;div class=&quot;powered-by&quot;&gt;{#
-  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
-  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
- #}&lt;/div&gt;
-{% endif %}
-
-{% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
-{% endif %}
-
-{% if theme.footer.theme.enable %}
-  &lt;div class=&quot;theme-info&quot;&gt;{#
-  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
-  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
-#}&lt;/div&gt;
-{% endif %}--&gt;
-</code></pre>
-<h3 id="记录建站时间">记录建站时间</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
-&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
-&lt;script&gt;
-    var now = new Date();
-    function createtime() {
-        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
-        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
-        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
-    }
-setInterval(&quot;createtime()&quot;,250);
-&lt;/script&gt;
-</code></pre>
-<h2 id="参考文献">参考文献</h2>
-<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
 
                                 </div>
                     </article>
@@ -219,9 +150,9 @@ setInterval(&quot;createtime()&quot;,250);
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://zhuoquany.github.io/post/hexoBlog/">
+                            <a href="https://zhuoquany.github.io/post/hello-gridea/">
                                 <h3 class="post-title">
-                                     基于hexo 搭建博客
+                                    Hello Gridea
                                 </h3>
                             </a>
                         </div>
@@ -242,15 +173,16 @@ setInterval(&quot;createtime()&quot;,250);
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
-<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
+<li>
 <ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
-<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
-<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80">问题一</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2">什么是高通滤波？？？</a></li>
+<li><a href="#matlab-%E7%BB%98%E5%88%B6%E7%83%AD%E5%8A%9B%E5%9B%BE">MATLAB 绘制热力图</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

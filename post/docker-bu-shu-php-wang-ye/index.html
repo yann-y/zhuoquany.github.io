@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    next 主题修改 | EdenBlog
+    docker 部署PHP网页 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582598577024">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,108 +110,121 @@ var _hmt = _hmt || [];
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            next 主题修改
+                            docker 部署PHP网页
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-01</time>
+                            <time class="post-time">2020-02-25</time>
                             
-                                <a href="https://zhuoquany.github.io/tag/8OwI8dI8Ji/" class="post-tag i-tag
-                            i-tag-error">
-                            #hexo
+                                <a href="https://zhuoquany.github.io/tag/Sn6c33z7i/" class="post-tag i-tag
+                            i-tag-primary">
+                            #docker
                         </a>
                                 
-                                <a href="https://zhuoquany.github.io/tag/Tb3U0z-oX5/" class="post-tag i-tag
-                            i-tag-success">
-                            #next
+                                <a href="https://zhuoquany.github.io/tag/ldOdQMARAK/" class="post-tag i-tag
+                            i-tag-banana">
+                            #PHP
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-<!--more-->
-<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
-<p>zh-CN.yml<br>
-zh-HK.yml<br>
-zh-TW.yml<br>
-那么有两种解决方法</p>
-<p>1.是将language属性配置成zh-CN</p>
-<p>2.将zh-CN.yml文件名改成zh-Hans</p>
-<p>language: zh-Hans</p>
-<p>亲测第二种可以。</p>
-<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
-<h3 id="添加网站访问量">添加网站访问量</h3>
-<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
-<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
-&lt;div class=&quot;busuanzi-count&quot;&gt;
-    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
-    &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
-      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
-    &lt;/span&gt;
-    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
-    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
-      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
-    &lt;/span&gt; --&gt;
-    &lt;!-- 博客字数统计 --&gt;
-    &lt;span class=&quot;site-pv&quot;&gt;
-      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
-      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
-    &lt;/span&gt;
-&lt;/div&gt;
-</code></pre>
-<p>实际效果：</p>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
-<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
-&lt;!--{% if theme.footer.powered.enable %}
-  &lt;div class=&quot;powered-by&quot;&gt;{#
-  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
-  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
- #}&lt;/div&gt;
-{% endif %}
+                                    <h2 id="docker-部署php网页">docker 部署PHP网页</h2>
+<p>准备好两个镜像</p>
+<!-- more -->
+<p><img src="https://zhuoquany.github.io/post-images/1582597946531.png" alt="" loading="lazy"><br>
+然后创建两个容器:</p>
+<pre><code class="language-bash">docker  run --name=&quot;apachedemo&quot;  -p 80:80   -d  nimmis/apache-php5
 
-{% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
-{% endif %}
-
-{% if theme.footer.theme.enable %}
-  &lt;div class=&quot;theme-info&quot;&gt;{#
-  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
-  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
-#}&lt;/div&gt;
-{% endif %}--&gt;
+docker run --name mysqldemo -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql/mysql-server:latest
 </code></pre>
-<h3 id="记录建站时间">记录建站时间</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
-&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
-&lt;script&gt;
-    var now = new Date();
-    function createtime() {
-        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
-        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
-        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
+<p>docker ps 查看两个容器的状态，如果docker ps 没有说明容器没有起来。</p>
+<p>docker ps 默认查看的是正在运行的容器。<br>
+<img src="https://zhuoquany.github.io/post-images/1582597959191.png" alt="" loading="lazy"></p>
+<p>然后在游览器输入docker 宿主机的ip；docker  安装环境的ip；</p>
+<p>（比如：虚拟机里面安装Linux，Linux里面安装docker ，你要访问网页应该输入Linux的ip）；</p>
+<p>出现如下界面，则表示Apache服务安装没有问题。<br>
+<img src="https://zhuoquany.github.io/post-images/1582597969085.png" alt="" loading="lazy"></p>
+<p>​    在Linux上新建一个PHP 文件，这里我命名为 demo.php</p>
+<p>输入一下内容。</p>
+<p>ip地址根据自己的ip修改。</p>
+<pre><code class="language-php">&lt;?php
+header(&quot;Content-Type: text/html;charset=utf-8&quot;);
+echo &quot;&lt;h1&gt;Results  from database&lt;/h1&gt;&quot;;
+$servername = &quot;192.168.43.227&quot;;
+$username = &quot;root&quot;;
+$password = &quot;password&quot;;
+$dbname = &quot;book&quot;;
+ 
+$conn = mysqli_connect('192.168.10.9','root','root') or die(&quot;error:&quot; .mysqli_connect_error());
+mysqli_select_db($conn,'book');
+ 
+$sql = &quot;SELECT *  FROM student&quot;;
+$result = mysqli_query($conn,$sql);
+    while($row = mysqli_fetch_array($result)) {
+        echo &quot;&lt;h2&gt;&quot;;
+	echo $row['name']. &quot;&lt;br/&gt;&quot;;
+	echo &quot;&lt;/h2&gt;&quot;;
     }
-setInterval(&quot;createtime()&quot;,250);
-&lt;/script&gt;
+?&gt;
 </code></pre>
-<h2 id="参考文献">参考文献</h2>
-<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+<p>第一次访问可能会出现一下的错误：</p>
+<p>这是因为mysql 没有开启远程登录权限。</p>
+<p>我们进入mysql容器修改相应的权限。<br>
+<img src="https://zhuoquany.github.io/post-images/1582597987851.png" alt="" loading="lazy"></p>
+<pre><code class="language-bash">docker exec -it 1ed50ef86354  /bin/bash
+</code></pre>
+<p>docker exec -it  加容器ID或者容器名字可以进入docker容器内。</p>
+<p>exit 退出容器。</p>
+<p>mysql -uroot  -ppassword 登录mysql</p>
+<pre><code class="language-mysql">use mysql;
+SELECT User, Host FROM user;
+update user set host = '%' where user = 'root';
+ flush privileges;
+</code></pre>
+<p>顺便再创建一个表</p>
+<pre><code class="language-mysql">create   database  book;
+
+use book;
+
+create  table  student (id int ,name varchar(20));
+
+insert into student values(1,'Joy'),(2,'Tom'),(3,'James');
+</code></pre>
+<p>再次访问会出现如下错误:</p>
+<p>Server sent charset unknown to the client. Please, report to the developers</p>
+<p>这是因为mysql最新版的字符默认字符编码 utf8mb4，所以我们要设置MySQL的默认字符集为老版本的utf8<br>
+<img src="https://zhuoquany.github.io/post-images/1582598002887.png" alt="" loading="lazy"></p>
+<p>还是在mysql容器内执行</p>
+<p>mysql  --help | grep my.cnf</p>
+<p><img src="https://zhuoquany.github.io/post-images/1582598035668.png" alt="" loading="lazy"><br>
+查看mysql配置文件的路径那。</p>
+<p>我安装的mysql-service精简到了连vi和vim也没有，所以需要自己手动安装。用yum安装就好了。由于没有配置yum源所以会很慢。</p>
+<p>修改/etc/my.cnf</p>
+<pre><code>[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+character-set-server = utf8
+default_authentication_plugin=mysql_native_password
+</code></pre>
+<p>修改配置文件后重启一下mysql 服务。</p>
+<p>退出到Linux  系统，执行docker  restart mysqldemo</p>
+<p>再次进入游览器，报错 The server requested authentication method unknown to the client。</p>
+<p>是由于用户身份认证的加密方式不兼容导致的，<code>mysql8.0</code>中默认方式为<code>caching_sha2_password</code>，引起老版本兼容性问题，老版本加密方式为<code>mysql_native_password</code>。<br>
+<img src="https://zhuoquany.github.io/post-images/1582598046444.png" alt="" loading="lazy"></p>
+<pre><code class="language-bash">mysql -uroot -p
+ 
+use mysql;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的密码';
+</code></pre>
+<p>我们这里修改为</p>
+<p>ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';</p>
+<p>然后再次访问：<br>
+<img src="https://zhuoquany.github.io/post-images/1582598055802.png" alt="" loading="lazy"></p>
 
                                 </div>
                     </article>
@@ -219,9 +232,9 @@ setInterval(&quot;createtime()&quot;,250);
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://zhuoquany.github.io/post/hexoBlog/">
+                            <a href="https://zhuoquany.github.io/post/apm-geng-huan-wei-guo-nei-yuan/">
                                 <h3 class="post-title">
-                                     基于hexo 搭建博客
+                                    apm 更换为国内源
                                 </h3>
                             </a>
                         </div>
@@ -242,15 +255,7 @@ setInterval(&quot;createtime()&quot;,250);
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
-<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
-<ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
-<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
-<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+<li><a href="#docker-%E9%83%A8%E7%BD%B2php%E7%BD%91%E9%A1%B5">docker 部署PHP网页</a></li>
 </ul>
 </li>
 </ul>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    next 主题修改 | EdenBlog
+     TensorFlow2.0 入门 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582598577024">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,108 +110,176 @@ var _hmt = _hmt || [];
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            next 主题修改
+                             TensorFlow2.0 入门
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-01</time>
+                            <time class="post-time">2020-02-25</time>
                             
-                                <a href="https://zhuoquany.github.io/tag/8OwI8dI8Ji/" class="post-tag i-tag
-                            i-tag-error">
-                            #hexo
-                        </a>
-                                
-                                <a href="https://zhuoquany.github.io/tag/Tb3U0z-oX5/" class="post-tag i-tag
-                            i-tag-success">
-                            #next
-                        </a>
-                                
                         </div>
                         
                                 <div class="post-content">
-                                    <h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-<!--more-->
-<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
-<p>zh-CN.yml<br>
-zh-HK.yml<br>
-zh-TW.yml<br>
-那么有两种解决方法</p>
-<p>1.是将language属性配置成zh-CN</p>
-<p>2.将zh-CN.yml文件名改成zh-Hans</p>
-<p>language: zh-Hans</p>
-<p>亲测第二种可以。</p>
-<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
-<h3 id="添加网站访问量">添加网站访问量</h3>
-<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
-<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
-&lt;div class=&quot;busuanzi-count&quot;&gt;
-    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
-    &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
-      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
-    &lt;/span&gt;
-    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
-    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
-      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
-    &lt;/span&gt; --&gt;
-    &lt;!-- 博客字数统计 --&gt;
-    &lt;span class=&quot;site-pv&quot;&gt;
-      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
-      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
-    &lt;/span&gt;
-&lt;/div&gt;
-</code></pre>
-<p>实际效果：</p>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
-<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
-&lt;!--{% if theme.footer.powered.enable %}
-  &lt;div class=&quot;powered-by&quot;&gt;{#
-  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
-  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
- #}&lt;/div&gt;
-{% endif %}
+                                    <p>包含前向传播，手写数字识别，以及遇到的一些错误的解决方法。</p>
+<!-- more  -->
+<h2 id="前向传播">前向传播</h2>
+<pre><code class="language-python">#conding:utf-8
+import  tensorflow as tf
+from tensorflow  import  keras
+from  tensorflow.keras import datasets
+import  os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+'''
+0 全部输出
+2 仅输出错误信息
+'''
+'''
+loss = nan 梯度爆炸'''
+# x:[60k,28,28]
+# y: [60k]
+(x,y),(x_test,y_test) = datasets.mnist.load_data()
+# 转换为Tensor
+x = tf.convert_to_tensor(x,dtype=tf.float32) / 255
+y = tf.convert_to_tensor(y,dtype=tf.int32)
 
-{% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
-{% endif %}
+x_test = tf.convert_to_tensor(x_test,dtype=tf.float32) / 255
+y_test = tf.convert_to_tensor(y_test,dtype=tf.int32)
+print(x.shape,y.shape,x.dtype,y.dtype)
+print(tf.reduce_min(x),tf.reduce_max(x))
+print(tf.reduce_min(y),tf.reduce_max(y))
 
-{% if theme.footer.theme.enable %}
-  &lt;div class=&quot;theme-info&quot;&gt;{#
-  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
-  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
-#}&lt;/div&gt;
-{% endif %}--&gt;
+train_db = tf.data.Dataset.from_tensor_slices((x,y)).batch(128)
+test_db = tf.data.Dataset.from_tensor_slices((x_test,y_test)).batch(128)
+train_iter = iter(train_db) # 生成迭代器
+sample = next(train_iter)
+print('batch :',sample[0].shape)
+
+# [b,728] =&gt; [b,512] =&gt; [b,128]  =&gt; [b,10]
+w1 = tf.Variable(tf.random.truncated_normal([784,256],stddev=0.1))
+b1 = tf.Variable(tf.zeros([256]))
+w2= tf.Variable(tf.random.truncated_normal([256,128],stddev=0.1))
+b2 = tf.Variable(tf.zeros([128]))
+w3 = tf.Variable(tf.random.truncated_normal([128,10],stddev=0.1))
+b3 = tf.Variable(tf.zeros([10]))
+lr = 1e-3
+# h1 = x@w1 + b1
+for epoch in range(10):
+    for step,(x,y) in enumerate(train_db):
+        # x:[128,28,28]
+        # y: [128]
+        # x: [b,28*28]
+        # h1 = x@w1 + b1;
+        # [b.784]@[784,256] + [256] =&gt;  [b,256] +[256] =&gt; b[256] + [256]
+        x = tf.reshape(x,[-1,28*28])
+        with tf.GradientTape() as  tape:
+            h1 = x@w1 + tf.broadcast_to(b1,[x.shape[0],256])
+            h1 = tf.nn.relu(h1)
+            h2 = h1@w2 + b2
+            out = h2@w3 + b3
+
+            # compute loss
+            # out[b,10]
+            # y: [b] =&gt; [b,10]
+            y_onehot = tf.one_hot(y,depth=10)
+            # mes = mean((y-out)^2)
+            # [b,10]
+            loss = tf.square(y_onehot - out)
+            # mean: scalar
+            loss = tf.reduce_mean(loss)
+        grads = tape.gradient(loss,[w1,b1,w2,b2,w3,b3])
+        w1.assign_sub(lr * grads[0])
+        b1.assign_sub(lr * grads[1])
+        w2.assign_sub(lr * grads[2])
+        b2.assign_sub(lr * grads[3])
+        w3.assign_sub(lr * grads[4])
+        b3.assign_sub(lr * grads[5])
+        '''
+        w1 = w1 - lr * grads[0]
+        b1 =b1 - lr * grads[1]
+        w2 = w2 - lr * grads[2]
+        b2 = b2 - lr * grads[3]
+        w3 = w3 - lr * grads[4]
+        b3 = b3 - lr * grads[5]
+        '''
+        if step % 100 == 0:
+            print(epoch,step,'loss = ',float(loss))
+
+    total_correct = 0
+    total_num = 0
+    for  step,(x,y) in enumerate(test_db):
+        x = tf.reshape(x,[-1,28*28])
+        h1 = tf.nn.relu(x@w1+b1)
+        h2 = tf.nn.relu(h1@w2 + b2)
+        out = h2@w3 + b3
+        # int 64
+
+        prob = tf.nn.softmax(out,axis=1)
+        pred = tf.argmax(prob,axis=1)
+        #print(pred.shape,out.shape,prob.shape)
+        pred = tf.cast(pred,dtype=tf.int32)
+        #print(pred.shape,y.shape)
+        correct = tf.cast(tf.equal(pred,y),dtype=tf.int32)
+        correct = tf.reduce_sum(correct)
+
+        total_correct += int(correct)
+        total_num += x.shape[0]
+    acc = total_correct / total_num
+    print(&quot;test acc: &quot;,acc)
 </code></pre>
-<h3 id="记录建站时间">记录建站时间</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
-&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
-&lt;script&gt;
-    var now = new Date();
-    function createtime() {
-        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
-        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
-        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
-    }
-setInterval(&quot;createtime()&quot;,250);
-&lt;/script&gt;
+<h2 id="mnist数据体验">mnist数据体验</h2>
+<pre><code class="language-python">#conding:utf-8
+
+# 导入TensorFlow和tf.keras
+
+import tensorflow as tf
+from tensorflow import keras
+from  tensorflow.keras import datasets
+
+from keras.datasets import boston_housing
+
+# 导入辅助库
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+#(train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()
+
+(train_images, train_labels), (test_images, test_labels) = boston_housing.load_data()
+class_names = ['0','1','2','3','4','5','6','7','8','9']
+
+train_images = train_images / 255.0
+test_images = test_images / 255.0
+
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28, 28)),
+    keras.layers.Dense(128, activation=tf.nn.relu),
+    keras.layers.Dense(10, activation=tf.nn.softmax)
+])
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(train_images, train_labels, epochs=5)
+
+test_loss, test_acc = model.evaluate(test_images, test_labels)
+print('Test accuracy:', test_acc)
 </code></pre>
-<h2 id="参考文献">参考文献</h2>
-<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+<h2 id="遇见的问题">遇见的问题</h2>
+<h3 id="导入fashionminst数据问题">导入fashionminst数据问题</h3>
+<p>报错</p>
+<pre><code class="language-python">EOFError: Compressed file ended before the end-of-stream marker was reached
+</code></pre>
+<p>解决问题方法：</p>
+<p>fashion-mnist数据缓存位置 ：</p>
+<pre><code class="language-python"> C:\Users\（你的Windows用户名）\.keras\datasets\\fashion-mnist
+</code></pre>
+<p>删除fashion-mnist文件夹，然后重新加载数据就可以了。</p>
+<h3 id="fashion-minst数据集更换国内可用连接">fashion-minst数据集更换国内可用连接</h3>
+<p>在你的TensorFlow库文件里面，更改fashion_mnist.py文件，具体路径如下：</p>
+<pre><code>envs\\tensorflow\lib\site-packages\tensorflow\python\keras\datasets\fashion_mnist.py
+</code></pre>
+<p>把代码中的</p>
+<p>base = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/'</p>
+<p>替换为如下连接：  base = 'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/'</p>
+<p>其他数据源也可以通过类似的方法更改，不错连接要准确。</p>
 
                                 </div>
                     </article>
@@ -219,9 +287,9 @@ setInterval(&quot;createtime()&quot;,250);
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://zhuoquany.github.io/post/hexoBlog/">
+                            <a href="https://zhuoquany.github.io/post/oracle-de-an-zhuang-he-shi-yong/">
                                 <h3 class="post-title">
-                                     基于hexo 搭建博客
+                                    oracle的安装和使用
                                 </h3>
                             </a>
                         </div>
@@ -242,15 +310,14 @@ setInterval(&quot;createtime()&quot;,250);
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
-<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
+<li><a href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD">前向传播</a></li>
+<li><a href="#mnist%E6%95%B0%E6%8D%AE%E4%BD%93%E9%AA%8C">mnist数据体验</a></li>
+<li><a href="#%E9%81%87%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98">遇见的问题</a>
 <ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
-<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
-<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
+<li><a href="#%E5%AF%BC%E5%85%A5fashionminst%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98">导入fashionminst数据问题</a></li>
+<li><a href="#fashion-minst%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E5%8F%AF%E7%94%A8%E8%BF%9E%E6%8E%A5">fashion-minst数据集更换国内可用连接</a></li>
 </ul>
 </li>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
 </ul>
 </li>
 </ul>

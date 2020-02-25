@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    github-配置SSH-key | EdenBlog
+    linear  regression(线性回归) | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582598577024">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,44 +110,91 @@ var _hmt = _hmt || [];
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            github-配置SSH-key
+                            linear  regression(线性回归)
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-07-24</time>
+                            <time class="post-time">2020-02-25</time>
                             
-                                <a href="https://zhuoquany.github.io/tag/NVxqSWSmnI/" class="post-tag i-tag
-                            i-tag-other_1">
-                            #github
+                                <a href="https://zhuoquany.github.io/tag/6Dui-A6ak/" class="post-tag i-tag
+                            i-tag-info">
+                            #线性回归
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <pre><code class="language-shell">ssh-keygen -t rsa -C &quot;邮件地址&quot;
+                                    <p>这是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>w</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y=wx+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 的线性回归代码。</p>
+<!-- more -->
+<pre><code class="language-python">#conding:utf-8
+import  numpy as  np
+import matplotlib.pyplot as plt
+'''
+线性回归（linear  regression）
+'''
+def compute_error_for_line_given_points(b,w,points):
+    totalError = 0
+    # 循环叠加每一个点的误差。
+    for i in range(0,len(points)):
+        x = points[i,0]
+        y = points[i,1]
+        #computer mean-squared-error
+        # ** 2表示平方
+        totalError += (y-(w*x+b)) ** 2
+    return  totalError / float(len(points))
+def step_gradient(b_current,w_current,points,learningRate):
+    b_gradient = 0
+    w_gradient = 0
+    N = float(len(points))
+    for i in range(0,len(points)):
+        x = points[i,0]
+        y = points[i,1]
+        # grad_b = 2(wx+b-y)
+        b_gradient += (2/N) * ((w_current * x + b_current) - y )
+        # grad_W = w(wx+b-y)*x
+        w_gradient += (2/N) * x * ((w_current * x + b_current) - y)
+    # update w'
+    new_b = b_current - (learningRate * b_gradient)
+    new_w = w_current - (learningRate * w_gradient)
+    return [new_b,new_w]
+def gradient_descent_runner(points,starting_b,starting_w,learning_rate,num_iterations):
+    b = starting_b
+    w = starting_w
+    # update for serveral times
+    # num_iterations 循环次数。
+    for i in range(num_iterations):
+        b,w = step_gradient(b,w,np.array(points),learning_rate)
+    return [b,w]
+def  run():
+    # 生成随机训练集
+    x = np.random.randint(-50, 160, size=130)
+    y = 2.5 * x + 3.2
+    points = np.column_stack((x, y))
+    # 初始参数
+    learning_rate = 0.0001 #学习率
+    initial_b = 0
+    initial_w = 0
+    num_iterations = 1000 # 迭代次数。
+    print(&quot;Starting gradient descent descrnt at b = {0}, w= {1},error = {2}&quot;
+            .format(initial_b,initial_w,compute_error_for_line_given_points(initial_b,initial_w,points)))
+    print(&quot;runing...&quot;)
+    [b,w] = gradient_descent_runner(points,initial_b,initial_w,learning_rate,num_iterations)
+    print(&quot;after {0} iterations b = {1},w={2},error ={3}&quot;
+        .format(num_iterations,b,w,compute_error_for_line_given_points(b,w,points)))
+
+    # 绘制散点图
+    Scatter_plot(x, y, w, b)
+
+def Scatter_plot(x,y,w,b):
+    plt.scatter(x, y)
+    plt.title('figure')
+    plt.xlabel('X')
+    plt.ylabel('y')
+    plt.plot(x, x * w + b, 'm', linewidth=2)
+    plt.show()
+
+if __name__ == '__main__':
+    run()
 </code></pre>
-<p>这个邮件地址是你GitHub的邮件地址。</p>
-<p>连续三次回车（这样默认不会更改ssh的保存路径）。</p>
-<!--more-->
-<p>三处回车的英语翻译：</p>
-<ul>
-<li>输入保存密钥的文件（/c/users/eden/.ssh/id_rsa）：</li>
-<li>输入密码短语（无密码短语为空）：</li>
-<li>再次输入相同的密码：</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538362894.png" alt="" loading="lazy"></figure>
-<p>打开ssh key 的保存路径，找到id_rsa.pub文件，用记事本打开并复制里面的内容。打开你的GitHub主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
-<figure data-type="image" tabindex="2"><img src="https://zhuoquany.github.io/post-images/1582538389820.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://zhuoquany.github.io/post-images/1582538401948.png" alt="" loading="lazy"></figure>
-<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
-<pre><code class="language-git">ssh -T git@github.com
-</code></pre>
-<p>如果提示 Are you sure you want to continue connecting (yes/no)?  输入yes</p>
-<p>提示 You've successfully authenticated, but GitHub does not provide shell access.表示成功了。</p>
-<p>此时还需要配置：</p>
-<pre><code class="language-git">$ git config --global user.name &quot;liuxianan&quot;// 你的github用户名，非昵称
-$ git config --global user.email  &quot;xxx@qq.com&quot;// 填写你的github注册邮箱
-</code></pre>
-<p>完成以上步骤  GitHub ssh ket 就配置好了。😍😍</p>
 
                                 </div>
                     </article>
@@ -155,9 +202,9 @@ $ git config --global user.email  &quot;xxx@qq.com&quot;// 填写你的github注
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://zhuoquany.github.io/post/ct-wen-ti/">
+                            <a href="https://zhuoquany.github.io/post/ip-jing-tai-lu-you/">
                                 <h3 class="post-title">
-                                    CT问题
+                                    ip静态路由
                                 </h3>
                             </a>
                         </div>
