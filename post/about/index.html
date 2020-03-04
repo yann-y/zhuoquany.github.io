@@ -7,7 +7,7 @@
 <title>
     关于 | EdenBlog
 </title>
-<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1582599387447">
+<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1583333078690">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -15,7 +15,7 @@
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://zhuoquany.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>-->
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
@@ -39,7 +39,7 @@ var _hmt = _hmt || [];
     <div class="nav">
         <div class="logo">
             <a href="https://zhuoquany.github.io">
-                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1582599387447" alt="">
+                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1583333078690" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -198,10 +198,83 @@ var _hmt = _hmt || [];
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
   <a class="rss" href="https://zhuoquany.github.io/atom.xml" target="_blank">RSS</a>
 </div>
-
+<!--
 <script>
   hljs.initHighlightingOnLoad()
 </script>
+-->
+<!-- 动漫妹纸-->
+<script src="https://blog-static.cnblogs.com/files/yyhh/L2Dwidget.min.js"></script>
+
+<script type="text/javascript">
+L2Dwidget.init();
+</script>
+			
+			<!-- 引入代码高亮的 js -->
+			<link rel="stylesheet"
+                href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css">
+            <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
+            <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+            <style type="text/css">
+                .highlight {
+                    position: relative;
+                }
+                .btn-copy {
+                    display: inline-block;
+                    cursor: pointer;
+                    background-color: #eee;
+                    background-image: linear-gradient(#fcfcfc, #eee);
+                    border: 1px solid #d5d5d5;
+                    border-radius: 3px;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    -webkit-appearance: none;
+                    font-size: 13px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    color: rgb(253, 11, 11);
+                    -webkit-transition: opacity .3s ease-in-out;
+                    -o-transition: opacity .3s ease-in-out;
+                    transition: opacity .3s ease-in-out;
+                    padding: 2px 6px;
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    opacity: 0;
+                }
+            
+                .btn-copy span {
+                    margin-left: 5px;
+                }
+            
+                .highlight:hover .btn-copy {
+                    opacity: 1;
+                }
+            </style>
+            <script type="text/javascript">
+                /*页面载入完成后，创建复制按钮*/
+                !function (e, t, a) {
+                    /* code */
+                    var initCopyCode = function () {
+                        var copyHtml = '';
+                        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+                        copyHtml += '  <i class="fa fa-globe"></i><span>copy</span>';
+                        copyHtml += '</button>';
+                        //$(".highlight .code pre").before(copyHtml);
+                        $("pre code").before(copyHtml);
+                        new ClipboardJS('.btn-copy', {
+                            target: function (trigger) {
+                                return trigger.nextElementSibling;
+                            }
+                        });
+                    }
+                    initCopyCode();
+                }(window, document);
+            </script>
+
 
 
     </div>
