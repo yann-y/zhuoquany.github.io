@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-03-05T07:33:22.069Z</updated>
+    <updated>2020-03-05T07:34:45.574Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
@@ -492,17 +492,9 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
         </link>
         <updated>2020-02-25T02:26:32.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="列表list">列表（list）</h2>
-<pre><code>- 列表是Python中的一个对象
-- 对象（object）就是内存中专门用来存储数据的一块区域
-- 之前我们学习的对象，像数值，它只能保存一个单一的数据
-- 列表中可以保存多个有序的数据
-- 列表是用来存储对象的对象
-- 列表的使用：
-    1.列表的创建
-    2.操作列表中的数据
-</code></pre>
 ]]></summary>
         <content type="html"><![CDATA[<h2 id="列表list">列表（list）</h2>
+<!-- more -->
 <pre><code>- 列表是Python中的一个对象
 - 对象（object）就是内存中专门用来存储数据的一块区域
 - 之前我们学习的对象，像数值，它只能保存一个单一的数据
@@ -511,9 +503,10 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 - 列表的使用：
     1.列表的创建
     2.操作列表中的数据
-</code></pre>
-<!-- more -->
-<pre><code>- 练习：
+
+
+
+- 练习：
     - 创建一个列表，在列表中保存你最好的5个朋友的名字
         然后分别通过索引来获取每一个朋友的名字
 </code></pre>
