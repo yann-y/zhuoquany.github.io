@@ -558,6 +558,10 @@ body {
   flex-shrink: 0;
   width: 280px;
 }
+canvas#live2dcanvas {
+  border: 0 !important;
+  left: 0;
+}
 @media (max-width: 960px) {
   .main .main-container {
     flex-direction: column;
