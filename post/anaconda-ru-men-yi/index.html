@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    linear  regression(线性回归) | EdenBlog
+    Anaconda 入门(一) | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1584017017347">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -120,91 +120,84 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        linear  regression(线性回归)
+                        Anaconda 入门(一)
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2020-02-25</time>
-                        
-                        <a href="https://zhuoquany.github.io/tag/6Dui-A6ak/"
-                            class="post-tag i-tag
-                            i-tag-success">
-                            #线性回归
-                        </a>
+                        <time class="post-time">2020-03-12</time>
                         
                     </div>
                     
                     <div class="post-content">
-                        <p>这是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>w</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y=wx+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 的线性回归代码。</p>
+                        <p>Anaconda 是什么？<br>
+Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
+⚽️⚽️⚽️</p>
 <!-- more -->
-<pre><code class="language-python">#conding:utf-8
-import  numpy as  np
-import matplotlib.pyplot as plt
-'''
-线性回归（linear  regression）
-'''
-def compute_error_for_line_given_points(b,w,points):
-    totalError = 0
-    # 循环叠加每一个点的误差。
-    for i in range(0,len(points)):
-        x = points[i,0]
-        y = points[i,1]
-        #computer mean-squared-error
-        # ** 2表示平方
-        totalError += (y-(w*x+b)) ** 2
-    return  totalError / float(len(points))
-def step_gradient(b_current,w_current,points,learningRate):
-    b_gradient = 0
-    w_gradient = 0
-    N = float(len(points))
-    for i in range(0,len(points)):
-        x = points[i,0]
-        y = points[i,1]
-        # grad_b = 2(wx+b-y)
-        b_gradient += (2/N) * ((w_current * x + b_current) - y )
-        # grad_W = w(wx+b-y)*x
-        w_gradient += (2/N) * x * ((w_current * x + b_current) - y)
-    # update w'
-    new_b = b_current - (learningRate * b_gradient)
-    new_w = w_current - (learningRate * w_gradient)
-    return [new_b,new_w]
-def gradient_descent_runner(points,starting_b,starting_w,learning_rate,num_iterations):
-    b = starting_b
-    w = starting_w
-    # update for serveral times
-    # num_iterations 循环次数。
-    for i in range(num_iterations):
-        b,w = step_gradient(b,w,np.array(points),learning_rate)
-    return [b,w]
-def  run():
-    # 生成随机训练集
-    x = np.random.randint(-50, 160, size=130)
-    y = 2.5 * x + 3.2
-    points = np.column_stack((x, y))
-    # 初始参数
-    learning_rate = 0.0001 #学习率
-    initial_b = 0
-    initial_w = 0
-    num_iterations = 1000 # 迭代次数。
-    print(&quot;Starting gradient descent descrnt at b = {0}, w= {1},error = {2}&quot;
-            .format(initial_b,initial_w,compute_error_for_line_given_points(initial_b,initial_w,points)))
-    print(&quot;runing...&quot;)
-    [b,w] = gradient_descent_runner(points,initial_b,initial_w,learning_rate,num_iterations)
-    print(&quot;after {0} iterations b = {1},w={2},error ={3}&quot;
-        .format(num_iterations,b,w,compute_error_for_line_given_points(b,w,points)))
+<ul>
+<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
+<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
+</ul>
+<h1 id="下载-anaconda">下载 Anaconda</h1>
+<p>直接在<a href="https://www.anaconda.com/distribution/">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。<br>
+我选择的是国内下载<br>
+<a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源镜像网站</a><br>
+<img src="http://qiniu.youis.top/20200312181813.png" alt="" loading="lazy"><br>
+<img src="http://qiniu.youis.top/20200312181916.png" alt="" loading="lazy"><br>
+下载以后安装就行。<br>
+具体安装过程看这篇<a href="https://blog.csdn.net/xhbspark/article/details/89929458">博文</a></p>
+<h1 id="conda-工具介绍">conda 工具介绍</h1>
+<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
+<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
+<pre><code># 查看帮助
+conda -h 
+# 基于python3.6版本创建一个名字为python36的环境
+conda create --name python36 python=3.6 
+# 激活此环境
+activate python36  
+source activate python36 # linux/mac
+# 再来检查python版本，显示是 3.6
+python -V  
+# 退出当前环境
+deactivate python36 
+# 删除该环境
+conda remove -n python36 --all
+# 或者 
+conda env remove  -n python36
 
-    # 绘制散点图
-    Scatter_plot(x, y, w, b)
-
-def Scatter_plot(x,y,w,b):
-    plt.scatter(x, y)
-    plt.title('figure')
-    plt.xlabel('X')
-    plt.ylabel('y')
-    plt.plot(x, x * w + b, 'm', linewidth=2)
-    plt.show()
-
-if __name__ == '__main__':
-    run()
+# 查看所以安装的环境
+conda info -e
+python36              *  D:\Programs\Anaconda3\envs\python36
+root                     D:\Programs\Anaconda3
+</code></pre>
+<p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。</p>
+<pre><code># 安装 matplotlib 
+conda install matplotlib
+# 查看已安装的包
+conda list 
+# 包更新
+conda update matplotlib
+# 删除包
+conda remove matplotlib
+</code></pre>
+<p>在 conda 中 anything is a package。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：</p>
+<pre><code># 更新conda本身
+conda update conda
+# 更新anaconda 应用
+conda update anaconda
+# 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2
+conda update python
+</code></pre>
+<h1 id="修改镜像地址">修改镜像地址</h1>
+<p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
+<pre><code>channels:
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+ - defaults
+show_channel_urls: true
+</code></pre>
+<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
+<pre><code>[global]
+timeout = 6000
+index-url =http://mirrors.aliyun.com/pypi/simple/
+trusted-host= mirrors.aliyun.com
 </code></pre>
 
                     </div>
@@ -213,9 +206,9 @@ if __name__ == '__main__':
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://zhuoquany.github.io/post/ip-jing-tai-lu-you/">
+                    <a href="https://zhuoquany.github.io/post/tensorflow20-ru-men/">
                         <h3 class="post-title">
-                            ip静态路由
+                             TensorFlow2.0 入门
                         </h3>
                     </a>
                 </div>
@@ -228,29 +221,41 @@ if __name__ == '__main__':
             <!-- right -->
             <div id="sidebar" class="main-container-right">
                 
-                <!-- id-card -->
+                <!-- toc -->
                 
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://zhuoquany.github.io/images/avatar.png?v=1584017017347)">
-        </div>
-        <h1 class="id_card-title">
-            EdenBlog
-        </h1>
-        <h2 class="id_card-description">
-            温故而知新
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%8B%E8%BD%BD-anaconda">下载 Anaconda</a></li>
+<li><a href="#conda-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D">conda 工具介绍</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80">修改镜像地址</a></li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
                 

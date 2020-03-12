@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-03-05T09:23:00.226Z</updated>
+    <updated>2020-03-12T12:51:24.592Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
@@ -10,6 +10,89 @@
     <logo>https://zhuoquany.github.io/images/avatar.png</logo>
     <icon>https://zhuoquany.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, EdenBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[Anaconda 入门(一)]]></title>
+        <id>https://zhuoquany.github.io/post/anaconda-ru-men-yi/</id>
+        <link href="https://zhuoquany.github.io/post/anaconda-ru-men-yi/">
+        </link>
+        <updated>2020-03-12T10:09:19.000Z</updated>
+        <summary type="html"><![CDATA[<p>Anaconda 是什么？<br>
+Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
+⚽️⚽️⚽️</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Anaconda 是什么？<br>
+Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
+⚽️⚽️⚽️</p>
+<!-- more -->
+<ul>
+<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
+<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
+</ul>
+<h1 id="下载-anaconda">下载 Anaconda</h1>
+<p>直接在<a href="https://www.anaconda.com/distribution/">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。<br>
+我选择的是国内下载<br>
+<a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源镜像网站</a><br>
+<img src="http://qiniu.youis.top/20200312181813.png" alt="" loading="lazy"><br>
+<img src="http://qiniu.youis.top/20200312181916.png" alt="" loading="lazy"><br>
+下载以后安装就行。<br>
+具体安装过程看这篇<a href="https://blog.csdn.net/xhbspark/article/details/89929458">博文</a></p>
+<h1 id="conda-工具介绍">conda 工具介绍</h1>
+<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
+<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
+<pre><code># 查看帮助
+conda -h 
+# 基于python3.6版本创建一个名字为python36的环境
+conda create --name python36 python=3.6 
+# 激活此环境
+activate python36  
+source activate python36 # linux/mac
+# 再来检查python版本，显示是 3.6
+python -V  
+# 退出当前环境
+deactivate python36 
+# 删除该环境
+conda remove -n python36 --all
+# 或者 
+conda env remove  -n python36
+
+# 查看所以安装的环境
+conda info -e
+python36              *  D:\Programs\Anaconda3\envs\python36
+root                     D:\Programs\Anaconda3
+</code></pre>
+<p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。</p>
+<pre><code># 安装 matplotlib 
+conda install matplotlib
+# 查看已安装的包
+conda list 
+# 包更新
+conda update matplotlib
+# 删除包
+conda remove matplotlib
+</code></pre>
+<p>在 conda 中 anything is a package。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：</p>
+<pre><code># 更新conda本身
+conda update conda
+# 更新anaconda 应用
+conda update anaconda
+# 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2
+conda update python
+</code></pre>
+<h1 id="修改镜像地址">修改镜像地址</h1>
+<p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
+<pre><code>channels:
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+ - defaults
+show_channel_urls: true
+</code></pre>
+<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
+<pre><code>[global]
+timeout = 6000
+index-url =http://mirrors.aliyun.com/pypi/simple/
+trusted-host= mirrors.aliyun.com
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ TensorFlow2.0 入门]]></title>
         <id>https://zhuoquany.github.io/post/tensorflow20-ru-men/</id>
@@ -693,104 +776,6 @@ timeout = 6000
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = pypi.tuna.tsinghua.edu.cn
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[next 主题修改]]></title>
-        <id>https://zhuoquany.github.io/post/next-主题修改/</id>
-        <link href="https://zhuoquany.github.io/post/next-主题修改/">
-        </link>
-        <updated>2019-08-01T12:02:03.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="next-主题修改">next 主题修改</h2>
-<p>打开站点配置文件：站点根目录/_config.yml</p>
-<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
-<p>language: zh-Hans<br>
-然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
-<!--more-->
-<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
-<p>zh-CN.yml<br>
-zh-HK.yml<br>
-zh-TW.yml<br>
-那么有两种解决方法</p>
-<p>1.是将language属性配置成zh-CN</p>
-<p>2.将zh-CN.yml文件名改成zh-Hans</p>
-<p>language: zh-Hans</p>
-<p>亲测第二种可以。</p>
-<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
-<h3 id="添加网站访问量">添加网站访问量</h3>
-<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
-<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
-&lt;div class=&quot;busuanzi-count&quot;&gt;
-    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
-    &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
-      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
-    &lt;/span&gt;
-    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
-    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
-      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
-      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
-    &lt;/span&gt; --&gt;
-    &lt;!-- 博客字数统计 --&gt;
-    &lt;span class=&quot;site-pv&quot;&gt;
-      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
-      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
-    &lt;/span&gt;
-&lt;/div&gt;
-</code></pre>
-<p>实际效果：</p>
-<figure data-type="image" tabindex="1"><img src="https://zhuoquany.github.io/post-images/1582538604970.png" alt="" loading="lazy"></figure>
-<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
-&lt;!--{% if theme.footer.powered.enable %}
-  &lt;div class=&quot;powered-by&quot;&gt;{#
-  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
-  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
- #}&lt;/div&gt;
-{% endif %}
-
-{% if theme.footer.powered.enable and theme.footer.theme.enable %}
-  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
-{% endif %}
-
-{% if theme.footer.theme.enable %}
-  &lt;div class=&quot;theme-info&quot;&gt;{#
-  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
-  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
-#}&lt;/div&gt;
-{% endif %}--&gt;
-</code></pre>
-<h3 id="记录建站时间">记录建站时间</h3>
-<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
-<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
-&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
-&lt;script&gt;
-    var now = new Date();
-    function createtime() {
-        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
-        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
-        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
-    }
-setInterval(&quot;createtime()&quot;,250);
-&lt;/script&gt;
-</code></pre>
-<h2 id="参考文献">参考文献</h2>
-<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
 ]]></content>
     </entry>
 </feed>
