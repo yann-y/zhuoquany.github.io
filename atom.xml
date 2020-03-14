@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-03-12T12:51:24.592Z</updated>
+    <updated>2020-03-14T13:34:32.308Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://zhuoquany.github.io/images/avatar.png</logo>
     <icon>https://zhuoquany.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, EdenBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[PicGo+Typora实现图片自动上传]]></title>
+        <id>https://zhuoquany.github.io/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/</id>
+        <link href="https://zhuoquany.github.io/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/">
+        </link>
+        <updated>2020-03-14T13:27:43.000Z</updated>
+        <summary type="html"><![CDATA[<p>😁😁😁自建博客，图片自动上传图床，提高网站访问速度。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>😁😁😁自建博客，图片自动上传图床，提高网站访问速度。</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="http://qiniu.youis.top/image-20200314211831488.png" alt="image-20200314211831488" loading="lazy"></figure>
+<p>图床我用的七牛云。</p>
+<figure data-type="image" tabindex="2"><img src="http://qiniu.youis.top/image-20200314212120529.png" alt="image-20200314212120529" loading="lazy"></figure>
+<p>确认区域那里有一点坑，z0,z1,z2,z3表示七牛的四个存储区域。</p>
+<p>进行一下的设置。</p>
+<figure data-type="image" tabindex="3"><img src="http://qiniu.youis.top/image-20200314212420305.png" alt="image-20200314212420305" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="http://qiniu.youis.top/image-20200314212334602.png" alt="image-20200314212334602" loading="lazy"></figure>
+<p>然后就可以了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Anaconda 入门(一)]]></title>
         <id>https://zhuoquany.github.io/post/anaconda-ru-men-yi/</id>
@@ -733,49 +753,6 @@ error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git
 <p>3、再通过git commit -m &quot;注释内容&quot;把项目提交到仓库；</p>
 <p>4、在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/zhuoquany/tensorflow2.git将本地仓库和远程仓库进行关联；</p>
 <p>5、最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上；（若新建远程仓库的时候自动创建了README文件会报错，解决办法看上面）。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pip 换源]]></title>
-        <id>https://zhuoquany.github.io/post/pip-换源/</id>
-        <link href="https://zhuoquany.github.io/post/pip-换源/">
-        </link>
-        <updated>2019-08-17T11:01:20.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="pip换源">pip换源</h2>
-<h3 id="linux-下pip换源">Linux 下pip换源</h3>
-<p>在 <em>~/.pip/pip.conf</em> 中编辑如下内容，如果文件不存在，使用命令创建改文件</p>
-<p><strong>pip国内的一些镜像</strong></p>
-<p>阿里云 http://mirrors.aliyun.com/pypi/simple/<br>
-中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/<br>
-豆瓣(douban) http://pypi.douban.com/simple/<br>
-清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="pip换源">pip换源</h2>
-<h3 id="linux-下pip换源">Linux 下pip换源</h3>
-<p>在 <em>~/.pip/pip.conf</em> 中编辑如下内容，如果文件不存在，使用命令创建改文件</p>
-<p><strong>pip国内的一些镜像</strong></p>
-<p>阿里云 http://mirrors.aliyun.com/pypi/simple/<br>
-中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/<br>
-豆瓣(douban) http://pypi.douban.com/simple/<br>
-清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</p>
-<!--more-->
-<p><strong>修改源方法：</strong></p>
-<p><strong>临时使用：</strong><br>
-可以在使用pip的时候在后面加上-i参数，指定pip源<br>
-eg: pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple</p>
-<p><strong>永久修改：</strong><br>
-<strong>linux:</strong><br>
-修改 ~/.pip/pip.conf (没有就创建一个)， 内容如下：</p>
-<pre><code>[global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-</code></pre>
-<p><strong>windows:</strong><br>
-直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，在pip 目录下新建文件pip.ini，内容如下，或者按照网友的建议：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下</p>
-<pre><code>[global]
-timeout = 6000
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-trusted-host = pypi.tuna.tsinghua.edu.cn
-</code></pre>
 ]]></content>
     </entry>
 </feed>
