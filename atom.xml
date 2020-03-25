@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-03-23T07:24:26.500Z</updated>
+    <updated>2020-03-25T04:04:31.442Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
@@ -99,12 +99,14 @@ conda update anaconda
 conda update python
 </code></pre>
 <h1 id="修改镜像地址">修改镜像地址</h1>
+<h2 id="anaconda-换源">anaconda 换源</h2>
 <p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
 <pre><code>channels:
  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
  - defaults
 show_channel_urls: true
 </code></pre>
+<h2 id="pip换源">pip换源</h2>
 <p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
 <pre><code>[global]
 timeout = 6000

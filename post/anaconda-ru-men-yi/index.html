@@ -7,7 +7,7 @@
 <title>
     Anaconda 入门(一) | EdenBlog
 </title>
-<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1584948259737">
+<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1585108987857">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -49,7 +49,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://zhuoquany.github.io">
-                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1584948259737" alt="">
+                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1585108987857" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -127,7 +127,7 @@
                         
                         <a href="https://zhuoquany.github.io/tag/e3DbDSoNh/"
                             class="post-tag i-tag
-                            i-tag-">
+                            i-tag-error">
                             #python
                         </a>
                         
@@ -193,12 +193,14 @@ conda update anaconda
 conda update python
 </code></pre>
 <h1 id="修改镜像地址">修改镜像地址</h1>
+<h2 id="anaconda-换源">anaconda 换源</h2>
 <p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
 <pre><code>channels:
  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
  - defaults
 show_channel_urls: true
 </code></pre>
+<h2 id="pip换源">pip换源</h2>
 <p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
 <pre><code>[global]
 timeout = 6000
@@ -250,7 +252,12 @@ trusted-host= mirrors.aliyun.com
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%8B%E8%BD%BD-anaconda">下载 Anaconda</a></li>
 <li><a href="#conda-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D">conda 工具介绍</a></li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80">修改镜像地址</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80">修改镜像地址</a>
+<ul>
+<li><a href="#anaconda-%E6%8D%A2%E6%BA%90">anaconda 换源</a></li>
+<li><a href="#pip%E6%8D%A2%E6%BA%90">pip换源</a></li>
+</ul>
+</li>
 <li><a href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">遇到的问题</a>
 <ul>
 <li><a href="#%E5%BC%B9%E5%87%BA%E8%AD%A6%E5%91%8A">弹出警告</a></li>
