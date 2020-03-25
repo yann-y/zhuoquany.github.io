@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-03-25T04:04:31.442Z</updated>
+    <updated>2020-03-25T05:48:28.222Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
@@ -10,6 +10,101 @@
     <logo>https://zhuoquany.github.io/images/avatar.png</logo>
     <icon>https://zhuoquany.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, EdenBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[python安装教程]]></title>
+        <id>https://zhuoquany.github.io/post/python-an-zhuang-jiao-cheng/</id>
+        <link href="https://zhuoquany.github.io/post/python-an-zhuang-jiao-cheng/">
+        </link>
+        <updated>2020-03-25T05:38:51.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="1-下载python解释器并安装">1. 下载python解释器并安装</h1>
+<p>官方地址: <a href="https://www.python.org/downloads/release/python-377/">https://www.python.org/downloads/release/python-377/</a><br>
+🤡🤡🤡</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="1-下载python解释器并安装">1. 下载python解释器并安装</h1>
+<p>官方地址: <a href="https://www.python.org/downloads/release/python-377/">https://www.python.org/downloads/release/python-377/</a><br>
+🤡🤡🤡</p>
+<!-- more -->
+<p>查找对应版本，找到目标文件： <a href="https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe">Windows x86-64 executable installer</a> 下载即可</p>
+<figure data-type="image" tabindex="1"><img src="http://qiniu.youis.top/image-20200325121059112.png" alt="image-20200325121059112" loading="lazy"></figure>
+<h1 id="2-安装解释器">2. 安装解释器</h1>
+<p>(1)  点击.exe文件，注意：勾选添加到环境变量，然后点击（customize installation）自定义安装，<br>
+<img src="http://qiniu.youis.top/image-20200325121124154.png" alt="image-20200325121124154" loading="lazy"></p>
+<p>（2）进入如下界面，这是一些可选的项，全部默认勾选进行下一步<br>
+<img src="http://qiniu.youis.top/image-20200325121131108.png" alt="image-20200325121131108" loading="lazy"></p>
+<p>（3）选择安装路径，选择自己的安装路径</p>
+<figure data-type="image" tabindex="2"><img src="http://qiniu.youis.top/image-20200325121145741.png" alt="image-20200325121145741" loading="lazy"></figure>
+<p>（4）安装<br>
+<img src="http://qiniu.youis.top/image-20200325121155998.png" alt="image-20200325121155998" loading="lazy"></p>
+<figure data-type="image" tabindex="3"><img src="http://qiniu.youis.top/image-20200325121203778.png" alt="image-20200325121203778" loading="lazy"></figure>
+<pre><code>     测试是否安装成功，在dos控制台窗口输入python,pip命令。
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="http://qiniu.youis.top/image-20200325121246869.png" alt="image-20200325121246869" loading="lazy"></figure>
+<h1 id="升级pip版本如果需要则使用">升级pip版本（如果需要则使用）</h1>
+<figure data-type="image" tabindex="5"><img src="http://qiniu.youis.top/image-20200325121255095.png" alt="image-20200325121255095" loading="lazy"></figure>
+<ol>
+<li>单独下载pip并安装（如果python中已经存在，则不需要）</li>
+</ol>
+<figure data-type="image" tabindex="6"><img src="http://qiniu.youis.top/image-20200325121305672.png" alt="image-20200325121305672" loading="lazy"></figure>
+<ol>
+<li>下载链接</li>
+</ol>
+<p><a href="https://pypi.python.org/pypi/pip#downloads">https://pypi.python.org/pypi/pip#downloads</a></p>
+<ol start="2">
+<li>[解压]{.underline}</li>
+</ol>
+<figure data-type="image" tabindex="7"><img src="http://qiniu.youis.top/image-20200325121318107.png" alt="image-20200325121318107" loading="lazy"></figure>
+<ol start="3">
+<li>安装pip，默认安装在python的script目录下</li>
+</ol>
+<figure data-type="image" tabindex="8"><img src="http://qiniu.youis.top/image-20200325121333792.png" alt="image-20200325121333792" loading="lazy"></figure>
+<ol start="4">
+<li>配置pip环境变量，在window的环境变量path中</li>
+</ol>
+<figure data-type="image" tabindex="9"><img src="http://qiniu.youis.top/image-20200325121340959.png" alt="image-20200325121340959" loading="lazy"></figure>
+<ol start="5">
+<li>测试是否安装成功</li>
+</ol>
+<figure data-type="image" tabindex="10"><img src="http://qiniu.youis.top/image-20200325121348746.png" alt="image-20200325121348746" loading="lazy"></figure>
+<h1 id="3-进行扩展库安装">3.  进行扩展库安装</h1>
+<ol>
+<li>查看已安装的模块</li>
+</ol>
+<figure data-type="image" tabindex="11"><img src="http://qiniu.youis.top/image-20200325121505990.png" alt="image-20200325121505990" loading="lazy"></figure>
+<ol start="2">
+<li>进行在线安装</li>
+</ol>
+<figure data-type="image" tabindex="12"><img src="http://qiniu.youis.top/image-20200325121513476.png" alt="image-20200325121513476" loading="lazy"></figure>
+<p>也可以通过其他镜像下载：pip install -i http://pypi.douban.com/simple --trusted-host pypi.douban.com pandas</p>
+<ol start="3">
+<li>
+<p>离线安装</p>
+<ol>
+<li>
+<p>下载模块文件.whl</p>
+<p>地址： <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a></p>
+<p>选择对应的whl文件下载：</p>
+</li>
+</ol>
+</li>
+</ol>
+<figure data-type="image" tabindex="13"><img src="http://qiniu.youis.top/image-20200325121530859.png" alt="image-20200325121530859" loading="lazy"></figure>
+<ol start="2">
+<li>通过pip安装</li>
+</ol>
+<figure data-type="image" tabindex="14"><img src="http://qiniu.youis.top/image-20200325121538377.png" alt="image-20200325121538377" loading="lazy"></figure>
+<ol start="4">
+<li>卸载</li>
+</ol>
+<figure data-type="image" tabindex="15"><img src="http://qiniu.youis.top/image-20200325121545274.png" alt="image-20200325121545274" loading="lazy"></figure>
+<ol start="4">
+<li>
+<p>下载并安装集成开发环境PyCharm或者Anaconda3</p>
+<p>官方地址：<a href="https://www.jetbrains.com/pycharm/download/#section=windows">[https://www.jetbrains.com/pycharm/download/#section=windows]{.underline}</a></p>
+</li>
+</ol>
+<figure data-type="image" tabindex="16"><img src="http://qiniu.youis.top/image-20200325121555613.png" alt="image-20200325121555613" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PicGo+Typora实现图片自动上传]]></title>
         <id>https://zhuoquany.github.io/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/</id>
@@ -696,80 +791,6 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
     1.集合中只能存储不可变对象
     2.集合中存储的对象是无序（不是按照元素的插入顺序保存）
     3.集合中不能出现重复的元素</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GitHub上传]]></title>
-        <id>https://zhuoquany.github.io/post/GitHub上传/</id>
-        <link href="https://zhuoquany.github.io/post/GitHub上传/">
-        </link>
-        <updated>2019-08-17T11:03:44.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="github-上传项目">GitHub 上传项目</h1>
-<h2 id="问题集合">问题集合</h2>
-<h3 id="添加追踪文件">添加追踪文件</h3>
-<p>错误代码：</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="github-上传项目">GitHub 上传项目</h1>
-<h2 id="问题集合">问题集合</h2>
-<h3 id="添加追踪文件">添加追踪文件</h3>
-<p>错误代码：</p>
-<!--more-->
-<pre><code>$ git add.
-git: 'add.' is not a git command. See 'git --help'.
-
-The most similar command is
-        add
-
-</code></pre>
-<p>正确代码为：</p>
-<pre><code>$ git add .
-</code></pre>
-<h3 id="仓库为空">仓库为空</h3>
-<p>问题的内容是：</p>
-<p>错误：SRC ReFSPEC主控器不匹配任何。<br>
-错误：未能将某些引用推到'git @ Github.com：HaHaa/ftpMal.git’</p>
-<p>也就是仓库为空。</p>
-<pre><code>$ git push -u origin master
-error: src refspec master does not match any
-error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git'
-
-</code></pre>
-<p>解决办法：</p>
-<p>利用git add xxx.py 指令，将所有的文件全部都添加，然后再进行git commit -m &quot;init&quot;将所有的文件commit,</p>
-<pre><code>git commit -m &quot;init&quot;
-</code></pre>
-<p>提示 nothing added to commit but untracked files present 检查git  add . 是否执行。</p>
-<p>然后在执行</p>
-<pre><code>git remote add origin xxxxxxxx.git
-</code></pre>
-<p>最后使用</p>
-<pre><code>git push -u origin master大功告成。
-</code></pre>
-<h2 id="更新仓库">更新仓库</h2>
-<p>更新代码</p>
-<p>第一步：查看当前的git仓库状态，可以使用git status</p>
-<pre><code>git status
-</code></pre>
-<p>第二步：更新全部</p>
-<pre><code>git add *
-</code></pre>
-<p>第三步：接着输入git commit -m &quot;更新说明&quot;</p>
-<pre><code>git commit -m &quot;更新说明&quot;
-</code></pre>
-<p>第四步：先git pull,拉取当前分支最新代码</p>
-<pre><code>git pull
-</code></pre>
-<p>第五步：push到远程master分支上</p>
-<pre><code>git push origin master
-</code></pre>
-<p>不出意外，打开GitHub已经同步了</p>
-<h2 id="总结">总结：</h2>
-<p>其实只需要进行下面几步就能把本地项目上传到Github</p>
-<p>1、在本地创建一个版本库（即文件夹），通过git init把它变成Git仓库；</p>
-<p>2、把项目复制到这个文件夹里面，再通过git add .把项目添加到仓库；</p>
-<p>3、再通过git commit -m &quot;注释内容&quot;把项目提交到仓库；</p>
-<p>4、在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/zhuoquany/tensorflow2.git将本地仓库和远程仓库进行关联；</p>
-<p>5、最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上；（若新建远程仓库的时候自动创建了README文件会报错，解决办法看上面）。</p>
 ]]></content>
     </entry>
 </feed>
