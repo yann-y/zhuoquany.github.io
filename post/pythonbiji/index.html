@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    apm 更换为国内源 | EdenBlog
+    python笔记 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1586763778521">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -120,33 +120,65 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        apm 更换为国内源
+                        python笔记
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2020-02-25</time>
+                        <time class="post-time">2020-04-13</time>
                         
-                        <a href="https://zhuoquany.github.io/tag/KiNwCIFb3/"
+                        <a href="https://zhuoquany.github.io/tag/e3DbDSoNh/"
                             class="post-tag i-tag
-                            i-tag-">
-                            #atom
+                            i-tag-other_1">
+                            #python
                         </a>
                         
                     </div>
                     
                     <div class="post-content">
-                        <p>要设置apm使用的软件源很简单，执行下列命令：<br>
-🙋‍♂</p>
+                        <h1 id="身份运算符">身份运算符</h1>
+<p>身份运算符用于比较两个对象的<strong>内存地址</strong>是否一致——是否是对同一个对象的引用</p>
 <!-- more -->
-<pre><code>apm config set registry npm_mirror_url
+<h2 id="is-与-is-not">is 与 is  not</h2>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:right">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>is</td>
+<td style="text-align:center">is是判断两个标识符是不是引用同一个对象</td>
+<td style="text-align:right">x is y，类似id(x)==id(y)</td>
+</tr>
+<tr>
+<td>is not</td>
+<td style="text-align:center">is not是判断两个标识符是不是引用不同对象</td>
+<td style="text-align:right">x is not y，类似id(x)!=id(y)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="is与区别">is与==区别：</h2>
+<p>is用于判断两个变量引用对象是否为同一个<br>
+==用于判断引用变量的值是否相等<br>
+判断None与False用is</p>
+<pre><code class="language-python">    if new_str is None:
+        return False
+    if new_str is False:
+        return False
 </code></pre>
-<p>将上面的npm_mirror_url替换为你想要使用的镜像源。如要使用淘宝源，即可以使用以下命令。</p>
-<pre><code>apm config set registry http://registry.npm.taobao.org
+<h1 id="输入列表">输入列表</h1>
+<pre><code class="language-python">
+'''
+编写程序，输入一个包含若干整数的列表，输出列表中的最大值。例如，输入[1, 2, 3,4, 5, 888]输出888。
+输入[1, 2, 3,4, 5, 888]
+eval就会把它从字符串转换为列表。
+'''
+input_list = eval(input(&quot;请输入一个列表&quot;))
+
+print(max(input_list))
 </code></pre>
-<pre><code>apm install --check
-</code></pre>
-<p>检查是否更换成功，出现</p>
-<p>checking  foring  native build tools  done<br>
-<img src="https://zhuoquany.github.io/post-images/1582597716712.png" alt="" loading="lazy"></p>
 
                     </div>
                 </article>
@@ -154,9 +186,9 @@
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://zhuoquany.github.io/post/python-xue-xi-bi-ji/">
+                    <a href="https://zhuoquany.github.io/post/python-an-zhuang-jiao-cheng/">
                         <h3 class="post-title">
-                            python学习笔记
+                            python安装教程
                         </h3>
                     </a>
                 </div>
@@ -169,29 +201,45 @@
             <!-- right -->
             <div id="sidebar" class="main-container-right">
                 
-                <!-- id-card -->
+                <!-- toc -->
                 
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://zhuoquany.github.io/images/avatar.png?v=1586763778521)">
-        </div>
-        <h1 class="id_card-title">
-            EdenBlog
-        </h1>
-        <h2 class="id_card-description">
-            温故而知新
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E8%BA%AB%E4%BB%BD%E8%BF%90%E7%AE%97%E7%AC%A6">身份运算符</a>
+<ul>
+<li><a href="#is-%E4%B8%8E-is-not">is 与 is  not</a></li>
+<li><a href="#is%E4%B8%8E%E5%8C%BA%E5%88%AB">is与==区别：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%85%A5%E5%88%97%E8%A1%A8">输入列表</a></li>
+</ul>
 
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
     
                 

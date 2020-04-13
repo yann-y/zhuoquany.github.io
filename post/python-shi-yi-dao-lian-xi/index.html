@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    apm 更换为国内源 | EdenBlog
+    python十一道练习 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1586763778521">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -120,33 +120,101 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        apm 更换为国内源
+                        python十一道练习
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2020-02-25</time>
-                        
-                        <a href="https://zhuoquany.github.io/tag/KiNwCIFb3/"
-                            class="post-tag i-tag
-                            i-tag-">
-                            #atom
-                        </a>
+                        <time class="post-time">2020-04-13</time>
                         
                     </div>
                     
                     <div class="post-content">
-                        <p>要设置apm使用的软件源很简单，执行下列命令：<br>
-🙋‍♂</p>
+                        <p>python课后作业<br>
+🤡🤡🤡🤡</p>
 <!-- more -->
-<pre><code>apm config set registry npm_mirror_url
+<p>1.编写程序，输入一个自然数字符串，然后输出各位数字之和。例如，输入字符串1234，输出10.</p>
+<pre><code class="language-python">from functools import reduce
+
+input_str = input(&quot;请输入一个字符串&quot;)
+
+print(reduce(lambda x, y: int(x) + int(y), input_str))
 </code></pre>
-<p>将上面的npm_mirror_url替换为你想要使用的镜像源。如要使用淘宝源，即可以使用以下命令。</p>
-<pre><code>apm config set registry http://registry.npm.taobao.org
+<p>2.编写程序，输入一个字符串，输出翻转（首尾交替）后的字符串。例如，输入字符串12345，输出54321.</p>
+<pre><code class="language-python">input_str = input(&quot;请输入一个字符串&quot;)
+input_str = input_str[::-1]
+print(input_str)
 </code></pre>
-<pre><code>apm install --check
+<p>3.编写程序，输入一个包含若干整数的列表，输出列表中的最大值。例如，输入[1，2，3，4，5，888]，输出888.</p>
+<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
+print(max(input_list))
 </code></pre>
-<p>检查是否更换成功，出现</p>
-<p>checking  foring  native build tools  done<br>
-<img src="https://zhuoquany.github.io/post-images/1582597716712.png" alt="" loading="lazy"></p>
+<p>4.编写程序，输入一个包含若干整数的列表，把列表中所有整数转换为字符串，然后输出包含这些字符串的列表。例如，输入[1，2，3，4，5，888]，输出['1'，'2'，'3'，'4'，'5'，'888']。</p>
+<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
+
+print(list(map(str, input_list)))
+
+</code></pre>
+<p>5.编写程序，输入一个包含若干任意数据的列表，输出该列表中等价于True的元素组成的列表。例如，输入[1，2，0，None，False，'a']，输出[1，2，'a']。</p>
+<pre><code class="language-python">def fun(new_str):
+    if new_str is None:
+        return False
+    if new_str is False:
+        return False
+    if new_str == 0:
+        return False
+    return True
+
+
+input_list = eval(input(&quot;请输入一个列表&quot;))
+OutList = list(filter(fun, input_list))
+print(OutList)
+</code></pre>
+<p>6.编写程序，输入一个包含若干自然数的列表，输出这些自然数的平均值。</p>
+<pre><code class="language-python">from functools import reduce
+
+input_list = eval(input(&quot;请输入一个列表&quot;))
+out_int = reduce((lambda x, y: x + y), input_list)
+print(&quot;%.3f&quot; % (out_int / len(input_list)))
+</code></pre>
+<p>7.编写程序，输入一个包含若干自然数的列表，输出这些自然数降序排列的新列表。</p>
+<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
+
+new_list = sorted(input_list, reverse=True)
+print(new_list)
+</code></pre>
+<p>8.编写程序，输入一个包含若干自然数的列表，输出一个新列表，新列表中每个元素为原列表中每个自然数的位数。例如，输入[1，888，99，23456]，输出为[1，3，2，5]。</p>
+<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
+out_list = list(map(lambda x: len(str(x)), input_list))
+print(out_list)
+</code></pre>
+<p>9.编写程序，输入一个包含若干实数的列表，输出其中绝对值最大的实数。例如，输入[-8，64，3.5，-89]，输出-89。</p>
+<pre><code class="language-python">from functools import reduce
+
+
+def fun(x, y):
+    if abs(x) &gt; abs(y):
+        return x
+    else:
+        return y
+
+
+input_list = eval(input(&quot;请输入一个列表&quot;))
+out_list = reduce(fun, input_list)
+print(out_list)
+</code></pre>
+<p>10.编写程序，输入一个包含若干整数的列表，输出这些整数的乘积。例如，输入[-2，3，4]，输出-24。</p>
+<pre><code class="language-python">from functools import reduce
+
+input_list = eval(input(&quot;请输入一个列表&quot;))
+output = reduce(lambda x, y: x * y, input_list)
+print(output)
+</code></pre>
+<p>11.编写程序，输入两个包含着若干整数的等长列表，把这两个列表看作两个向量，输出这两个向量的内积。</p>
+<pre><code class="language-python">from functools import reduce
+
+li1 = eval(input('请输入第一个列表'))
+li2 = eval(input('请输入第二个列表'))
+print(list(reduce(lambda x, y: x * y, (li1, li2))))
+</code></pre>
 
                     </div>
                 </article>
@@ -154,9 +222,9 @@
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://zhuoquany.github.io/post/python-xue-xi-bi-ji/">
+                    <a href="https://zhuoquany.github.io/post/pythonbiji/">
                         <h3 class="post-title">
-                            python学习笔记
+                            python笔记
                         </h3>
                     </a>
                 </div>
