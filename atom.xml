@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zhuoquany.github.io</id>
     <title>EdenBlog</title>
-    <updated>2020-04-15T04:07:06.903Z</updated>
+    <updated>2020-04-18T02:12:22.289Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zhuoquany.github.io"/>
     <link rel="self" href="https://zhuoquany.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>浮生若梦，人生几何</subtitle>
     <logo>https://zhuoquany.github.io/images/avatar.png</logo>
     <icon>https://zhuoquany.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, EdenBlog</rights>
