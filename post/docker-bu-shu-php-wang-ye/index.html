@@ -7,14 +7,14 @@
 <title>
     docker 部署PHP网页 | EdenBlog
 </title>
-<link rel="shortcut icon" href="https://zhuoquany.github.io/favicon.ico?v=1587175890777">
+<link rel="shortcut icon" href="/favicon.ico?v=1587176240470">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://zhuoquany.github.io/styles/main.css">
+<link rel="stylesheet" href="/styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://zhuoquany.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="/media/js/jquery.sticky-sidebar.min.js"></script>
 <!--<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>-->
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
@@ -24,8 +24,8 @@
 
  <!--妹纸挂件-->
  <!--<script src="https://blog-static.cnblogs.com/files/yyhh/L2Dwidget.min.js"></script> -->
- <script  src="https://zhuoquany.github.io/media/js/L2Dwidget.0.min.js"></script>
- <script  src="https://zhuoquany.github.io/media/js/L2Dwidget.min.js"></script>
+ <script  src="/media/js/L2Dwidget.0.min.js"></script>
+ <script  src="/media/js/L2Dwidget.min.js"></script>
  <!--
  <script type="text/javascript" charset="utf-8"  src="https://files.cnblogs.com/files/liuzhou1/L2Dwidget.0.min.js"></script>
  <script type="text/javascript" charset="utf-8"  src="https://files.cnblogs.com/files/liuzhou1/L2Dwidget.min.js"></script>-->
@@ -63,8 +63,8 @@
         <div class="header">
     <div class="nav">
         <div class="logo">
-            <a href="https://zhuoquany.github.io">
-                <img class="avatar" src="https://zhuoquany.github.io/images/avatar.png?v=1587175890777" alt="">
+            <a href="">
+                <img class="avatar" src="/images/avatar.png?v=1587176240470" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -140,13 +140,13 @@
                     <div class="post-info">
                         <time class="post-time">2020-02-25</time>
                         
-                        <a href="https://zhuoquany.github.io/tag/Sn6c33z7i/"
+                        <a href="tag/Sn6c33z7i/"
                             class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_1">
                             #docker
                         </a>
                         
-                        <a href="https://zhuoquany.github.io/tag/ldOdQMARAK/"
+                        <a href="tag/ldOdQMARAK/"
                             class="post-tag i-tag
                             i-tag-other_3">
                             #PHP
@@ -158,7 +158,7 @@
                         <h2 id="docker-部署php网页">docker 部署PHP网页</h2>
 <p>准备好两个镜像</p>
 <!-- more -->
-<p><img src="https://zhuoquany.github.io/post-images/1582597946531.png" alt="" loading="lazy"><br>
+<p><img src="/post-images/1582597946531.png" alt="" loading="lazy"><br>
 然后创建两个容器:</p>
 <pre><code class="language-bash">docker  run --name=&quot;apachedemo&quot;  -p 80:80   -d  nimmis/apache-php5
 
@@ -166,11 +166,11 @@ docker run --name mysqldemo -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysq
 </code></pre>
 <p>docker ps 查看两个容器的状态，如果docker ps 没有说明容器没有起来。</p>
 <p>docker ps 默认查看的是正在运行的容器。<br>
-<img src="https://zhuoquany.github.io/post-images/1582597959191.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582597959191.png" alt="" loading="lazy"></p>
 <p>然后在游览器输入docker 宿主机的ip；docker  安装环境的ip；</p>
 <p>（比如：虚拟机里面安装Linux，Linux里面安装docker ，你要访问网页应该输入Linux的ip）；</p>
 <p>出现如下界面，则表示Apache服务安装没有问题。<br>
-<img src="https://zhuoquany.github.io/post-images/1582597969085.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582597969085.png" alt="" loading="lazy"></p>
 <p>​    在Linux上新建一个PHP 文件，这里我命名为 demo.php</p>
 <p>输入一下内容。</p>
 <p>ip地址根据自己的ip修改。</p>
@@ -197,7 +197,7 @@ $result = mysqli_query($conn,$sql);
 <p>第一次访问可能会出现一下的错误：</p>
 <p>这是因为mysql 没有开启远程登录权限。</p>
 <p>我们进入mysql容器修改相应的权限。<br>
-<img src="https://zhuoquany.github.io/post-images/1582597987851.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582597987851.png" alt="" loading="lazy"></p>
 <pre><code class="language-bash">docker exec -it 1ed50ef86354  /bin/bash
 </code></pre>
 <p>docker exec -it  加容器ID或者容器名字可以进入docker容器内。</p>
@@ -220,10 +220,10 @@ insert into student values(1,'Joy'),(2,'Tom'),(3,'James');
 <p>再次访问会出现如下错误:</p>
 <p>Server sent charset unknown to the client. Please, report to the developers</p>
 <p>这是因为mysql最新版的字符默认字符编码 utf8mb4，所以我们要设置MySQL的默认字符集为老版本的utf8<br>
-<img src="https://zhuoquany.github.io/post-images/1582598002887.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582598002887.png" alt="" loading="lazy"></p>
 <p>还是在mysql容器内执行</p>
 <p>mysql  --help | grep my.cnf</p>
-<p><img src="https://zhuoquany.github.io/post-images/1582598035668.png" alt="" loading="lazy"><br>
+<p><img src="/post-images/1582598035668.png" alt="" loading="lazy"><br>
 查看mysql配置文件的路径那。</p>
 <p>我安装的mysql-service精简到了连vi和vim也没有，所以需要自己手动安装。用yum安装就好了。由于没有配置yum源所以会很慢。</p>
 <p>修改/etc/my.cnf</p>
@@ -242,7 +242,7 @@ default_authentication_plugin=mysql_native_password
 <p>退出到Linux  系统，执行docker  restart mysqldemo</p>
 <p>再次进入游览器，报错 The server requested authentication method unknown to the client。</p>
 <p>是由于用户身份认证的加密方式不兼容导致的，<code>mysql8.0</code>中默认方式为<code>caching_sha2_password</code>，引起老版本兼容性问题，老版本加密方式为<code>mysql_native_password</code>。<br>
-<img src="https://zhuoquany.github.io/post-images/1582598046444.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582598046444.png" alt="" loading="lazy"></p>
 <pre><code class="language-bash">mysql -uroot -p
  
 use mysql;
@@ -251,7 +251,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 <p>我们这里修改为</p>
 <p>ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';</p>
 <p>然后再次访问：<br>
-<img src="https://zhuoquany.github.io/post-images/1582598055802.png" alt="" loading="lazy"></p>
+<img src="/post-images/1582598055802.png" alt="" loading="lazy"></p>
 
                     </div>
                 </article>
@@ -259,7 +259,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://zhuoquany.github.io/post/apm-geng-huan-wei-guo-nei-yuan/">
+                    <a href="post/apm-geng-huan-wei-guo-nei-yuan/">
                         <h3 class="post-title">
                             apm 更换为国内源
                         </h3>
@@ -325,7 +325,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 
           <!--  <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://zhuoquany.github.io/atom.xml" target="_blank">RSS</a> |
+  <a class="rss" href="/atom.xml" target="_blank">RSS</a> |
   <a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">网站备案号:蜀ICP备19027589号</a>
 </div>
  -->
