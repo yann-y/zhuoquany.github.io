@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    CT问题 | EdenBlog
+    python第三次作业 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://blog.youis.top/favicon.ico?v=1587200762413">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -135,40 +135,97 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        CT问题
+                        python第三次作业
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2019-02-25</time>
+                        <time class="post-time">2020-04-18</time>
                         
-                        <a href="https://blog.youis.top/tag/BjSWwAAdi/"
+                        <a href="https://blog.youis.top/tag/e3DbDSoNh/"
                             class="post-tag i-tag
-                            i-tag-">
-                            #matlab
-                        </a>
-                        
-                        <a href="https://blog.youis.top/tag/auLoeHgt65/"
-                            class="post-tag i-tag
-                            i-tag-info">
-                            #数学建模
+                            i-tag-other_2">
+                            #python
                         </a>
                         
                     </div>
                     
                     <div class="post-content">
-                        <h3 id="问题一">问题一</h3>
-<h4 id="什么是高通滤波">什么是高通滤波？？？</h4>
-<p>高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频</p>
+                        <p>1.现有商品列表如下：</p>
 <!-- more -->
-<p>信号则被阻隔、减弱。但是阻隔、减弱的幅度则会依据不同的频率以及不同的滤波程序（目的）而改变。它有的时候也被叫做低频去除过滤（low-cut filter）。高通滤波是<strong>低通滤波</strong>的对立。</p>
-<h4 id="matlab-绘制热力图">MATLAB 绘制热力图</h4>
-<pre><code>a=xlsread('A.xls','附件2'); %读取矩阵
-b=xlsread('A.xls','附件1'); %读取矩阵
-[m,n]= size(a)
-figure(1)
-imagesc(a)
-colorbar; %显示色阶
-figure(2)
-imagesc(b)
+<p>products =   [[&quot;iphone&quot;,6888],[&quot;MacPro&quot;,14800],[&quot;小米6&quot;,2499],[&quot;Coffee&quot;,31],[&quot;Book&quot;,60],[&quot;Nike&quot;,699]]，<br>
+需打印出以下格式：<br>
+------商品列表------<br>
+0 iphone 6888<br>
+1 MacPro 14800<br>
+2 小米6 2499<br>
+3 Coffee 31<br>
+4 Book 60<br>
+5 Nike 699、</p>
+<pre><code class="language-python"># encoding: utf-8
+products = [[&quot;iphone&quot;, 6888], [&quot;MacPro&quot;, 14800], [&quot;小米6&quot;, 2499], [&quot;Coffee&quot;, 31], [&quot;Book&quot;, 60], [&quot;Nike&quot;, 699]]
+print(&quot;------商品列表------&quot;)
+for index, info in enumerate(products):
+    print(index, info[0], info[1])
+</code></pre>
+<ol start="2">
+<li>python 用户在键盘上输入一个自然数n，然后在区间[1, 5n]上随机生成n个不重复的自然数，输出这些自然数， 然后继续编写代码对这些自然数进行处理，只保留所有偶数，并输出这些偶数</li>
+</ol>
+<pre><code class="language-python">import random
+n = int(input(&quot;请输入一个自然数N: &quot;))
+numList = random.sample(range(1, 5 * n + 1), n)
+print(numList)
+outList = list(filter(lambda x: (x + 1) % 2, numList))  # （x+1）奇偶互换
+print(outList)
+
+</code></pre>
+<ol start="3">
+<li>编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。</li>
+</ol>
+<pre><code class="language-python">import random
+numList = [random.randint(0, 9) for i in range(20)]
+print(numList)
+print(sorted(numList[:10]) + sorted(numList[10:], reverse=True))
+</code></pre>
+<ol start="4">
+<li>编写程序，让用户在键盘上输入一个包含若干整数的列表，输出翻转后的列表。</li>
+</ol>
+<pre><code class="language-python">inputList = eval(input(&quot;请输入一个列表&quot;))
+print(inputList[::-1])
+</code></pre>
+<p>元组练习：（选作）<br>
+5.	写代码，有如下元祖，按照要求实现每一个功能<br>
+print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)</p>
+<pre><code class="language-python">'''
+5.	写代码，有如下元祖，按照要求实现每一个功能
+print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;) 
+
+'''
+print(&quot;----------------------------------------------&quot;)
+tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)
+# a.计算元祖长度并输出
+print(&quot;元组长度  %d&quot; % len(tu))
+# b.获取元祖的第二个元素，并输出 95 print(tu[1])
+print(tu[1])
+# c.获取元祖的第 1-2 个元素，并输出
+print(tu[0:2])
+# d.请使用for输出元祖的元素
+for i in tu:
+    print(i)
+# e.请使用for，len，range输出元素的索引
+for j in range(len(tu)):
+    print(j)
+# f.请使用enumerate输出元祖元素和序号（序号从10开始）
+for i, v in enumerate(tu, 10):
+    print(i, v)
+</code></pre>
+<p>扩展练习：<br>
+有以下列表<br>
+nums = [2, 7, 11, 15, 1, 8]<br>
+请找到列表中任意相加等于9的元素集合，如：[(2, 7), (1, 8)]</p>
+<pre><code class="language-python">nums = [2, 7, 11, 15, 1, 8]
+outNums = [(nums[i], nums[j]) for i in range(len(nums))
+           for j in range(i + 1, len(nums))
+           if nums[i] + nums[j] == 9]
+print(outNums)
 </code></pre>
 
                     </div>
@@ -177,9 +234,9 @@ imagesc(b)
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://blog.youis.top/post/hello-gridea/">
+                    <a href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/">
                         <h3 class="post-title">
-                            Hello Gridea
+                            python第二次作业
                         </h3>
                     </a>
                 </div>
@@ -200,52 +257,29 @@ imagesc(b)
             <!-- right -->
             <div id="sidebar" class="main-container-right">
                 
-                <!-- toc -->
+                <!-- id-card -->
                 
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80">问题一</a>
-<ul>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2">什么是高通滤波？？？</a></li>
-<li><a href="#matlab-%E7%BB%98%E5%88%B6%E7%83%AD%E5%8A%9B%E5%9B%BE">MATLAB 绘制热力图</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://blog.youis.top/images/avatar.png?v=1587200762413)">
+        </div>
+        <h1 class="id_card-title">
+            EdenBlog
+        </h1>
+        <h2 class="id_card-description">
+            浮生若梦，人生几何
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
     </div>
     
                 

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>EdenBlog</title>
-    <updated>2020-04-18T03:39:39.354Z</updated>
+    <updated>2020-04-18T09:06:46.038Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,162 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, EdenBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[python第三次作业]]></title>
+        <id>https://blog.youis.top/post/python-di-san-ci-zuo-ye/</id>
+        <link href="https://blog.youis.top/post/python-di-san-ci-zuo-ye/">
+        </link>
+        <updated>2020-04-18T08:59:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>1.现有商品列表如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>1.现有商品列表如下：</p>
+<!-- more -->
+<p>products =   [[&quot;iphone&quot;,6888],[&quot;MacPro&quot;,14800],[&quot;小米6&quot;,2499],[&quot;Coffee&quot;,31],[&quot;Book&quot;,60],[&quot;Nike&quot;,699]]，<br>
+需打印出以下格式：<br>
+------商品列表------<br>
+0 iphone 6888<br>
+1 MacPro 14800<br>
+2 小米6 2499<br>
+3 Coffee 31<br>
+4 Book 60<br>
+5 Nike 699、</p>
+<pre><code class="language-python"># encoding: utf-8
+products = [[&quot;iphone&quot;, 6888], [&quot;MacPro&quot;, 14800], [&quot;小米6&quot;, 2499], [&quot;Coffee&quot;, 31], [&quot;Book&quot;, 60], [&quot;Nike&quot;, 699]]
+print(&quot;------商品列表------&quot;)
+for index, info in enumerate(products):
+    print(index, info[0], info[1])
+</code></pre>
+<ol start="2">
+<li>python 用户在键盘上输入一个自然数n，然后在区间[1, 5n]上随机生成n个不重复的自然数，输出这些自然数， 然后继续编写代码对这些自然数进行处理，只保留所有偶数，并输出这些偶数</li>
+</ol>
+<pre><code class="language-python">import random
+n = int(input(&quot;请输入一个自然数N: &quot;))
+numList = random.sample(range(1, 5 * n + 1), n)
+print(numList)
+outList = list(filter(lambda x: (x + 1) % 2, numList))  # （x+1）奇偶互换
+print(outList)
+
+</code></pre>
+<ol start="3">
+<li>编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。</li>
+</ol>
+<pre><code class="language-python">import random
+numList = [random.randint(0, 9) for i in range(20)]
+print(numList)
+print(sorted(numList[:10]) + sorted(numList[10:], reverse=True))
+</code></pre>
+<ol start="4">
+<li>编写程序，让用户在键盘上输入一个包含若干整数的列表，输出翻转后的列表。</li>
+</ol>
+<pre><code class="language-python">inputList = eval(input(&quot;请输入一个列表&quot;))
+print(inputList[::-1])
+</code></pre>
+<p>元组练习：（选作）<br>
+5.	写代码，有如下元祖，按照要求实现每一个功能<br>
+print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)</p>
+<pre><code class="language-python">'''
+5.	写代码，有如下元祖，按照要求实现每一个功能
+print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;) 
+
+'''
+print(&quot;----------------------------------------------&quot;)
+tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)
+# a.计算元祖长度并输出
+print(&quot;元组长度  %d&quot; % len(tu))
+# b.获取元祖的第二个元素，并输出 95 print(tu[1])
+print(tu[1])
+# c.获取元祖的第 1-2 个元素，并输出
+print(tu[0:2])
+# d.请使用for输出元祖的元素
+for i in tu:
+    print(i)
+# e.请使用for，len，range输出元素的索引
+for j in range(len(tu)):
+    print(j)
+# f.请使用enumerate输出元祖元素和序号（序号从10开始）
+for i, v in enumerate(tu, 10):
+    print(i, v)
+</code></pre>
+<p>扩展练习：<br>
+有以下列表<br>
+nums = [2, 7, 11, 15, 1, 8]<br>
+请找到列表中任意相加等于9的元素集合，如：[(2, 7), (1, 8)]</p>
+<pre><code class="language-python">nums = [2, 7, 11, 15, 1, 8]
+outNums = [(nums[i], nums[j]) for i in range(len(nums))
+           for j in range(i + 1, len(nums))
+           if nums[i] + nums[j] == 9]
+print(outNums)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python第二次作业]]></title>
+        <id>https://blog.youis.top/post/python-di-er-ci-zuo-ye/</id>
+        <link href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/">
+        </link>
+        <updated>2020-04-18T07:55:08.000Z</updated>
+        <summary type="html"><![CDATA[<p>顺便吐槽一下，我们老师。<br>
+每节课都有作业。。。。<br>
+🙃🙃🙃🙃</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>顺便吐槽一下，我们老师。<br>
+每节课都有作业。。。。<br>
+🙃🙃🙃🙃</p>
+<!-- more -->
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/4/14 14:38
+@file: problem.py
+@desc: 
+&quot;&quot;&quot;
+
+# 创建一个空列表，命名为names，往里面添加 Lihua、Rain、Jack、Xiuxiu、Peiqi和Black元素。
+names = list()
+names.append(&quot;Lihua&quot;)
+names.append(&quot;Rain&quot;)
+names.append(&quot;Jack&quot;)
+names.append(&quot;Xiuxiu&quot;)
+names.append(&quot;Peiqi&quot;)
+names.append(&quot;Black&quot;)
+# Names=[]
+# Names.append(“”)
+# 往1中的names列表里Black前面插入一个Blue。
+names.insert(-1, &quot;Blue&quot;)
+# 把names列表中Xiuxiu的名字改成中文。
+names[names.index(&quot;Xiuxiu&quot;)] = &quot;秀秀&quot;
+# 往names列表中Rain后面插入一个子列表[&quot;oldboy&quot;,&quot;oldgirl&quot;]。
+names.insert(names.index(&quot;Rain&quot;)+1, [&quot;oldboy&quot;, &quot;oldgirl&quot;])
+print(names)  # 验证
+# 返回names列表中Peiqi的索引值（下标）
+print(names.index(&quot;Peiqi&quot;))
+# 创建新列表[1,2,3,4,2,5,6,2,]，合并到names列表中。
+numbers = [1, 2, 3, 4, 2, 5, 6, 2]
+names.extend(numbers)  # extend()方法表示合并
+print(names)
+# 取出names列表中索引4-7的元素。
+print(names[4:8])
+# 取出names列表中索引2-10的元素，步长为2
+print(names[2:11:2])
+# 取出names列表中最后3个元素。
+print(names[-3:])  # [-3:]表示取值范围为从列表的倒数第三个到末尾
+# 循环names列表，打印每个元素的索引值和元素。
+for index, i in enumerate(names):
+    print(index, i)
+    # 循环names列表，打印每个元素的索引值和元素，当索引值为偶数时，把对应的元素改成-1。
+for index, i in enumerate(names):
+    if index % 2 == 0:
+        names[index] = -1
+        # print(index, i)
+print(names)
+# names列表里有3个2，请返回第二个2的索引值，动态找
+
+print(names.index(2, names.index(2) + 1),)
+</code></pre>
+<p>好了，不多说了。我要去写第三次作业了。😘😘😘</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python十一道练习]]></title>
         <id>https://blog.youis.top/post/python-shi-yi-dao-lian-xi/</id>
@@ -656,178 +812,6 @@ def Scatter_plot(x,y,w,b):
 if __name__ == '__main__':
     run()
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ip静态路由]]></title>
-        <id>https://blog.youis.top/post/ip-jing-tai-lu-you/</id>
-        <link href="https://blog.youis.top/post/ip-jing-tai-lu-you/">
-        </link>
-        <updated>2020-02-25T02:36:34.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="ip静态路由">ip静态路由</h1>
-<p>网络拓扑图</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="ip静态路由">ip静态路由</h1>
-<p>网络拓扑图</p>
-<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://blog.youis.top/post-images/1582598242156.png" alt="" loading="lazy"></figure>
-<h2 id="基础">基础</h2>
-<p>命令的格式一般是ip route-static 目的网络 掩码 网关 preference 优先级 。</p>
-<p>报文传递流程:<br>
-<img src="https://blog.youis.top/post-images/1582598256463.png" alt="" loading="lazy"></p>
-<h2 id="r1路由端口ip配置">R1路由端口ip配置</h2>
-<p>为GigabitEthernet0/0/0  端口配置ip:192.168.1.1</p>
-<p>为GigabitEthernet0/0/1  端口配置ip:192.168.4.1</p>
-<p>interface GigabitEthernet0/0/0<br>
-ip address 192.168.1.1 255.255.255.0<br>
-interface GigabitEthernet0/0/1<br>
-ip address 192.168.4.1 255.255.255.0</p>
-<h2 id="r1路由静态ip配置">R1路由静态ip配置</h2>
-<p>ip route-static 192.168.2.0 255.255.255.0 192.168.4.2<br>
-ip route-static 192.168.3.0 255.255.255.0 192.168.4.2</p>
-<p>解释：ip route-static  目的网段  子网掩码  下一跳地址</p>
-<p>（我的理解就是 如果你要去找192.168.2.2这个ip，我应该发信息发送给192.168.4.2。而192.168.4.2这个ip就是路由R2 与R1路由相连端口的ip）</p>
-<h2 id="详细配置">详细配置</h2>
-<p>sys后直接复制粘贴改代码就好了</p>
-<p>R1路由的配置</p>
-<pre><code class="language-bash">interface GigabitEthernet0/0/0
- ip address 192.168.1.1 255.255.255.0
- quit
-interface GigabitEthernet0/0/1
- ip address 192.168.4.1 255.255.255.0
-quit
-ip route-static 192.168.2.0 255.255.255.0 192.168.4.2
-ip route-static 192.168.3.0 255.255.255.0 192.168.4.2
-</code></pre>
-<p>R2路由的配置</p>
-<p>interface GigabitEthernet0/0/0<br>
-ip address 192.168.4.2 255.255.255.0<br>
-quit<br>
-interface GigabitEthernet0/0/1<br>
-ip address 192.168.6.1 255.255.255.0<br>
-quit<br>
-interface GigabitEthernet0/0/2<br>
-ip address 192.168.5.1 255.255.255.0</p>
-<p>quit</p>
-<p>ip route-static 192.168.1.0 255.255.255.0 192.168.4.1<br>
-ip route-static 192.168.2.0 255.255.255.0 192.168.6.2<br>
-ip route-static 192.168.3.0 255.255.255.0 192.168.5.2</p>
-<p>R4路由</p>
-<p>interface GigabitEthernet0/0/1<br>
-ip address 192.168.5.2 255.255.255.0<br>
-quit<br>
-interface GigabitEthernet0/0/2<br>
-ip address 192.168.3.1 255.255.255.0</p>
-<p>ip route-static 192.168.1.0 255.255.255.0 192.168.5.1<br>
-ip route-static 192.168.2.0 255.255.255.0 192.168.5.1</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[docker 部署PHP网页]]></title>
-        <id>https://blog.youis.top/post/docker-bu-shu-php-wang-ye/</id>
-        <link href="https://blog.youis.top/post/docker-bu-shu-php-wang-ye/">
-        </link>
-        <updated>2020-02-25T02:31:23.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="docker-部署php网页">docker 部署PHP网页</h2>
-<p>准备好两个镜像</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="docker-部署php网页">docker 部署PHP网页</h2>
-<p>准备好两个镜像</p>
-<!-- more -->
-<p><img src="https://blog.youis.top/post-images/1582597946531.png" alt="" loading="lazy"><br>
-然后创建两个容器:</p>
-<pre><code class="language-bash">docker  run --name=&quot;apachedemo&quot;  -p 80:80   -d  nimmis/apache-php5
-
-docker run --name mysqldemo -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql/mysql-server:latest
-</code></pre>
-<p>docker ps 查看两个容器的状态，如果docker ps 没有说明容器没有起来。</p>
-<p>docker ps 默认查看的是正在运行的容器。<br>
-<img src="https://blog.youis.top/post-images/1582597959191.png" alt="" loading="lazy"></p>
-<p>然后在游览器输入docker 宿主机的ip；docker  安装环境的ip；</p>
-<p>（比如：虚拟机里面安装Linux，Linux里面安装docker ，你要访问网页应该输入Linux的ip）；</p>
-<p>出现如下界面，则表示Apache服务安装没有问题。<br>
-<img src="https://blog.youis.top/post-images/1582597969085.png" alt="" loading="lazy"></p>
-<p>​    在Linux上新建一个PHP 文件，这里我命名为 demo.php</p>
-<p>输入一下内容。</p>
-<p>ip地址根据自己的ip修改。</p>
-<pre><code class="language-php">&lt;?php
-header(&quot;Content-Type: text/html;charset=utf-8&quot;);
-echo &quot;&lt;h1&gt;Results  from database&lt;/h1&gt;&quot;;
-$servername = &quot;192.168.43.227&quot;;
-$username = &quot;root&quot;;
-$password = &quot;password&quot;;
-$dbname = &quot;book&quot;;
- 
-$conn = mysqli_connect('192.168.10.9','root','root') or die(&quot;error:&quot; .mysqli_connect_error());
-mysqli_select_db($conn,'book');
- 
-$sql = &quot;SELECT *  FROM student&quot;;
-$result = mysqli_query($conn,$sql);
-    while($row = mysqli_fetch_array($result)) {
-        echo &quot;&lt;h2&gt;&quot;;
-	echo $row['name']. &quot;&lt;br/&gt;&quot;;
-	echo &quot;&lt;/h2&gt;&quot;;
-    }
-?&gt;
-</code></pre>
-<p>第一次访问可能会出现一下的错误：</p>
-<p>这是因为mysql 没有开启远程登录权限。</p>
-<p>我们进入mysql容器修改相应的权限。<br>
-<img src="https://blog.youis.top/post-images/1582597987851.png" alt="" loading="lazy"></p>
-<pre><code class="language-bash">docker exec -it 1ed50ef86354  /bin/bash
-</code></pre>
-<p>docker exec -it  加容器ID或者容器名字可以进入docker容器内。</p>
-<p>exit 退出容器。</p>
-<p>mysql -uroot  -ppassword 登录mysql</p>
-<pre><code class="language-mysql">use mysql;
-SELECT User, Host FROM user;
-update user set host = '%' where user = 'root';
- flush privileges;
-</code></pre>
-<p>顺便再创建一个表</p>
-<pre><code class="language-mysql">create   database  book;
-
-use book;
-
-create  table  student (id int ,name varchar(20));
-
-insert into student values(1,'Joy'),(2,'Tom'),(3,'James');
-</code></pre>
-<p>再次访问会出现如下错误:</p>
-<p>Server sent charset unknown to the client. Please, report to the developers</p>
-<p>这是因为mysql最新版的字符默认字符编码 utf8mb4，所以我们要设置MySQL的默认字符集为老版本的utf8<br>
-<img src="https://blog.youis.top/post-images/1582598002887.png" alt="" loading="lazy"></p>
-<p>还是在mysql容器内执行</p>
-<p>mysql  --help | grep my.cnf</p>
-<p><img src="https://blog.youis.top/post-images/1582598035668.png" alt="" loading="lazy"><br>
-查看mysql配置文件的路径那。</p>
-<p>我安装的mysql-service精简到了连vi和vim也没有，所以需要自己手动安装。用yum安装就好了。由于没有配置yum源所以会很慢。</p>
-<p>修改/etc/my.cnf</p>
-<pre><code>[client]
-default-character-set=utf8
-
-[mysql]
-default-character-set=utf8
-
-[mysqld]
-collation-server = utf8_unicode_ci
-character-set-server = utf8
-default_authentication_plugin=mysql_native_password
-</code></pre>
-<p>修改配置文件后重启一下mysql 服务。</p>
-<p>退出到Linux  系统，执行docker  restart mysqldemo</p>
-<p>再次进入游览器，报错 The server requested authentication method unknown to the client。</p>
-<p>是由于用户身份认证的加密方式不兼容导致的，<code>mysql8.0</code>中默认方式为<code>caching_sha2_password</code>，引起老版本兼容性问题，老版本加密方式为<code>mysql_native_password</code>。<br>
-<img src="https://blog.youis.top/post-images/1582598046444.png" alt="" loading="lazy"></p>
-<pre><code class="language-bash">mysql -uroot -p
- 
-use mysql;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的密码';
-</code></pre>
-<p>我们这里修改为</p>
-<p>ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';</p>
-<p>然后再次访问：<br>
-<img src="https://blog.youis.top/post-images/1582598055802.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    CT问题 | EdenBlog
+    python第二次作业 | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://blog.youis.top/favicon.ico?v=1587200762413">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -135,41 +135,76 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        CT问题
+                        python第二次作业
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2019-02-25</time>
+                        <time class="post-time">2020-04-18</time>
                         
-                        <a href="https://blog.youis.top/tag/BjSWwAAdi/"
+                        <a href="https://blog.youis.top/tag/e3DbDSoNh/"
                             class="post-tag i-tag
-                            i-tag-">
-                            #matlab
-                        </a>
-                        
-                        <a href="https://blog.youis.top/tag/auLoeHgt65/"
-                            class="post-tag i-tag
-                            i-tag-info">
-                            #数学建模
+                            i-tag-error">
+                            #python
                         </a>
                         
                     </div>
                     
                     <div class="post-content">
-                        <h3 id="问题一">问题一</h3>
-<h4 id="什么是高通滤波">什么是高通滤波？？？</h4>
-<p>高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频</p>
+                        <p>顺便吐槽一下，我们老师。<br>
+每节课都有作业。。。。<br>
+🙃🙃🙃🙃</p>
 <!-- more -->
-<p>信号则被阻隔、减弱。但是阻隔、减弱的幅度则会依据不同的频率以及不同的滤波程序（目的）而改变。它有的时候也被叫做低频去除过滤（low-cut filter）。高通滤波是<strong>低通滤波</strong>的对立。</p>
-<h4 id="matlab-绘制热力图">MATLAB 绘制热力图</h4>
-<pre><code>a=xlsread('A.xls','附件2'); %读取矩阵
-b=xlsread('A.xls','附件1'); %读取矩阵
-[m,n]= size(a)
-figure(1)
-imagesc(a)
-colorbar; %显示色阶
-figure(2)
-imagesc(b)
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/4/14 14:38
+@file: problem.py
+@desc: 
+&quot;&quot;&quot;
+
+# 创建一个空列表，命名为names，往里面添加 Lihua、Rain、Jack、Xiuxiu、Peiqi和Black元素。
+names = list()
+names.append(&quot;Lihua&quot;)
+names.append(&quot;Rain&quot;)
+names.append(&quot;Jack&quot;)
+names.append(&quot;Xiuxiu&quot;)
+names.append(&quot;Peiqi&quot;)
+names.append(&quot;Black&quot;)
+# Names=[]
+# Names.append(“”)
+# 往1中的names列表里Black前面插入一个Blue。
+names.insert(-1, &quot;Blue&quot;)
+# 把names列表中Xiuxiu的名字改成中文。
+names[names.index(&quot;Xiuxiu&quot;)] = &quot;秀秀&quot;
+# 往names列表中Rain后面插入一个子列表[&quot;oldboy&quot;,&quot;oldgirl&quot;]。
+names.insert(names.index(&quot;Rain&quot;)+1, [&quot;oldboy&quot;, &quot;oldgirl&quot;])
+print(names)  # 验证
+# 返回names列表中Peiqi的索引值（下标）
+print(names.index(&quot;Peiqi&quot;))
+# 创建新列表[1,2,3,4,2,5,6,2,]，合并到names列表中。
+numbers = [1, 2, 3, 4, 2, 5, 6, 2]
+names.extend(numbers)  # extend()方法表示合并
+print(names)
+# 取出names列表中索引4-7的元素。
+print(names[4:8])
+# 取出names列表中索引2-10的元素，步长为2
+print(names[2:11:2])
+# 取出names列表中最后3个元素。
+print(names[-3:])  # [-3:]表示取值范围为从列表的倒数第三个到末尾
+# 循环names列表，打印每个元素的索引值和元素。
+for index, i in enumerate(names):
+    print(index, i)
+    # 循环names列表，打印每个元素的索引值和元素，当索引值为偶数时，把对应的元素改成-1。
+for index, i in enumerate(names):
+    if index % 2 == 0:
+        names[index] = -1
+        # print(index, i)
+print(names)
+# names列表里有3个2，请返回第二个2的索引值，动态找
+
+print(names.index(2, names.index(2) + 1),)
 </code></pre>
+<p>好了，不多说了。我要去写第三次作业了。😘😘😘</p>
 
                     </div>
                 </article>
@@ -177,9 +212,9 @@ imagesc(b)
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://blog.youis.top/post/hello-gridea/">
+                    <a href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/">
                         <h3 class="post-title">
-                            Hello Gridea
+                            python十一道练习
                         </h3>
                     </a>
                 </div>
@@ -200,52 +235,29 @@ imagesc(b)
             <!-- right -->
             <div id="sidebar" class="main-container-right">
                 
-                <!-- toc -->
+                <!-- id-card -->
                 
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80">问题一</a>
-<ul>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2">什么是高通滤波？？？</a></li>
-<li><a href="#matlab-%E7%BB%98%E5%88%B6%E7%83%AD%E5%8A%9B%E5%9B%BE">MATLAB 绘制热力图</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://blog.youis.top/images/avatar.png?v=1587200762413)">
+        </div>
+        <h1 class="id_card-title">
+            EdenBlog
+        </h1>
+        <h2 class="id_card-description">
+            浮生若梦，人生几何
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
     </div>
     
                 

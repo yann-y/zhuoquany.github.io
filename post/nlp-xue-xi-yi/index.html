@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    CT问题 | EdenBlog
+    NLP学习（一） | EdenBlog
 </title>
 <link rel="shortcut icon" href="https://blog.youis.top/favicon.ico?v=1587200762413">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -135,41 +135,48 @@
             <div id="content" class="main-container-left">
                 <article class="post i-card">
                     <h2 class="post-title">
-                        CT问题
+                        NLP学习（一）
                     </h2>
                     <div class="post-info">
-                        <time class="post-time">2019-02-25</time>
-                        
-                        <a href="https://blog.youis.top/tag/BjSWwAAdi/"
-                            class="post-tag i-tag
-                            i-tag-">
-                            #matlab
-                        </a>
-                        
-                        <a href="https://blog.youis.top/tag/auLoeHgt65/"
-                            class="post-tag i-tag
-                            i-tag-info">
-                            #数学建模
-                        </a>
+                        <time class="post-time">2019-07-17</time>
                         
                     </div>
                     
                     <div class="post-content">
-                        <h3 id="问题一">问题一</h3>
-<h4 id="什么是高通滤波">什么是高通滤波？？？</h4>
-<p>高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频</p>
+                        <p>😂😂😂<br>
+机器学习，学习机器</p>
 <!-- more -->
-<p>信号则被阻隔、减弱。但是阻隔、减弱的幅度则会依据不同的频率以及不同的滤波程序（目的）而改变。它有的时候也被叫做低频去除过滤（low-cut filter）。高通滤波是<strong>低通滤波</strong>的对立。</p>
-<h4 id="matlab-绘制热力图">MATLAB 绘制热力图</h4>
-<pre><code>a=xlsread('A.xls','附件2'); %读取矩阵
-b=xlsread('A.xls','附件1'); %读取矩阵
-[m,n]= size(a)
-figure(1)
-imagesc(a)
-colorbar; %显示色阶
-figure(2)
-imagesc(b)
-</code></pre>
+<h3 id="what-is-nlp">What is NLP?</h3>
+<ul>
+<li>NLP = NLU + NLG
+<ol>
+<li>NLP: 语音/文本-&gt; 意思  (语义的理解转换为意思)</li>
+<li>NLG:意思-&gt;文本/语音  （意识转换为文本）</li>
+</ol>
+</li>
+</ul>
+<h3 id="why-nlp-is-harderie-than-computer-vision">Why NLP is Harder(i.e. than Computer Vision)</h3>
+<ol>
+<li>NLP 不可见，图像可以直观可见<br>
+2.Ambiguity（一词多义）</li>
+</ol>
+<p>例如：</p>
+<ul>
+<li>今天我参观了<strong>苹果</strong>公司</li>
+<li>现在正好是<strong>苹果</strong>季节</li>
+</ul>
+<h3 id="how-to-solve-ambiguity">How to Solve Ambiguity?</h3>
+<ul>
+<li>主观判断<br>
+看到<strong>苹果</strong>主观98%是指一种水果，只有2%的概率是指苹果公司,如果联系上下文看到<strong>苹果公司</strong>那这个概率就会发生改变。</li>
+</ul>
+<h3 id="统计机器翻译">统计机器翻译</h3>
+<p>机器翻译基于统计翻译和深度学习<br>
+统计翻译的缺点：<br>
+1.速度慢。<br>
+2.无法解决语义歧义。<br>
+3.无法口语化，翻译相对于生硬。<br>
+4.需要大量的规则统计。</p>
 
                     </div>
                 </article>
@@ -177,9 +184,9 @@ imagesc(b)
                 
                 <div class="next-post">
                     <div class="next">下一篇</div>
-                    <a href="https://blog.youis.top/post/hello-gridea/">
+                    <a href="https://blog.youis.top/post/ct-wen-ti/">
                         <h3 class="post-title">
-                            Hello Gridea
+                            CT问题
                         </h3>
                     </a>
                 </div>
@@ -210,12 +217,10 @@ imagesc(b)
 <ul>
 <li>
 <ul>
-<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80">问题一</a>
-<ul>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2">什么是高通滤波？？？</a></li>
-<li><a href="#matlab-%E7%BB%98%E5%88%B6%E7%83%AD%E5%8A%9B%E5%9B%BE">MATLAB 绘制热力图</a></li>
-</ul>
-</li>
+<li><a href="#what-is-nlp">What is NLP?</a></li>
+<li><a href="#why-nlp-is-harderie-than-computer-vision">Why NLP is Harder(i.e. than Computer Vision)</a></li>
+<li><a href="#how-to-solve-ambiguity">How to Solve Ambiguity?</a></li>
+<li><a href="#%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91">统计机器翻译</a></li>
 </ul>
 </li>
 </ul>
