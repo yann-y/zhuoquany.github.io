@@ -2047,11 +2047,11 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #f9f9f9fe;
+      background: #fffffffe;
     }
 
     .nav-item:hover {
-      background: #f9f9f9fe;
+      background: #fffffffe;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2109,6 +2109,4 @@ body {
     }
     .mist .site-title i {
       background: #FFFFFFfe;
-    }.box-shadow-wrapper {
-      box-shadow: none !important;
     }
