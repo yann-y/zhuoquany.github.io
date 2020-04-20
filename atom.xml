@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
-    <title>EdenBlog</title>
-    <updated>2020-04-18T09:06:46.038Z</updated>
+    <title>Eden的博客</title>
+    <updated>2020-04-20T03:18:46.392Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
     <subtitle>浮生若梦，人生几何</subtitle>
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
-    <rights>All rights reserved 2020, EdenBlog</rights>
+    <rights>All rights reserved 2020, Eden的博客</rights>
     <entry>
         <title type="html"><![CDATA[python第三次作业]]></title>
         <id>https://blog.youis.top/post/python-di-san-ci-zuo-ye/</id>
@@ -17,11 +17,12 @@
         </link>
         <updated>2020-04-18T08:59:47.000Z</updated>
         <summary type="html"><![CDATA[<p>1.现有商品列表如下：</p>
+<p>products =   [[&quot;iphone&quot;,6888],[&quot;MacPro&quot;,14800],[&quot;小米6&quot;,2499],[&quot;Coffee&quot;,31],[&quot;Book&quot;,60],[&quot;Nike&quot;,699]]，</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>1.现有商品列表如下：</p>
+<p>products =   [[&quot;iphone&quot;,6888],[&quot;MacPro&quot;,14800],[&quot;小米6&quot;,2499],[&quot;Coffee&quot;,31],[&quot;Book&quot;,60],[&quot;Nike&quot;,699]]，</p>
 <!-- more -->
-<p>products =   [[&quot;iphone&quot;,6888],[&quot;MacPro&quot;,14800],[&quot;小米6&quot;,2499],[&quot;Coffee&quot;,31],[&quot;Book&quot;,60],[&quot;Nike&quot;,699]]，<br>
-需打印出以下格式：<br>
+<p>需打印出以下格式：<br>
 ------商品列表------<br>
 0 iphone 6888<br>
 1 MacPro 14800<br>
