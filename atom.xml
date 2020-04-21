@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-20T09:04:00.501Z</updated>
+    <updated>2020-04-21T08:06:11.215Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,33 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[python爬虫抓包工具]]></title>
+        <id>https://blog.youis.top/post/iumJPhy8A/</id>
+        <link href="https://blog.youis.top/post/iumJPhy8A/">
+        </link>
+        <updated>2020-04-21T06:19:52.000Z</updated>
+        <summary type="html"><![CDATA[<p>爬虫的基本原理就是模拟客户端（可以是浏览器，也有可能是APP）向远程服务器发送 HTTP 请求，我们需要知道目标服务器的 HOST、URI、请求方法、请求参数、请求头、请求体。Web 网站通过 Chrome 浏览器可以找到这些信息。但是对于 APP 爬虫，就显得有些束手无策。这时候必须借用一些抓包工具来辅助我们分析APP背后的秘密。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>爬虫的基本原理就是模拟客户端（可以是浏览器，也有可能是APP）向远程服务器发送 HTTP 请求，我们需要知道目标服务器的 HOST、URI、请求方法、请求参数、请求头、请求体。Web 网站通过 Chrome 浏览器可以找到这些信息。但是对于 APP 爬虫，就显得有些束手无策。这时候必须借用一些抓包工具来辅助我们分析APP背后的秘密。</p>
+<!-- more -->
+<p>今天推荐4个HTTP代理工具通过抓包分析，帮助你还原APP背后的每个请求。</p>
+<h1 id="fiddler">Fiddler</h1>
+<p>Fiddler 是 Windows 平台最好用的可视化抓包工具，也是大家最熟知的 HTTP 代理工具，功能非常强大，除了可以清晰的了解每个请求与响应之外，还可以进行断点设置，修改请求数据、拦截响应内容。</p>
+<p>此外，还可以自定义规则，通过修改脚本，加入自己的特殊处理，不过因为它是 C# 编写的，如果你要写复杂的脚本，需要懂C#。</p>
+<p>过滤器功能使得你可以通过正则表达式规则将你关心的请求显示出来，如果你只需要抓特定网站的数据，这个功能就显得非常有用，可以去除很多干扰信息。</p>
+<h1 id="charles">Charles</h1>
+<p>Charles 是 macOS 平台下最好用的抓包分析工具之一，同样提供GUI界面，界面简洁，基本功能包括HTTP、HTTPS 请求抓包，支持请求参数的修改，最新的 Charles 4 还支持 HTTP/2。当然，也同时支持Windows 和 Linux， 不过这款工具是要收费的，免费试用 30 天，试用期过后功能受限。</p>
+<h1 id="anyproxy">AnyProxy</h1>
+<p>AnyProxy 是 阿里巴巴开源的 HTTP 抓包工具，基于 NodeJS 实现，优点是支持二次开发，可自定义请求处理逻辑，如果你会写JS的话，同时需要做一些自定义的处理，那么AnyProxy 是非常适合的。支持 HTTPS，提供了GUI界面。 GitHub地址：https://github.com/alibaba/anyproxy</p>
+<h1 id="mitmproxy">mitmproxy</h1>
+<p>mitmproxy 是一款基于 Python，支持 SSL 的抓包工具，用 Python 写爬虫的一定会很喜欢，因为他不仅是跨平台的，而且提供的是命令行交互模式，很有极（zhuang）客（bi）感。mitmproxy 包含 3 款工具：</p>
+<p>mitmproxy: 带交互的终端界面<br>
+mitmdump: mitmproxy 的命令行版本，类似于 tcpdump<br>
+libmproxy: 用于 mitmproxy/mitmdump 的库<br>
+GitHub 地址：https://github.com/mitmproxy/mitmproxy</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python第三次作业]]></title>
         <id>https://blog.youis.top/post/python-di-san-ci-zuo-ye/</id>
@@ -739,88 +766,6 @@ print('Test accuracy:', test_acc)
 <p>lsnrctl   status  查看监听程序状态</p>
 <p>sqlplus   &quot;/as  sysdba&quot;  进入数据库库</p>
 <p>startup  启动数据库</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[linear  regression(线性回归)]]></title>
-        <id>https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/</id>
-        <link href="https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/">
-        </link>
-        <updated>2020-02-25T02:38:59.000Z</updated>
-        <summary type="html"><![CDATA[<p>这是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>w</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y=wx+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 的线性回归代码。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>w</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y=wx+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 的线性回归代码。</p>
-<!-- more -->
-<pre><code class="language-python">#conding:utf-8
-import  numpy as  np
-import matplotlib.pyplot as plt
-'''
-线性回归（linear  regression）
-'''
-def compute_error_for_line_given_points(b,w,points):
-    totalError = 0
-    # 循环叠加每一个点的误差。
-    for i in range(0,len(points)):
-        x = points[i,0]
-        y = points[i,1]
-        #computer mean-squared-error
-        # ** 2表示平方
-        totalError += (y-(w*x+b)) ** 2
-    return  totalError / float(len(points))
-def step_gradient(b_current,w_current,points,learningRate):
-    b_gradient = 0
-    w_gradient = 0
-    N = float(len(points))
-    for i in range(0,len(points)):
-        x = points[i,0]
-        y = points[i,1]
-        # grad_b = 2(wx+b-y)
-        b_gradient += (2/N) * ((w_current * x + b_current) - y )
-        # grad_W = w(wx+b-y)*x
-        w_gradient += (2/N) * x * ((w_current * x + b_current) - y)
-    # update w'
-    new_b = b_current - (learningRate * b_gradient)
-    new_w = w_current - (learningRate * w_gradient)
-    return [new_b,new_w]
-def gradient_descent_runner(points,starting_b,starting_w,learning_rate,num_iterations):
-    b = starting_b
-    w = starting_w
-    # update for serveral times
-    # num_iterations 循环次数。
-    for i in range(num_iterations):
-        b,w = step_gradient(b,w,np.array(points),learning_rate)
-    return [b,w]
-def  run():
-    # 生成随机训练集
-    x = np.random.randint(-50, 160, size=130)
-    y = 2.5 * x + 3.2
-    points = np.column_stack((x, y))
-    # 初始参数
-    learning_rate = 0.0001 #学习率
-    initial_b = 0
-    initial_w = 0
-    num_iterations = 1000 # 迭代次数。
-    print(&quot;Starting gradient descent descrnt at b = {0}, w= {1},error = {2}&quot;
-            .format(initial_b,initial_w,compute_error_for_line_given_points(initial_b,initial_w,points)))
-    print(&quot;runing...&quot;)
-    [b,w] = gradient_descent_runner(points,initial_b,initial_w,learning_rate,num_iterations)
-    print(&quot;after {0} iterations b = {1},w={2},error ={3}&quot;
-        .format(num_iterations,b,w,compute_error_for_line_given_points(b,w,points)))
-
-    # 绘制散点图
-    Scatter_plot(x, y, w, b)
-
-def Scatter_plot(x,y,w,b):
-    plt.scatter(x, y)
-    plt.title('figure')
-    plt.xlabel('X')
-    plt.ylabel('y')
-    plt.plot(x, x * w + b, 'm', linewidth=2)
-    plt.show()
-
-if __name__ == '__main__':
-    run()
-</code></pre>
 ]]></content>
     </entry>
 </feed>

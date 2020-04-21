@@ -7,7 +7,7 @@
 <meta name="keywords" content="Eden个人博客">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>python第二次作业 | Eden的博客</title>
+<title>shell | Eden的博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1587456351905">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -37,8 +37,8 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-    <meta name="description" content="python第二次作业" />
-    <meta name="keywords" content="python" />
+    <meta name="description" content="shell" />
+    <meta name="keywords" content="shell" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -180,7 +180,8 @@ var _hmt = _hmt || [];
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -218,6 +219,191 @@ var _hmt = _hmt || [];
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB">查看环境变量的区别</a></li>
+<li><a href="#%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB">引号的区别</a></li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6">关系运算符</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  let markdownItTOC = document.querySelector('.markdownIt-TOC');
+  let innerHeight = window.innerHeight;
+  markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -305,8 +491,8 @@ var _hmt = _hmt || [];
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/">
-      python第二次作业
+    <a class="post-title-link" href="https://blog.youis.top/post/t811ZgOaf/">
+      shell
     </a>
   </h1>
   <div class="post-meta">
@@ -314,7 +500,7 @@ var _hmt = _hmt || [];
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-18</span>
+      <span>2019-04-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -323,8 +509,8 @@ var _hmt = _hmt || [];
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://blog.youis.top/tag/e3DbDSoNh/">
-              <span>python</span>
+            <a href="https://blog.youis.top/tag/2tOkrjS-F/">
+              <span>shell</span>
             </a>
           
         
@@ -338,14 +524,14 @@ var _hmt = _hmt || [];
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>431<span class="pc-show">字数</span></span>
+      <span>481<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/python-di-er-ci-zuo-ye/" data-flag-title="python第二次作业" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/t811ZgOaf/" data-flag-title="shell" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -354,62 +540,51 @@ var _hmt = _hmt || [];
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>顺便吐槽一下，我们老师。<br>
-每节课都有作业。。。。<br>
-🙃🙃🙃🙃</p>
+                <p>💻💻💻懒一点还是要写笔记的。<br>
+shell我觉得和python差不多。<br>
+shell要是有一个IDE就好了。vim现在我都还不熟练。😤😤</p>
 <!-- more -->
-<pre><code class="language-python"># encoding: utf-8
-&quot;&quot;&quot;
-@author: Eden
-@contact: .....
-@time: 2020/4/14 14:38
-@file: problem.py
-@desc: 
-&quot;&quot;&quot;
-
-# 创建一个空列表，命名为names，往里面添加 Lihua、Rain、Jack、Xiuxiu、Peiqi和Black元素。
-names = list()
-names.append(&quot;Lihua&quot;)
-names.append(&quot;Rain&quot;)
-names.append(&quot;Jack&quot;)
-names.append(&quot;Xiuxiu&quot;)
-names.append(&quot;Peiqi&quot;)
-names.append(&quot;Black&quot;)
-# Names=[]
-# Names.append(“”)
-# 往1中的names列表里Black前面插入一个Blue。
-names.insert(-1, &quot;Blue&quot;)
-# 把names列表中Xiuxiu的名字改成中文。
-names[names.index(&quot;Xiuxiu&quot;)] = &quot;秀秀&quot;
-# 往names列表中Rain后面插入一个子列表[&quot;oldboy&quot;,&quot;oldgirl&quot;]。
-names.insert(names.index(&quot;Rain&quot;)+1, [&quot;oldboy&quot;, &quot;oldgirl&quot;])
-print(names)  # 验证
-# 返回names列表中Peiqi的索引值（下标）
-print(names.index(&quot;Peiqi&quot;))
-# 创建新列表[1,2,3,4,2,5,6,2,]，合并到names列表中。
-numbers = [1, 2, 3, 4, 2, 5, 6, 2]
-names.extend(numbers)  # extend()方法表示合并
-print(names)
-# 取出names列表中索引4-7的元素。
-print(names[4:8])
-# 取出names列表中索引2-10的元素，步长为2
-print(names[2:11:2])
-# 取出names列表中最后3个元素。
-print(names[-3:])  # [-3:]表示取值范围为从列表的倒数第三个到末尾
-# 循环names列表，打印每个元素的索引值和元素。
-for index, i in enumerate(names):
-    print(index, i)
-    # 循环names列表，打印每个元素的索引值和元素，当索引值为偶数时，把对应的元素改成-1。
-for index, i in enumerate(names):
-    if index % 2 == 0:
-        names[index] = -1
-        # print(index, i)
-print(names)
-# names列表里有3个2，请返回第二个2的索引值，动态找
-
-print(names.index(2, names.index(2) + 1),)
-</code></pre>
-<p>好了，不多说了。我要去写第三次作业了。😘😘😘</p>
+<h1 id="查看环境变量的区别">查看环境变量的区别</h1>
+<p>set 显示当前shelI的变量，包括当前用户的变量<br>
+env 显示当前用户的变量，环境变量<br>
+export 显示当前导出成用户变量的shell变量，环境变量</p>
+<h1 id="引号的区别">引号的区别</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单引号</td>
+<td style="text-align:center">所见即所得，即输出时会将单引号内的所有内容都原样输出，或者描述为单引号里面看到的是什么就会输出什么，这称为<strong>强引用</strong>。</td>
+</tr>
+<tr>
+<td style="text-align:center">双引号（默认）</td>
+<td style="text-align:center">输出双引号内的所有内容;如果内容中有命令(要反引下)、变量、特殊转义符等,会先把变量、命令、转义字符解析出结果，然后再输出最终内容，推荐使用，这称为<strong>弱引用</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">无引号</td>
+<td style="text-align:center">赋值时，如果变量内容中有空格，则会造成赋值不完整。而在输出内容时，会将含有空格的字符串视为一个整体来输出;如果内容中有命令(要反引下)、变量等，则会先把变量、命令解析出结果，然后输出最终内容;如果字符串中带有空格等特殊字符,则有可能无法完整地输出，因此需要改加双引号。一般连续的字符串、数字、路径等可以不加任何引号进行赋值和输出，不过最好是用双引号替代无引号的情况，特别是对变量赋值时</td>
+</tr>
+<tr>
+<td style="text-align:center">反引号</td>
+<td style="text-align:center">``般用于引用命令，执行的时候命令会被执行，相当于$(),赋值和输出都要用“将命令引起来</td>
+</tr>
+</tbody>
+</table>
+<h1 id="关系运算符">关系运算符</h1>
+<p>if ［ 1 -ne 1 ］;then<br>
+...<br>
+fi<br>
+-eq:等于<br>
+-ne:不等于<br>
+-le:小于等于<br>
+-ge:大于等于<br>
+-lt:小于<br>
+-gt：大于</p>
 
               </div>
               <div class="post-footer">
@@ -420,7 +595,7 @@ print(names.index(2, names.index(2) + 1),)
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/" title="python第二次作业">https://blog.youis.top/post/python-di-er-ci-zuo-ye/</a>
+      <a href="https://blog.youis.top/post/t811ZgOaf/" title="shell">https://blog.youis.top/post/t811ZgOaf/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -429,21 +604,21 @@ print(names.index(2, names.index(2) + 1),)
   </ul>
   <div class="tags">
     
-      <a href="https://blog.youis.top/tag/e3DbDSoNh/"># python</a>
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/"># shell</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="python第三次作业" href="https://blog.youis.top/post/python-di-san-ci-zuo-ye/">python第三次作业</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="python第三次作业" href="https://blog.youis.top/post/python-di-san-ci-zuo-ye/">上一篇</a>
+        <a class="nav-pc-next" title="NLP学习（一）" href="https://blog.youis.top/post/nlp-xue-xi-yi/">NLP学习（一）</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="NLP学习（一）" href="https://blog.youis.top/post/nlp-xue-xi-yi/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="python十一道练习" href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/">python十一道练习</a>
-        <a class="nav-mobile-next" title="python十一道练习" href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/">下一篇</a>
+        <a class="nav-pc-next" title="CT问题" href="https://blog.youis.top/post/ct-wen-ti/">CT问题</a>
+        <a class="nav-mobile-next" title="CT问题" href="https://blog.youis.top/post/ct-wen-ti/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
