@@ -7,7 +7,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>GitHub上传 | Eden的博客</title>
+<title>python第四次作业 | Eden的博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1587523976911">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -37,8 +37,8 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-    <meta name="description" content="GitHub上传" />
-    <meta name="keywords" content="GitHub" />
+    <meta name="description" content="python第四次作业" />
+    <meta name="keywords" content="python" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -180,8 +180,7 @@ var _hmt = _hmt || [];
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -219,200 +218,6 @@ var _hmt = _hmt || [];
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#github-%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE">GitHub 上传项目</a>
-<ul>
-<li><a href="#%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88">问题集合</a>
-<ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%BD%E8%B8%AA%E6%96%87%E4%BB%B6">添加追踪文件</a></li>
-<li><a href="#%E4%BB%93%E5%BA%93%E4%B8%BA%E7%A9%BA">仓库为空</a></li>
-</ul>
-</li>
-<li><a href="#%E6%9B%B4%E6%96%B0%E4%BB%93%E5%BA%93">更新仓库</a></li>
-<li><a href="#%E6%80%BB%E7%BB%93">总结：</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
-let active = 'active-show', activeClass = 'active-current';
-let tocWrapper = document.querySelector('#toc_wrapper');
-let tocContent = tocWrapper.children[0];
-let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
-
-function addTocNumber(elem, deep) {
-  if (!elem) {
-    return;
-  }
-  let prop = elem.__proto__;
-
-  if (prop === HTMLUListElement.prototype) {
-    for (let i = 0; i < elem.children.length; i++) {
-      addTocNumber(elem.children[i], deep + (i + 1) + '.');
-    }
-  } else if (prop === HTMLLIElement.prototype) {
-    // 保存li元素
-    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-      lList.push(elem);
-    }
-    for (let i = 0; i < elem.children.length; i++) {
-      let cur = elem.children[i];
-      if (cur.__proto__ === HTMLAnchorElement.prototype) {
-        if (autoNumber) {
-          cur.text =  deep + ' ' + cur.text;
-        }
-      } else if (cur.__proto__ === HTMLUListElement.prototype) {
-        addTocNumber(cur, deep);
-      }
-    }
-  }
-}
-
-function removeParentActiveClass() {
-  let parents = tocContent.querySelectorAll('.'+active)
-  parents.forEach(function(elem) {
-    elem.classList.remove(active);
-  });
-}
-
-function addActiveClass(index) {
-  if (index >= 0 && index < hList.length) {
-    lList[index].classList.add(activeClass);
-  }
-}
-
-function removeActiveClass(index) {
-  if (index >= 0 && index < hList.length) {
-    lList[index].classList.remove(activeClass);
-  }
-}
-
-function addActiveLiElemment(elem, parent) {
-  if (!elem || elem === parent) {
-    return;
-  } else {
-    if (elem.__proto__ === HTMLLIElement.prototype) {
-      elem.classList.add(active);
-    }
-    addActiveLiElemment(elem.parentElement, parent);
-  }
-}
-
-function showToc() {
-  if (tocWrapper) {
-    postBody = document.querySelector('#post_body');
-    for (let i = 0; i < postBody.children.length; i++) {
-      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-        hList.push(postBody.children[i]);
-      }
-    }
-    if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-    } else if (tocWrapper.classList.contains('no_compress')){
-      tocContent.classList.add('expanded');
-    } else {
-      if (hList.length > 10) {
-        active = 'active-hidden'
-        tocContent.classList.add('closed');
-      } else {
-        tocContent.classList.add('expanded');
-      }
-    }
-  }
-}
-
-(function() {
-  // 处理不是从#一级标题开始目录
-  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-    let con = tocContent.children[0].children[0];
-    tocContent.innerHTML = con.innerHTML;
-  }
-  let markdownItTOC = document.querySelector('.markdownIt-TOC');
-  let innerHeight = window.innerHeight;
-  markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-  addTocNumber(tocContent, '');
-})();
-
-document.addEventListener('scroll', function(e) {
-  if (lList.length <= 0) {
-    return;
-  }
-  let scrollTop = document.scrollingElement.scrollTop + 10;
-  let dir;
-
-  if (lastTop - scrollTop > 0) {
-    dir = 'up';
-  } else {
-    dir = 'down';
-  }
-
-  lastTop = scrollTop;
-  if (scrollTop <= 0) {
-    if (lastIndex >= 0 && lastIndex < hList.length) {
-      lList[lastIndex].classList.remove(activeClass);
-    }
-    return;
-  }
-
-  let current = 0, hasFind = false;
-  for (let i = 0; i < hList.length; i++) {
-    if (hList[i].offsetTop > scrollTop) {
-      current = i;
-      hasFind = true;
-      break;
-    }
-  }
-  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-    current = hList.length - 1;
-  } else {
-    current--;
-  }
-  if (dir === 'down') {
-    if (current > lastIndex) {
-      addActiveClass(current);
-      removeActiveClass(lastIndex) 
-      lastIndex = current;
-      removeParentActiveClass();
-      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
-    }
-  } else {
-    if (current < lastIndex) {
-      addActiveClass(current);
-      removeActiveClass(lastIndex);
-      lastIndex = current;
-      removeParentActiveClass();
-      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
-    }
-  }
-});
-
-window.addEventListener('load', function() {
-  showToc();
-  document.querySelector('#sidebar').style='display: block;';
-  tocWrapper.classList.add('toc-active');
-  setTimeout(function() {
-    if ("createEvent" in document) {
-      let evt = document.createEvent("HTMLEvents");
-      evt.initEvent("scroll", false, true);
-      document.dispatchEvent(evt);
-    }
-    else {
-      document.fireEvent("scroll");
-    }
-  }, 500)
-})
-
-</script>
-            </div>
           
         
       </div>
@@ -500,8 +305,8 @@ window.addEventListener('load', function() {
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/GitHub上传/">
-      GitHub上传
+    <a class="post-title-link" href="https://blog.youis.top/post/sRdAP2jaU/">
+      python第四次作业
     </a>
   </h1>
   <div class="post-meta">
@@ -509,7 +314,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-08-17</span>
+      <span>2020-04-22</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -518,8 +323,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://blog.youis.top/tag/rId5dAplJ/">
-              <span>GitHub</span>
+            <a href="https://blog.youis.top/tag/e3DbDSoNh/">
+              <span>python</span>
             </a>
           
         
@@ -528,19 +333,19 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>511<span class="pc-show">字数</span></span>
+      <span>681<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/GitHub上传/" data-flag-title="GitHub上传" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/sRdAP2jaU/" data-flag-title="python第四次作业" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -549,67 +354,75 @@ window.addEventListener('load', function() {
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <h1 id="github-上传项目">GitHub 上传项目</h1>
-<h2 id="问题集合">问题集合</h2>
-<h3 id="添加追踪文件">添加追踪文件</h3>
-<p>错误代码：</p>
-<!--more-->
-<pre><code>$ git add.
-git: 'add.' is not a git command. See 'git --help'.
+                <p>每节课都有作业。。。。。<br>
+还有一个作业是上次布置过的。🙃🙃🙃</p>
+<!-- more -->
+<p>1、首先生成包含1000个随机字符的字符串，然后统计每个字符的出现次数。<br>
+参考string字符串模块的元组：</p>
+<pre><code>import string
+import random
 
-The most similar command is
-        add
+x = string.ascii_letters + string.digits + string.punctuation
+# print(x)
+y = [random.choice(x) for i in range(1000)]  # 生成包含1000个随机字符的字符串
+# print(y)
+dic = dict()  # 使用字典保存每个字符出现次数
+for ch in y:
+    dic[ch] = dic.get(ch, 0) + 1  # d.get(ch,0) 返回ch出现的次数，若没有返回0
+print(dic)
+# nums = 0
+# for values in dic.values():
+#     nums += values
+# print(nums)
+</code></pre>
+<p>2、写代码：有如下字典<br>
+按照要求实现每一个功能</p>
+<pre><code>dic = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
 
+# 1、请循环遍历出所有的key
+for key in dic:
+    print(key)
+# 2、请循环遍历出所有的value
+for value in dic.values():
+    print(value)
+# 3、请循环遍历出所有的key和value
+for key, value in dic.items():
+    print(key, value)
+# 4、请在字典中增加一个键值对,&quot;k4&quot;:&quot;v4&quot;，输出添加后的字典
+dic[&quot;k4&quot;] = &quot;v4&quot;
+print(dic)
+# 5、请删除字典中键值对&quot;k1&quot;:&quot;v1&quot;,并输出删除后的结果
+dic.pop(&quot;k1&quot;)
+print(dic)
+# 6、请删除字典中键&quot;k5&quot;对应的键值对，如果字典中不存在键&quot;k5&quot;,则不报错，返回None
+print(dic.pop(&quot;k5&quot;, None))
+# 7、请获取字典中&quot;k2&quot;对应的值
+print(dic[&quot;k2&quot;])
+# 8、请获取字典中&quot;k6&quot;对应的值,如果不存在，则不报错，并且让其返回None。
+print(dic.get(&quot;k6&quot;))
+# 9、现有dict2 = {&quot;k1&quot;:&quot;v11&quot;,&quot;a&quot;:&quot;b&quot;},通过一行操作使dict2 = {&quot;k1&quot;:&quot;v1&quot;,&quot;k2&quot;:&quot;v2&quot;,&quot;k3&quot;:&quot;v3&quot;,&quot;a&quot;:&quot;b&quot;}
+dict1 = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
+dict2 = {&quot;k1&quot;: &quot;v11&quot;, &quot;a&quot;: &quot;b&quot;}
+dict2.update(dict1)
+print(dict2)
 </code></pre>
-<p>正确代码为：</p>
-<pre><code>$ git add .
+<p>3、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能</p>
+<pre><code># 10、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能
+lis = [[&quot;k&quot;, [&quot;qwe&quot;, 20, {&quot;k1&quot;: [&quot;tt&quot;, 3, &quot;1&quot;]}, 89], &quot;ab&quot;]]
+# 10.1、将列表中的字符串“tt”变成字符串&quot;TT&quot;(用两种方法)
+#  方法一：
+lis[0][1][2][&quot;k1&quot;][0] = &quot;TT&quot;
+print(lis)
+#  方法二：
+lis[0][1][2].get(&quot;k1&quot;)[0] = &quot;TT&quot;
+print(lis)
+# 10.2、将列表中的字符串&quot;1&quot;变成数字101(用两种方法)
+lis[0][1][2][&quot;k1&quot;][2] = 101
+print(lis)
+#  方法二：
+lis[0][1][2].get(&quot;k1&quot;)[2] = 101
+print(lis)
 </code></pre>
-<h3 id="仓库为空">仓库为空</h3>
-<p>问题的内容是：</p>
-<p>错误：SRC ReFSPEC主控器不匹配任何。<br>
-错误：未能将某些引用推到'git @ Github.com：HaHaa/ftpMal.git’</p>
-<p>也就是仓库为空。</p>
-<pre><code>$ git push -u origin master
-error: src refspec master does not match any
-error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git'
-
-</code></pre>
-<p>解决办法：</p>
-<p>利用git add xxx.py 指令，将所有的文件全部都添加，然后再进行git commit -m &quot;init&quot;将所有的文件commit,</p>
-<pre><code>git commit -m &quot;init&quot;
-</code></pre>
-<p>提示 nothing added to commit but untracked files present 检查git  add . 是否执行。</p>
-<p>然后在执行</p>
-<pre><code>git remote add origin xxxxxxxx.git
-</code></pre>
-<p>最后使用</p>
-<pre><code>git push -u origin master大功告成。
-</code></pre>
-<h2 id="更新仓库">更新仓库</h2>
-<p>更新代码</p>
-<p>第一步：查看当前的git仓库状态，可以使用git status</p>
-<pre><code>git status
-</code></pre>
-<p>第二步：更新全部</p>
-<pre><code>git add *
-</code></pre>
-<p>第三步：接着输入git commit -m &quot;更新说明&quot;</p>
-<pre><code>git commit -m &quot;更新说明&quot;
-</code></pre>
-<p>第四步：先git pull,拉取当前分支最新代码</p>
-<pre><code>git pull
-</code></pre>
-<p>第五步：push到远程master分支上</p>
-<pre><code>git push origin master
-</code></pre>
-<p>不出意外，打开GitHub已经同步了</p>
-<h2 id="总结">总结：</h2>
-<p>其实只需要进行下面几步就能把本地项目上传到Github</p>
-<p>1、在本地创建一个版本库（即文件夹），通过git init把它变成Git仓库；</p>
-<p>2、把项目复制到这个文件夹里面，再通过git add .把项目添加到仓库；</p>
-<p>3、再通过git commit -m &quot;注释内容&quot;把项目提交到仓库；</p>
-<p>4、在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/zhuoquany/tensorflow2.git将本地仓库和远程仓库进行关联；</p>
-<p>5、最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上；（若新建远程仓库的时候自动创建了README文件会报错，解决办法看上面）。</p>
 
               </div>
               <div class="post-footer">
@@ -620,7 +433,7 @@ error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/GitHub上传/" title="GitHub上传">https://blog.youis.top/post/GitHub上传/</a>
+      <a href="https://blog.youis.top/post/sRdAP2jaU/" title="python第四次作业">https://blog.youis.top/post/sRdAP2jaU/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -629,21 +442,17 @@ error: failed to push some refs to 'https://github.com/zhuoquany/tensorflow2.git
   </ul>
   <div class="tags">
     
-      <a href="https://blog.youis.top/tag/rId5dAplJ/"># GitHub</a>
+      <a href="https://blog.youis.top/tag/e3DbDSoNh/"># python</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="python学习笔记" href="https://blog.youis.top/post/python-xue-xi-bi-ji/">python学习笔记</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="python学习笔记" href="https://blog.youis.top/post/python-xue-xi-bi-ji/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="pip 换源" href="https://blog.youis.top/post/pip-换源/">pip 换源</a>
-        <a class="nav-mobile-next" title="pip 换源" href="https://blog.youis.top/post/pip-换源/">下一篇</a>
+        <a class="nav-pc-next" title="python爬虫抓包工具" href="https://blog.youis.top/post/iumJPhy8A/">python爬虫抓包工具</a>
+        <a class="nav-mobile-next" title="python爬虫抓包工具" href="https://blog.youis.top/post/iumJPhy8A/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

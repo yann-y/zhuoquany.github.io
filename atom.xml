@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-21T08:06:11.215Z</updated>
+    <updated>2020-04-22T02:53:15.591Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[python第四次作业]]></title>
+        <id>https://blog.youis.top/post/sRdAP2jaU/</id>
+        <link href="https://blog.youis.top/post/sRdAP2jaU/">
+        </link>
+        <updated>2020-04-22T01:54:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>每节课都有作业。。。。。<br>
+还有一个作业是上次布置过的。🙃🙃🙃</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>每节课都有作业。。。。。<br>
+还有一个作业是上次布置过的。🙃🙃🙃</p>
+<!-- more -->
+<p>1、首先生成包含1000个随机字符的字符串，然后统计每个字符的出现次数。<br>
+参考string字符串模块的元组：</p>
+<pre><code>import string
+import random
+
+x = string.ascii_letters + string.digits + string.punctuation
+# print(x)
+y = [random.choice(x) for i in range(1000)]  # 生成包含1000个随机字符的字符串
+# print(y)
+dic = dict()  # 使用字典保存每个字符出现次数
+for ch in y:
+    dic[ch] = dic.get(ch, 0) + 1  # d.get(ch,0) 返回ch出现的次数，若没有返回0
+print(dic)
+# nums = 0
+# for values in dic.values():
+#     nums += values
+# print(nums)
+</code></pre>
+<p>2、写代码：有如下字典<br>
+按照要求实现每一个功能</p>
+<pre><code>dic = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
+
+# 1、请循环遍历出所有的key
+for key in dic:
+    print(key)
+# 2、请循环遍历出所有的value
+for value in dic.values():
+    print(value)
+# 3、请循环遍历出所有的key和value
+for key, value in dic.items():
+    print(key, value)
+# 4、请在字典中增加一个键值对,&quot;k4&quot;:&quot;v4&quot;，输出添加后的字典
+dic[&quot;k4&quot;] = &quot;v4&quot;
+print(dic)
+# 5、请删除字典中键值对&quot;k1&quot;:&quot;v1&quot;,并输出删除后的结果
+dic.pop(&quot;k1&quot;)
+print(dic)
+# 6、请删除字典中键&quot;k5&quot;对应的键值对，如果字典中不存在键&quot;k5&quot;,则不报错，返回None
+print(dic.pop(&quot;k5&quot;, None))
+# 7、请获取字典中&quot;k2&quot;对应的值
+print(dic[&quot;k2&quot;])
+# 8、请获取字典中&quot;k6&quot;对应的值,如果不存在，则不报错，并且让其返回None。
+print(dic.get(&quot;k6&quot;))
+# 9、现有dict2 = {&quot;k1&quot;:&quot;v11&quot;,&quot;a&quot;:&quot;b&quot;},通过一行操作使dict2 = {&quot;k1&quot;:&quot;v1&quot;,&quot;k2&quot;:&quot;v2&quot;,&quot;k3&quot;:&quot;v3&quot;,&quot;a&quot;:&quot;b&quot;}
+dict1 = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
+dict2 = {&quot;k1&quot;: &quot;v11&quot;, &quot;a&quot;: &quot;b&quot;}
+dict2.update(dict1)
+print(dict2)
+</code></pre>
+<p>3、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能</p>
+<pre><code># 10、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能
+lis = [[&quot;k&quot;, [&quot;qwe&quot;, 20, {&quot;k1&quot;: [&quot;tt&quot;, 3, &quot;1&quot;]}, 89], &quot;ab&quot;]]
+# 10.1、将列表中的字符串“tt”变成字符串&quot;TT&quot;(用两种方法)
+#  方法一：
+lis[0][1][2][&quot;k1&quot;][0] = &quot;TT&quot;
+print(lis)
+#  方法二：
+lis[0][1][2].get(&quot;k1&quot;)[0] = &quot;TT&quot;
+print(lis)
+# 10.2、将列表中的字符串&quot;1&quot;变成数字101(用两种方法)
+lis[0][1][2][&quot;k1&quot;][2] = 101
+print(lis)
+#  方法二：
+lis[0][1][2].get(&quot;k1&quot;)[2] = 101
+print(lis)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python爬虫抓包工具]]></title>
         <id>https://blog.youis.top/post/iumJPhy8A/</id>
@@ -91,16 +171,12 @@ print(inputList[::-1])
 <p>元组练习：（选作）<br>
 5.	写代码，有如下元祖，按照要求实现每一个功能<br>
 print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)</p>
-<pre><code class="language-python">'''
-5.	写代码，有如下元祖，按照要求实现每一个功能
-print(&quot;----------------------------------------------&quot;)  tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;) 
-
-'''
+<pre><code class="language-python">
 print(&quot;----------------------------------------------&quot;)
 tu = (&quot;alex&quot;, &quot;eric&quot;, &quot;Witharush&quot;)
 # a.计算元祖长度并输出
 print(&quot;元组长度  %d&quot; % len(tu))
-# b.获取元祖的第二个元素，并输出 95 print(tu[1])
+# b.获取元祖的第二个元素，并输出 print(tu[1])
 print(tu[1])
 # c.获取元祖的第 1-2 个元素，并输出
 print(tu[0:2])
@@ -741,31 +817,6 @@ print('Test accuracy:', test_acc)
 <p>base = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/'</p>
 <p>替换为如下连接：  base = 'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/'</p>
 <p>其他数据源也可以通过类似的方法更改，不错连接要准确。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[oracle的安装和使用]]></title>
-        <id>https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/</id>
-        <link href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/">
-        </link>
-        <updated>2020-02-25T02:39:56.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="防火墙的关闭">防火墙的关闭</h2>
-<p>chkconfig iptables off（设置自动启动为关闭）</p>
-<p>chkconfig iptables on（设置自动启动为启动）</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="防火墙的关闭">防火墙的关闭</h2>
-<p>chkconfig iptables off（设置自动启动为关闭）</p>
-<p>chkconfig iptables on（设置自动启动为启动）</p>
-<!--more-->
-<p>chkconfig --del iptables（移除开启自启动）</p>
-<p>chkconfig --add iptables（增加开启自启动）</p>
-<p>service iptables status          --查看防火墙状态</p>
-<h2 id="数据库的启动">数据库的启动</h2>
-<p>lsnrctl  start   启动数库监听程序</p>
-<p>lsnrctl  stop  停止监听程序</p>
-<p>lsnrctl   status  查看监听程序状态</p>
-<p>sqlplus   &quot;/as  sysdba&quot;  进入数据库库</p>
-<p>startup  启动数据库</p>
 ]]></content>
     </entry>
 </feed>
