@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-22T02:53:15.591Z</updated>
+    <updated>2020-04-24T06:37:46.279Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,35 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[又拍云使用]]></title>
+        <id>https://blog.youis.top/post/iobZKkOLk/</id>
+        <link href="https://blog.youis.top/post/iobZKkOLk/">
+        </link>
+        <updated>2020-04-24T06:32:56.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="简介">简介</h1>
+<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。</p>
+<p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
+<p>直接上图</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="简介">简介</h1>
+<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。</p>
+<p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
+<p>直接上图</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200424142140.png" alt="" loading="lazy"></figure>
+<p>香不香，15G的流量。还可以https</p>
+<figure data-type="image" tabindex="2"><img src="https://image.youis.top/20200424142927.png" alt="" loading="lazy"></figure>
+<p>有一点就是，添加logo的时候，是点击图片，就可以访问官网。</p>
+<p>参考代码：</p>
+<pre><code class="language-html">&lt;a href=&quot;https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral&quot;&gt;&lt;img src=&quot;https://www.z4a.net/images/2020/04/20/_logo5.png&quot; alt=&quot;_logo5.png&quot; border=&quot;0&quot; width=&quot;100&quot; height=&quot;20&quot; /&gt;&lt;/a&gt;
+</code></pre>
+<h1 id="如何开启https">如何开启HTTPS</h1>
+<p>创建服务后，点击https，点击管理。添加证书即可，在又拍云购买的免费证书，需要几分钟认证。</p>
+<figure data-type="image" tabindex="3"><img src="https://image.youis.top/20200424142517.png" alt="" loading="lazy"></figure>
+<p>其他使用还是和七牛云差不多的。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python第四次作业]]></title>
         <id>https://blog.youis.top/post/sRdAP2jaU/</id>
@@ -645,178 +674,6 @@ trusted-host= mirrors.aliyun.com
 <p>默认情况下，活动环境---您当前使用的环境---显示在命令提示符开头的括号（）或括号[]中：(myenv) $<br>
 　　如果您没有看到这个，请运行：conda info --envs<br>
 　　在显示的环境列表中，当前环境以星号（*）突出显示</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ TensorFlow2.0 入门]]></title>
-        <id>https://blog.youis.top/post/tensorflow20-ru-men/</id>
-        <link href="https://blog.youis.top/post/tensorflow20-ru-men/">
-        </link>
-        <updated>2020-02-25T02:41:03.000Z</updated>
-        <summary type="html"><![CDATA[<p>包含前向传播，手写数字识别，以及遇到的一些错误的解决方法。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>包含前向传播，手写数字识别，以及遇到的一些错误的解决方法。</p>
-<!-- more  -->
-<h2 id="前向传播">前向传播</h2>
-<pre><code class="language-python">#conding:utf-8
-import  tensorflow as tf
-from tensorflow  import  keras
-from  tensorflow.keras import datasets
-import  os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
-'''
-0 全部输出
-2 仅输出错误信息
-'''
-'''
-loss = nan 梯度爆炸'''
-# x:[60k,28,28]
-# y: [60k]
-(x,y),(x_test,y_test) = datasets.mnist.load_data()
-# 转换为Tensor
-x = tf.convert_to_tensor(x,dtype=tf.float32) / 255
-y = tf.convert_to_tensor(y,dtype=tf.int32)
-
-x_test = tf.convert_to_tensor(x_test,dtype=tf.float32) / 255
-y_test = tf.convert_to_tensor(y_test,dtype=tf.int32)
-print(x.shape,y.shape,x.dtype,y.dtype)
-print(tf.reduce_min(x),tf.reduce_max(x))
-print(tf.reduce_min(y),tf.reduce_max(y))
-
-train_db = tf.data.Dataset.from_tensor_slices((x,y)).batch(128)
-test_db = tf.data.Dataset.from_tensor_slices((x_test,y_test)).batch(128)
-train_iter = iter(train_db) # 生成迭代器
-sample = next(train_iter)
-print('batch :',sample[0].shape)
-
-# [b,728] =&gt; [b,512] =&gt; [b,128]  =&gt; [b,10]
-w1 = tf.Variable(tf.random.truncated_normal([784,256],stddev=0.1))
-b1 = tf.Variable(tf.zeros([256]))
-w2= tf.Variable(tf.random.truncated_normal([256,128],stddev=0.1))
-b2 = tf.Variable(tf.zeros([128]))
-w3 = tf.Variable(tf.random.truncated_normal([128,10],stddev=0.1))
-b3 = tf.Variable(tf.zeros([10]))
-lr = 1e-3
-# h1 = x@w1 + b1
-for epoch in range(10):
-    for step,(x,y) in enumerate(train_db):
-        # x:[128,28,28]
-        # y: [128]
-        # x: [b,28*28]
-        # h1 = x@w1 + b1;
-        # [b.784]@[784,256] + [256] =&gt;  [b,256] +[256] =&gt; b[256] + [256]
-        x = tf.reshape(x,[-1,28*28])
-        with tf.GradientTape() as  tape:
-            h1 = x@w1 + tf.broadcast_to(b1,[x.shape[0],256])
-            h1 = tf.nn.relu(h1)
-            h2 = h1@w2 + b2
-            out = h2@w3 + b3
-
-            # compute loss
-            # out[b,10]
-            # y: [b] =&gt; [b,10]
-            y_onehot = tf.one_hot(y,depth=10)
-            # mes = mean((y-out)^2)
-            # [b,10]
-            loss = tf.square(y_onehot - out)
-            # mean: scalar
-            loss = tf.reduce_mean(loss)
-        grads = tape.gradient(loss,[w1,b1,w2,b2,w3,b3])
-        w1.assign_sub(lr * grads[0])
-        b1.assign_sub(lr * grads[1])
-        w2.assign_sub(lr * grads[2])
-        b2.assign_sub(lr * grads[3])
-        w3.assign_sub(lr * grads[4])
-        b3.assign_sub(lr * grads[5])
-        '''
-        w1 = w1 - lr * grads[0]
-        b1 =b1 - lr * grads[1]
-        w2 = w2 - lr * grads[2]
-        b2 = b2 - lr * grads[3]
-        w3 = w3 - lr * grads[4]
-        b3 = b3 - lr * grads[5]
-        '''
-        if step % 100 == 0:
-            print(epoch,step,'loss = ',float(loss))
-
-    total_correct = 0
-    total_num = 0
-    for  step,(x,y) in enumerate(test_db):
-        x = tf.reshape(x,[-1,28*28])
-        h1 = tf.nn.relu(x@w1+b1)
-        h2 = tf.nn.relu(h1@w2 + b2)
-        out = h2@w3 + b3
-        # int 64
-
-        prob = tf.nn.softmax(out,axis=1)
-        pred = tf.argmax(prob,axis=1)
-        #print(pred.shape,out.shape,prob.shape)
-        pred = tf.cast(pred,dtype=tf.int32)
-        #print(pred.shape,y.shape)
-        correct = tf.cast(tf.equal(pred,y),dtype=tf.int32)
-        correct = tf.reduce_sum(correct)
-
-        total_correct += int(correct)
-        total_num += x.shape[0]
-    acc = total_correct / total_num
-    print(&quot;test acc: &quot;,acc)
-</code></pre>
-<h2 id="mnist数据体验">mnist数据体验</h2>
-<pre><code class="language-python">#conding:utf-8
-
-# 导入TensorFlow和tf.keras
-
-import tensorflow as tf
-from tensorflow import keras
-from  tensorflow.keras import datasets
-
-from keras.datasets import boston_housing
-
-# 导入辅助库
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-#(train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()
-
-(train_images, train_labels), (test_images, test_labels) = boston_housing.load_data()
-class_names = ['0','1','2','3','4','5','6','7','8','9']
-
-train_images = train_images / 255.0
-test_images = test_images / 255.0
-
-model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(28, 28)),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.softmax)
-])
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-
-model.fit(train_images, train_labels, epochs=5)
-
-test_loss, test_acc = model.evaluate(test_images, test_labels)
-print('Test accuracy:', test_acc)
-</code></pre>
-<h2 id="遇见的问题">遇见的问题</h2>
-<h3 id="导入fashionminst数据问题">导入fashionminst数据问题</h3>
-<p>报错</p>
-<pre><code class="language-python">EOFError: Compressed file ended before the end-of-stream marker was reached
-</code></pre>
-<p>解决问题方法：</p>
-<p>fashion-mnist数据缓存位置 ：</p>
-<pre><code class="language-python"> C:\Users\（你的Windows用户名）\.keras\datasets\\fashion-mnist
-</code></pre>
-<p>删除fashion-mnist文件夹，然后重新加载数据就可以了。</p>
-<h3 id="fashion-minst数据集更换国内可用连接">fashion-minst数据集更换国内可用连接</h3>
-<p>在你的TensorFlow库文件里面，更改fashion_mnist.py文件，具体路径如下：</p>
-<pre><code>envs\\tensorflow\lib\site-packages\tensorflow\python\keras\datasets\fashion_mnist.py
-</code></pre>
-<p>把代码中的</p>
-<p>base = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/'</p>
-<p>替换为如下连接：  base = 'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/'</p>
-<p>其他数据源也可以通过类似的方法更改，不错连接要准确。</p>
 ]]></content>
     </entry>
 </feed>
