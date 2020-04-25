@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-24T06:37:46.279Z</updated>
+    <updated>2020-04-25T08:33:39.033Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -11,23 +11,71 @@
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
     <entry>
+        <title type="html"><![CDATA[docker安装kafka]]></title>
+        <id>https://blog.youis.top/post/NKkoP0wN4/</id>
+        <link href="https://blog.youis.top/post/NKkoP0wN4/">
+        </link>
+        <updated>2020-04-25T08:21:56.000Z</updated>
+        <summary type="html"><![CDATA[<p>docker妈耶，真香😁😁😁😁</p>
+<h1 id="安装zookeeper">安装zookeeper</h1>
+<p>kafka需要zookeeper管理，所以需要先安装zookeeper。<br>
+下载zookeeper镜像<br>
+$ docker pull zookeeper</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>docker妈耶，真香😁😁😁😁</p>
+<h1 id="安装zookeeper">安装zookeeper</h1>
+<p>kafka需要zookeeper管理，所以需要先安装zookeeper。<br>
+下载zookeeper镜像<br>
+$ docker pull zookeeper</p>
+<!-- more -->
+<h2 id="启动镜像生成容器">启动镜像生成容器</h2>
+<pre><code class="language-shell">docker run -d --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2  --name zookeeper -p 2181:2181 -v /etc/localtime:/etc/localtime wurstmeister/zookeeper
+</code></pre>
+<h1 id="下载kafka镜像">下载kafka镜像</h1>
+<pre><code class="language-shell">docker pull wurstmeister/kafka
+</code></pre>
+<p>4、启动kafka镜像生成容器</p>
+<pre><code class="language-shell">docker run -d --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.16.0.13:2181/kafka -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.16.0.13:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -v /etc/localtime:/etc/localtime wurstmeister/kafka
+</code></pre>
+<p>参数说明：<br>
+-e KAFKA_BROKER_ID=0  在kafka集群中，每个kafka都有一个BROKER_ID来区分自己</p>
+<p>-e KAFKA_ZOOKEEPER_CONNECT=172.16.0.13:2181/kafka 配置zookeeper管理kafka的路径172.16.0.13:2181/kafka</p>
+<p>-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.16.0.13:9092  把kafka的地址端口注册给zookeeper，如果是远程访问要改成外网IP,类如Java程序访问出现无法连接。</p>
+<p>-e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 配置kafka的监听端口</p>
+<p>-v /etc/localtime:/etc/localtime 容器时间同步虚拟机的时间</p>
+<p>5、验证kafka是否可以使用</p>
+<p>5.1、进入容器<br>
+$ docker exec -it kafka bash</p>
+<p>5.2、进入 /opt/kafka_2.12-2.3.0/bin/ 目录下<br>
+$ cd /opt/kafka_2.12-2.3.0/bin/</p>
+<p>5.3、运行kafka生产者发送消息<br>
+$ ./kafka-console-producer.sh --broker-list localhost:9092 --topic sun</p>
+<p>发送消息</p>
+<pre><code>{&quot;datas&quot;:[{&quot;channel&quot;:&quot;&quot;,&quot;metric&quot;:&quot;temperature&quot;,&quot;producer&quot;:&quot;ijinus&quot;,&quot;sn&quot;:&quot;IJA0101-00002245&quot;,&quot;time&quot;:&quot;1543207156000&quot;,&quot;value&quot;:&quot;80&quot;}],&quot;ver&quot;:&quot;1.0&quot;}
+</code></pre>
+<p>5.4、运行kafka消费者接收消息<br>
+$ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --from-beginning</p>
+<p>👉👉<a href="https://www.cnblogs.com/linjiqin/p/11891776.html">参考文章</a></p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[又拍云使用]]></title>
         <id>https://blog.youis.top/post/iobZKkOLk/</id>
         <link href="https://blog.youis.top/post/iobZKkOLk/">
         </link>
         <updated>2020-04-24T06:32:56.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="简介">简介</h1>
-<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。</p>
+<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。😒😒😒</p>
 <p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
 <p>直接上图</p>
 ]]></summary>
         <content type="html"><![CDATA[<h1 id="简介">简介</h1>
-<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。</p>
+<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。😒😒😒</p>
 <p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
 <p>直接上图</p>
 <!-- more -->
 <figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200424142140.png" alt="" loading="lazy"></figure>
-<p>香不香，15G的流量。还可以https</p>
+<p>香不香，15G的流量。还可以https 😍😍😍</p>
 <figure data-type="image" tabindex="2"><img src="https://image.youis.top/20200424142927.png" alt="" loading="lazy"></figure>
 <p>有一点就是，添加logo的时候，是点击图片，就可以访问官网。</p>
 <p>参考代码：</p>
@@ -557,123 +605,60 @@ print(max(input_list))
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[PicGo+Typora实现图片自动上传]]></title>
-        <id>https://blog.youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/</id>
-        <link href="https://blog.youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/">
+        <title type="html"><![CDATA[Linux高级运维笔记（第一章）]]></title>
+        <id>https://blog.youis.top/post/BMg6sEDxV/</id>
+        <link href="https://blog.youis.top/post/BMg6sEDxV/">
         </link>
-        <updated>2020-03-14T13:27:43.000Z</updated>
-        <summary type="html"><![CDATA[<p>😁😁😁自建博客，图片自动上传图床，提高网站访问速度。</p>
+        <updated>2020-03-15T07:28:26.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="linux系统简介">linux系统简介</h1>
+<p>目前市场占有率最高的商业版Linux：RedHat<br>
+被普遍使用的Liunx发行版本:Centos | Ubuntu| Debian |Fedora |Gento</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>😁😁😁自建博客，图片自动上传图床，提高网站访问速度。</p>
+        <content type="html"><![CDATA[<h1 id="linux系统简介">linux系统简介</h1>
+<p>目前市场占有率最高的商业版Linux：RedHat<br>
+被普遍使用的Liunx发行版本:Centos | Ubuntu| Debian |Fedora |Gento</p>
 <!-- more -->
-<figure data-type="image" tabindex="1"><img src="http://qiniu.youis.top/image-20200314211831488.png" alt="image-20200314211831488" loading="lazy"></figure>
-<p>图床我用的七牛云。</p>
-<figure data-type="image" tabindex="2"><img src="http://qiniu.youis.top/image-20200314212120529.png" alt="image-20200314212120529" loading="lazy"></figure>
-<p>确认区域那里有一点坑，z0,z1,z2,z3表示七牛的四个存储区域。</p>
-<p>进行一下的设置。</p>
-<figure data-type="image" tabindex="3"><img src="http://qiniu.youis.top/image-20200314212420305.png" alt="image-20200314212420305" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="http://qiniu.youis.top/image-20200314212334602.png" alt="image-20200314212334602" loading="lazy"></figure>
-<p>然后就可以了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Anaconda 入门(一)]]></title>
-        <id>https://blog.youis.top/post/anaconda-ru-men-yi/</id>
-        <link href="https://blog.youis.top/post/anaconda-ru-men-yi/">
-        </link>
-        <updated>2020-03-12T10:09:19.000Z</updated>
-        <summary type="html"><![CDATA[<p>Anaconda 是什么？<br>
-Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
-⚽️⚽️⚽️</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Anaconda 是什么？<br>
-Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
-⚽️⚽️⚽️</p>
-<!-- more -->
+<h2 id="linux的目录结构">Linux的目录结构</h2>
+<p>Linux系统中只有一个树状结构，根目录“/”位于所有目录和文件的顶端，是唯一的根结点。<br>
+<img src="https://image.youis.top/20200424153602.png" alt="" loading="lazy"></p>
 <ul>
-<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
-<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
+<li>/：根目录，只包含目录，不包含具体文件；</li>
+<li>/etc：主要包含系统管理文件和配置文件；</li>
+<li>/bin：存放可执行的文件，如常用命令ls、mkdir、rm等的二进制文件都存放在该目录中；</li>
+<li>/home：普通用户的工作目录，每个用户都有一个/home目录；</li>
+<li>/usr：包含所有的用户程序（/usr/bin）、库文件（/usr/lib）、文档（/usr/share/doc）等，是占用空间最大的目录。</li>
+<li>/dev：存放设备文件，包括块设备文件（如磁盘对应文件）、字符设备文件（如键盘对应文件）等；</li>
+<li>/root：超级用户，即管理员的工作目录；</li>
+<li>/lib：主要存放动态链接共享库文件，类似于Windows中的.dll文件，该目录中的文件一般以.a、.dll、.so结尾（后缀不代表文件类型），也会存放与内核模块相关的文件；</li>
+<li>/boot：存放操作系统启动时需要用到的文件，如内核文件、引导程序文件等；</li>
+<li>/mnt：存储挂载存储设备的挂载目录；</li>
+<li>/proc：存放系统内存的映射，可直接通过访问该目录来获取系统信息；</li>
+<li>/opt：存放附加的应用程序软件包；</li>
+<li>/tmp：存放临时文件，重启系统后该目录的文件不会被保存。每个用户都能创建该目录，但不能删除其它用户的/tmp目录；</li>
+<li>/swap：存放虚拟内存交换时所用文件。</li>
 </ul>
-<h1 id="下载-anaconda">下载 Anaconda</h1>
-<p>直接在<a href="https://www.anaconda.com/distribution/">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。<br>
-我选择的是国内下载<br>
-<a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源镜像网站</a><br>
-<img src="http://qiniu.youis.top/20200312181813.png" alt="" loading="lazy"><br>
-<img src="http://qiniu.youis.top/20200312181916.png" alt="" loading="lazy"><br>
-下载以后安装就行。<br>
-具体安装过程看这篇<a href="https://blog.csdn.net/xhbspark/article/details/89929458">博文</a></p>
-<h1 id="conda-工具介绍">conda 工具介绍</h1>
-<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
-<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
-<pre><code># 查看帮助
-conda -h 
-# 基于python3.6版本创建一个名字为python36的环境
-conda create --name python36 python=3.6 
-# 激活此环境
-activate python36  
-source activate python36 # linux/mac
-# 再来检查python版本，显示是 3.6
-python -V  
-# 退出当前环境
-deactivate python36 
-# 删除该环境
-conda remove -n python36 --all
-# 或者 
-conda env remove  -n python36
-
-# 查看所以安装的环境
-conda info -e
-python36              *  D:\Programs\Anaconda3\envs\python36
-root                     D:\Programs\Anaconda3
-</code></pre>
-<p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。</p>
-<pre><code># 安装 matplotlib 
-conda install matplotlib
-# 查看已安装的包
-conda list 
-# 包更新
-conda update matplotlib
-# 删除包
-conda remove matplotlib
-</code></pre>
-<p>在 conda 中 anything is a package。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：</p>
-<pre><code># 更新conda本身
-conda update conda
-# 更新anaconda 应用
-conda update anaconda
-# 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2
-conda update python
-</code></pre>
-<h1 id="修改镜像地址">修改镜像地址</h1>
-<h2 id="anaconda-换源">anaconda 换源</h2>
-<p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
-<pre><code>channels:
- - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
- - defaults
-show_channel_urls: true
-</code></pre>
-<h2 id="pip换源">pip换源</h2>
-<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
-<pre><code>[global]
-timeout = 6000
-index-url =http://mirrors.aliyun.com/pypi/simple/
-trusted-host= mirrors.aliyun.com
-</code></pre>
-<h1 id="遇到的问题">遇到的问题</h1>
-<p>##命令行打开提示UnicodeDecodeError: 'gbk' codec can't decode byte 0x9a in position 17: illegal multibyte sequence<br>
-<img src="http://qiniu.youis.top/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20200323151719.png" alt="" loading="lazy"><br>
-根据File<br>
-&quot;D:\soft\anaconda3\lib\site-packages\pyreadline\lineeditor\history.py&quot;, line 82, in read_history_file for line in open(filename, 'r'):<br>
-在原有的open函数里 新增了一个参数选项encoding='utf-8'<br>
-就可以解决了<br>
-把(filename, 'r' )修改为(filename, 'r',encoding='utf-8' )</p>
-<h2 id="弹出警告">弹出警告</h2>
-<p>This Python interpreter is in a conda environment, but the environment has not been activated.  Libraries may fail to load.  To activate this environment please see https://conda.io/activation<br>
-解决方式</p>
-<p>使用终端或Anaconda提示符执行以下步骤。</p>
-<p>默认情况下，活动环境---您当前使用的环境---显示在命令提示符开头的括号（）或括号[]中：(myenv) $<br>
-　　如果您没有看到这个，请运行：conda info --envs<br>
-　　在显示的环境列表中，当前环境以星号（*）突出显示</p>
+<h2 id="linux系统的启动流程">Linux系统的启动流程</h2>
+<p>从计算机的角度分析，接通电源后，需经过如下步骤，操作系统才会启动：</p>
+<ol>
+<li>BIOS加电自检；</li>
+<li>MBR系统引导；</li>
+<li>加载内核。</li>
+</ol>
+<h3 id="bios加电自检">BIOS加电自检</h3>
+<p>BIOS与加电自检存在包含关系：BIOS全称Basic Input/Output System，即基本输入输出系统，是一个永久刻录在ROM中的软件；加电自检原意为Power On Self Test（POST），是BIOS的一个主要部分。<br>
+计算机在接通电源后BIOS通过POST来加载硬件信息，进行内存、CPU、主板等的检测，若硬件设备正常运作，BIOS会寻找硬盘第一个扇区中存储的数据，使用MBR中的数据激活引导加载程序。</p>
+<h3 id="mbr系统引导">MBR系统引导</h3>
+<p>MBR全称Master Boot Recode，是一种磁盘分区格式，也是以此种格式的磁盘中0盘片0扇区中存储的一段记录——主引导记录。磁盘中扇区的大小为512字节，主引导记录MBR占据第一个扇区的前446字节，剩余的空间依次存储一个64字节的磁盘分区表，和一个用于标识MBR是否有效的2字节的魔数。<br>
+主引导记录MBR中包含一个实现引导加载功能的程序——Boot Loader。由于BIOS只能访问很少量的数据，所以MBR中的引导加载程序其实只是一段初始程序的加载程序（Initial Program Loader，简称IPL），这段程序唯一的功能就是定位并加载Boot Loader的主体程序。<br>
+因为以上原因，引导加载分为两个阶段：<br>
+第一阶段，BIOS引导IPL（此时系统启动的控制权由BIOS转移到MBR），获取Boot Loader主体程序在磁盘中的位置；<br>
+第二阶段，Boot Loader主体程序与操作系统对应的内核，定位到内核文件所在位置，并将其加载到计算机内存中（此时系统启动的控制权由MBR转到到内核）。</p>
+<h3 id="加载内核">加载内核</h3>
+<p>内核是操作系统的核心，Linux操作系统的内核即Linux。<br>
+内核以一种自解压的压缩格式存储，它与一个初始化的内存映像和存储设备映像表一起存储在/boot目录中。<br>
+在选定的内核被加载到内存中并开始执行之前需先从压缩格式中解压，一旦内核自解压完成，systemd进程（早期版本中为init进程）便被启动。<br>
+systemd进程的启动标识着引导过程的结束，也标识启动过程的开始。在系统启动之初，由于系统中没有除systemd之外的程序执行，系统初始化工作尚未完成，因此计算机不能执行任何和用户相关的功能性工作。<br>
+系统初始化需要做的事情非常多，如挂载文件系统、启动后台服务等等，这些初始化工作都由systemd进程完成。对用户而言，系统初始化完成后，系统才算正式启动。</p>
 ]]></content>
     </entry>
 </feed>
