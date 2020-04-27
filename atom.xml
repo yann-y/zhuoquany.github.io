@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-26T01:32:05.401Z</updated>
+    <updated>2020-04-27T08:17:17.579Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,149 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[python第四次作业]]></title>
+        <id>https://blog.youis.top/post/3mEbBUOoi/</id>
+        <link href="https://blog.youis.top/post/3mEbBUOoi/">
+        </link>
+        <updated>2020-04-27T07:42:25.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>假设已有大量用户对若干电影的评分数据，现有某用户，也看过一些电影并进行过评分，要求根据已有打分数据为该用户进行推荐。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="问题描述">问题描述</h1>
+<p>假设已有大量用户对若干电影的评分数据，现有某用户，也看过一些电影并进行过评分，要求根据已有打分数据为该用户进行推荐。</p>
+<!-- more -->
+<h1 id="基本思路">基本思路</h1>
+<p>基本思路：用基于用户的协同过滤算法，也就是根据用户喜好来确定与当前用户最相似的用户，然后再根据最相似用户的喜好为当前用户进行推荐。本例采用字典来存放打分数据，格式为{用户1:{电影名称1:打分1, 电影名称2:打分2,...}, 用户2:{...}}，首先在已有数据中查找与当前用户共同打分电影（使用集合的交集运算）数量最多的用户，如果有多个这样的用户就再从中选择打分最接近（打分的差距最小）的用户。代码中使用到了random模块中的randrange()函数，用来生成指定范围内的一个随机数。<br>
+效果图如下：<br>
+<img src="https://image.youis.top/20200427160605.png" alt="" loading="lazy"></p>
+<h1 id="解法一">解法一</h1>
+<pre><code class="language-python">from random import randrange
+
+# 历史电影打分数据，一共10个用户，每个用户对3到9个电影进行评分
+# 每个电影的评分最低1分最高5分，这里是字典推导式和集合推导式的用法
+data = {'user' + str(i): {'film' + str(randrange(1, 15)): randrange(1, 6)
+                          for j in range(randrange(3, 10))}
+        for i in range(10)}
+# 模拟当前用户打分数据，为5部随机电影打分
+user = {'film' + str(randrange(1, 15)): randrange(1, 6) for i in range(5)}
+# 最相似的用户及其对电影打分情况
+# 两个用户共同打分的电影最多
+# 并且所有电影打分差值的平方和最小
+f = lambda item: (-len(item[1].keys() &amp; user),
+                  sum(((item[1].get(film) - user.get(film)) ** 2
+                       for film in user.keys() &amp; item[1].keys())))
+similarUser, films = min(data.items(), key=f)
+# 在输出结果中，第一列表示两个人共同打分的电影的数量
+# 第二列表示二人打分之间的相似度，数字越小表示越相似
+# 然后是该用户对电影的打分数据
+print('known data'.center(50, '='))
+for item in data.items():
+    print(len(item[1].keys() &amp; user.keys()),
+          sum(((item[1].get(film) - user.get(film)) ** 2
+               for film in user.keys() &amp; item[1].keys())),
+          item,
+          sep=':')
+print('current user'.center(50, '='))
+print(user)
+print('most similar user and his films'.center(50, '='))
+print(similarUser, films, sep=':')
+print('recommended film'.center(50, '='))
+# 在当前用户没看过的电影中选择打分最高的进行推荐
+print(max(films.keys() - user.keys(), key=lambda film: films[film]))
+</code></pre>
+<h1 id="解法二">解法二</h1>
+<pre><code class="language-python">from random import randrange
+
+
+def diff_value(use, fil):
+    score = 0
+    for filmName in fil:
+        # 计算两个用户的打分差距
+        score += abs(data[use][filmName] - user[filmName])
+    return score
+
+
+# 模拟获取数据
+data = {'user' + str(i): {'film' + str(randrange(1, 15)): randrange(1, 6) for j in range(randrange(3, 10))}
+        for i in range(1, 11)}
+print(&quot;=====模拟数据=====&quot;)
+print(data)
+# 模拟用户喜好
+user = {'film' + str(randrange(1, 15)): randrange(1, 6) for j in range(randrange(3, 10))}
+print(&quot;=====模拟当前用户喜好=====&quot;)
+print(user)
+film_len = 0  # 共同打分的数目
+film_user = &quot;&quot;  # 最接近的那个用户
+film_score = 0  # 记录分数差距
+for key, value in data.items():
+    film = set(value) &amp; set(user)  # 共同打分的电影
+    # print(key, film)
+    # 共同电影打分数目相同，则比较分数。
+    if len(film) == film_len:
+        if diff_value(key, film) &lt; film_score:
+            film_len = len(film)
+            film_user = key
+            film_score = diff_value(key, film)
+    if len(film) &gt; film_len:
+        film_len = len(film)
+        film_user = key
+        film_score = diff_value(key, film)
+print(&quot;=====最相似的用户和他的电影====&quot;)
+print(film_user, data[film_user])
+print(&quot;=====推荐的电影如下：======&quot;)
+
+
+def max_score(film):
+    return data[film_user][film]
+
+
+# 推荐评分最高的电影
+print(max(set(data[film_user]) - set(user), key=max_score))
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gradle安装]]></title>
+        <id>https://blog.youis.top/post/7b8Oe4egB/</id>
+        <link href="https://blog.youis.top/post/7b8Oe4egB/">
+        </link>
+        <updated>2020-04-26T08:15:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>Gradle + eclipse 输入helloworld<br>
+确保JDK安装成功。<br>
+java 版本java1.8</p>
+<h1 id="安装步骤">安装步骤</h1>
+]]></summary>
+        <content type="html"><![CDATA[<p>Gradle + eclipse 输入helloworld<br>
+确保JDK安装成功。<br>
+java 版本java1.8</p>
+<h1 id="安装步骤">安装步骤</h1>
+<!-- more -->
+<p>Gradle(v4.10.3)下载地址 👉👉👉<a href="https://downloads.gradle-dn.com/distributions/gradle-4.10.3-all.zip">点击下载</a><br>
+解压压缩包。<br>
+右键此电脑👉-&gt;点击属性。<br>
+按照图片添加环境变量<br>
+<img src="https://image.youis.top/20200426162119.png" alt="" loading="lazy"><br>
+<img src="https://image.youis.top/20200426162405.png" alt="" loading="lazy"><br>
+检查是否安装完成<br>
+<img src="https://image.youis.top/20200426162453.png" alt="" loading="lazy"><br>
+启动eclipse,点击window菜单，选择Preferences-&gt;Gradle设置Gradle位置<br>
+<img src="https://image.youis.top/20200426162614.png" alt="" loading="lazy"><br>
+1、创建Gradle项目<br>
+方式1：<a href="https://start.spring.io/">https://start.spring.io/</a>用网站提供的生成<br>
+<img src="https://image.youis.top/20200426162854.png" alt="" loading="lazy"><br>
+eclipse 操作File-&gt;import-&gt;Gradle<br>
+<img src="https://image.youis.top/20200426162940.png" alt="" loading="lazy"><br>
+<img src="https://image.youis.top/20200426162954.png" alt="" loading="lazy"><br>
+<img src="https://image.youis.top/20200426163004.png" alt="" loading="lazy"><br>
+等待构建完成。<br>
+<img src="https://image.youis.top/20200426163357.png" alt="" loading="lazy"><br>
+然后点击运行。<br>
+<img src="https://image.youis.top/5HL%60RTSLLQ1XKI4A%6094%5D%25SM.png" alt="" loading="lazy"></p>
+<h1 id="报错处理">报错处理</h1>
+<p>若中途报java错误，把jdk/lib/tools.jar复制一份到jre/lib里面</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[docker安装kafka]]></title>
         <id>https://blog.youis.top/post/NKkoP0wN4/</id>
@@ -507,158 +650,6 @@ input_list = eval(input(&quot;请输入一个列表&quot;))
 
 print(max(input_list))
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python安装教程]]></title>
-        <id>https://blog.youis.top/post/python-an-zhuang-jiao-cheng/</id>
-        <link href="https://blog.youis.top/post/python-an-zhuang-jiao-cheng/">
-        </link>
-        <updated>2020-03-25T05:38:51.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="1-下载python解释器并安装">1. 下载python解释器并安装</h1>
-<p>官方地址: <a href="https://www.python.org/downloads/release/python-377/">点击下载</a><br>
-🤡🤡🤡</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="1-下载python解释器并安装">1. 下载python解释器并安装</h1>
-<p>官方地址: <a href="https://www.python.org/downloads/release/python-377/">点击下载</a><br>
-🤡🤡🤡</p>
-<!-- more -->
-<p>查找对应版本，找到目标文件： <a href="https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe">Windows x86-64 executable installer</a> 下载即可</p>
-<figure data-type="image" tabindex="1"><img src="http://qiniu.youis.top/image-20200325121059112.png" alt="image-20200325121059112" loading="lazy"></figure>
-<h1 id="2-安装解释器">2. 安装解释器</h1>
-<p>(1)  点击.exe文件，注意：勾选添加到环境变量，然后点击（customize installation）自定义安装，<br>
-<img src="http://qiniu.youis.top/image-20200325121124154.png" alt="image-20200325121124154" loading="lazy"></p>
-<p>（2）进入如下界面，这是一些可选的项，全部默认勾选进行下一步<br>
-<img src="http://qiniu.youis.top/image-20200325121131108.png" alt="image-20200325121131108" loading="lazy"></p>
-<p>（3）选择安装路径，选择自己的安装路径</p>
-<figure data-type="image" tabindex="2"><img src="http://qiniu.youis.top/image-20200325121145741.png" alt="image-20200325121145741" loading="lazy"></figure>
-<p>（4）安装<br>
-<img src="http://qiniu.youis.top/image-20200325121155998.png" alt="image-20200325121155998" loading="lazy"></p>
-<figure data-type="image" tabindex="3"><img src="http://qiniu.youis.top/image-20200325121203778.png" alt="image-20200325121203778" loading="lazy"></figure>
-<pre><code>     测试是否安装成功，在dos控制台窗口输入python,pip命令。
-</code></pre>
-<figure data-type="image" tabindex="4"><img src="http://qiniu.youis.top/image-20200325121246869.png" alt="image-20200325121246869" loading="lazy"></figure>
-<h1 id="升级pip版本如果需要则使用">升级pip版本（如果需要则使用）</h1>
-<figure data-type="image" tabindex="5"><img src="http://qiniu.youis.top/image-20200325121255095.png" alt="image-20200325121255095" loading="lazy"></figure>
-<ol>
-<li>单独下载pip并安装（如果python中已经存在，则不需要）</li>
-</ol>
-<figure data-type="image" tabindex="6"><img src="http://qiniu.youis.top/image-20200325121305672.png" alt="image-20200325121305672" loading="lazy"></figure>
-<ol>
-<li>下载链接</li>
-</ol>
-<p><a href="https://pypi.python.org/pypi/pip#downloads">https://pypi.python.org/pypi/pip#downloads</a></p>
-<ol start="2">
-<li>[解压]{.underline}</li>
-</ol>
-<figure data-type="image" tabindex="7"><img src="http://qiniu.youis.top/image-20200325121318107.png" alt="image-20200325121318107" loading="lazy"></figure>
-<ol start="3">
-<li>安装pip，默认安装在python的script目录下</li>
-</ol>
-<figure data-type="image" tabindex="8"><img src="http://qiniu.youis.top/image-20200325121333792.png" alt="image-20200325121333792" loading="lazy"></figure>
-<ol start="4">
-<li>配置pip环境变量，在window的环境变量path中</li>
-</ol>
-<figure data-type="image" tabindex="9"><img src="http://qiniu.youis.top/image-20200325121340959.png" alt="image-20200325121340959" loading="lazy"></figure>
-<ol start="5">
-<li>测试是否安装成功</li>
-</ol>
-<figure data-type="image" tabindex="10"><img src="http://qiniu.youis.top/image-20200325121348746.png" alt="image-20200325121348746" loading="lazy"></figure>
-<h1 id="3-进行扩展库安装">3.  进行扩展库安装</h1>
-<ol>
-<li>查看已安装的模块</li>
-</ol>
-<figure data-type="image" tabindex="11"><img src="http://qiniu.youis.top/image-20200325121505990.png" alt="image-20200325121505990" loading="lazy"></figure>
-<ol start="2">
-<li>进行在线安装</li>
-</ol>
-<figure data-type="image" tabindex="12"><img src="http://qiniu.youis.top/image-20200325121513476.png" alt="image-20200325121513476" loading="lazy"></figure>
-<p>也可以通过其他镜像下载：pip install -i http://pypi.douban.com/simple --trusted-host pypi.douban.com pandas</p>
-<ol start="3">
-<li>
-<p>离线安装</p>
-<ol>
-<li>
-<p>下载模块文件.whl</p>
-<p>地址： <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a></p>
-<p>选择对应的whl文件下载：</p>
-</li>
-</ol>
-</li>
-</ol>
-<figure data-type="image" tabindex="13"><img src="http://qiniu.youis.top/image-20200325121530859.png" alt="image-20200325121530859" loading="lazy"></figure>
-<ol start="2">
-<li>通过pip安装</li>
-</ol>
-<figure data-type="image" tabindex="14"><img src="http://qiniu.youis.top/image-20200325121538377.png" alt="image-20200325121538377" loading="lazy"></figure>
-<ol start="4">
-<li>卸载</li>
-</ol>
-<figure data-type="image" tabindex="15"><img src="http://qiniu.youis.top/image-20200325121545274.png" alt="image-20200325121545274" loading="lazy"></figure>
-<ol start="4">
-<li>
-<p>下载并安装集成开发环境PyCharm或者Anaconda3</p>
-<p>官方地址：<a href="https://www.jetbrains.com/pycharm/download/#section=windows">[https://www.jetbrains.com/pycharm/download/#section=windows]{.underline}</a></p>
-</li>
-</ol>
-<figure data-type="image" tabindex="16"><img src="http://qiniu.youis.top/image-20200325121555613.png" alt="image-20200325121555613" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux高级运维笔记（第一章）]]></title>
-        <id>https://blog.youis.top/post/BMg6sEDxV/</id>
-        <link href="https://blog.youis.top/post/BMg6sEDxV/">
-        </link>
-        <updated>2020-03-15T07:28:26.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="linux系统简介">linux系统简介</h1>
-<p>目前市场占有率最高的商业版Linux：RedHat<br>
-被普遍使用的Liunx发行版本:Centos | Ubuntu| Debian |Fedora |Gento</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="linux系统简介">linux系统简介</h1>
-<p>目前市场占有率最高的商业版Linux：RedHat<br>
-被普遍使用的Liunx发行版本:Centos | Ubuntu| Debian |Fedora |Gento</p>
-<!-- more -->
-<h2 id="linux的目录结构">Linux的目录结构</h2>
-<p>Linux系统中只有一个树状结构，根目录“/”位于所有目录和文件的顶端，是唯一的根结点。<br>
-<img src="https://image.youis.top/20200424153602.png" alt="" loading="lazy"></p>
-<ul>
-<li>/：根目录，只包含目录，不包含具体文件；</li>
-<li>/etc：主要包含系统管理文件和配置文件；</li>
-<li>/bin：存放可执行的文件，如常用命令ls、mkdir、rm等的二进制文件都存放在该目录中；</li>
-<li>/home：普通用户的工作目录，每个用户都有一个/home目录；</li>
-<li>/usr：包含所有的用户程序（/usr/bin）、库文件（/usr/lib）、文档（/usr/share/doc）等，是占用空间最大的目录。</li>
-<li>/dev：存放设备文件，包括块设备文件（如磁盘对应文件）、字符设备文件（如键盘对应文件）等；</li>
-<li>/root：超级用户，即管理员的工作目录；</li>
-<li>/lib：主要存放动态链接共享库文件，类似于Windows中的.dll文件，该目录中的文件一般以.a、.dll、.so结尾（后缀不代表文件类型），也会存放与内核模块相关的文件；</li>
-<li>/boot：存放操作系统启动时需要用到的文件，如内核文件、引导程序文件等；</li>
-<li>/mnt：存储挂载存储设备的挂载目录；</li>
-<li>/proc：存放系统内存的映射，可直接通过访问该目录来获取系统信息；</li>
-<li>/opt：存放附加的应用程序软件包；</li>
-<li>/tmp：存放临时文件，重启系统后该目录的文件不会被保存。每个用户都能创建该目录，但不能删除其它用户的/tmp目录；</li>
-<li>/swap：存放虚拟内存交换时所用文件。</li>
-</ul>
-<h2 id="linux系统的启动流程">Linux系统的启动流程</h2>
-<p>从计算机的角度分析，接通电源后，需经过如下步骤，操作系统才会启动：</p>
-<ol>
-<li>BIOS加电自检；</li>
-<li>MBR系统引导；</li>
-<li>加载内核。</li>
-</ol>
-<h3 id="bios加电自检">BIOS加电自检</h3>
-<p>BIOS与加电自检存在包含关系：BIOS全称Basic Input/Output System，即基本输入输出系统，是一个永久刻录在ROM中的软件；加电自检原意为Power On Self Test（POST），是BIOS的一个主要部分。<br>
-计算机在接通电源后BIOS通过POST来加载硬件信息，进行内存、CPU、主板等的检测，若硬件设备正常运作，BIOS会寻找硬盘第一个扇区中存储的数据，使用MBR中的数据激活引导加载程序。</p>
-<h3 id="mbr系统引导">MBR系统引导</h3>
-<p>MBR全称Master Boot Recode，是一种磁盘分区格式，也是以此种格式的磁盘中0盘片0扇区中存储的一段记录——主引导记录。磁盘中扇区的大小为512字节，主引导记录MBR占据第一个扇区的前446字节，剩余的空间依次存储一个64字节的磁盘分区表，和一个用于标识MBR是否有效的2字节的魔数。<br>
-主引导记录MBR中包含一个实现引导加载功能的程序——Boot Loader。由于BIOS只能访问很少量的数据，所以MBR中的引导加载程序其实只是一段初始程序的加载程序（Initial Program Loader，简称IPL），这段程序唯一的功能就是定位并加载Boot Loader的主体程序。<br>
-因为以上原因，引导加载分为两个阶段：<br>
-第一阶段，BIOS引导IPL（此时系统启动的控制权由BIOS转移到MBR），获取Boot Loader主体程序在磁盘中的位置；<br>
-第二阶段，Boot Loader主体程序与操作系统对应的内核，定位到内核文件所在位置，并将其加载到计算机内存中（此时系统启动的控制权由MBR转到到内核）。</p>
-<h3 id="加载内核">加载内核</h3>
-<p>内核是操作系统的核心，Linux操作系统的内核即Linux。<br>
-内核以一种自解压的压缩格式存储，它与一个初始化的内存映像和存储设备映像表一起存储在/boot目录中。<br>
-在选定的内核被加载到内存中并开始执行之前需先从压缩格式中解压，一旦内核自解压完成，systemd进程（早期版本中为init进程）便被启动。<br>
-systemd进程的启动标识着引导过程的结束，也标识启动过程的开始。在系统启动之初，由于系统中没有除systemd之外的程序执行，系统初始化工作尚未完成，因此计算机不能执行任何和用户相关的功能性工作。<br>
-系统初始化需要做的事情非常多，如挂载文件系统、启动后台服务等等，这些初始化工作都由systemd进程完成。对用户而言，系统初始化完成后，系统才算正式启动。</p>
 ]]></content>
     </entry>
 </feed>

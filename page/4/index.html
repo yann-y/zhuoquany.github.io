@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title> TensorFlow2.0 入门 | Eden的博客</title>
+<title>Eden的博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1587975310271">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -39,8 +39,6 @@
   })();
 </script>
 
-  <meta name="description" content=" TensorFlow2.0 入门" />
-  <meta name="keywords" content="python" />
 </head>
 
 <body>
@@ -76,7 +74,7 @@
             
               
             
-            <li class="nav-item ">
+            <li class="nav-item nav-item-active">
               
               
                 <a href="/" target="_self">
@@ -168,24 +166,8 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
-      
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
-          </div>
-        </div>
-      
-      <div class="sidebar-body gemini" id="sidebar_body">
-        
-          
-            <div class="post-side-meta" id="post_side_meta">
-              
+        <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -223,291 +205,30 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD">前向传播</a></li>
-<li><a href="#mnist%E6%95%B0%E6%8D%AE%E4%BD%93%E9%AA%8C">mnist数据体验</a></li>
-<li><a href="#%E9%81%87%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98">遇见的问题</a>
-<ul>
-<li><a href="#%E5%AF%BC%E5%85%A5fashionminst%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98">导入fashionminst数据问题</a></li>
-<li><a href="#fashion-minst%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E5%8F%AF%E7%94%A8%E8%BF%9E%E6%8E%A5">fashion-minst数据集更换国内可用连接</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  </div>
 </div>
-
 <script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
     });
   }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
-          
-        
-      </div>
-    </div>
-  
-</div>
-<script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    window.Velocity(hideElement, 'stop');
-    window.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        window.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
-      }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
-  }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-        <div class="section-box box-shadow-wrapper">
-          <div class="section bg-color post post-page">
-            <header class="post-header">
+  </script>
+        <div class="section-box gemini">
+          <section class="section  posts-expand slide-down-in">
+            
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/tensorflow20-ru-men/">
-       TensorFlow2.0 入门
+    <a class="post-title-link" href="https://blog.youis.top/post/hello-gridea/">
+      Hello Gridea
     </a>
   </h1>
   <div class="post-meta">
@@ -515,7 +236,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-02-25</span>
+      <span>2018-12-12</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -524,8 +245,8 @@
       <span class="pc-show">分类于</span>
       
       
-      <a href="https://blog.youis.top/tag/e3DbDSoNh/">
-        <span>python</span>
+      <a href="https://blog.youis.top/tag/iy5sKAJLT/">
+        <span>Gridea</span>
       </a>
       
       
@@ -534,276 +255,86 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>830<span class="pc-show">字数</span></span>
-    </span>
-    
-    
-    
-    <span id="/post/tensorflow20-ru-men/" data-flag-title=" TensorFlow2.0 入门" class="meta-item pc-show leancloud_visitors">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-eye"></i>
-      <span>浏览量：<span class="leancloud-visitors-count"></span></span>
+      <span>298<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
-            <div class="post-body next-md-body" id="post_body">
-              <p>包含前向传播，手写数字识别，以及遇到的一些错误的解决方法。</p>
-<!-- more  -->
-<h2 id="前向传播">前向传播</h2>
-<pre><code class="language-python">#conding:utf-8
-import  tensorflow as tf
-from tensorflow  import  keras
-from  tensorflow.keras import datasets
-import  os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
-'''
-0 全部输出
-2 仅输出错误信息
-'''
-'''
-loss = nan 梯度爆炸'''
-# x:[60k,28,28]
-# y: [60k]
-(x,y),(x_test,y_test) = datasets.mnist.load_data()
-# 转换为Tensor
-x = tf.convert_to_tensor(x,dtype=tf.float32) / 255
-y = tf.convert_to_tensor(y,dtype=tf.int32)
-
-x_test = tf.convert_to_tensor(x_test,dtype=tf.float32) / 255
-y_test = tf.convert_to_tensor(y_test,dtype=tf.int32)
-print(x.shape,y.shape,x.dtype,y.dtype)
-print(tf.reduce_min(x),tf.reduce_max(x))
-print(tf.reduce_min(y),tf.reduce_max(y))
-
-train_db = tf.data.Dataset.from_tensor_slices((x,y)).batch(128)
-test_db = tf.data.Dataset.from_tensor_slices((x_test,y_test)).batch(128)
-train_iter = iter(train_db) # 生成迭代器
-sample = next(train_iter)
-print('batch :',sample[0].shape)
-
-# [b,728] =&gt; [b,512] =&gt; [b,128]  =&gt; [b,10]
-w1 = tf.Variable(tf.random.truncated_normal([784,256],stddev=0.1))
-b1 = tf.Variable(tf.zeros([256]))
-w2= tf.Variable(tf.random.truncated_normal([256,128],stddev=0.1))
-b2 = tf.Variable(tf.zeros([128]))
-w3 = tf.Variable(tf.random.truncated_normal([128,10],stddev=0.1))
-b3 = tf.Variable(tf.zeros([10]))
-lr = 1e-3
-# h1 = x@w1 + b1
-for epoch in range(10):
-    for step,(x,y) in enumerate(train_db):
-        # x:[128,28,28]
-        # y: [128]
-        # x: [b,28*28]
-        # h1 = x@w1 + b1;
-        # [b.784]@[784,256] + [256] =&gt;  [b,256] +[256] =&gt; b[256] + [256]
-        x = tf.reshape(x,[-1,28*28])
-        with tf.GradientTape() as  tape:
-            h1 = x@w1 + tf.broadcast_to(b1,[x.shape[0],256])
-            h1 = tf.nn.relu(h1)
-            h2 = h1@w2 + b2
-            out = h2@w3 + b3
-
-            # compute loss
-            # out[b,10]
-            # y: [b] =&gt; [b,10]
-            y_onehot = tf.one_hot(y,depth=10)
-            # mes = mean((y-out)^2)
-            # [b,10]
-            loss = tf.square(y_onehot - out)
-            # mean: scalar
-            loss = tf.reduce_mean(loss)
-        grads = tape.gradient(loss,[w1,b1,w2,b2,w3,b3])
-        w1.assign_sub(lr * grads[0])
-        b1.assign_sub(lr * grads[1])
-        w2.assign_sub(lr * grads[2])
-        b2.assign_sub(lr * grads[3])
-        w3.assign_sub(lr * grads[4])
-        b3.assign_sub(lr * grads[5])
-        '''
-        w1 = w1 - lr * grads[0]
-        b1 =b1 - lr * grads[1]
-        w2 = w2 - lr * grads[2]
-        b2 = b2 - lr * grads[3]
-        w3 = w3 - lr * grads[4]
-        b3 = b3 - lr * grads[5]
-        '''
-        if step % 100 == 0:
-            print(epoch,step,'loss = ',float(loss))
-
-    total_correct = 0
-    total_num = 0
-    for  step,(x,y) in enumerate(test_db):
-        x = tf.reshape(x,[-1,28*28])
-        h1 = tf.nn.relu(x@w1+b1)
-        h2 = tf.nn.relu(h1@w2 + b2)
-        out = h2@w3 + b3
-        # int 64
-
-        prob = tf.nn.softmax(out,axis=1)
-        pred = tf.argmax(prob,axis=1)
-        #print(pred.shape,out.shape,prob.shape)
-        pred = tf.cast(pred,dtype=tf.int32)
-        #print(pred.shape,y.shape)
-        correct = tf.cast(tf.equal(pred,y),dtype=tf.int32)
-        correct = tf.reduce_sum(correct)
-
-        total_correct += int(correct)
-        total_num += x.shape[0]
-    acc = total_correct / total_num
-    print(&quot;test acc: &quot;,acc)
-</code></pre>
-<h2 id="mnist数据体验">mnist数据体验</h2>
-<pre><code class="language-python">#conding:utf-8
-
-# 导入TensorFlow和tf.keras
-
-import tensorflow as tf
-from tensorflow import keras
-from  tensorflow.keras import datasets
-
-from keras.datasets import boston_housing
-
-# 导入辅助库
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-#(train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()
-
-(train_images, train_labels), (test_images, test_labels) = boston_housing.load_data()
-class_names = ['0','1','2','3','4','5','6','7','8','9']
-
-train_images = train_images / 255.0
-test_images = test_images / 255.0
-
-model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(28, 28)),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.softmax)
-])
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-
-model.fit(train_images, train_labels, epochs=5)
-
-test_loss, test_acc = model.evaluate(test_images, test_labels)
-print('Test accuracy:', test_acc)
-</code></pre>
-<h2 id="遇见的问题">遇见的问题</h2>
-<h3 id="导入fashionminst数据问题">导入fashionminst数据问题</h3>
-<p>报错</p>
-<pre><code class="language-python">EOFError: Compressed file ended before the end-of-stream marker was reached
-</code></pre>
-<p>解决问题方法：</p>
-<p>fashion-mnist数据缓存位置 ：</p>
-<pre><code class="language-python"> C:\Users\（你的Windows用户名）\.keras\datasets\\fashion-mnist
-</code></pre>
-<p>删除fashion-mnist文件夹，然后重新加载数据就可以了。</p>
-<h3 id="fashion-minst数据集更换国内可用连接">fashion-minst数据集更换国内可用连接</h3>
-<p>在你的TensorFlow库文件里面，更改fashion_mnist.py文件，具体路径如下：</p>
-<pre><code>envs\\tensorflow\lib\site-packages\tensorflow\python\keras\datasets\fashion_mnist.py
-</code></pre>
-<p>把代码中的</p>
-<p>base = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/'</p>
-<p>替换为如下连接：  base = 'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/'</p>
-<p>其他数据源也可以通过类似的方法更改，不错连接要准确。</p>
-
-            </div>
-            <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong>本文作者：</strong>
-      Eden
-    </li>
-    <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/tensorflow20-ru-men/" title=" TensorFlow2.0 入门">https://blog.youis.top/post/tensorflow20-ru-men/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong>
-      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
-    
-      <a href="https://blog.youis.top/tag/e3DbDSoNh/"># python</a>
-    
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
-      
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Anaconda 入门(一)" href="https://blog.youis.top/post/anaconda-ru-men-yi/">Anaconda 入门(一)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Anaconda 入门(一)" href="https://blog.youis.top/post/anaconda-ru-men-yi/">上一篇</a>
-      
-    </div>
-    <div class="nav-next">
-      
-        <a class="nav-pc-next" title="oracle的安装和使用" href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/">oracle的安装和使用</a>
-        <a class="nav-mobile-next" title="oracle的安装和使用" href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
-      
-    </div>
-  </div>
-</div>
+      <div class="post-body">
+        
+        
+          
+          
+            <p>
             
-  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>
-<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+          
+            <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
-<style>
-  .v .veditor {
-    min-height: 10rem;
-    background-image: url('https://upimage.alexhchu.com/2020/04/21/47eda59424daa.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-color: rgba(255, 255, 255, 0);
-    resize: none;
-  }
-
-  .v .vwrap {
-    border: 1px solid #000 !important;
-  }
-
-  .v .vbtn {
-    padding: .4rem 1.2rem !important;
-    border-color: #fff !important;
-    background-color: #49b1f5 !important;
-    color: #fff !important;
-    font-size: .7rem !important;
-  }
-
-  .v .vcards .vcard .vh .vmeta .vat {
-    padding: 0 .8rem !important;
-    border: 1px solid #00c4b6 !important;
-    border-radius: 5px !important;
-    color: #00c4b6 !important;
-  }
-</style>
-<script>
-  new Valine({
-    el: '#vcomments',
-    appId: 'q6Mzbvn7o6uNUpIINHd4qBxr-gzGzoHsz',
-    appKey: 'v1cetPrkricX157i1DhSSSvO',
-    avatar: 'mp',
-    placeholder: '',
-    pageSize: '',
-    lang: 'zh-cn',
-    visitor: 'true' === 'true',
-    highlight: 'true' === 'true',
-    avatarForce: 'true' === 'false',
-  });
-</script>
-
-          </div>
+            
+              <img src="/post-images/hello-gridea.png" />
+            
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn" href="https://blog.youis.top/post/hello-gridea/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+  
+            
+            
+<div class="page bg-color">
+  <ul class="pagination-ul">
+    
+      <li class="pagination-dir">
+        <a href="https://blog.youis.top/page/3/">
+          <i class="fa fa-angle-left"></i>
+        </a>
+      </li>
+    
+    
+      
+        <li class="pagination-li ">
+            <a href="/page/../">
+              1
+            </a>
+        </li>
+      
+        <li class="pagination-li ">
+            <a href="/page/2">
+              2
+            </a>
+        </li>
+      
+        <li class="pagination-li ">
+            <a href="/page/3">
+              3
+            </a>
+        </li>
+      
+        <li class="pagination-li pagination-active">
+            <a href="/page/4">
+              4
+            </a>
+        </li>
+      
+    
+    
+  </ul>
+</div>
+          </section>
         </div>
       </div>
     </div>
@@ -3045,4 +2576,5 @@ imagesc(b)
 <script src="/media/js/mouse/love.js"></script>
 
 <!-- <script src="/media/js/mouse/peace.js"></script> -->
+
 </html>
