@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-04-27T08:17:17.579Z</updated>
+    <updated>2020-05-01T02:17:04.200Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[谁没交作业，让我康康]]></title>
+        <id>https://blog.youis.top/post/0TQcnCohv/</id>
+        <link href="https://blog.youis.top/post/0TQcnCohv/">
+        </link>
+        <updated>2020-05-01T02:12:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>收作业不清楚谁没教，一个一个的数，太麻烦。<br>
+😏😏😏<br>
+写一个程序搞定他。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>收作业不清楚谁没教，一个一个的数，太麻烦。<br>
+😏😏😏<br>
+写一个程序搞定他。</p>
+<!-- more -->
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/3/26 17:56
+@file: homeWork.py
+@desc:      作业查收，扫描文件夹，利用正则表达式，匹配唯一id学号
+        然后遍历名单，获取未交作业人员
+&quot;&quot;&quot;
+import os
+import pandas as pd
+import re
+import threading
+import zipfile
+import time
+
+
+def listdir(path, list_name):
+    &quot;&quot;&quot;
+    @param path:  str
+    @param list_name: list
+    &quot;&quot;&quot;
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        if os.path.isdir(file_path):
+            # 判断对象是否是一个目录
+            # 修改建议，目录直接压缩，判断压缩后的文件是否已经存在。？？？？
+            listdir(file_path, list_name)
+        else:
+            # print(re.findall(r&quot;\d+\.?\d*&quot;, file_path))
+            # file_path = re.findall(r&quot;\d+\.?\d*&quot;, file_path)[0]
+            file_path = re.findall(r&quot;\d+&quot;, file_path)[0]  # /d匹配数字，+匹配多次
+            if len(file_path) != 10:  # 如果学号不是10位数字，代表学号错误。
+                print(file_path + &quot;是一个错误的学号&quot;)
+            # print(file)
+            # print(file_path)
+            list_name.add(int(file_path))
+
+
+def reprint():
+    set_len = len(unpaid)
+    if set_len &gt; 0:
+        print(&quot;还有%d名同学没有教作业！！&quot; % set_len)
+        for index in unpaid:
+            print(index, df[index])
+    else:
+        print(&quot;作业已经交齐了。&quot;)
+
+
+if __name__ == '__main__':
+    work_path = r&quot;E:\study\Linux高级运维\作业\Linux高级运维_shell练习_第三次作业&quot;
+    work_list = set()
+    t = threading.Thread(target=listdir(work_path, work_list))
+    t.start()
+    # listdir(work_path, work_list)
+    excel_path = r&quot;RenYuanMingDan.xlsx&quot;  # 人员名单
+    df = pd.read_excel(excel_path, encoding=&quot;utf-8&quot;, usecols=[u&quot;姓名&quot;, u&quot;学号&quot;])
+    df = df.set_index([u&quot;学号&quot;])
+    df = df.to_dict()
+    df = df[u&quot;姓名&quot;]
+    unpaid = set(df) - work_list
+    reprint()
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python第四次作业]]></title>
         <id>https://blog.youis.top/post/3mEbBUOoi/</id>
@@ -593,62 +673,6 @@ print(output)
 li1 = eval(input('请输入第一个列表'))
 li2 = eval(input('请输入第二个列表'))
 print(list(reduce(lambda x, y: x * y, (li1, li2))))
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python笔记]]></title>
-        <id>https://blog.youis.top/post/pythonbiji/</id>
-        <link href="https://blog.youis.top/post/pythonbiji/">
-        </link>
-        <updated>2020-04-13T06:58:53.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="身份运算符">身份运算符</h1>
-<p>身份运算符用于比较两个对象的<strong>内存地址</strong>是否一致——是否是对同一个对象的引用</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="身份运算符">身份运算符</h1>
-<p>身份运算符用于比较两个对象的<strong>内存地址</strong>是否一致——是否是对同一个对象的引用</p>
-<!-- more -->
-<h2 id="is-与-is-not">is 与 is  not</h2>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:right">实例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>is</td>
-<td style="text-align:center">is是判断两个标识符是不是引用同一个对象</td>
-<td style="text-align:right">x is y，类似id(x)==id(y)</td>
-</tr>
-<tr>
-<td>is not</td>
-<td style="text-align:center">is not是判断两个标识符是不是引用不同对象</td>
-<td style="text-align:right">x is not y，类似id(x)!=id(y)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="is与区别">is与==区别：</h2>
-<p>is用于判断两个变量引用对象是否为同一个<br>
-==用于判断引用变量的值是否相等<br>
-判断None与False用is</p>
-<pre><code class="language-python">    if new_str is None:
-        return False
-    if new_str is False:
-        return False
-</code></pre>
-<h1 id="输入列表">输入列表</h1>
-<pre><code class="language-python">
-'''
-编写程序，输入一个包含若干整数的列表，输出列表中的最大值。例如，输入[1, 2, 3,4, 5, 888]输出888。
-输入[1, 2, 3,4, 5, 888]
-eval就会把它从字符串转换为列表。
-'''
-input_list = eval(input(&quot;请输入一个列表&quot;))
-
-print(max(input_list))
 </code></pre>
 ]]></content>
     </entry>

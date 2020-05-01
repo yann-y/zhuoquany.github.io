@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>Anaconda 入门(一) | Eden的博客</title>
+<title>谁没交作业，让我康康 | Eden的博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1588299342666">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -39,7 +39,7 @@
   })();
 </script>
 
-  <meta name="description" content="Anaconda 入门(一)" />
+  <meta name="description" content="谁没交作业，让我康康" />
   <meta name="keywords" content="python" />
 </head>
 
@@ -184,8 +184,7 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -223,203 +222,6 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%8B%E8%BD%BD-anaconda">下载 Anaconda</a></li>
-<li><a href="#conda-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D">conda 工具介绍</a></li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80">修改镜像地址</a>
-<ul>
-<li><a href="#anaconda-%E6%8D%A2%E6%BA%90">anaconda 换源</a></li>
-<li><a href="#pip%E6%8D%A2%E6%BA%90">pip换源</a></li>
-</ul>
-</li>
-<li><a href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">遇到的问题</a>
-<ul>
-<li><a href="#%E5%BC%B9%E5%87%BA%E8%AD%A6%E5%91%8A">弹出警告</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
-      }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
-    });
-  }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
           
         
       </div>
@@ -507,8 +309,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/anaconda-ru-men-yi/">
-      Anaconda 入门(一)
+    <a class="post-title-link" href="https://blog.youis.top/post/0TQcnCohv/">
+      谁没交作业，让我康康
     </a>
   </h1>
   <div class="post-meta">
@@ -516,7 +318,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-12</span>
+      <span>2020-05-01</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -535,17 +337,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>4分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>943<span class="pc-show">字数</span></span>
+      <span>386<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/post/anaconda-ru-men-yi/" data-flag-title="Anaconda 入门(一)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/0TQcnCohv/" data-flag-title="谁没交作业，让我康康" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -554,94 +356,74 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <p>Anaconda 是什么？<br>
-Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。<br>
-⚽️⚽️⚽️</p>
+              <p>收作业不清楚谁没教，一个一个的数，太麻烦。<br>
+😏😏😏<br>
+写一个程序搞定他。</p>
 <!-- more -->
-<ul>
-<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
-<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
-</ul>
-<h1 id="下载-anaconda">下载 Anaconda</h1>
-<p>直接在<a href="https://www.anaconda.com/distribution/">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。<br>
-我选择的是国内下载<br>
-<a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源镜像网站</a><br>
-<img src="http://qiniu.youis.top/20200312181813.png" alt="" loading="lazy"><br>
-<img src="http://qiniu.youis.top/20200312181916.png" alt="" loading="lazy"><br>
-下载以后安装就行。<br>
-具体安装过程看这篇<a href="https://blog.csdn.net/xhbspark/article/details/89929458">博文</a></p>
-<h1 id="conda-工具介绍">conda 工具介绍</h1>
-<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
-<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
-<pre><code># 查看帮助
-conda -h 
-# 基于python3.6版本创建一个名字为python36的环境
-conda create --name python36 python=3.6 
-# 激活此环境
-activate python36  
-source activate python36 # linux/mac
-# 再来检查python版本，显示是 3.6
-python -V  
-# 退出当前环境
-deactivate python36 
-# 删除该环境
-conda remove -n python36 --all
-# 或者 
-conda env remove  -n python36
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/3/26 17:56
+@file: homeWork.py
+@desc:      作业查收，扫描文件夹，利用正则表达式，匹配唯一id学号
+        然后遍历名单，获取未交作业人员
+&quot;&quot;&quot;
+import os
+import pandas as pd
+import re
+import threading
+import zipfile
+import time
 
-# 查看所以安装的环境
-conda info -e
-python36              *  D:\Programs\Anaconda3\envs\python36
-root                     D:\Programs\Anaconda3
+
+def listdir(path, list_name):
+    &quot;&quot;&quot;
+    @param path:  str
+    @param list_name: list
+    &quot;&quot;&quot;
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        if os.path.isdir(file_path):
+            # 判断对象是否是一个目录
+            # 修改建议，目录直接压缩，判断压缩后的文件是否已经存在。？？？？
+            listdir(file_path, list_name)
+        else:
+            # print(re.findall(r&quot;\d+\.?\d*&quot;, file_path))
+            # file_path = re.findall(r&quot;\d+\.?\d*&quot;, file_path)[0]
+            file_path = re.findall(r&quot;\d+&quot;, file_path)[0]  # /d匹配数字，+匹配多次
+            if len(file_path) != 10:  # 如果学号不是10位数字，代表学号错误。
+                print(file_path + &quot;是一个错误的学号&quot;)
+            # print(file)
+            # print(file_path)
+            list_name.add(int(file_path))
+
+
+def reprint():
+    set_len = len(unpaid)
+    if set_len &gt; 0:
+        print(&quot;还有%d名同学没有教作业！！&quot; % set_len)
+        for index in unpaid:
+            print(index, df[index])
+    else:
+        print(&quot;作业已经交齐了。&quot;)
+
+
+if __name__ == '__main__':
+    work_path = r&quot;E:\study\Linux高级运维\作业\Linux高级运维_shell练习_第三次作业&quot;
+    work_list = set()
+    t = threading.Thread(target=listdir(work_path, work_list))
+    t.start()
+    # listdir(work_path, work_list)
+    excel_path = r&quot;RenYuanMingDan.xlsx&quot;  # 人员名单
+    df = pd.read_excel(excel_path, encoding=&quot;utf-8&quot;, usecols=[u&quot;姓名&quot;, u&quot;学号&quot;])
+    df = df.set_index([u&quot;学号&quot;])
+    df = df.to_dict()
+    df = df[u&quot;姓名&quot;]
+    unpaid = set(df) - work_list
+    reprint()
+
 </code></pre>
-<p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。</p>
-<pre><code># 安装 matplotlib 
-conda install matplotlib
-# 查看已安装的包
-conda list 
-# 包更新
-conda update matplotlib
-# 删除包
-conda remove matplotlib
-</code></pre>
-<p>在 conda 中 anything is a package。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：</p>
-<pre><code># 更新conda本身
-conda update conda
-# 更新anaconda 应用
-conda update anaconda
-# 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2
-conda update python
-</code></pre>
-<h1 id="修改镜像地址">修改镜像地址</h1>
-<h2 id="anaconda-换源">anaconda 换源</h2>
-<p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：</p>
-<pre><code>channels:
- - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
- - defaults
-show_channel_urls: true
-</code></pre>
-<h2 id="pip换源">pip换源</h2>
-<p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，我用的是阿里云。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：</p>
-<pre><code>[global]
-timeout = 6000
-index-url =http://mirrors.aliyun.com/pypi/simple/
-trusted-host= mirrors.aliyun.com
-</code></pre>
-<h1 id="遇到的问题">遇到的问题</h1>
-<p>##命令行打开提示UnicodeDecodeError: 'gbk' codec can't decode byte 0x9a in position 17: illegal multibyte sequence<br>
-<img src="http://qiniu.youis.top/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20200323151719.png" alt="" loading="lazy"><br>
-根据File<br>
-&quot;D:\soft\anaconda3\lib\site-packages\pyreadline\lineeditor\history.py&quot;, line 82, in read_history_file for line in open(filename, 'r'):<br>
-在原有的open函数里 新增了一个参数选项encoding='utf-8'<br>
-就可以解决了<br>
-把(filename, 'r' )修改为(filename, 'r',encoding='utf-8' )</p>
-<h2 id="弹出警告">弹出警告</h2>
-<p>This Python interpreter is in a conda environment, but the environment has not been activated.  Libraries may fail to load.  To activate this environment please see https://conda.io/activation<br>
-解决方式</p>
-<p>使用终端或Anaconda提示符执行以下步骤。</p>
-<p>默认情况下，活动环境---您当前使用的环境---显示在命令提示符开头的括号（）或括号[]中：(myenv) $<br>
-　　如果您没有看到这个，请运行：conda info --envs<br>
-　　在显示的环境列表中，当前环境以星号（*）突出显示</p>
 
             </div>
             <div class="post-footer">
@@ -652,7 +434,7 @@ trusted-host= mirrors.aliyun.com
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/anaconda-ru-men-yi/" title="Anaconda 入门(一)">https://blog.youis.top/post/anaconda-ru-men-yi/</a>
+      <a href="https://blog.youis.top/post/0TQcnCohv/" title="谁没交作业，让我康康">https://blog.youis.top/post/0TQcnCohv/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -667,15 +449,11 @@ trusted-host= mirrors.aliyun.com
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="PicGo+Typora实现图片自动上传" href="https://blog.youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/">PicGo+Typora实现图片自动上传</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="PicGo+Typora实现图片自动上传" href="https://blog.youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title=" TensorFlow2.0 入门" href="https://blog.youis.top/post/tensorflow20-ru-men/"> TensorFlow2.0 入门</a>
-        <a class="nav-mobile-next" title=" TensorFlow2.0 入门" href="https://blog.youis.top/post/tensorflow20-ru-men/">下一篇</a>
+        <a class="nav-pc-next" title="python第四次作业" href="https://blog.youis.top/post/3mEbBUOoi/">python第四次作业</a>
+        <a class="nav-mobile-next" title="python第四次作业" href="https://blog.youis.top/post/3mEbBUOoi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
