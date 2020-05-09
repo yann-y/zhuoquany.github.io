@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>oracle的安装和使用 | Eden的博客</title>
+<title>shell脚本作业 | Eden的博客</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589020992748">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
@@ -39,8 +39,8 @@
   })();
 </script>
 
-  <meta name="description" content="oracle的安装和使用" />
-  <meta name="keywords" content="oracle" />
+  <meta name="description" content="shell脚本作业" />
+  <meta name="keywords" content="shell" />
 </head>
 
 <body>
@@ -226,12 +226,16 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E5%85%B3%E9%97%AD">防火墙的关闭</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%AF%E5%8A%A8">数据库的启动</a></li>
-</ul>
-</li>
+<li><a href="#if-%E7%AC%AC%E4%B8%80%E9%A2%98">if 第一题</a></li>
+<li><a href="#if%E5%92%8C-while-%E7%AC%AC%E4%BA%8C%E9%A2%98">if和 while 第二题</a></li>
+<li><a href="#case-%E7%AC%AC%E4%B8%89%E9%A2%98">case 第三题</a></li>
+<li><a href="#for-%E7%AC%AC%E5%9B%9B%E9%A2%98">for 第四题</a></li>
+<li><a href="#while%E5%92%8Cbreak-%E7%AC%AC%E4%BA%94%E9%A2%98">while和break 第五题</a></li>
+<li><a href="#until-%E7%AC%AC%E5%85%AD%E9%A2%98">until 第六题</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0-if-%E7%AC%AC%E4%B8%83%E9%A2%98">函数、if 第七题</a></li>
+<li><a href="#if%E5%92%8Ccontinue-%E7%AC%AC%E5%85%AB%E9%A2%98">if和continue 第八题：</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0-shift%E5%92%8Cwhile-%E7%AC%AC%E4%B9%9D%E9%A2%98">函数、shift和while 第九题</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0-%E7%AC%AC%E5%8D%81%E9%A2%98">函数 第十题</a></li>
 </ul>
 
   </div>
@@ -497,8 +501,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/">
-      oracle的安装和使用
+    <a class="post-title-link" href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/">
+      shell脚本作业
     </a>
   </h1>
   <div class="post-meta">
@@ -506,7 +510,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-02-25</span>
+      <span>2020-05-09</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -515,8 +519,8 @@
       <span class="pc-show">分类于</span>
       
       
-      <a href="https://blog.youis.top/tag/wrghAECuu/">
-        <span>oracle</span>
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/">
+        <span>shell</span>
       </a>
       
       
@@ -525,17 +529,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>9分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>111<span class="pc-show">字数</span></span>
+      <span>1718<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/post/oracle-de-an-zhuang-he-shi-yong/" data-flag-title="oracle的安装和使用" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/shell-jiao-ben-zuo-ye/" data-flag-title="shell脚本作业" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -544,19 +548,274 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <h2 id="防火墙的关闭">防火墙的关闭</h2>
-<p>chkconfig iptables off（设置自动启动为关闭）</p>
-<p>chkconfig iptables on（设置自动启动为启动）</p>
-<!--more-->
-<p>chkconfig --del iptables（移除开启自启动）</p>
-<p>chkconfig --add iptables（增加开启自启动）</p>
-<p>service iptables status          --查看防火墙状态</p>
-<h2 id="数据库的启动">数据库的启动</h2>
-<p>lsnrctl  start   启动数库监听程序</p>
-<p>lsnrctl  stop  停止监听程序</p>
-<p>lsnrctl   status  查看监听程序状态</p>
-<p>sqlplus   &quot;/as  sysdba&quot;  进入数据库库</p>
-<p>startup  启动数据库</p>
+              <h1 id="if-第一题">if 第一题</h1>
+<p>设计一个shell程序，执行一次将备份并压缩/etc目录下的所有内容，存放在/root/bak目录里，且文件名为如下形式yymmdd_etc，yy为年，mm为月，dd为日。<br>
+提示：<br>
+1、注意判断备份目录是否存在，不存在则创建；<br>
+2、注意备份文件命名格式。</p>
+<pre><code class="language-shell">#!/bin/bash
+if [ ! -e &quot;/root/bak&quot; ];
+then
+mkdir /root/bak
+fi
+cd /root/bak    
+YY=$(date +%Y)  
+mm=$(date +%m)
+DD=$(date +%d)
+backupdir=&quot;$YY$mm$DD&quot;_etc.tar.gz  
+echo $backupdir
+tar -zcvf $backupdir /etc/ 
+</code></pre>
+<h1 id="if和-while-第二题">if和 while 第二题</h1>
+<p>设计一个shell程序，添加一个新用户组为usergroup01，然后添加属于这个组的30个用户，用户名的形式为userxx，其中xx从01到30。<br>
+提示：<br>
+1、注意新建用户时会自动创建用户主目录；<br>
+2、注意01和1的区别。</p>
+<pre><code class="language-shell">#!/bin/bash
+ug=usergroup01
+groupadd $ug
+for x in `seq -w 1 30`;
+do 
+ useradd user$x  -g $ug
+done
+</code></pre>
+<h1 id="case-第三题">case 第三题</h1>
+<p>设计一个脚本，可根据所列清单提示，输入相应编号，以不同的颜色打印清单名称。如果输入不正确或者不输入的话就打印帮助。例如：打印一个如下的水果菜单<br>
+(1) banana<br>
+(2) apple<br>
+(3) pear<br>
+(4) cherry<br>
+实现结果：要求：输入1，则打印黄色字体banana；输入2，则打印红色字体apple；输入3，则打印绿色字体orange；输入4，则打印蓝色字体cherry。</p>
+<pre><code class="language-shell">#!/bin/bash
+echo &quot;#####################&quot;
+echo &quot;	1.banana&quot;
+echo &quot;	2.apple&quot;
+echo &quot;	3.pear&quot;
+echo &quot;	4.cherry&quot;
+echo &quot;#####################&quot;
+echo 
+echo &quot;please select a num:&quot;
+read Num
+case $Num in
+	1) echo -e &quot;\033[33m banana \033[0m&quot;
+	;;
+	2) echo -e &quot;\033[31m apple \033[0m&quot;
+	;;
+	3) echo -e &quot;\033[32m pear \033[0m&quot;
+	;;
+	4) echo -e &quot;\033[35m cherry \033[0m&quot;
+	;;
+	*) echo &quot;please input {1|2|3|4}&quot;
+	;;
+esac
+</code></pre>
+<h1 id="for-第四题">for 第四题</h1>
+<p>设计一个脚本，把/var 目录下所有的文件递归罗列出来。</p>
+<pre><code class="language-shell">#!/bin/bash
+function travFolder(){
+	cd $1
+        path=`pwd`
+	flist=`ls $pwd`
+	for f in $flist
+	do
+		if [ -d $f ]
+		then
+			echo &quot;dir: $path&quot;
+			travFolder $f
+                        cd ..
+		else
+			echo &quot;flie:$f&quot;
+		fi
+	done
+}
+travFolder /var
+</code></pre>
+<h1 id="while和break-第五题">while和break 第五题</h1>
+<p>设计一个shell脚本，执行后，打印一行提示“Please input a number:&quot;，要求用户输入数值，然后打印出该数值，然后再次要求用户输入数值，再打印出该数值，直到用户输入&quot;end&quot;停止。<br>
+提示：<br>
+1、注意测试符的使用；<br>
+2、read的用法。</p>
+<pre><code class="language-shell">#!/bin/bash
+echo &quot;Please input a number:&quot;
+read Num
+while [ &quot;$Num&quot; !=  &quot;end&quot;  ]
+do
+	echo &quot;Your number: $Num&quot;
+	echo &quot;Please input a number:&quot;
+	read Num
+done
+</code></pre>
+<h1 id="until-第六题">until 第六题</h1>
+<p>设计一个脚本，执行脚本时，根据提示输入局域网内需要测试的IP地址段，判断同网段的所有主机有多少存活，就是有哪些IP地址是可以ping通的，并打印结果。</p>
+<pre><code>#!/bin/bash
+a=1
+until [ $a -eq 256 ]
+do
+	ping 192.168.3.$a -c 2 | grep -q &quot;ttl=&quot; &amp;&amp; echo &quot;192.168.3.$a yes&quot; || echo &quot;192.168.3.$a no&quot; &gt;&gt; ip.txt
+	let &quot;a++&quot;
+done
+</code></pre>
+<h1 id="函数-if-第七题">函数、if 第七题</h1>
+<p>设计一个监控脚本，若http服务出现异常则重新启动该服务。</p>
+<pre><code class="language-shell">#!/bin/sh
+HTTPPRONUM=`ps -ef|grep http|grep -v grep|wc -l`
+if [[ $HTTPPRONUM -lt 1 ]]
+then
+	echo “httpd is not running” 
+	httpdctl restart &gt;/dev/null 2&gt;&amp;1
+	echo “httpd is restart”
+	exit 1
+else
+	echo “httpd is running”
+	exit 0
+fi
+</code></pre>
+<h1 id="if和continue-第八题">if和continue 第八题：</h1>
+<p>设计一个脚本，利用循环和continue，计算100以内能被3整除的数之和。</p>
+<pre><code class="language-shell">#!/bin/bash
+s=0
+for((i=1;i&lt;100;i++));
+do
+        if [ `expr $i % 3` -eq 0 ]
+        then
+                echo &quot;能被3整除的数：$i&quot;
+                s=`expr $s + $i`
+        fi
+done
+echo &quot;100以内能被3整除的数之和：$s&quot;
+</code></pre>
+<h1 id="函数-shift和while-第九题">函数、shift和while 第九题</h1>
+<p>设计一个脚本，脚本中调用函数，利用shift计算所有函数参数乘积，假设参数均为整数，分别为3、5、7、9。</p>
+<pre><code class="language-shell">#!/bin/bash
+s=1
+func(){
+	while (($#&gt;0))
+	do
+		let s=s*$1
+		shift
+	done
+}
+func 3 5 7 9
+echo &quot;$s&quot;
+</code></pre>
+<h1 id="函数-第十题">函数 第十题</h1>
+<p>下面脚本用于新装Linux的相关配置工作，比如更换默认yum源，优化系统内核、停掉一些没必要启动的系统服务等。此脚本尤其适合大批新安装的CentOS系列的服务器。适用于Centos7。执行并分析下面脚本内容，对关键语句，给出正确的注释。并打印执行结果。</p>
+<pre><code class="language-shell">#!/bin/bash
+#1.__________________________ 
+if [ `whoami` != &quot;root&quot; ];then
+echo &quot; only root can run it&quot;
+exit 1
+fi
+#2._______________________ 
+echo -e &quot;\033[31m 这是centos7系统初始化脚本，将更新系统内核至最新版本，请慎重运行！\033[0m&quot; 
+read -s -n1 -p &quot;Press any key to continue or ctrl+C to cancel&quot;
+echo &quot;Your inputs: $REPLY&quot;
+#3._______________________________
+yum_config(){
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all &amp;&amp; yum makecache
+}
+#4._____________________________________
+ntp_config(){
+yum -y install chrony
+systemctl start chronyd &amp;&amp; systemctl enable chronyd
+timedatectl set-timezone Asia/Shanghai &amp;&amp; timedatectl set-ntp yes
+}
+#5.__________________________________________
+close_firewalld(){
+systemctl stop firewalld.service &amp;&gt; /dev/null
+systemctl disable firewalld.service &amp;&gt; /dev/null
+}
+#6.___________________________________
+close_selinux(){
+setenforce 0
+sed -i 's/enforcing/disabled/g' /etc/selinux/config
+}
+#7.________________________________________
+yum_tools(){
+yum install -y vim wget curl curl-devel bash-completion lsof iotop iostat unzip bzip2 bzip2-devel
+yum install -y gcc gcc-c++ make cmake autoconf openssl-devel openssl-perl net-tools
+source /usr/share/bash-completion/bash_completion
+}
+#8.___________________________________
+update_kernel (){
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install -y kernel-ml
+grub2-set-default 0
+grub2-mkconfig -o /boot/grub2/grub.cfg
+}
+#9.__________________________________
+main(){
+    yum_config;
+    ntp_config;
+    close_firewalld;
+    close_selinux;
+    yum_tools;
+    update_kernel;
+}
+main
+</code></pre>
+<p>脚本打印结果截图：（如果系统默认未安装wget，找出解决方法然后修改脚本）</p>
+<pre><code class="language-shell">#!/bin/bash
+yum -y install wget 
+#1._____判断是否为root用户_____________________ 
+if [ `whoami` != &quot;root&quot; ];then
+echo &quot; only root can run it&quot;
+exit 1
+fi
+#2.______温馨提示_________________ 
+echo -e &quot;\033[31m 这是centos7系统初始化脚本，将更新系统内核至最新版本，请慎重运行！\033[0m&quot; 
+read -s -n1 -p &quot;Press any key to continue or ctrl+C to cancel&quot;
+echo &quot;Your inputs: $REPLY&quot;
+#3.______配置yum源_________________________
+yum_config(){
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all &amp;&amp; yum makecache
+}
+#4.______配置ntp_______________________________
+ntp_config(){
+yum -y install chrony
+systemctl start chronyd &amp;&amp; systemctl enable chronyd
+timedatectl set-timezone Asia/Shanghai &amp;&amp; timedatectl set-ntp yes
+}
+#5.______关闭防火墙____________________________________
+close_firewalld(){
+systemctl stop firewalld.service &amp;&gt; /dev/null
+systemctl disable firewalld.service &amp;&gt; /dev/null
+}
+#6._______关闭selinux____________________________
+close_selinux(){
+setenforce 0
+sed -i 's/enforcing/disabled/g' /etc/selinux/config
+}
+#7._______安装yum工具_________________________________
+yum_tools(){
+yum install -y vim wget curl curl-devel bash-completion lsof iotop iostat unzip bzip2 bzip2-devel
+yum install -y gcc gcc-c++ make cmake autoconf openssl-devel openssl-perl net-tools
+source /usr/share/bash-completion/bash_completion
+}
+#8.________更新内核___________________________
+update_kernel (){
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install -y kernel-ml
+grub2-set-default 0
+grub2-mkconfig -o /boot/grub2/grub.cfg
+}
+#9.________主函数执行之前定义的脚本__________________________
+main(){
+    yum_config;
+    ntp_config;
+    close_firewalld;
+    close_selinux;
+    yum_tools;
+    update_kernel;
+}
+main
+</code></pre>
 
             </div>
             <div class="post-footer">
@@ -567,7 +826,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/" title="oracle的安装和使用">https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/</a>
+      <a href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/" title="shell脚本作业">https://blog.youis.top/post/shell-jiao-ben-zuo-ye/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -576,21 +835,17 @@
   </ul>
   <div class="tags">
     
-      <a href="https://blog.youis.top/tag/wrghAECuu/"># oracle</a>
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/"># shell</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title=" TensorFlow2.0 入门" href="https://blog.youis.top/post/tensorflow20-ru-men/"> TensorFlow2.0 入门</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title=" TensorFlow2.0 入门" href="https://blog.youis.top/post/tensorflow20-ru-men/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="linear  regression(线性回归)" href="https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/">linear  regression(线性回归)</a>
-        <a class="nav-mobile-next" title="linear  regression(线性回归)" href="https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/">下一篇</a>
+        <a class="nav-pc-next" title="python尼姆游戏" href="https://blog.youis.top/post/python-ni-mu-you-xi/">python尼姆游戏</a>
+        <a class="nav-mobile-next" title="python尼姆游戏" href="https://blog.youis.top/post/python-ni-mu-you-xi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
