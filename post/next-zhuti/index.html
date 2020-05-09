@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>Eden的博客</title>
+<title>next 主题修改 | Eden的博客</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589030812396">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
@@ -39,6 +39,8 @@
   })();
 </script>
 
+  <meta name="description" content="next 主题修改" />
+  <meta name="keywords" content="hexo,next" />
 </head>
 
 <body>
@@ -74,7 +76,7 @@
             
               
             
-            <li class="nav-item nav-item-active">
+            <li class="nav-item ">
               
               
                 <a href="/" target="_self">
@@ -166,8 +168,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/images/avatar.png"/>
@@ -202,85 +220,292 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#next-%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9">next 主题修改</a></li>
+<li><a href="#%E5%BA%95%E9%83%A8%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E4%BF%A1%E6%81%AF%E4%BC%98%E5%8C%96">底部网站底部信息优化</a>
+<ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E9%87%8F">添加网站访问量</a></li>
+<li><a href="#%E5%8E%BB%E6%8E%89%E5%BC%BA%E6%8E%A8%E8%8D%90%E7%AD%89%E6%96%87%E5%AD%97">去掉强推荐等文字</a></li>
+<li><a href="#%E8%AE%B0%E5%BD%95%E5%BB%BA%E7%AB%99%E6%97%B6%E9%97%B4">记录建站时间</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini">
-          <section class="section  posts-expand slide-down-in">
-            
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <header class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/nlp-xue-xi-yi/">
-      NLP学习（一）
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span>发布于</span>
-      <span>2019-07-17</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>216<span class="pc-show">字数</span></span>
-    </span>
-    
-  </div>
-</header>
-      <div class="post-body">
-        
-        
-          
-          
-            <p>
-            
-          
-            <p>😂😂😂<br>
-机器学习，学习机器</p>
 
-            
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
-        
-        
-        <div class="post-button text-center">
-          <a class="btn" href="https://blog.youis.top/post/nlp-xue-xi-yi/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
         
       </div>
-      
     </div>
-  </article>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
 
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <header class="post-header">
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/t811ZgOaf/">
-      shell
+    <a class="post-title-link" href="https://blog.youis.top/post/next-zhuti/">
+      next 主题修改
     </a>
   </h1>
   <div class="post-meta">
@@ -288,7 +513,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-04-21</span>
+      <span>2019-08-01</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -297,83 +522,14 @@
       <span class="pc-show">分类于</span>
       
       
-      <a href="https://blog.youis.top/tag/2tOkrjS-F/">
-        <span>shell</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>481<span class="pc-show">字数</span></span>
-    </span>
-    
-  </div>
-</header>
-      <div class="post-body">
-        
-        
-          
-          
-            <p>
-            
-          
-            <p>💻💻💻懒一点还是要写笔记的。<br>
-shell我觉得和python差不多。<br>
-shell要是有一个IDE就好了。vim现在我都还不熟练。😤😤</p>
-
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn" href="https://blog.youis.top/post/t811ZgOaf/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <header class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/ct-wen-ti/">
-      CT问题
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span>发布于</span>
-      <span>2019-02-25</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show">分类于</span>
-      
-      
-      <a href="https://blog.youis.top/tag/BjSWwAAdi/">
-        <span>matlab</span>
+      <a href="https://blog.youis.top/tag/8OwI8dI8Ji/">
+        <span>hexo</span>
       </a>、
       
       
       
-      <a href="https://blog.youis.top/tag/auLoeHgt65/">
-        <span>数学建模</span>
+      <a href="https://blog.youis.top/tag/Tb3U0z-oX5/">
+        <span>next</span>
       </a>
       
       
@@ -382,155 +538,200 @@ shell要是有一个IDE就好了。vim现在我都还不熟练。😤😤</p>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>5分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>162<span class="pc-show">字数</span></span>
+      <span>839<span class="pc-show">字数</span></span>
     </span>
     
-  </div>
-</header>
-      <div class="post-body">
-        
-        
-          
-          
-            <p><h3 id="问题一">问题一</h3>
-<h4 id="什么是高通滤波">什么是高通滤波？？？</h4>
-
-            
-          
-            <p>高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频</p>
-
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn" href="https://blog.youis.top/post/ct-wen-ti/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <header class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/hello-gridea/">
-      Hello Gridea
-    </a>
-  </h1>
-  <div class="post-meta">
     
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span>发布于</span>
-      <span>2018-12-12</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
     
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show">分类于</span>
-      
-      
-      <a href="https://blog.youis.top/tag/iy5sKAJLT/">
-        <span>Gridea</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
-    </span>
-    <span class="meta-item">
+    <span id="/post/next-zhuti/" data-flag-title="next 主题修改" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>298<span class="pc-show">字数</span></span>
+      <i class="fa fa-eye"></i>
+      <span>浏览量：<span class="leancloud-visitors-count"></span></span>
     </span>
     
   </div>
 </header>
-      <div class="post-body">
-        
-        
-          
-          
-            <p>
-            
-          
-            <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="next-主题修改">next 主题修改</h2>
+<p>打开站点配置文件：站点根目录/_config.yml</p>
+<p>然后搜索找到language属性，属性值配置成zh-Hans，表示中文</p>
+<p>language: zh-Hans<br>
+然后重新打包部署，却发现未生效，可是网上看的一篇教程明明说这这样配置的，果然还是要自己验证下</p>
+<!--more-->
+<p>到 Hexo站点根目录\themes\next\languages文件夹下看有支持哪些语言，发现中文有如下三种，就是没有zh-Hans</p>
+<p>zh-CN.yml<br>
+zh-HK.yml<br>
+zh-TW.yml<br>
+那么有两种解决方法</p>
+<p>1.是将language属性配置成zh-CN</p>
+<p>2.将zh-CN.yml文件名改成zh-Hans</p>
+<p>language: zh-Hans</p>
+<p>亲测第二种可以。</p>
+<h2 id="底部网站底部信息优化">底部网站底部信息优化</h2>
+<h3 id="添加网站访问量">添加网站访问量</h3>
+<p>在主题配置目录，找到layout文件夹，编辑footer.swig文件，在文件末尾添加如下代码即可。</p>
+<pre><code class="language-javascript">&lt;!-- 新增访客统计代码--&gt;
+&lt;div class=&quot;busuanzi-count&quot;&gt;
+    &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+    &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次&lt;/span&gt;
+    &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
+      访问用户： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人
+    &lt;/span&gt;
+    &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
+    &lt;!-- &lt;span class=&quot;site-uv&quot;&gt;
+      &lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;
+      访问次数： &lt;span class=&quot;busuanzi-value&quot; id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
+    &lt;/span&gt; --&gt;
+    &lt;!-- 博客字数统计 --&gt;
+    &lt;span class=&quot;site-pv&quot;&gt;
+      &lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
+      博客全站共： &lt;span class=&quot;post-count&quot;&gt;{{ totalcount(site) }}&lt;/span&gt; 字
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>实际效果：</p>
+<figure data-type="image" tabindex="1"><img src="https://blog.youis.top/post-images/1582538604970.png" alt="" loading="lazy"></figure>
+<h3 id="去掉强推荐等文字">去掉强推荐等文字</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 这个是我已经注解好的代码 --&gt;
+&lt;!--{% if theme.footer.powered.enable %}
+  &lt;div class=&quot;powered-by&quot;&gt;{#
+  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
+  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
+ #}&lt;/div&gt;
+{% endif %}
 
-            
-              <img src="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/post-images/hello-gridea.png" />
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn" href="https://blog.youis.top/post/hello-gridea/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-  
-            
-            
-<div class="page bg-color">
-  <ul class="pagination-ul">
-    
-      <li class="pagination-dir">
-        <a href="https://blog.youis.top/page/3/">
-          <i class="fa fa-angle-left"></i>
-        </a>
-      </li>
-    
-    
-      
-        <li class="pagination-li ">
-            <a href="/page/../">
-              1
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/2">
-              2
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/3">
-              3
-            </a>
-        </li>
-      
-        <li class="pagination-li pagination-active">
-            <a href="/page/4">
-              4
-            </a>
-        </li>
-      
-    
-    
+{% if theme.footer.powered.enable and theme.footer.theme.enable %}
+  &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
+{% endif %}
+
+{% if theme.footer.theme.enable %}
+  &lt;div class=&quot;theme-info&quot;&gt;{#
+  #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
+  #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
+#}&lt;/div&gt;
+{% endif %}--&gt;
+</code></pre>
+<h3 id="记录建站时间">记录建站时间</h3>
+<p>在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：</p>
+<pre><code class="language-javascript">&lt;!-- 在网页底部添加网站运行时间 --&gt;
+&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
+&lt;script&gt;
+    var now = new Date();
+    function createtime() {
+        var grt= new Date(&quot;07/24/2019 00:00:00&quot;);//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
+        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Run for &quot;+dnum+&quot; Days &quot;;
+        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; Hours &quot; + mnum + &quot; m &quot; + snum + &quot; s&quot;;
+    }
+setInterval(&quot;createtime()&quot;,250);
+&lt;/script&gt;
+</code></pre>
+<h2 id="参考文献">参考文献</h2>
+<p>1.https://blog.csdn.net/mqdxiaoxiao/article/details/93251246</p>
+
+            </div>
+            <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Eden
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.youis.top/post/next-zhuti/" title="next 主题修改">https://blog.youis.top/post/next-zhuti/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
   </ul>
+  <div class="tags">
+    
+      <a href="https://blog.youis.top/tag/8OwI8dI8Ji/"># hexo</a>
+    
+      <a href="https://blog.youis.top/tag/Tb3U0z-oX5/"># next</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="pip 换源" href="https://blog.youis.top/post/pip/">pip 换源</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="pip 换源" href="https://blog.youis.top/post/pip/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title=" 基于hexo 搭建博客" href="https://blog.youis.top/post/hexoBlog/"> 基于hexo 搭建博客</a>
+        <a class="nav-mobile-next" title=" 基于hexo 搭建博客" href="https://blog.youis.top/post/hexoBlog/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
 </div>
-          </section>
+            
+  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+
+<style>
+  .v .veditor {
+    min-height: 10rem;
+    background-image: url('https://upimage.alexhchu.com/2020/04/21/47eda59424daa.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: none;
+  }
+
+  .v .vwrap {
+    border: 1px solid #000 !important;
+  }
+
+  .v .vbtn {
+    padding: .4rem 1.2rem !important;
+    border-color: #fff !important;
+    background-color: #49b1f5 !important;
+    color: #fff !important;
+    font-size: .7rem !important;
+  }
+
+  .v .vcards .vcard .vh .vmeta .vat {
+    padding: 0 .8rem !important;
+    border: 1px solid #00c4b6 !important;
+    border-radius: 5px !important;
+    color: #00c4b6 !important;
+  }
+</style>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'q6Mzbvn7o6uNUpIINHd4qBxr-gzGzoHsz',
+    appKey: 'v1cetPrkricX157i1DhSSSvO',
+    avatar: 'mp',
+    placeholder: '',
+    pageSize: '',
+    lang: 'zh-cn',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'false',
+  });
+</script>
+
+          </div>
         </div>
       </div>
     </div>
@@ -3786,7 +3987,6 @@ imagesc(b)
 </script> -->
 
 <script src="/media/js/mouse/love.js"></script>
-
 
 
 </html>
