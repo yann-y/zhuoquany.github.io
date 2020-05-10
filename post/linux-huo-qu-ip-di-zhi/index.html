@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>python十一道练习 | Eden的博客</title>
+<title>linux获取ip地址 | Eden的博客</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589099471393">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
@@ -39,8 +39,8 @@
   })();
 </script>
 
-  <meta name="description" content="python十一道练习" />
-  <meta name="keywords" content="python" />
+  <meta name="description" content="linux获取ip地址" />
+  <meta name="keywords" content="shell" />
 </head>
 
 <body>
@@ -313,8 +313,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/">
-      python十一道练习
+    <a class="post-title-link" href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/">
+      linux获取ip地址
     </a>
   </h1>
   <div class="post-meta">
@@ -322,7 +322,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-13</span>
+      <span>2020-05-10</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -331,8 +331,8 @@
       <span class="pc-show">分类于</span>
       
       
-      <a href="https://blog.youis.top/tag/e3DbDSoNh/">
-        <span>python</span>
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/">
+        <span>shell</span>
       </a>
       
       
@@ -341,17 +341,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>4分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>770<span class="pc-show">字数</span></span>
+      <span>221<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/post/python-shi-yi-dao-lian-xi/" data-flag-title="python十一道练习" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/linux-huo-qu-ip-di-zhi/" data-flag-title="linux获取ip地址" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -360,92 +360,35 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <p>python课后作业<br>
-🤡🤡🤡🤡</p>
+              <p>🐶🐶🐶<br>
+需要脚本获取本机ip地址<br>
+默认获取第二个网卡的IP地址<br>
+第一个 127.0.0.1 这个地址获取没有作用</p>
 <!-- more -->
-<p>1.编写程序，输入一个自然数字符串，然后输出各位数字之和。例如，输入字符串1234，输出10.</p>
-<pre><code class="language-python">from functools import reduce
-
-input_str = input(&quot;请输入一个字符串&quot;)
-
-print(reduce(lambda x, y: int(x) + int(y), input_str))
+<pre><code>string=`ip addr | grep  -w &quot;inet&quot; | sed -n &quot;2, 2p&quot;  | awk '{print $2}'`
 </code></pre>
-<p>2.编写程序，输入一个字符串，输出翻转（首尾交替）后的字符串。例如，输入字符串12345，输出54321.</p>
-<pre><code class="language-python">input_str = input(&quot;请输入一个字符串&quot;)
-input_str = input_str[::-1]
-print(input_str)
-</code></pre>
-<p>3.编写程序，输入一个包含若干整数的列表，输出列表中的最大值。例如，输入[1，2，3，4，5，888]，输出888.</p>
-<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
-print(max(input_list))
-</code></pre>
-<p>4.编写程序，输入一个包含若干整数的列表，把列表中所有整数转换为字符串，然后输出包含这些字符串的列表。例如，输入[1，2，3，4，5，888]，输出['1'，'2'，'3'，'4'，'5'，'888']。</p>
-<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
-
-print(list(map(str, input_list)))
-
-</code></pre>
-<p>5.编写程序，输入一个包含若干任意数据的列表，输出该列表中等价于True的元素组成的列表。例如，输入[1，2，0，None，False，'a']，输出[1，2，'a']。</p>
-<pre><code class="language-python">def fun(new_str):
-    if new_str is None:
-        return False
-    if new_str is False:
-        return False
-    if new_str == 0:
-        return False
-    return True
-
-
-input_list = eval(input(&quot;请输入一个列表&quot;))
-OutList = list(filter(fun, input_list))
-print(OutList)
-</code></pre>
-<p>6.编写程序，输入一个包含若干自然数的列表，输出这些自然数的平均值。</p>
-<pre><code class="language-python">from functools import reduce
-
-input_list = eval(input(&quot;请输入一个列表&quot;))
-out_int = reduce((lambda x, y: x + y), input_list)
-print(&quot;%.3f&quot; % (out_int / len(input_list)))
-</code></pre>
-<p>7.编写程序，输入一个包含若干自然数的列表，输出这些自然数降序排列的新列表。</p>
-<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
-
-new_list = sorted(input_list, reverse=True)
-print(new_list)
-</code></pre>
-<p>8.编写程序，输入一个包含若干自然数的列表，输出一个新列表，新列表中每个元素为原列表中每个自然数的位数。例如，输入[1，888，99，23456]，输出为[1，3，2，5]。</p>
-<pre><code class="language-python">input_list = eval(input(&quot;请输入一个列表&quot;))
-out_list = list(map(lambda x: len(str(x)), input_list))
-print(out_list)
-</code></pre>
-<p>9.编写程序，输入一个包含若干实数的列表，输出其中绝对值最大的实数。例如，输入[-8，64，3.5，-89]，输出-89。</p>
-<pre><code class="language-python">from functools import reduce
-
-
-def fun(x, y):
-    if abs(x) &gt; abs(y):
-        return x
-    else:
-        return y
-
-
-input_list = eval(input(&quot;请输入一个列表&quot;))
-out_list = reduce(fun, input_list)
-print(out_list)
-</code></pre>
-<p>10.编写程序，输入一个包含若干整数的列表，输出这些整数的乘积。例如，输入[-2，3，4]，输出-24。</p>
-<pre><code class="language-python">from functools import reduce
-
-input_list = eval(input(&quot;请输入一个列表&quot;))
-output = reduce(lambda x, y: x * y, input_list)
-print(output)
-</code></pre>
-<p>11.编写程序，输入两个包含着若干整数的等长列表，把这两个列表看作两个向量，输出这两个向量的内积。</p>
-<pre><code class="language-python">from functools import reduce
-
-li1 = eval(input('请输入第一个列表'))
-li2 = eval(input('请输入第二个列表'))
-print(list(reduce(lambda x, y: x * y, (li1, li2))))
+<p>自动获取本机ip，然后探测相同网段的ip信息。</p>
+<pre><code> #!/bin/bash
+ pName=$(rpm -qa | grep &quot;nmap&quot;)
+ if [ $? -eq 0 ]
+ then
+           echo &quot;软件包nmap已经安装。&quot;
+ else
+            yum  install nmap -y
+fi
+# 获取本机ip地址
+string=`ip addr | grep  -w &quot;inet&quot; | sed -n &quot;2, 2p&quot;  | awk '{print $2}'`
+str=`echo ${string} | cut -d &quot;.&quot; -f 4`
+ip=`echo  ${string/$str/}`
+  # 探测与本机相同网段的ip
+  nmap -sP ${ip}0/24 | grep &quot;192&quot; | cut -d &quot; &quot; -f 5 &gt; ipfile
+  echo &quot;&quot; &gt; res
+  for iplis  in `cat ipfile`
+  do
+     echo &quot;$iplis 的信息&quot; &gt;&gt;  res
+     nmap -p1-1024  $iplis | egrep -v &quot;Starting |Nmap|Host|Not&quot; &gt;&gt; res
+     echo &quot;已探测 $iplis 的简略信息 &quot;
+  done
 </code></pre>
 
             </div>
@@ -457,7 +400,7 @@ print(list(reduce(lambda x, y: x * y, (li1, li2))))
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/" title="python十一道练习">https://blog.youis.top/post/python-shi-yi-dao-lian-xi/</a>
+      <a href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/" title="linux获取ip地址">https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -466,21 +409,17 @@ print(list(reduce(lambda x, y: x * y, (li1, li2))))
   </ul>
   <div class="tags">
     
-      <a href="https://blog.youis.top/tag/e3DbDSoNh/"># python</a>
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/"># shell</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="python第二次作业" href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/">python第二次作业</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="python第二次作业" href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="python笔记" href="https://blog.youis.top/post/pythonbiji/">python笔记</a>
-        <a class="nav-mobile-next" title="python笔记" href="https://blog.youis.top/post/pythonbiji/">下一篇</a>
+        <a class="nav-pc-next" title="shell脚本作业" href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/">shell脚本作业</a>
+        <a class="nav-mobile-next" title="shell脚本作业" href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
