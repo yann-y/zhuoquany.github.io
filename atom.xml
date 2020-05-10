@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-05-10T01:43:07.252Z</updated>
+    <updated>2020-05-10T03:11:32.591Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -486,9 +486,10 @@ def reprint():
 
 
 if __name__ == '__main__':
-    work_path = r&quot;E:\study\Linux高级运维\作业\Linux高级运维_shell练习_第三次作业&quot;
+    # start = time.clock()
+    work_path = r&quot;E:\study\Linux高级运维\作业\Linux高级运维_shell脚本作业_第四次作业&quot;
     work_list = set()
-    t = threading.Thread(target=listdir(work_path, work_list))
+    t = threading.Thread(target=listdir, args=(work_path, work_list))
     t.start()
     # listdir(work_path, work_list)
     excel_path = r&quot;RenYuanMingDan.xlsx&quot;  # 人员名单
@@ -496,8 +497,11 @@ if __name__ == '__main__':
     df = df.set_index([u&quot;学号&quot;])
     df = df.to_dict()
     df = df[u&quot;姓名&quot;]
+    t.join()
     unpaid = set(df) - work_list
     reprint()
+    # elapsed = (time.clock() - start)
+    # print(&quot;Time used:&quot;, elapsed)
 
 </code></pre>
 ]]></content>
