@@ -9,14 +9,14 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>NLP学习（一） | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589526930088">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589548542131">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
   href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
   rel="stylesheet" type="text/css">
 
-<link href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/hljs/styles/androidstudio.css"
+<link href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/hljs/styles/atom-one-dark.css"
   rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/styles/main.css">
@@ -1422,18 +1422,22 @@ done
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;函数-if-第七题&#34;&gt;函数、if 第七题&lt;/h1&gt;
 &lt;p&gt;设计一个监控脚本，若http服务出现异常则重新启动该服务。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/bin/sh
-HTTPPRONUM=`ps -ef|grep http|grep -v grep|wc -l`
-if [[ $HTTPPRONUM -lt 1 ]]
-then
-	echo “httpd is not running” 
-	httpdctl restart &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
-	echo “httpd is restart”
-	exit 1
-else
-	echo “httpd is running”
-	exit 0
-fi
+&lt;pre&gt;&lt;code&gt;#! /bin/sh
+	    proc_name=&amp;quot;./server&amp;quot;            #进程名
+	    proc_num()                      #查询进程数量
+	    {
+	    	num=$(ps -ef |  grep gdms |grep $proc_name | grep -v &amp;quot;grep&amp;quot; | wc -l)
+	    	echo $num
+	        return $num
+	    }
+	    proc_num
+	    number=$?                       #获取进程数量  
+	    if [ $number -eq 0 ]            #如果进程数量为0
+	    then                            #重新启动服务器，或者扩展其它内容。  
+	        cd /home/liudongwei/workspace/server2.0/dist
+	        nohup ./server &amp;amp;  
+	    fi
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;if和continue-第八题&#34;&gt;if和continue 第八题：&lt;/h1&gt;
 &lt;p&gt;设计一个脚本，利用循环和continue，计算100以内能被3整除的数之和。&lt;/p&gt;

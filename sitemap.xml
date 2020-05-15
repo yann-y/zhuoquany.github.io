@@ -55,6 +55,12 @@
  <changefreq>weekly</changefreq>
 </url>
 <url>
+ <loc>https://blog.youis.top/post/python-ke-tang-an-lie/</loc>
+ <priority>0.5</priority>
+ <lastmod>2020-5-15</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
  <loc>https://blog.youis.top/post/shell-jiao-ben-zuo-ye/</loc>
  <priority>0.5</priority>
  <lastmod>2020-5-9</lastmod>
