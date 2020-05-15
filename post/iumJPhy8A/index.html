@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>python爬虫抓包工具 | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589182764189">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589526930088">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -212,7 +212,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">35</span>
+        <span class="site-item-stat-count">36</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -923,6 +923,355 @@ GitHub 地址：https://github.com/mitmproxy/mitmproxy</p>
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-ke-tang-an-lie/"" data-c="
+          &lt;p&gt;重点讲解 杨辉三角 和 约瑟夫环报数游戏。&lt;br&gt;
+💪💪💪💪&lt;br&gt;
+python 永远滴神！！&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h1 id=&#34;例5-3-编写并使用能够生成斐波那契数列的生成器函数&#34;&gt;例5-3 编写并使用能够生成斐波那契数列的生成器函数&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def demo(s):
+    result = [0, 0]     #不能直接定义为元组，因为元组是不能对其中元素进行修改操作的。
+    for ch in s:
+        if ch.islower():
+            result[1] += 1
+        elif ch.isupper():
+            result[0] += 1
+    return tuple(result)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;例5-4-编写函数接收字符串参数返回一个元组其中第一个元素为大写字母个数第二个元素为小写字母个数&#34;&gt;例5-4 编写函数，接收字符串参数，返回一个元组，其中第一个元素为大写字母个数，第二个元素为小写字母个数。&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def fun(s: str):
+    result = [0, 0]
+    for ch in s:
+        if ch.islower():
+            result[1] += 1
+        elif ch.isupper():
+            result[0] += 1
+    return tuple(result)
+
+
+if __name__ == &#39;__main__&#39;:
+    newstr = &amp;quot;asdhasjgdAasghd&amp;quot;
+    print(len(newstr))
+    print(fun(newstr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;例5-5-编写函数接收一个整数t为参数打印杨辉三角前t行&#34;&gt;例5-5  编写函数，接收一个整数t为参数，打印杨辉三角前t行。&lt;/h1&gt;
+&lt;p&gt;注意：看此教程前请先学习生成器的原理，yield返回的用法规律，不然可能会懵逼。&lt;br&gt;
+下面我按照自己的理解写下思路：&lt;br&gt;
+首先附上我们需要求得的杨辉三角：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1]
+ 
+[1, 1]
+ 
+[1, 2, 1]
+ 
+[1, 3, 3, 1]
+ 
+[1, 4, 6, 4, 1]
+ 
+[1, 5, 10, 10, 5, 1]
+ 
+[1, 6, 15, 20, 15, 6, 1]
+ 
+[1, 7, 21, 35, 35, 21, 7, 1]
+ 
+[1, 8, 28, 56, 70, 56, 28, 8, 1]
+ 
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;很显然，是按照一行一个数列（list）实现的，也就是说，我们得在程序中不断的返回每一行的list并且打印出来&lt;br&gt;
+第一步：先找规律，抽象化问题：&lt;br&gt;
+首先我们观察到，第一行为[1]，我们直接初始化列表 ： p = [1]&lt;br&gt;
+其次我们观察到，下面的每一行的开头结尾都是[1],那么我们可以推导出每一行的规律为：[1]+.........+[1]&lt;br&gt;
+那么我们发现，从第三行开始中间的 [2]，第四行中间的 [3，3]，第五行中间的 [4,6,4] 等等以此类推才是我们需要推导的部分&lt;/p&gt;
+&lt;p&gt;第一行：[1] 设 p = [1]&lt;/p&gt;
+&lt;p&gt;第二行：[1]+[1] 设 p = [1,1]&lt;/p&gt;
+&lt;p&gt;第三行：[1]+[2]+[1] 设 p = [1,2,1]&lt;/p&gt;
+&lt;p&gt;第四行：[1]+[3]+[3]+[1]设 p = [1,3,3,1]&lt;/p&gt;
+&lt;p&gt;....&lt;/p&gt;
+&lt;p&gt;经过找规律，我们发现，每一个新的list中间的部分，都等于上一行list的：第0个元素+第1个元素，第1个元素+第2个元素，第2个元素+第3个元素,.......&lt;/p&gt;
+&lt;p&gt;加上头尾也就是[1] +[ p[0]+p[1] ]+[ p[1]+p[2] ].....+[1]&lt;/p&gt;
+&lt;p&gt;比如上面第三行：p[0] = 1, p[1] = 2, p[2] = [1]&lt;/p&gt;
+&lt;p&gt;那么第四行就是：[1]   [1+2]   [2+1]   [1]&lt;/p&gt;
+&lt;p&gt;后面以此类推&lt;br&gt;
+既然核心点是这个除去首位两个 [1] 的中间部分：[p[0] + p[1]]+[p[1] + p[2]]+[p[2] + p[3]]........&lt;/p&gt;
+&lt;p&gt;我们很容易得到规律：[p[i] + p[i+1]]# for i  in range(x)&lt;/p&gt;
+&lt;p&gt;如果还没看懂，你可以找一张纸，将每一行都按照这个规律写出来：&lt;/p&gt;
+&lt;p&gt;new p代表本行list的中间部分，p代表上一行list：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1]
+ 
+[1]+[1]
+ 
+[1]+[2]+[1] new p = p[0] + p[1] / i = 0,1 需要 i in range(1)
+# range(1) = 0,根据[p[i] + p[i+1]]即可实现p[0]+p[0+1]
+ 
+[1]+[3]+[3]+[1] new p = p[0] + p[1], p[1] + p[2] /i = 0,1,2 需要 i in range(2)
+[1]+[4]+[6]+[4]+[1] new p = p[0] + p[1], p[1] + p[2], p[2] + p[3] /i = 0,1,2,3 需要 i in range(3)
+[1]+[5]+[10]+[10]+[5]+[1] new p = p[0] + p[1], p[1] + p[2], p[2] + p[3], p[3] + p[4] /i = 0,1,2,3,4需要 i in range(4)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;i的规律为上一行list元素个数-1，也就是len(p) - 1&lt;br&gt;
+至此，已经可以得出推导式：&lt;br&gt;
+[1] + [p[i] + p[i + 1] for i in range(len(p) - 1)] + [1]&lt;/p&gt;
+&lt;p&gt;补全程序代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def triangles(t):
+    lis = [1]
+    while t:
+        print(lis)
+        lis = [1] + [lis[i] + lis[i + 1] for i in range(len(lis) - 1)] + [1]
+        t -= 1
+
+
+if __name__ == &#39;__main__&#39;:
+    triangles(10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行结果：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20200515144823.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;例5-6-编写函数接收一个正偶数为参数输出两个素数并且这两个素数之和等于原来的正偶数-如果存在多组符合条件的素数则全部输出&#34;&gt;例5-6  编写函数，接收一个正偶数为参数，输出两个素数，并且这两个素数之和等于原来的正偶数。如果存在多组符合条件的素数，则全部输出。&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def demo(n):
+    def IsPrime(p):
+        if p == 2:
+            return True
+        if p % 2 == 0:
+            return False
+        for i in range(3, int(p ** 0.5) + 1, 2):
+            if p % i == 0:
+                return False
+        return True
+
+    if isinstance(n, int) and n &amp;gt; 0 and n % 2 == 0:
+        for i in range(2, n // 2 + 1):
+            if IsPrime(i) and IsPrime(n - i):
+                print(i, &#39;+&#39;, n - i, &#39;=&#39;, n)
+
+
+if __name__ == &#39;__main__&#39;:
+    demo(100)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;例5-7-编写函数计算字符串匹配的准确率&#34;&gt;例5-7  编写函数，计算字符串匹配的准确率。&lt;/h1&gt;
+&lt;p&gt;以打字练习程序为例，假设origin为原始内容，userInput为用户输入的内容，下面的代码用来测试用户输入的准确率。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+def rate(origin, user_input):
+    if not (isinstance(origin, str) and isinstance(user_input, str)):
+        origin = str(origin)
+        user_input = str(origin)
+    right = sum((1 for o, u in zip(origin, user_input) if o == u))
+    return round(right / len(origin), 2)
+
+
+if __name__ == &#39;__main__&#39;:
+    print(rate(&amp;quot;12345&amp;quot;, &amp;quot;1233445&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;例5-8-编写函数模拟猜数游戏&#34;&gt;例5-8  编写函数模拟猜数游戏。&lt;/h1&gt;
+&lt;p&gt;系统随机产生一个数，玩家最多可以猜5次，系统会根据玩家的猜测进行提示，玩家则可以根据系统的提示对下一次的猜测进行适当调整。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from random import randint
+
+
+def guess(maxValue=100, maxTimes=5):
+    # 随机生成一个整数
+    value = randint(1, maxValue)
+    print(&amp;quot;游戏开始！&amp;quot;)
+    for i in range(maxTimes):
+        prompt = &#39;你还有 %d 次机会请输入猜测的数字：&#39; % (maxTimes - i)
+        # 使用异常处理结构，防止输入不是数字的情况
+        try:
+            x = int(input(prompt))
+        except ValueError:
+            print(&#39;Must input an integer between 1 and &#39;, maxValue)
+        else:
+            # 猜对了
+            if x == value:
+                print(&#39;恭喜你，答对啦！&#39;)
+                break
+            elif x &amp;gt; value:
+                print(&#39;猜大啦！&#39;)
+            else:
+                print(&#39;猜小了&#39;)
+    else:
+        # 次数用完还没猜对，游戏结束，提示正确答案
+        print(&#39;游戏结束&#39;)
+        print(&#39;正确答案是&#39;, value)
+
+
+if __name__ == &#39;__main__&#39;:
+    guess()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;编写函数模拟报数游戏&#34;&gt;编写函数模拟报数游戏。&lt;/h1&gt;
+&lt;p&gt;有n个人围成一圈，顺序编号，从第一个人开始从1到k（假设k=3）报数，报到k的人退出圈子，然后圈子缩小，从下一个人继续游戏，问最后留下的是原来的第几号。&lt;br&gt;
+第一步：演算一下过程。j假设n=10,k=3。由于列表索引值从0开始所以第一个删除的值应该是3，索引为2 （即 k-1）&lt;br&gt;
+删除后后面数值的索引发生改变。6的索引从 5变为4 (2+k-1)&lt;br&gt;
+依次类推。&lt;br&gt;
+当到删除3,6,9 剩下：  1 2 4 5 7 8 10 按理应该删除 索引为8的值。&lt;br&gt;
+但是总长度为7。所以求余  8 % 7 = 1 。所以删除索引为1的值。&lt;br&gt;
+具体表格演示如下：&lt;br&gt;
+&lt;strong&gt;pop(2)的意思是  删除上一行索引为 2 的列。&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;索引&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;2&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;3&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;4&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;5&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;6&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;7&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;8&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;9&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;初始&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(2)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(4)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(6)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(1)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(3)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(0)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(2)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pop(1)&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;代码实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def func(n=100, k=3):
+    lis = [i for i in range(1, n + 1)]
+    lis_len = len(lis)
+    index = (k - 1) % lis_len
+    while lis_len &amp;gt; 1:
+        lis.pop(index)
+        lis_len -= 1
+        index = (k - 1 + index) % lis_len
+        # print(lis,   index)
+    print(lis[0])
+
+
+if __name__ == &#39;__main__&#39;:
+    func(10, 3)
+&lt;/code&gt;&lt;/pre&gt;
+">python课堂案列</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/"" data-c="
