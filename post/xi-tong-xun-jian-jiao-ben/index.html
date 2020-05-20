@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>Eden的博客</title>
+<title>系统巡检脚本 | Eden的博客</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589983612372">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
@@ -48,6 +48,8 @@
 </script>
 
 
+  <meta name="description" content="系统巡检脚本" />
+  <meta name="keywords" content="shell" />
 </head>
 
 <body>
@@ -180,10 +182,25 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  gemini">
+      class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/images/avatar.png"/>
@@ -238,216 +255,453 @@
 
 
 </div>
+          
+        
+      </div>
+    </div>
+  
 </div>
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
       }
-    });
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          线性回归
-          <small class="language" data-lan="tag">标签</small>
-        </h2>
-      </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              02-25
-              <small>linear  regression(线性回归)</small>
-            </h1>
-          </div>
-        </div>
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/">
+      系统巡检脚本
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span>2020-05-20</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/">
+        <span>shell</span>
       </a>
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>7<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1211<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+    
+    
+    <span id="/post/xi-tong-xun-jian-jiao-ben/" data-flag-title="系统巡检脚本" class="meta-item pc-show leancloud_visitors">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
+    </span>
+    
+  </div>
+</header>
+            <div class="post-body next-md-body" id="post_body">
+              <p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
+<!-- more -->
+<p>vi syscheck.sh</p>
+<pre><code class="language-sh">#!/bin/bash
+
+function system(){
+echo &quot;#########################系统信息#########################&quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk '{print $3}'`
+OS_TIME=`date +%F_%T`
+OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
+OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
+OS_HOSTNAME=`hostname`
+
+echo &quot;    系统类型：$OS_TYPE&quot;
+echo &quot;    系统版本：$OS_VER&quot;
+echo &quot;    系统内核：$OS_KER&quot;
+echo &quot;    当前时间：$OS_TIME&quot;
+echo &quot;    运行时间：$OS_RUN_TIME&quot;
+echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
+echo &quot;    本机名称：$OS_HOSTNAME&quot;
+
+function network(){
+
+echo &quot;#########################网络信息#########################&quot;
+INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
+for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
+  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
+done
+curl -I http://www.baidu.com &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    访问外网：成功&quot;
+else echo &quot;    访问外网：失败&quot;
+
+}
+
+function hardware(){
+
+echo &quot;#########################硬件信息#########################&quot;
+CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
+
+echo &quot;     CPU数量: $CPUID&quot;
+echo &quot;     CPU核心:$CPUCORES&quot;
+echo &quot;     CPU型号:$CPUMODE&quot;
+
+MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
+MEMFREE=`free -m|grep Mem|awk '{print $7}'`
+
+echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
+echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {'print $2'}`
+partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
+for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &quot;  磁盘总容量: ${disktotal}GB&quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk '{print $4}'`
+partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
+for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &quot;剩余磁盘容量：${freetotal}GB&quot;
+}
+
+
+function secure(){
+echo &quot;#########################安全信息#########################&quot;
+
+countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
+for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
+do echo &quot;当前登录用户：${countuser[$i]}&quot;
+done
+
+md5sum /etc/passwd &gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    用户异常：否&quot;
+else echo &quot;    用户异常：是&quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+</code></pre>
+<p>提示一：<br>
+<img src="https://image.youis.top/20200520220351.png" alt="" loading="lazy"><br>
+if函数没有结尾  34行添加  fi<br>
+提示二：</p>
+<p><img src="https://image.youis.top/20200520220403.png" alt="" loading="lazy"><br>
+函数 system 缺少  }  20行添加  }<br>
+提示三：<br>
+<img src="https://image.youis.top/20200520220416.png" alt="" loading="lazy"><br>
+函数没有调用 在函数末尾调用 chksys函数<br>
+提示四：<br>
+<img src="https://image.youis.top/20200520220429.png" alt="" loading="lazy"></p>
+<p>第9行 OS_RUN_TIME=<code>uptime |awk '{print $3}'|awk -F '{print $1}'</code>  AWK 存在管道信息<br>
+提示五：<br>
+<img src="https://image.youis.top/20200520220439.png" alt="" loading="lazy"><br>
+第43行 #CPUMODE=<code>grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'</code><br>
+awk   -F  没有更参数</p>
+<figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200520215758.png" alt="" loading="lazy"></figure>
+<p>修正代码：</p>
+<pre><code class="language-sh">#!/bin/bash
+
+function system(){
+echo &quot;#########################系统信息#########################&quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk '{print $3}'`
+OS_TIME=`date +%F_%T`
+#OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
+OS_RUN_TIME=`uptime |awk '{print substr($3,0,length($3)-1)}'`
+OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
+OS_HOSTNAME=`hostname`
+
+echo &quot;    系统类型：$OS_TYPE&quot;
+echo &quot;    系统版本：$OS_VER&quot;
+echo &quot;    系统内核：$OS_KER&quot;
+echo &quot;    当前时间：$OS_TIME&quot;
+echo &quot;    运行时间：$OS_RUN_TIME&quot;
+echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
+echo &quot;    本机名称：$OS_HOSTNAME&quot;
+}
+function network(){
+
+echo &quot;#########################网络信息#########################&quot;
+INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
+for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
+  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
+done
+curl -I http://www.baidu.com &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    访问外网：成功&quot;
+else echo &quot;    访问外网：失败&quot;
+fi
+}
+
+function hardware(){
+
+echo &quot;#########################硬件信息#########################&quot;
+CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+#CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
+CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+
+echo &quot;     CPU数量: $CPUID&quot;
+echo &quot;     CPU核心:$CPUCORES&quot;
+echo &quot;     CPU型号:$CPUMODE&quot;
+
+MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
+MEMFREE=`free -m|grep Mem|awk '{print $7}'`
+
+echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
+echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {'print $2'}`
+partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
+for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &quot;  磁盘总容量: ${disktotal}GB&quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk '{print $4}'`
+partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
+for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &quot;剩余磁盘容量：${freetotal}GB&quot;
+}
+
+
+function secure(){
+echo &quot;#########################安全信息#########################&quot;
+
+countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
+for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
+do echo &quot;当前登录用户：${countuser[$i]}&quot;
+done
+
+md5sum /etc/passwd &gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    用户异常：否&quot;
+else echo &quot;    用户异常：是&quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+chksys
+</code></pre>
+
+            </div>
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Eden
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/" title="系统巡检脚本">https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://blog.youis.top/tag/2tOkrjS-F/"># shell</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="python课堂案列" href="https://blog.youis.top/post/python-ke-tang-an-lie/">python课堂案列</a>
+        <a class="nav-mobile-next" title="python课堂案列" href="https://blog.youis.top/post/python-ke-tang-an-lie/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+            
+  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+
+<style>
+  .v .veditor {
+    min-height: 10rem;
+    background-image: url('https://upimage.alexhchu.com/2020/04/21/47eda59424daa.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: none;
+  }
+
+  .v .vwrap {
+    border: 1px solid #000 !important;
+  }
+
+  .v .vbtn {
+    padding: .4rem 1.2rem !important;
+    border-color: #fff !important;
+    background-color: #49b1f5 !important;
+    color: #fff !important;
+    font-size: .7rem !important;
+  }
+
+  .v .vcards .vcard .vh .vmeta .vat {
+    padding: 0 .8rem !important;
+    border: 1px solid #00c4b6 !important;
+    border-radius: 5px !important;
+    color: #00c4b6 !important;
+  }
+</style>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'q6Mzbvn7o6uNUpIINHd4qBxr-gzGzoHsz',
+    appKey: 'v1cetPrkricX157i1DhSSSvO',
+    avatar: 'mp',
+    placeholder: '',
+    pageSize: '',
+    lang: 'zh-cn',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'false',
+  });
+</script>
+
+          </div>
         </div>
       </div>
     </div>
@@ -629,6 +883,36 @@
   // 代码高亮
 hljs.initHighlightingOnLoad();
 
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
   </div>
 </body>
@@ -3928,7 +4212,6 @@ imagesc(b)
 
 
 <script src="/media/js/mouse/love.js"></script>
-
 
 
 </html>

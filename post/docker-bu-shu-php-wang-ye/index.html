@@ -9,14 +9,14 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>docker 部署PHP网页 | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589548542131">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1589983612372">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
   href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
   rel="stylesheet" type="text/css">
 
-<link href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/hljs/styles/atom-one-dark.css"
+<link href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/hljs/styles/dracula.css"
   rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/styles/main.css">
@@ -212,7 +212,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">36</span>
+        <span class="site-item-stat-count">37</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -954,7 +954,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
   })
 
   // 代码高亮
-  hljs.initHighlightingOnLoad();
+hljs.initHighlightingOnLoad();
 
 </script>
     <div class="light-box" id="light_box"></div>
@@ -1004,6 +1004,237 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/"" data-c="
+          &lt;p&gt;在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;vi syscheck.sh&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+function system(){
+echo &amp;quot;#########################系统信息#########################&amp;quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk &#39;{print $3}&#39;`
+OS_TIME=`date +%F_%T`
+OS_RUN_TIME=`uptime |awk &#39;{print $3}&#39;|awk -F &#39;{print $1}&#39;`
+OS_LAST_REBOOT_TIME=`who -b|awk &#39;{print $2,$3}&#39;`
+OS_HOSTNAME=`hostname`
+
+echo &amp;quot;    系统类型：$OS_TYPE&amp;quot;
+echo &amp;quot;    系统版本：$OS_VER&amp;quot;
+echo &amp;quot;    系统内核：$OS_KER&amp;quot;
+echo &amp;quot;    当前时间：$OS_TIME&amp;quot;
+echo &amp;quot;    运行时间：$OS_RUN_TIME&amp;quot;
+echo &amp;quot;最后重启时间：$OS_LAST_REBOOT_TIME&amp;quot;
+echo &amp;quot;    本机名称：$OS_HOSTNAME&amp;quot;
+
+function network(){
+
+echo &amp;quot;#########################网络信息#########################&amp;quot;
+INTERNET=(`ifconfig|grep ens|awk -F: &#39;{print $1}&#39;`)
+for((i=0;i&amp;lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk &#39;{print $2}&#39;`
+  echo &amp;quot;      本机IP：${INTERNET[$i]}: $OS_IP&amp;quot;
+done
+curl -I http://www.baidu.com &amp;amp;&amp;gt;/dev/null
+if [ $? -eq 0 ]
+then echo &amp;quot;    访问外网：成功&amp;quot;
+else echo &amp;quot;    访问外网：失败&amp;quot;
+
+}
+
+function hardware(){
+
+echo &amp;quot;#########################硬件信息#########################&amp;quot;
+CPUID=`grep &amp;quot;physical id&amp;quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &amp;quot;cores&amp;quot; /proc/cpuinfo|sort|uniq|awk -F: &#39;{print $2}&#39;`
+CPUMODE=`grep &amp;quot;model name&amp;quot; /proc/cpuinfo|sort|uniq|awk -F &#39;{print $2}&#39;`
+
+echo &amp;quot;     CPU数量: $CPUID&amp;quot;
+echo &amp;quot;     CPU核心:$CPUCORES&amp;quot;
+echo &amp;quot;     CPU型号:$CPUMODE&amp;quot;
+
+MEMTOTAL=`free -m|grep Mem|awk &#39;{print $2}&#39;`
+MEMFREE=`free -m|grep Mem|awk &#39;{print $7}&#39;`
+
+echo &amp;quot;  内存总容量: ${MEMTOTAL}MB&amp;quot;
+echo &amp;quot;剩余内存容量: ${MEMFREE}MB&amp;quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {&#39;print $2&#39;}`
+partitionsize=(`df -T|sed 1d|egrep -v &amp;quot;tmpfs|sr0&amp;quot;|awk {&#39;print $3&#39;}`)
+for ((i=0;i&amp;lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &amp;quot;  磁盘总容量: ${disktotal}GB&amp;quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk &#39;{print $4}&#39;`
+partitionfree=(`df -T|sed 1d|egrep -v &amp;quot;tmpfs|sr0&amp;quot;|awk &#39;{print $5}&#39;`)
+for ((i=0;i&amp;lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &amp;quot;剩余磁盘容量：${freetotal}GB&amp;quot;
+}
+
+
+function secure(){
+echo &amp;quot;#########################安全信息#########################&amp;quot;
+
+countuser=(`last|grep &amp;quot;still logged in&amp;quot;|awk &#39;{print $1}&#39;|sort|uniq`)
+for ((i=0;i&amp;lt;`echo ${#countuser[*]}`;i++))
+do echo &amp;quot;当前登录用户：${countuser[$i]}&amp;quot;
+done
+
+md5sum /etc/passwd &amp;gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;amp;&amp;gt;/dev/null
+if [ $? -eq 0 ]
+then echo &amp;quot;    用户异常：否&amp;quot;
+else echo &amp;quot;    用户异常：是&amp;quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;提示一：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20200520220351.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+if函数没有结尾  34行添加  fi&lt;br&gt;
+提示二：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://image.youis.top/20200520220403.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+函数 system 缺少  }  20行添加  }&lt;br&gt;
+提示三：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20200520220416.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+函数没有调用 在函数末尾调用 chksys函数&lt;br&gt;
+提示四：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20200520220429.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;第9行 OS_RUN_TIME=&lt;code&gt;uptime |awk &#39;{print $3}&#39;|awk -F &#39;{print $1}&#39;&lt;/code&gt;  AWK 存在管道信息&lt;br&gt;
+提示五：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20200520220439.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+第43行 #CPUMODE=&lt;code&gt;grep &amp;quot;model name&amp;quot; /proc/cpuinfo|sort|uniq|awk -F &#39;{print $2}&#39;&lt;/code&gt;&lt;br&gt;
+awk   -F  没有更参数&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://image.youis.top/20200520215758.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;修正代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+function system(){
+echo &amp;quot;#########################系统信息#########################&amp;quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk &#39;{print $3}&#39;`
+OS_TIME=`date +%F_%T`
+#OS_RUN_TIME=`uptime |awk &#39;{print $3}&#39;|awk -F &#39;{print $1}&#39;`
+OS_RUN_TIME=`uptime |awk &#39;{print substr($3,0,length($3)-1)}&#39;`
+OS_LAST_REBOOT_TIME=`who -b|awk &#39;{print $2,$3}&#39;`
+OS_HOSTNAME=`hostname`
+
+echo &amp;quot;    系统类型：$OS_TYPE&amp;quot;
+echo &amp;quot;    系统版本：$OS_VER&amp;quot;
+echo &amp;quot;    系统内核：$OS_KER&amp;quot;
+echo &amp;quot;    当前时间：$OS_TIME&amp;quot;
+echo &amp;quot;    运行时间：$OS_RUN_TIME&amp;quot;
+echo &amp;quot;最后重启时间：$OS_LAST_REBOOT_TIME&amp;quot;
+echo &amp;quot;    本机名称：$OS_HOSTNAME&amp;quot;
+}
+function network(){
+
+echo &amp;quot;#########################网络信息#########################&amp;quot;
+INTERNET=(`ifconfig|grep ens|awk -F: &#39;{print $1}&#39;`)
+for((i=0;i&amp;lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk &#39;{print $2}&#39;`
+  echo &amp;quot;      本机IP：${INTERNET[$i]}: $OS_IP&amp;quot;
+done
+curl -I http://www.baidu.com &amp;amp;&amp;gt;/dev/null
+if [ $? -eq 0 ]
+then echo &amp;quot;    访问外网：成功&amp;quot;
+else echo &amp;quot;    访问外网：失败&amp;quot;
+fi
+}
+
+function hardware(){
+
+echo &amp;quot;#########################硬件信息#########################&amp;quot;
+CPUID=`grep &amp;quot;physical id&amp;quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &amp;quot;cores&amp;quot; /proc/cpuinfo|sort|uniq|awk -F: &#39;{print $2}&#39;`
+#CPUMODE=`grep &amp;quot;model name&amp;quot; /proc/cpuinfo|sort|uniq|awk -F &#39;{print $2}&#39;`
+CPUMODE=`grep &amp;quot;model name&amp;quot; /proc/cpuinfo|sort|uniq|awk -F: &#39;{print $2}&#39;`
+
+echo &amp;quot;     CPU数量: $CPUID&amp;quot;
+echo &amp;quot;     CPU核心:$CPUCORES&amp;quot;
+echo &amp;quot;     CPU型号:$CPUMODE&amp;quot;
+
+MEMTOTAL=`free -m|grep Mem|awk &#39;{print $2}&#39;`
+MEMFREE=`free -m|grep Mem|awk &#39;{print $7}&#39;`
+
+echo &amp;quot;  内存总容量: ${MEMTOTAL}MB&amp;quot;
+echo &amp;quot;剩余内存容量: ${MEMFREE}MB&amp;quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {&#39;print $2&#39;}`
+partitionsize=(`df -T|sed 1d|egrep -v &amp;quot;tmpfs|sr0&amp;quot;|awk {&#39;print $3&#39;}`)
+for ((i=0;i&amp;lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &amp;quot;  磁盘总容量: ${disktotal}GB&amp;quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk &#39;{print $4}&#39;`
+partitionfree=(`df -T|sed 1d|egrep -v &amp;quot;tmpfs|sr0&amp;quot;|awk &#39;{print $5}&#39;`)
+for ((i=0;i&amp;lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &amp;quot;剩余磁盘容量：${freetotal}GB&amp;quot;
+}
+
+
+function secure(){
+echo &amp;quot;#########################安全信息#########################&amp;quot;
+
+countuser=(`last|grep &amp;quot;still logged in&amp;quot;|awk &#39;{print $1}&#39;|sort|uniq`)
+for ((i=0;i&amp;lt;`echo ${#countuser[*]}`;i++))
+do echo &amp;quot;当前登录用户：${countuser[$i]}&amp;quot;
+done
+
+md5sum /etc/passwd &amp;gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;amp;&amp;gt;/dev/null
+if [ $? -eq 0 ]
+then echo &amp;quot;    用户异常：否&amp;quot;
+else echo &amp;quot;    用户异常：是&amp;quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+chksys
+&lt;/code&gt;&lt;/pre&gt;
+">系统巡检脚本</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-ke-tang-an-lie/"" data-c="

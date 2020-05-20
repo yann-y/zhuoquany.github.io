@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-05-15T13:19:35.344Z</updated>
+    <updated>2020-05-20T14:06:59.233Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,242 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[系统巡检脚本]]></title>
+        <id>https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/</id>
+        <link href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/">
+        </link>
+        <updated>2020-05-20T14:00:29.000Z</updated>
+        <summary type="html"><![CDATA[<p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
+<!-- more -->
+<p>vi syscheck.sh</p>
+<pre><code class="language-sh">#!/bin/bash
+
+function system(){
+echo &quot;#########################系统信息#########################&quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk '{print $3}'`
+OS_TIME=`date +%F_%T`
+OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
+OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
+OS_HOSTNAME=`hostname`
+
+echo &quot;    系统类型：$OS_TYPE&quot;
+echo &quot;    系统版本：$OS_VER&quot;
+echo &quot;    系统内核：$OS_KER&quot;
+echo &quot;    当前时间：$OS_TIME&quot;
+echo &quot;    运行时间：$OS_RUN_TIME&quot;
+echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
+echo &quot;    本机名称：$OS_HOSTNAME&quot;
+
+function network(){
+
+echo &quot;#########################网络信息#########################&quot;
+INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
+for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
+  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
+done
+curl -I http://www.baidu.com &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    访问外网：成功&quot;
+else echo &quot;    访问外网：失败&quot;
+
+}
+
+function hardware(){
+
+echo &quot;#########################硬件信息#########################&quot;
+CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
+
+echo &quot;     CPU数量: $CPUID&quot;
+echo &quot;     CPU核心:$CPUCORES&quot;
+echo &quot;     CPU型号:$CPUMODE&quot;
+
+MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
+MEMFREE=`free -m|grep Mem|awk '{print $7}'`
+
+echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
+echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {'print $2'}`
+partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
+for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &quot;  磁盘总容量: ${disktotal}GB&quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk '{print $4}'`
+partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
+for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &quot;剩余磁盘容量：${freetotal}GB&quot;
+}
+
+
+function secure(){
+echo &quot;#########################安全信息#########################&quot;
+
+countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
+for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
+do echo &quot;当前登录用户：${countuser[$i]}&quot;
+done
+
+md5sum /etc/passwd &gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    用户异常：否&quot;
+else echo &quot;    用户异常：是&quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+</code></pre>
+<p>提示一：<br>
+<img src="https://image.youis.top/20200520220351.png" alt="" loading="lazy"><br>
+if函数没有结尾  34行添加  fi<br>
+提示二：</p>
+<p><img src="https://image.youis.top/20200520220403.png" alt="" loading="lazy"><br>
+函数 system 缺少  }  20行添加  }<br>
+提示三：<br>
+<img src="https://image.youis.top/20200520220416.png" alt="" loading="lazy"><br>
+函数没有调用 在函数末尾调用 chksys函数<br>
+提示四：<br>
+<img src="https://image.youis.top/20200520220429.png" alt="" loading="lazy"></p>
+<p>第9行 OS_RUN_TIME=<code>uptime |awk '{print $3}'|awk -F '{print $1}'</code>  AWK 存在管道信息<br>
+提示五：<br>
+<img src="https://image.youis.top/20200520220439.png" alt="" loading="lazy"><br>
+第43行 #CPUMODE=<code>grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'</code><br>
+awk   -F  没有更参数</p>
+<figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200520215758.png" alt="" loading="lazy"></figure>
+<p>修正代码：</p>
+<pre><code class="language-sh">#!/bin/bash
+
+function system(){
+echo &quot;#########################系统信息#########################&quot;
+OS_TYPE=`uname`
+OS_VER=`cat /etc/redhat-release`
+OS_KER=`uname -a|awk '{print $3}'`
+OS_TIME=`date +%F_%T`
+#OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
+OS_RUN_TIME=`uptime |awk '{print substr($3,0,length($3)-1)}'`
+OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
+OS_HOSTNAME=`hostname`
+
+echo &quot;    系统类型：$OS_TYPE&quot;
+echo &quot;    系统版本：$OS_VER&quot;
+echo &quot;    系统内核：$OS_KER&quot;
+echo &quot;    当前时间：$OS_TIME&quot;
+echo &quot;    运行时间：$OS_RUN_TIME&quot;
+echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
+echo &quot;    本机名称：$OS_HOSTNAME&quot;
+}
+function network(){
+
+echo &quot;#########################网络信息#########################&quot;
+INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
+for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
+do 
+  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
+  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
+done
+curl -I http://www.baidu.com &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    访问外网：成功&quot;
+else echo &quot;    访问外网：失败&quot;
+fi
+}
+
+function hardware(){
+
+echo &quot;#########################硬件信息#########################&quot;
+CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
+CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+#CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
+CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
+
+echo &quot;     CPU数量: $CPUID&quot;
+echo &quot;     CPU核心:$CPUCORES&quot;
+echo &quot;     CPU型号:$CPUMODE&quot;
+
+MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
+MEMFREE=`free -m|grep Mem|awk '{print $7}'`
+
+echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
+echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
+
+disksize=0
+swapsize=`free|grep Swap|awk {'print $2'}`
+partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
+for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
+do
+disksize=`expr $disksize + ${partitionsize[$i]}`
+done
+((disktotal=\($disksize+$swapsize\)/1024/1024))
+
+echo &quot;  磁盘总容量: ${disktotal}GB&quot;
+
+diskfree=0
+swapfree=`free|grep Swap|awk '{print $4}'`
+partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
+for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
+do
+diskfree=`expr $diskfree + ${partitionfree[$i]}`
+done
+
+((freetotal=\($diskfree+$swapfree\)/1024/1024))
+
+echo &quot;剩余磁盘容量：${freetotal}GB&quot;
+}
+
+
+function secure(){
+echo &quot;#########################安全信息#########################&quot;
+
+countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
+for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
+do echo &quot;当前登录用户：${countuser[$i]}&quot;
+done
+
+md5sum /etc/passwd &gt; /opt/passwd.db
+md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
+if [ $? -eq 0 ]
+then echo &quot;    用户异常：否&quot;
+else echo &quot;    用户异常：是&quot;
+fi
+}
+
+function chksys(){
+system
+network
+hardware
+secure
+}
+chksys
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[python课堂案列]]></title>
         <id>https://blog.youis.top/post/python-ke-tang-an-lie/</id>
@@ -1133,86 +1369,6 @@ $ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --fr
 <p>创建服务后，点击https，点击管理。添加证书即可，在又拍云购买的免费证书，需要几分钟认证。</p>
 <figure data-type="image" tabindex="3"><img src="https://image.youis.top/20200424142517.png" alt="" loading="lazy"></figure>
 <p>其他使用还是和七牛云差不多的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python第四次作业]]></title>
-        <id>https://blog.youis.top/post/sRdAP2jaU/</id>
-        <link href="https://blog.youis.top/post/sRdAP2jaU/">
-        </link>
-        <updated>2020-04-22T01:54:31.000Z</updated>
-        <summary type="html"><![CDATA[<p>每节课都有作业。。。。。<br>
-还有一个作业是上次布置过的。🙃🙃🙃</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>每节课都有作业。。。。。<br>
-还有一个作业是上次布置过的。🙃🙃🙃</p>
-<!-- more -->
-<p>1、首先生成包含1000个随机字符的字符串，然后统计每个字符的出现次数。<br>
-参考string字符串模块的元组：</p>
-<pre><code>import string
-import random
-
-x = string.ascii_letters + string.digits + string.punctuation
-# print(x)
-y = [random.choice(x) for i in range(1000)]  # 生成包含1000个随机字符的字符串
-# print(y)
-dic = dict()  # 使用字典保存每个字符出现次数
-for ch in y:
-    dic[ch] = dic.get(ch, 0) + 1  # d.get(ch,0) 返回ch出现的次数，若没有返回0
-print(dic)
-# nums = 0
-# for values in dic.values():
-#     nums += values
-# print(nums)
-</code></pre>
-<p>2、写代码：有如下字典<br>
-按照要求实现每一个功能</p>
-<pre><code>dic = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
-
-# 1、请循环遍历出所有的key
-for key in dic:
-    print(key)
-# 2、请循环遍历出所有的value
-for value in dic.values():
-    print(value)
-# 3、请循环遍历出所有的key和value
-for key, value in dic.items():
-    print(key, value)
-# 4、请在字典中增加一个键值对,&quot;k4&quot;:&quot;v4&quot;，输出添加后的字典
-dic[&quot;k4&quot;] = &quot;v4&quot;
-print(dic)
-# 5、请删除字典中键值对&quot;k1&quot;:&quot;v1&quot;,并输出删除后的结果
-dic.pop(&quot;k1&quot;)
-print(dic)
-# 6、请删除字典中键&quot;k5&quot;对应的键值对，如果字典中不存在键&quot;k5&quot;,则不报错，返回None
-print(dic.pop(&quot;k5&quot;, None))
-# 7、请获取字典中&quot;k2&quot;对应的值
-print(dic[&quot;k2&quot;])
-# 8、请获取字典中&quot;k6&quot;对应的值,如果不存在，则不报错，并且让其返回None。
-print(dic.get(&quot;k6&quot;))
-# 9、现有dict2 = {&quot;k1&quot;:&quot;v11&quot;,&quot;a&quot;:&quot;b&quot;},通过一行操作使dict2 = {&quot;k1&quot;:&quot;v1&quot;,&quot;k2&quot;:&quot;v2&quot;,&quot;k3&quot;:&quot;v3&quot;,&quot;a&quot;:&quot;b&quot;}
-dict1 = {&quot;k1&quot;: &quot;v1&quot;, &quot;k2&quot;: &quot;v2&quot;, &quot;k3&quot;: &quot;v3&quot;}
-dict2 = {&quot;k1&quot;: &quot;v11&quot;, &quot;a&quot;: &quot;b&quot;}
-dict2.update(dict1)
-print(dict2)
-</code></pre>
-<p>3、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能</p>
-<pre><code># 10、组合嵌套题。写代码，有如下列表，按照要求实现每一个功能
-lis = [[&quot;k&quot;, [&quot;qwe&quot;, 20, {&quot;k1&quot;: [&quot;tt&quot;, 3, &quot;1&quot;]}, 89], &quot;ab&quot;]]
-# 10.1、将列表中的字符串“tt”变成字符串&quot;TT&quot;(用两种方法)
-#  方法一：
-lis[0][1][2][&quot;k1&quot;][0] = &quot;TT&quot;
-print(lis)
-#  方法二：
-lis[0][1][2].get(&quot;k1&quot;)[0] = &quot;TT&quot;
-print(lis)
-# 10.2、将列表中的字符串&quot;1&quot;变成数字101(用两种方法)
-lis[0][1][2][&quot;k1&quot;][2] = 101
-print(lis)
-#  方法二：
-lis[0][1][2].get(&quot;k1&quot;)[2] = 101
-print(lis)
-</code></pre>
 ]]></content>
     </entry>
 </feed>
