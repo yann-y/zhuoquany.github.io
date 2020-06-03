@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-05-20T14:06:59.233Z</updated>
+    <updated>2020-06-03T07:24:19.262Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,106 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[解决pycurl安装错误]]></title>
+        <id>https://blog.youis.top/post/HYW8Js4p1/</id>
+        <link href="https://blog.youis.top/post/HYW8Js4p1/">
+        </link>
+        <updated>2020-06-03T06:43:49.000Z</updated>
+        <summary type="html"><![CDATA[<p>由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。</p>
+<!-- more -->
+<p>错误1：</p>
+<p>ImportError: pycurl: libcurl link-time ssl backend (<strong>openssl</strong>) is different from compile-time ssl backend (none/other)</p>
+<p>解决办法：</p>
+<p>错误1的解决办法如下：</p>
+<pre><code class="language-shell"> pip uninstall pycurl
+#export PYCURL_SSL_LIBRARY=[nss|openssl|ssl|gnutls]
+#参数由报错信息括号里面的内容决定。这里括号里面是  openssl
+export PYCURL_SSL_LIBRARY=openssl
+
+pip install pycurl
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python实现查找和排序]]></title>
+        <id>https://blog.youis.top/post/dfjsdhfbjdsbfj/</id>
+        <link href="https://blog.youis.top/post/dfjsdhfbjdsbfj/">
+        </link>
+        <updated>2020-05-24T02:04:44.000Z</updated>
+        <summary type="html"><![CDATA[<p>学习python的同时顺便复习数据结构。<br>
+🙌没人<br>
+👐比我<br>
+👌更懂<br>
+👆复习😜<br>
+未完待续。。。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>学习python的同时顺便复习数据结构。<br>
+🙌没人<br>
+👐比我<br>
+👌更懂<br>
+👆复习😜<br>
+未完待续。。。</p>
+<!-- more -->
+<h1 id="顺序查找">顺序查找</h1>
+<h1 id="折半查找">折半查找</h1>
+<p>def binary_search(nums, key):<br>
+left, right = 0, len(nums) - 1<br>
+while left &lt;= right:<br>
+mid = (left + right) // 2<br>
+if nums[mid] == key:<br>
+# 返回索引位置<br>
+return mid<br>
+elif nums[mid] &lt; key:<br>
+left = mid + 1<br>
+elif nums[mid] &gt; key:<br>
+right = mid - 1<br>
+return -1  # 没有找到返回 -1</p>
+<p>if <strong>name</strong> == '<strong>main</strong>':<br>
+lis = [2, 3, 4, 5, 5, 5, 6, 7, 23, 45, 90]<br>
+print(binary_search(lis, 110))</p>
+<h1 id="分块查找">分块查找</h1>
+<h1 id="直接插入排序">直接插入排序</h1>
+<h1 id="折半插入排序">折半插入排序</h1>
+<h1 id="希尔排序">希尔排序</h1>
+<h1 id="冒泡排序">冒泡排序</h1>
+<p>相信冒泡排序已经被大家所熟知,下面的代码对冒泡排序进行了简单优化。</p>
+<pre><code class="language-python">def bubble_sort(nums):
+    for i in range(len(nums) - 1):
+        ex_flag = False
+        for j in range(len(nums) - 1 - i):
+            if nums[j] &gt; nums[j + 1]:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+                ex_flag = True
+        if not ex_flag:
+            return nums
+    return nums
+
+
+if __name__ == '__main__':
+    lis = [2, 4, 5, 6, 7, 3, 5, 90, 45, 23, 5]
+    print(bubble_sort(lis))
+</code></pre>
+<h1 id="快速排序">快速排序</h1>
+<h1 id="简单选择排序">简单选择排序</h1>
+<p>def select_sort(nums):<br>
+for i in range(len(nums)):<br>
+nums_min = i<br>
+for j in range(i + 1, len(nums)):<br>
+if nums[j] &lt; nums[nums_min]:<br>
+nums_min = j<br>
+nums[i], nums[nums_min] = nums[nums_min], nums[i]<br>
+return nums</p>
+<p>if <strong>name</strong> == '<strong>main</strong>':<br>
+lis = [2, 4, 5, 6, 7, 3, 5, 90, 45, 23, 5]<br>
+print(select_sort(lis))</p>
+<h1 id="堆排序">堆排序</h1>
+<h1 id="归并排序">归并排序</h1>
+<h1 id="基数排序">基数排序</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[系统巡检脚本]]></title>
         <id>https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/</id>
@@ -133,7 +233,7 @@ if函数没有结尾  34行添加  fi<br>
 函数没有调用 在函数末尾调用 chksys函数<br>
 提示四：<br>
 <img src="https://image.youis.top/20200520220429.png" alt="" loading="lazy"></p>
-<p>第9行 OS_RUN_TIME=<code>uptime |awk '{print $3}'|awk -F '{print $1}'</code>  AWK 存在管道信息<br>
+<p>第9行 OS_RUN_TIME=<code>uptime |awk '{print $3}'|awk -F '{print $1}'</code>  AWK 存在管道信息,-F后面没有参数<br>
 提示五：<br>
 <img src="https://image.youis.top/20200520220439.png" alt="" loading="lazy"><br>
 第43行 #CPUMODE=<code>grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'</code><br>
@@ -149,7 +249,7 @@ OS_VER=`cat /etc/redhat-release`
 OS_KER=`uname -a|awk '{print $3}'`
 OS_TIME=`date +%F_%T`
 #OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
-OS_RUN_TIME=`uptime |awk '{print substr($3,0,length($3)-1)}'`
+OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F,  '{print $1}'`
 OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
 OS_HOSTNAME=`hostname`
 
@@ -1292,83 +1392,6 @@ eclipse 操作File-&gt;import-&gt;Gradle<br>
 <img src="https://image.youis.top/5HL%60RTSLLQ1XKI4A%6094%5D%25SM.png" alt="" loading="lazy"></p>
 <h1 id="报错处理">报错处理</h1>
 <p>若中途报java错误，把jdk/lib/tools.jar复制一份到jre/lib里面</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[docker安装kafka]]></title>
-        <id>https://blog.youis.top/post/NKkoP0wN4/</id>
-        <link href="https://blog.youis.top/post/NKkoP0wN4/">
-        </link>
-        <updated>2020-04-25T08:21:56.000Z</updated>
-        <summary type="html"><![CDATA[<p>docker妈耶，真香😁😁😁😁</p>
-<h1 id="安装zookeeper">安装zookeeper</h1>
-<p>kafka需要zookeeper管理，所以需要先安装zookeeper。<br>
-下载zookeeper镜像<br>
-$ docker pull zookeeper</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>docker妈耶，真香😁😁😁😁</p>
-<h1 id="安装zookeeper">安装zookeeper</h1>
-<p>kafka需要zookeeper管理，所以需要先安装zookeeper。<br>
-下载zookeeper镜像<br>
-$ docker pull zookeeper</p>
-<!-- more -->
-<h2 id="启动镜像生成容器">启动镜像生成容器</h2>
-<pre><code class="language-shell">docker run -d --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2  --name zookeeper -p 2181:2181 -v /etc/localtime:/etc/localtime wurstmeister/zookeeper
-</code></pre>
-<h1 id="下载kafka镜像">下载kafka镜像</h1>
-<pre><code class="language-shell">docker pull wurstmeister/kafka
-</code></pre>
-<p>4、启动kafka镜像生成容器</p>
-<pre><code class="language-shell">docker run -d --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.16.0.13:2181/kafka -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.16.0.13:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -v /etc/localtime:/etc/localtime wurstmeister/kafka
-</code></pre>
-<p>参数说明：<br>
--e KAFKA_BROKER_ID=0  在kafka集群中，每个kafka都有一个BROKER_ID来区分自己</p>
-<p>-e KAFKA_ZOOKEEPER_CONNECT=172.16.0.13:2181/kafka 配置zookeeper管理kafka的路径172.16.0.13:2181/kafka</p>
-<p>-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.16.0.13:9092  把kafka的地址端口注册给zookeeper，如果是远程访问要改成外网IP,类如Java程序访问出现无法连接。</p>
-<p>-e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 配置kafka的监听端口</p>
-<p>-v /etc/localtime:/etc/localtime 容器时间同步虚拟机的时间</p>
-<p>5、验证kafka是否可以使用</p>
-<p>5.1、进入容器<br>
-$ docker exec -it kafka bash</p>
-<p>5.2、进入 /opt/kafka_2.12-2.3.0/bin/ 目录下<br>
-$ cd /opt/kafka_2.12-2.3.0/bin/</p>
-<p>5.3、运行kafka生产者发送消息<br>
-$ ./kafka-console-producer.sh --broker-list localhost:9092 --topic sun</p>
-<p>发送消息</p>
-<pre><code>{&quot;datas&quot;:[{&quot;channel&quot;:&quot;&quot;,&quot;metric&quot;:&quot;temperature&quot;,&quot;producer&quot;:&quot;ijinus&quot;,&quot;sn&quot;:&quot;IJA0101-00002245&quot;,&quot;time&quot;:&quot;1543207156000&quot;,&quot;value&quot;:&quot;80&quot;}],&quot;ver&quot;:&quot;1.0&quot;}
-</code></pre>
-<p>5.4、运行kafka消费者接收消息<br>
-$ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --from-beginning</p>
-<p>👉👉<a href="https://www.cnblogs.com/linjiqin/p/11891776.html">参考文章</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[又拍云使用]]></title>
-        <id>https://blog.youis.top/post/iobZKkOLk/</id>
-        <link href="https://blog.youis.top/post/iobZKkOLk/">
-        </link>
-        <updated>2020-04-24T06:32:56.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="简介">简介</h1>
-<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。😒😒😒</p>
-<p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
-<p>直接上图</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="简介">简介</h1>
-<p>七牛云的cdn加速，使用https的话，要收费，没有免费流量。😒😒😒</p>
-<p><a href="https://console.upyun.com/register/?invite=ryOpVZxtL">又拍云注册连接</a></p>
-<p>直接上图</p>
-<!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200424142140.png" alt="" loading="lazy"></figure>
-<p>香不香，15G的流量。还可以https 😍😍😍</p>
-<figure data-type="image" tabindex="2"><img src="https://image.youis.top/20200424142927.png" alt="" loading="lazy"></figure>
-<p>有一点就是，添加logo的时候，是点击图片，就可以访问官网。</p>
-<p>参考代码：</p>
-<pre><code class="language-html">&lt;a href=&quot;https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral&quot;&gt;&lt;img src=&quot;https://www.z4a.net/images/2020/04/20/_logo5.png&quot; alt=&quot;_logo5.png&quot; border=&quot;0&quot; width=&quot;100&quot; height=&quot;20&quot; /&gt;&lt;/a&gt;
-</code></pre>
-<h1 id="如何开启https">如何开启HTTPS</h1>
-<p>创建服务后，点击https，点击管理。添加证书即可，在又拍云购买的免费证书，需要几分钟认证。</p>
-<figure data-type="image" tabindex="3"><img src="https://image.youis.top/20200424142517.png" alt="" loading="lazy"></figure>
-<p>其他使用还是和七牛云差不多的。</p>
 ]]></content>
     </entry>
 </feed>
