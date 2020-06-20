@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>shell脚本作业 | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1591169049047">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1592634870056">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -212,19 +212,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">39</span>
+        <span class="site-item-stat-count">40</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">25</span>
+        <span class="site-item-stat-count">26</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">25</span>
+        <span class="site-item-stat-count">26</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -1177,6 +1177,65 @@ hljs.initHighlightingOnLoad();
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/nqFG2uASl/"" data-c="
+          &lt;p&gt;找到在某个目录下面所有的文件内容里面有关键字&amp;quot;info&amp;quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# encoding: utf-8
+&amp;quot;&amp;quot;&amp;quot;
+@author: Eden
+@contact: .....
+@time: 2020/6/20 9:21
+@file: test.py
+@desc:
+&amp;quot;&amp;quot;&amp;quot;
+import os
+import re
+
+
+def listdir(path):
+    &amp;quot;&amp;quot;&amp;quot;
+    遍历出，目录下所有文件
+    @param path:  str
+    &amp;quot;&amp;quot;&amp;quot;
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        if os.path.isdir(file_path):  # 如果该文件是目录
+            # print(file_path)
+            listdir(file_path)  # 继续递归遍历
+        else:
+            # print(file_path)
+            keyword_search(file_path)  # 读取文件，搜索关键字。
+
+
+def keyword_search(file_path):
+    &amp;quot;&amp;quot;&amp;quot;
+    打开文件，搜索关键字。
+    @param file_path:
+    &amp;quot;&amp;quot;&amp;quot;
+    f1 = open(file_path, &amp;quot;r&amp;quot;, encoding=&amp;quot;utf-8&amp;quot;)
+    content = f1.read()
+    # print(&amp;quot;输出文件内容：\n&amp;quot;, content)  # 输出文件内容
+    count = len(re.findall(keyword, content))
+    # re.findall()返回的是一个列表
+    if count != 0:  # 如果个数不为 0
+        print(file_path)
+        with open(&#39;t1.pkl&#39;, &#39;a+&#39;) as f:
+            f.write(file_path + &#39;\n&#39;)  # 保存到该文件
+
+
+if __name__ == &#39;__main__&#39;:
+    # start = time.clock()
+    work_path = r&amp;quot;D:\python\TestProject\PythonClassroom\work20\test&amp;quot;  # 待检索的目录
+    keyword = &amp;quot;info&amp;quot;  # 检索的关键字
+    if os.path.isdir(work_path):
+        listdir(work_path)  # 目录遍历
+    else:
+        print(&amp;quot;请输入一个目录！！&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+">Python检索关键字</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/HYW8Js4p1/"" data-c="

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-06-03T07:24:19.262Z</updated>
+    <updated>2020-06-20T06:34:53.545Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.youis.top"/>
     <link rel="self" href="https://blog.youis.top/atom.xml"/>
@@ -10,6 +10,70 @@
     <logo>https://blog.youis.top/images/avatar.png</logo>
     <icon>https://blog.youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Python检索关键字]]></title>
+        <id>https://blog.youis.top/post/nqFG2uASl/</id>
+        <link href="https://blog.youis.top/post/nqFG2uASl/">
+        </link>
+        <updated>2020-06-20T02:04:51.000Z</updated>
+        <summary type="html"><![CDATA[<p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
+<!-- more -->
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/6/20 9:21
+@file: test.py
+@desc:
+&quot;&quot;&quot;
+import os
+import re
+
+
+def listdir(path):
+    &quot;&quot;&quot;
+    遍历出，目录下所有文件
+    @param path:  str
+    &quot;&quot;&quot;
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        if os.path.isdir(file_path):  # 如果该文件是目录
+            # print(file_path)
+            listdir(file_path)  # 继续递归遍历
+        else:
+            # print(file_path)
+            keyword_search(file_path)  # 读取文件，搜索关键字。
+
+
+def keyword_search(file_path):
+    &quot;&quot;&quot;
+    打开文件，搜索关键字。
+    @param file_path:
+    &quot;&quot;&quot;
+    f1 = open(file_path, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+    content = f1.read()
+    # print(&quot;输出文件内容：\n&quot;, content)  # 输出文件内容
+    count = len(re.findall(keyword, content))
+    # re.findall()返回的是一个列表
+    if count != 0:  # 如果个数不为 0
+        print(file_path)
+        with open('t1.pkl', 'a+') as f:
+            f.write(file_path + '\n')  # 保存到该文件
+
+
+if __name__ == '__main__':
+    # start = time.clock()
+    work_path = r&quot;D:\python\TestProject\PythonClassroom\work20\test&quot;  # 待检索的目录
+    keyword = &quot;info&quot;  # 检索的关键字
+    if os.path.isdir(work_path):
+        listdir(work_path)  # 目录遍历
+    else:
+        print(&quot;请输入一个目录！！&quot;)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[解决pycurl安装错误]]></title>
         <id>https://blog.youis.top/post/HYW8Js4p1/</id>
@@ -1351,47 +1415,6 @@ def max_score(film):
 # 推荐评分最高的电影
 print(max(set(data[film_user]) - set(user), key=max_score))
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Gradle安装]]></title>
-        <id>https://blog.youis.top/post/7b8Oe4egB/</id>
-        <link href="https://blog.youis.top/post/7b8Oe4egB/">
-        </link>
-        <updated>2020-04-26T08:15:22.000Z</updated>
-        <summary type="html"><![CDATA[<p>Gradle + eclipse 输入helloworld<br>
-确保JDK安装成功。<br>
-java 版本java1.8</p>
-<h1 id="安装步骤">安装步骤</h1>
-]]></summary>
-        <content type="html"><![CDATA[<p>Gradle + eclipse 输入helloworld<br>
-确保JDK安装成功。<br>
-java 版本java1.8</p>
-<h1 id="安装步骤">安装步骤</h1>
-<!-- more -->
-<p>Gradle(v4.10.3)下载地址 👉👉👉<a href="https://downloads.gradle-dn.com/distributions/gradle-4.10.3-all.zip">点击下载</a><br>
-解压压缩包。<br>
-右键此电脑👉-&gt;点击属性。<br>
-按照图片添加环境变量<br>
-<img src="https://image.youis.top/20200426162119.png" alt="" loading="lazy"><br>
-<img src="https://image.youis.top/20200426162405.png" alt="" loading="lazy"><br>
-检查是否安装完成<br>
-<img src="https://image.youis.top/20200426162453.png" alt="" loading="lazy"><br>
-启动eclipse,点击window菜单，选择Preferences-&gt;Gradle设置Gradle位置<br>
-<img src="https://image.youis.top/20200426162614.png" alt="" loading="lazy"><br>
-1、创建Gradle项目<br>
-方式1：<a href="https://start.spring.io/">https://start.spring.io/</a>用网站提供的生成<br>
-<img src="https://image.youis.top/20200426162854.png" alt="" loading="lazy"><br>
-eclipse 操作File-&gt;import-&gt;Gradle<br>
-<img src="https://image.youis.top/20200426162940.png" alt="" loading="lazy"><br>
-<img src="https://image.youis.top/20200426162954.png" alt="" loading="lazy"><br>
-<img src="https://image.youis.top/20200426163004.png" alt="" loading="lazy"><br>
-等待构建完成。<br>
-<img src="https://image.youis.top/20200426163357.png" alt="" loading="lazy"><br>
-然后点击运行。<br>
-<img src="https://image.youis.top/5HL%60RTSLLQ1XKI4A%6094%5D%25SM.png" alt="" loading="lazy"></p>
-<h1 id="报错处理">报错处理</h1>
-<p>若中途报java错误，把jdk/lib/tools.jar复制一份到jre/lib里面</p>
 ]]></content>
     </entry>
 </feed>
