@@ -1,19 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.youis.top</id>
+    <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-06-20T06:34:53.545Z</updated>
+    <updated>2020-08-31T12:44:31.884Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://blog.youis.top"/>
-    <link rel="self" href="https://blog.youis.top/atom.xml"/>
+    <link rel="alternate" href="https://youis.top"/>
+    <link rel="self" href="https://youis.top/atom.xml"/>
     <subtitle>浮生若梦，人生几何</subtitle>
-    <logo>https://blog.youis.top/images/avatar.png</logo>
-    <icon>https://blog.youis.top/favicon.ico</icon>
+    <logo>https://youis.top/images/avatar.png</logo>
+    <icon>https://youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
     <entry>
+        <title type="html"><![CDATA[Python期末考试案例代码]]></title>
+        <id>https://youis.top/post/DHq7otHwc/</id>
+        <link href="https://youis.top/post/DHq7otHwc/">
+        </link>
+        <updated>2020-08-31T11:30:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>期末考试的案例代码总结</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>期末考试的案例代码总结</p>
+<!-- more -->
+<pre><code>from random import randint
+'''
+编写程序，生成包含1000个0到100之间的随机整数，并统计每个元素出现的次数
+'''
+lis = [randint(0, 100) for i in range(0, 1000)]
+for i in set(lis):
+    print(i, &quot;:&quot;, lis.count(i))
+</code></pre>
+<pre><code class="language-python">    '''
+编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。
+'''
+from random import randint
+lis = [randint(0, 100) for i in range(0, 20)]
+print(sorted(lis[:9])+sorted(lis[10:],reverse=True))
+</code></pre>
+<pre><code class="language-python">'''
+编写程序，生成一个包含 20 个随机整数的列表，然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
+'''
+from random import randint
+lis = [randint(0, 100) for i in range(0, 20)]
+even = sorted(lis[::2], reverse=True)  # 偶数下标
+print(lis)
+print(even)
+j = 0
+for i in range(0, 20, 2):
+    lis[i] = even[j]
+    j += 1
+print(lis)
+</code></pre>
+<pre><code class="language-python">'''
+判断字符串是否为回文，使用切片实现。
+'''
+
+oldstr = &quot;123aba321&quot;
+if oldstr == oldstr[::-1]:
+    print(&quot;是回文字符串&quot;)
+else:
+    print(&quot;不是回文字符串&quot;)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ansible部署K8s_v1.18.4环境]]></title>
+        <id>https://youis.top/post/154qMkJXW/</id>
+        <link href="https://youis.top/post/154qMkJXW/">
+        </link>
+        <updated>2020-06-28T13:18:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>Kubernetes是Goole开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。<br>
+本文介绍如何在本地自行搭建一套k8s集群。<br>
+本文所涉及的所有配置文件详见&quot;离线包和镜像汇总资料&quot;。<br>
+<img src="https://image.youis.top/QQ%E6%88%AA%E5%9B%BE20200627233552.jpg" alt="" loading="lazy"></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Kubernetes是Goole开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。<br>
+本文介绍如何在本地自行搭建一套k8s集群。<br>
+本文所涉及的所有配置文件详见&quot;离线包和镜像汇总资料&quot;。<br>
+<img src="https://image.youis.top/QQ%E6%88%AA%E5%9B%BE20200627233552.jpg" alt="" loading="lazy"></p>
+<!-- more -->
+<p>由于Markdown不好编排，我附上Word连接<br>
+👇👇👇👇<br>
+<a href="http://cloud.youis.top/?r=/download&amp;path=L0Fuc2libGUvQW5zaWJsZemDqOe9sks4c192MS4xOC40546v5aKDMjAyMDA2MjTvvIjoh6rliqjljJbohJrmnKzvvIkuZG9jeA%3D%3D">Ansible部署K8s_v1.18.4环境.docx</a></p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Python检索关键字]]></title>
-        <id>https://blog.youis.top/post/nqFG2uASl/</id>
-        <link href="https://blog.youis.top/post/nqFG2uASl/">
+        <id>https://youis.top/post/nqFG2uASl/</id>
+        <link href="https://youis.top/post/nqFG2uASl/">
         </link>
         <updated>2020-06-20T02:04:51.000Z</updated>
         <summary type="html"><![CDATA[<p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
@@ -76,8 +148,8 @@ if __name__ == '__main__':
     </entry>
     <entry>
         <title type="html"><![CDATA[解决pycurl安装错误]]></title>
-        <id>https://blog.youis.top/post/HYW8Js4p1/</id>
-        <link href="https://blog.youis.top/post/HYW8Js4p1/">
+        <id>https://youis.top/post/HYW8Js4p1/</id>
+        <link href="https://youis.top/post/HYW8Js4p1/">
         </link>
         <updated>2020-06-03T06:43:49.000Z</updated>
         <summary type="html"><![CDATA[<p>由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。</p>
@@ -99,8 +171,8 @@ pip install pycurl
     </entry>
     <entry>
         <title type="html"><![CDATA[python实现查找和排序]]></title>
-        <id>https://blog.youis.top/post/dfjsdhfbjdsbfj/</id>
-        <link href="https://blog.youis.top/post/dfjsdhfbjdsbfj/">
+        <id>https://youis.top/post/dfjsdhfbjdsbfj/</id>
+        <link href="https://youis.top/post/dfjsdhfbjdsbfj/">
         </link>
         <updated>2020-05-24T02:04:44.000Z</updated>
         <summary type="html"><![CDATA[<p>学习python的同时顺便复习数据结构。<br>
@@ -176,8 +248,8 @@ print(select_sort(lis))</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[系统巡检脚本]]></title>
-        <id>https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/</id>
-        <link href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/">
+        <id>https://youis.top/post/xi-tong-xun-jian-jiao-ben/</id>
+        <link href="https://youis.top/post/xi-tong-xun-jian-jiao-ben/">
         </link>
         <updated>2020-05-20T14:00:29.000Z</updated>
         <summary type="html"><![CDATA[<p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
@@ -412,8 +484,8 @@ chksys
     </entry>
     <entry>
         <title type="html"><![CDATA[python课堂案列]]></title>
-        <id>https://blog.youis.top/post/python-ke-tang-an-lie/</id>
-        <link href="https://blog.youis.top/post/python-ke-tang-an-lie/">
+        <id>https://youis.top/post/python-ke-tang-an-lie/</id>
+        <link href="https://youis.top/post/python-ke-tang-an-lie/">
         </link>
         <updated>2020-05-15T06:24:48.000Z</updated>
         <summary type="html"><![CDATA[<p>重点讲解 杨辉三角 和 约瑟夫环报数游戏。<br>
@@ -768,8 +840,8 @@ if __name__ == '__main__':
     </entry>
     <entry>
         <title type="html"><![CDATA[linux获取ip地址]]></title>
-        <id>https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/</id>
-        <link href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/">
+        <id>https://youis.top/post/linux-huo-qu-ip-di-zhi/</id>
+        <link href="https://youis.top/post/linux-huo-qu-ip-di-zhi/">
         </link>
         <updated>2020-05-10T08:21:36.000Z</updated>
         <summary type="html"><![CDATA[<p>🐶🐶🐶<br>
@@ -807,12 +879,36 @@ ip=`echo  ${string/$str/}`
      echo &quot;已探测 $iplis 的简略信息 &quot;
   done
 </code></pre>
+<h1 id="探测ip地址">探测IP地址</h1>
+<pre><code class="language-shell">#! /bin/bash
+# 参数是网卡  名称
+#例如：  ./test.sh  ens33
+if [ &quot;$#&quot; -ne 1 ];then
+	echo &quot;usage -- ./arp1.sh [interface]&quot;
+	echo &quot;Example -- ./arp1.sh eth1&quot;
+	exit
+fi
+echo &quot;&quot; &gt; mac_ip.text
+interface=$1
+ipprefix=`ifconfig $interface|grep &quot;netmask&quot;|awk '{print $2}'|cut -d '.' -f 1-3`
+for addr in $(seq 1 1254);do
+	info=$(arping -c 1 $ipprefix.$addr)
+	if [ $? -eq 0 ];then
+		mac=`echo $info | grep &quot;from&quot;|cut -d ' ' -f 10`
+		ipaddr=`echo $info|grep &quot;from&quot;|cut -d ' ' -f 2`
+		echo &quot;$mac -- $ipaddr&quot;
+		echo &quot;$mac -- $ipaddr&quot; &gt;&gt; mac_ip.text
+	else
+		echo &quot;当前扫描的第$addr 是非活动地址!!&quot;
+	fi
+done
+</code></pre>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[shell脚本作业]]></title>
-        <id>https://blog.youis.top/post/shell-jiao-ben-zuo-ye/</id>
-        <link href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/">
+        <id>https://youis.top/post/shell-jiao-ben-zuo-ye/</id>
+        <link href="https://youis.top/post/shell-jiao-ben-zuo-ye/">
         </link>
         <updated>2020-05-09T08:19:02.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="if-第一题">if 第一题</h1>
@@ -1095,8 +1191,8 @@ main
     </entry>
     <entry>
         <title type="html"><![CDATA[python尼姆游戏]]></title>
-        <id>https://blog.youis.top/post/python-ni-mu-you-xi/</id>
-        <link href="https://blog.youis.top/post/python-ni-mu-you-xi/">
+        <id>https://youis.top/post/python-ni-mu-you-xi/</id>
+        <link href="https://youis.top/post/python-ni-mu-you-xi/">
         </link>
         <updated>2020-05-03T07:49:10.000Z</updated>
         <summary type="html"><![CDATA[<p>五一小长假都有作业。<br>
@@ -1222,198 +1318,6 @@ def nim_game(n):
 if __name__ == '__main__':
     num = int(input(&quot;请输入棋子的总数: &quot;))
     nim_game(num)
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[谁没交作业，让我康康]]></title>
-        <id>https://blog.youis.top/post/0TQcnCohv/</id>
-        <link href="https://blog.youis.top/post/0TQcnCohv/">
-        </link>
-        <updated>2020-05-01T02:12:17.000Z</updated>
-        <summary type="html"><![CDATA[<p>收作业不清楚谁没交，一个一个的数，太麻烦。<br>
-😏😏😏<br>
-写一个程序搞定他。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>收作业不清楚谁没交，一个一个的数，太麻烦。<br>
-😏😏😏<br>
-写一个程序搞定他。</p>
-<!-- more -->
-<pre><code class="language-python"># encoding: utf-8
-&quot;&quot;&quot;
-@author: Eden
-@contact: .....
-@time: 2020/3/26 17:56
-@file: homeWork.py
-@desc:      作业查收，扫描文件夹，利用正则表达式，匹配唯一id学号
-        然后遍历名单，获取未交作业人员
-&quot;&quot;&quot;
-import os
-import pandas as pd
-import re
-import threading
-import zipfile
-import time
-
-
-def listdir(path, list_name):
-    &quot;&quot;&quot;
-    @param path:  str
-    @param list_name: list
-    &quot;&quot;&quot;
-    for file in os.listdir(path):
-        file_path = os.path.join(path, file)
-        if os.path.isdir(file_path):
-            # 判断对象是否是一个目录
-            # 修改建议，目录直接压缩，判断压缩后的文件是否已经存在。？？？？
-            listdir(file_path, list_name)
-        else:
-            # print(re.findall(r&quot;\d+\.?\d*&quot;, file_path))
-            # file_path = re.findall(r&quot;\d+\.?\d*&quot;, file_path)[0]
-            file_path = re.findall(r&quot;\d+&quot;, file_path)[0]  # /d匹配数字，+匹配多次
-            if len(file_path) != 10:  # 如果学号不是10位数字，代表学号错误。
-                print(file_path + &quot;是一个错误的学号&quot;)
-            # print(file)
-            # print(file_path)
-            list_name.add(int(file_path))
-
-
-def reprint():
-    set_len = len(unpaid)
-    if set_len &gt; 0:
-        print(&quot;还有%d名同学没有教作业！！&quot; % set_len)
-        for index in unpaid:
-            print(index, df[index])
-    else:
-        print(&quot;作业已经交齐了。&quot;)
-
-
-if __name__ == '__main__':
-    # start = time.clock()
-    work_path = r&quot;E:\study\Linux高级运维\作业\Linux高级运维_shell脚本作业_第四次作业&quot;
-    work_list = set()
-    t = threading.Thread(target=listdir, args=(work_path, work_list))
-    t.start()
-    # listdir(work_path, work_list)
-    excel_path = r&quot;RenYuanMingDan.xlsx&quot;  # 人员名单
-    df = pd.read_excel(excel_path, encoding=&quot;utf-8&quot;, usecols=[u&quot;姓名&quot;, u&quot;学号&quot;])
-    df = df.set_index([u&quot;学号&quot;])
-    df = df.to_dict()
-    df = df[u&quot;姓名&quot;]
-    t.join()
-    unpaid = set(df) - work_list
-    reprint()
-    # elapsed = (time.clock() - start)
-    # print(&quot;Time used:&quot;, elapsed)
-
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python案列(电影推荐)]]></title>
-        <id>https://blog.youis.top/post/3mEbBUOoi/</id>
-        <link href="https://blog.youis.top/post/3mEbBUOoi/">
-        </link>
-        <updated>2020-04-27T07:42:25.000Z</updated>
-        <summary type="html"><![CDATA[<p>python的第五次作业<br>
-这个是python课的一个小案列，不涉及大数据推荐等等。<br>
-只是一个简单的集合应用</p>
-<h1 id="问题描述">问题描述</h1>
-<p>假设已有大量用户对若干电影的评分数据，现有某用户，也看过一些电影并进行过评分，要求根据已有打分数据为该用户进行推荐。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>python的第五次作业<br>
-这个是python课的一个小案列，不涉及大数据推荐等等。<br>
-只是一个简单的集合应用</p>
-<h1 id="问题描述">问题描述</h1>
-<p>假设已有大量用户对若干电影的评分数据，现有某用户，也看过一些电影并进行过评分，要求根据已有打分数据为该用户进行推荐。</p>
-<!-- more -->
-<h1 id="基本思路">基本思路</h1>
-<p>基本思路：用基于用户的协同过滤算法，也就是根据用户喜好来确定与当前用户最相似的用户，然后再根据最相似用户的喜好为当前用户进行推荐。本例采用字典来存放打分数据，格式为{用户1:{电影名称1:打分1, 电影名称2:打分2,...}, 用户2:{...}}，首先在已有数据中查找与当前用户共同打分电影（使用集合的交集运算）数量最多的用户，如果有多个这样的用户就再从中选择打分最接近（打分的差距最小）的用户。代码中使用到了random模块中的randrange()函数，用来生成指定范围内的一个随机数。<br>
-效果图如下：<br>
-<img src="https://image.youis.top/20200427160605.png" alt="" loading="lazy"></p>
-<h1 id="解法一">解法一</h1>
-<pre><code class="language-python">from random import randrange
-
-# 历史电影打分数据，一共10个用户，每个用户对3到9个电影进行评分
-# 每个电影的评分最低1分最高5分，这里是字典推导式和集合推导式的用法
-data = {'user' + str(i): {'film' + str(randrange(1, 15)): randrange(1, 6)
-                          for j in range(randrange(3, 10))}
-        for i in range(10)}
-# 模拟当前用户打分数据，为5部随机电影打分
-user = {'film' + str(randrange(1, 15)): randrange(1, 6) for i in range(5)}
-# 最相似的用户及其对电影打分情况
-# 两个用户共同打分的电影最多
-# 并且所有电影打分差值的平方和最小
-f = lambda item: (-len(item[1].keys() &amp; user),
-                  sum(((item[1].get(film) - user.get(film)) ** 2
-                       for film in user.keys() &amp; item[1].keys())))
-similarUser, films = min(data.items(), key=f)
-# 在输出结果中，第一列表示两个人共同打分的电影的数量
-# 第二列表示二人打分之间的相似度，数字越小表示越相似
-# 然后是该用户对电影的打分数据
-print('known data'.center(50, '='))
-for item in data.items():
-    print(len(item[1].keys() &amp; user.keys()),
-          sum(((item[1].get(film) - user.get(film)) ** 2
-               for film in user.keys() &amp; item[1].keys())),
-          item,
-          sep=':')
-print('current user'.center(50, '='))
-print(user)
-print('most similar user and his films'.center(50, '='))
-print(similarUser, films, sep=':')
-print('recommended film'.center(50, '='))
-# 在当前用户没看过的电影中选择打分最高的进行推荐
-print(max(films.keys() - user.keys(), key=lambda film: films[film]))
-</code></pre>
-<h1 id="解法二">解法二</h1>
-<pre><code class="language-python">from random import randrange
-
-
-def diff_value(use, fil):
-    score = 0
-    for filmName in fil:
-        # 计算两个用户的打分差距
-        score += abs(data[use][filmName] - user[filmName])
-    return score
-
-
-# 模拟获取数据
-data = {'user' + str(i): {'film' + str(randrange(1, 15)): randrange(1, 6) for j in range(randrange(3, 10))}
-        for i in range(1, 11)}
-print(&quot;=====模拟数据=====&quot;)
-print(data)
-# 模拟用户喜好
-user = {'film' + str(randrange(1, 15)): randrange(1, 6) for j in range(randrange(3, 10))}
-print(&quot;=====模拟当前用户喜好=====&quot;)
-print(user)
-film_len = 0  # 共同打分的数目
-film_user = &quot;&quot;  # 最接近的那个用户
-film_score = 0  # 记录分数差距
-for key, value in data.items():
-    film = set(value) &amp; set(user)  # 共同打分的电影
-    # print(key, film)
-    # 共同电影打分数目相同，则比较分数。
-    if len(film) == film_len:
-        if diff_value(key, film) &lt; film_score:
-            film_len = len(film)
-            film_user = key
-            film_score = diff_value(key, film)
-    if len(film) &gt; film_len:
-        film_len = len(film)
-        film_user = key
-        film_score = diff_value(key, film)
-print(&quot;=====最相似的用户和他的电影====&quot;)
-print(film_user, data[film_user])
-print(&quot;=====推荐的电影如下：======&quot;)
-
-
-def max_score(film):
-    return data[film_user][film]
-
-
-# 推荐评分最高的电影
-print(max(set(data[film_user]) - set(user), key=max_score))
 </code></pre>
 ]]></content>
     </entry>

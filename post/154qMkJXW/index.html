@@ -8,7 +8,7 @@
 <meta name="keywords" content="Eden">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
-<title>Python检索关键字 | Eden的博客</title>
+<title>Ansible部署K8s_v1.18.4环境 | Eden的博客</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1598876096049">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
@@ -48,8 +48,8 @@
 </script>
 
 
-  <meta name="description" content="Python检索关键字" />
-  <meta name="keywords" content="Python" />
+  <meta name="description" content="Ansible部署K8s_v1.18.4环境" />
+  <meta name="keywords" content="k8s,ansible,docker" />
 </head>
 
 <body>
@@ -342,8 +342,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://youis.top/post/nqFG2uASl/">
-      Python检索关键字
+    <a class="post-title-link" href="https://youis.top/post/154qMkJXW/">
+      Ansible部署K8s_v1.18.4环境
     </a>
   </h1>
   <div class="post-meta">
@@ -351,7 +351,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span>2020-06-20</span>
+      <span>2020-06-28</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -360,8 +360,20 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://youis.top/tag/python/">
-        <span>Python</span>
+      <a href="https://youis.top/tag/k8s/">
+        <span>k8s</span>
+      </a>、
+      
+      
+      
+      <a href="https://youis.top/tag/ansible/">
+        <span>ansible</span>
+      </a>、
+      
+      
+      
+      <a href="https://youis.top/tag/Sn6c33z7i/">
+        <span>docker</span>
       </a>
       
       
@@ -370,17 +382,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2<span class="language" data-lan="minute">分钟</span></span>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>294<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>99<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/nqFG2uASl/" data-flag-title="Python检索关键字" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/154qMkJXW/" data-flag-title="Ansible部署K8s_v1.18.4环境" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -389,60 +401,14 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
+              <p>Kubernetes是Goole开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。<br>
+本文介绍如何在本地自行搭建一套k8s集群。<br>
+本文所涉及的所有配置文件详见&quot;离线包和镜像汇总资料&quot;。<br>
+<img src="https://image.youis.top/QQ%E6%88%AA%E5%9B%BE20200627233552.jpg" alt="" loading="lazy"></p>
 <!-- more -->
-<pre><code class="language-python"># encoding: utf-8
-&quot;&quot;&quot;
-@author: Eden
-@contact: .....
-@time: 2020/6/20 9:21
-@file: test.py
-@desc:
-&quot;&quot;&quot;
-import os
-import re
-
-
-def listdir(path):
-    &quot;&quot;&quot;
-    遍历出，目录下所有文件
-    @param path:  str
-    &quot;&quot;&quot;
-    for file in os.listdir(path):
-        file_path = os.path.join(path, file)
-        if os.path.isdir(file_path):  # 如果该文件是目录
-            # print(file_path)
-            listdir(file_path)  # 继续递归遍历
-        else:
-            # print(file_path)
-            keyword_search(file_path)  # 读取文件，搜索关键字。
-
-
-def keyword_search(file_path):
-    &quot;&quot;&quot;
-    打开文件，搜索关键字。
-    @param file_path:
-    &quot;&quot;&quot;
-    f1 = open(file_path, &quot;r&quot;, encoding=&quot;utf-8&quot;)
-    content = f1.read()
-    # print(&quot;输出文件内容：\n&quot;, content)  # 输出文件内容
-    count = len(re.findall(keyword, content))
-    # re.findall()返回的是一个列表
-    if count != 0:  # 如果个数不为 0
-        print(file_path)
-        with open('t1.pkl', 'a+') as f:
-            f.write(file_path + '\n')  # 保存到该文件
-
-
-if __name__ == '__main__':
-    # start = time.clock()
-    work_path = r&quot;D:\python\TestProject\PythonClassroom\work20\test&quot;  # 待检索的目录
-    keyword = &quot;info&quot;  # 检索的关键字
-    if os.path.isdir(work_path):
-        listdir(work_path)  # 目录遍历
-    else:
-        print(&quot;请输入一个目录！！&quot;)
-</code></pre>
+<p>由于Markdown不好编排，我附上Word连接<br>
+👇👇👇👇<br>
+<a href="http://cloud.youis.top/?r=/download&amp;path=L0Fuc2libGUvQW5zaWJsZemDqOe9sks4c192MS4xOC40546v5aKDMjAyMDA2MjTvvIjoh6rliqjljJbohJrmnKzvvIkuZG9jeA%3D%3D">Ansible部署K8s_v1.18.4环境.docx</a></p>
 
             </div>
             
@@ -454,7 +420,7 @@ if __name__ == '__main__':
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://youis.top/post/nqFG2uASl/" title="Python检索关键字">https://youis.top/post/nqFG2uASl/</a>
+      <a href="https://youis.top/post/154qMkJXW/" title="Ansible部署K8s_v1.18.4环境">https://youis.top/post/154qMkJXW/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -463,21 +429,25 @@ if __name__ == '__main__':
   </ul>
   <div class="tags">
     
-      <a href="https://youis.top/tag/python/"># Python</a>
+      <a href="https://youis.top/tag/k8s/"># k8s</a>
+    
+      <a href="https://youis.top/tag/ansible/"># ansible</a>
+    
+      <a href="https://youis.top/tag/Sn6c33z7i/"># docker</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Ansible部署K8s_v1.18.4环境" href="https://youis.top/post/154qMkJXW/">Ansible部署K8s_v1.18.4环境</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Ansible部署K8s_v1.18.4环境" href="https://youis.top/post/154qMkJXW/">上一篇</a>
+        <a class="nav-pc-next" title="Python期末考试案例代码" href="https://youis.top/post/DHq7otHwc/">Python期末考试案例代码</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="Python期末考试案例代码" href="https://youis.top/post/DHq7otHwc/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="解决pycurl安装错误" href="https://youis.top/post/HYW8Js4p1/">解决pycurl安装错误</a>
-        <a class="nav-mobile-next" title="解决pycurl安装错误" href="https://youis.top/post/HYW8Js4p1/">下一篇</a>
+        <a class="nav-pc-next" title="Python检索关键字" href="https://youis.top/post/nqFG2uASl/">Python检索关键字</a>
+        <a class="nav-mobile-next" title="Python检索关键字" href="https://youis.top/post/nqFG2uASl/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

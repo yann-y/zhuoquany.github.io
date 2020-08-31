@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1592634870056">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1598876096049">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -194,19 +194,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">40</span>
+        <span class="site-item-stat-count">42</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">26</span>
+        <span class="site-item-stat-count">28</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">26</span>
+        <span class="site-item-stat-count">28</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -216,7 +216,7 @@
       <div class="sidebar-item">
         <span class="site-item-rss">
             <i class="fa fa-rss"></i>
-            <a href="https://blog.youis.top/atom.xml" target="_blank">RSS</a>
+            <a href="https://youis.top/atom.xml" target="_blank">RSS</a>
         </span>
       </div>
     
@@ -277,7 +277,17 @@
       
       
       
-      <a href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="https://youis.top/post/xi-tong-xun-jian-jiao-ben/">
         <div class="motion-warpper">
           <div class="tag-post-node">
             <h1>
@@ -296,7 +306,7 @@
       
       
       
-      <a href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/">
+      <a href="https://youis.top/post/linux-huo-qu-ip-di-zhi/">
         <div class="motion-warpper">
           <div class="tag-post-node">
             <h1>
@@ -311,7 +321,7 @@
       
       
       
-      <a href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/">
+      <a href="https://youis.top/post/shell-jiao-ben-zuo-ye/">
         <div class="motion-warpper">
           <div class="tag-post-node">
             <h1>
@@ -462,7 +472,7 @@
       
       
       
-      <a href="https://blog.youis.top/post/t811ZgOaf/">
+      <a href="https://youis.top/post/t811ZgOaf/">
         <div class="motion-warpper">
           <div class="tag-post-node">
             <h1>
@@ -692,7 +702,66 @@ hljs.initHighlightingOnLoad();
     <div class="result" id="result">
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/nqFG2uASl/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/DHq7otHwc/"" data-c="
+          &lt;p&gt;期末考试的案例代码总结&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code&gt;from random import randint
+&#39;&#39;&#39;
+编写程序，生成包含1000个0到100之间的随机整数，并统计每个元素出现的次数
+&#39;&#39;&#39;
+lis = [randint(0, 100) for i in range(0, 1000)]
+for i in set(lis):
+    print(i, &amp;quot;:&amp;quot;, lis.count(i))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    &#39;&#39;&#39;
+编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。
+&#39;&#39;&#39;
+from random import randint
+lis = [randint(0, 100) for i in range(0, 20)]
+print(sorted(lis[:9])+sorted(lis[10:],reverse=True))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;&#39;&#39;
+编写程序，生成一个包含 20 个随机整数的列表，然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
+&#39;&#39;&#39;
+from random import randint
+lis = [randint(0, 100) for i in range(0, 20)]
+even = sorted(lis[::2], reverse=True)  # 偶数下标
+print(lis)
+print(even)
+j = 0
+for i in range(0, 20, 2):
+    lis[i] = even[j]
+    j += 1
+print(lis)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;&#39;&#39;
+判断字符串是否为回文，使用切片实现。
+&#39;&#39;&#39;
+
+oldstr = &amp;quot;123aba321&amp;quot;
+if oldstr == oldstr[::-1]:
+    print(&amp;quot;是回文字符串&amp;quot;)
+else:
+    print(&amp;quot;不是回文字符串&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+">Python期末考试案例代码</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/154qMkJXW/"" data-c="
+          &lt;p&gt;Kubernetes是Goole开源的一个容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。&lt;br&gt;
+本文介绍如何在本地自行搭建一套k8s集群。&lt;br&gt;
+本文所涉及的所有配置文件详见&amp;quot;离线包和镜像汇总资料&amp;quot;。&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/QQ%E6%88%AA%E5%9B%BE20200627233552.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;由于Markdown不好编排，我附上Word连接&lt;br&gt;
+👇👇👇👇&lt;br&gt;
+&lt;a href=&#34;http://cloud.youis.top/?r=/download&amp;amp;path=L0Fuc2libGUvQW5zaWJsZemDqOe9sks4c192MS4xOC40546v5aKDMjAyMDA2MjTvvIjoh6rliqjljJbohJrmnKzvvIkuZG9jeA%3D%3D&#34;&gt;Ansible部署K8s_v1.18.4环境.docx&lt;/a&gt;&lt;/p&gt;
+">Ansible部署K8s_v1.18.4环境</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/nqFG2uASl/"" data-c="
           &lt;p&gt;找到在某个目录下面所有的文件内容里面有关键字&amp;quot;info&amp;quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# encoding: utf-8
@@ -751,7 +820,7 @@ if __name__ == &#39;__main__&#39;:
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/HYW8Js4p1/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/HYW8Js4p1/"" data-c="
           &lt;p&gt;由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;错误1：&lt;/p&gt;
@@ -769,7 +838,7 @@ pip install pycurl
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/dfjsdhfbjdsbfj/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/dfjsdhfbjdsbfj/"" data-c="
           &lt;p&gt;学习python的同时顺便复习数据结构。&lt;br&gt;
 🙌没人&lt;br&gt;
 👐比我&lt;br&gt;
@@ -836,7 +905,7 @@ print(select_sort(lis))&lt;/p&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/xi-tong-xun-jian-jiao-ben/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/xi-tong-xun-jian-jiao-ben/"" data-c="
           &lt;p&gt;在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;vi syscheck.sh&lt;/p&gt;
@@ -1067,7 +1136,7 @@ chksys
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-ke-tang-an-lie/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-ke-tang-an-lie/"" data-c="
           &lt;p&gt;重点讲解 杨辉三角 和 约瑟夫环报数游戏。&lt;br&gt;
 💪💪💪💪&lt;br&gt;
 python 永远滴神！！&lt;/p&gt;
@@ -1416,7 +1485,7 @@ if __name__ == &#39;__main__&#39;:
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/linux-huo-qu-ip-di-zhi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/linux-huo-qu-ip-di-zhi/"" data-c="
           &lt;p&gt;🐶🐶🐶&lt;br&gt;
 需要脚本获取本机ip地址&lt;br&gt;
 默认获取第二个网卡的IP地址&lt;br&gt;
@@ -1447,11 +1516,35 @@ ip=`echo  ${string/$str/}`
      echo &amp;quot;已探测 $iplis 的简略信息 &amp;quot;
   done
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;探测ip地址&#34;&gt;探测IP地址&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#! /bin/bash
+# 参数是网卡  名称
+#例如：  ./test.sh  ens33
+if [ &amp;quot;$#&amp;quot; -ne 1 ];then
+	echo &amp;quot;usage -- ./arp1.sh [interface]&amp;quot;
+	echo &amp;quot;Example -- ./arp1.sh eth1&amp;quot;
+	exit
+fi
+echo &amp;quot;&amp;quot; &amp;gt; mac_ip.text
+interface=$1
+ipprefix=`ifconfig $interface|grep &amp;quot;netmask&amp;quot;|awk &#39;{print $2}&#39;|cut -d &#39;.&#39; -f 1-3`
+for addr in $(seq 1 1254);do
+	info=$(arping -c 1 $ipprefix.$addr)
+	if [ $? -eq 0 ];then
+		mac=`echo $info | grep &amp;quot;from&amp;quot;|cut -d &#39; &#39; -f 10`
+		ipaddr=`echo $info|grep &amp;quot;from&amp;quot;|cut -d &#39; &#39; -f 2`
+		echo &amp;quot;$mac -- $ipaddr&amp;quot;
+		echo &amp;quot;$mac -- $ipaddr&amp;quot; &amp;gt;&amp;gt; mac_ip.text
+	else
+		echo &amp;quot;当前扫描的第$addr 是非活动地址!!&amp;quot;
+	fi
+done
+&lt;/code&gt;&lt;/pre&gt;
 ">linux获取ip地址</a>
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/shell-jiao-ben-zuo-ye/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/shell-jiao-ben-zuo-ye/"" data-c="
           &lt;h1 id=&#34;if-第一题&#34;&gt;if 第一题&lt;/h1&gt;
 &lt;p&gt;设计一个shell程序，执行一次将备份并压缩/etc目录下的所有内容，存放在/root/bak目录里，且文件名为如下形式yymmdd_etc，yy为年，mm为月，dd为日。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -1729,7 +1822,7 @@ main
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-ni-mu-you-xi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-ni-mu-you-xi/"" data-c="
           &lt;p&gt;五一小长假都有作业。&lt;br&gt;
 假中假可还行，还没开学就放假&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -1855,7 +1948,7 @@ if __name__ == &#39;__main__&#39;:
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/0TQcnCohv/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/0TQcnCohv/"" data-c="
           &lt;p&gt;收作业不清楚谁没交，一个一个的数，太麻烦。&lt;br&gt;
 😏😏😏&lt;br&gt;
 写一个程序搞定他。&lt;/p&gt;
@@ -1932,7 +2025,7 @@ if __name__ == &#39;__main__&#39;:
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/3mEbBUOoi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/3mEbBUOoi/"" data-c="
           &lt;p&gt;python的第五次作业&lt;br&gt;
 这个是python课的一个小案列，不涉及大数据推荐等等。&lt;br&gt;
 只是一个简单的集合应用&lt;/p&gt;
@@ -2031,7 +2124,7 @@ print(max(set(data[film_user]) - set(user), key=max_score))
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/7b8Oe4egB/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/7b8Oe4egB/"" data-c="
           &lt;p&gt;Gradle + eclipse 输入helloworld&lt;br&gt;
 确保JDK安装成功。&lt;br&gt;
 java 版本java1.8&lt;/p&gt;
@@ -2064,7 +2157,7 @@ eclipse 操作File-&amp;gt;import-&amp;gt;Gradle&lt;br&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/NKkoP0wN4/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/NKkoP0wN4/"" data-c="
           &lt;p&gt;docker妈耶，真香😁😁😁😁&lt;/p&gt;
 &lt;h1 id=&#34;安装zookeeper&#34;&gt;安装zookeeper&lt;/h1&gt;
 &lt;p&gt;kafka需要zookeeper管理，所以需要先安装zookeeper。&lt;br&gt;
@@ -2103,7 +2196,7 @@ $ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --fr
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/iobZKkOLk/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/iobZKkOLk/"" data-c="
           &lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
 &lt;p&gt;七牛云的cdn加速，使用https的话，要收费，没有免费流量。😒😒😒&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://console.upyun.com/register/?invite=ryOpVZxtL&#34;&gt;又拍云注册连接&lt;/a&gt;&lt;/p&gt;
@@ -2124,7 +2217,7 @@ $ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --fr
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/sRdAP2jaU/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/sRdAP2jaU/"" data-c="
           &lt;p&gt;每节课都有作业。。。。。&lt;br&gt;
 还有一个作业是上次布置过的。🙃🙃🙃&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2198,7 +2291,7 @@ print(lis)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/iumJPhy8A/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/iumJPhy8A/"" data-c="
           &lt;p&gt;爬虫的基本原理就是模拟客户端（可以是浏览器，也有可能是APP）向远程服务器发送 HTTP 请求，我们需要知道目标服务器的 HOST、URI、请求方法、请求参数、请求头、请求体。Web 网站通过 Chrome 浏览器可以找到这些信息。但是对于 APP 爬虫，就显得有些束手无策。这时候必须借用一些抓包工具来辅助我们分析APP背后的秘密。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;今天推荐4个HTTP代理工具通过抓包分析，帮助你还原APP背后的每个请求。&lt;/p&gt;
@@ -2220,7 +2313,7 @@ GitHub 地址：https://github.com/mitmproxy/mitmproxy&lt;/p&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-di-san-ci-zuo-ye/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-di-san-ci-zuo-ye/"" data-c="
           &lt;p&gt;1.现有商品列表如下：&lt;/p&gt;
 &lt;p&gt;products =   [[&amp;quot;iphone&amp;quot;,6888],[&amp;quot;MacPro&amp;quot;,14800],[&amp;quot;小米6&amp;quot;,2499],[&amp;quot;Coffee&amp;quot;,31],[&amp;quot;Book&amp;quot;,60],[&amp;quot;Nike&amp;quot;,699]]，&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2307,7 +2400,7 @@ print(outNums)  # [(1, 8), (2, 7)]
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-di-er-ci-zuo-ye/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-di-er-ci-zuo-ye/"" data-c="
           &lt;p&gt;顺便吐槽一下，我们老师。&lt;br&gt;
 每节课都有作业。。。。&lt;br&gt;
 🙃🙃🙃🙃&lt;/p&gt;
@@ -2368,7 +2461,7 @@ print(names.index(2, names.index(2) + 1),)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-shi-yi-dao-lian-xi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-shi-yi-dao-lian-xi/"" data-c="
           &lt;p&gt;python课后作业&lt;br&gt;
 🤡🤡🤡🤡&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2460,7 +2553,7 @@ print(list(reduce(lambda x, y: x * y, (li1, li2))))
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/pythonbiji/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/pythonbiji/"" data-c="
           &lt;h1 id=&#34;身份运算符&#34;&gt;身份运算符&lt;/h1&gt;
 &lt;p&gt;身份运算符用于比较两个对象的&lt;strong&gt;内存地址&lt;/strong&gt;是否一致——是否是对同一个对象的引用&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2510,7 +2603,7 @@ print(max(input_list))
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-an-zhuang-jiao-cheng/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-an-zhuang-jiao-cheng/"" data-c="
           &lt;h1 id=&#34;1-下载python解释器并安装&#34;&gt;1. 下载python解释器并安装&lt;/h1&gt;
 &lt;p&gt;官方地址: &lt;a href=&#34;https://www.python.org/downloads/release/python-377/&#34;&gt;点击下载&lt;/a&gt;&lt;br&gt;
 🤡🤡🤡&lt;/p&gt;
@@ -2598,7 +2691,7 @@ print(max(input_list))
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/BMg6sEDxV/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/BMg6sEDxV/"" data-c="
           &lt;h1 id=&#34;linux系统简介&#34;&gt;linux系统简介&lt;/h1&gt;
 &lt;p&gt;目前市场占有率最高的商业版Linux：RedHat&lt;br&gt;
 被普遍使用的Liunx发行版本:Centos | Ubuntu| Debian |Fedora |Gento&lt;/p&gt;
@@ -2648,7 +2741,7 @@ systemd进程的启动标识着引导过程的结束，也标识启动过程的�
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/picgotypora-shi-xian-tu-pian-zi-dong-shang-chuan/"" data-c="
           &lt;p&gt;😁😁😁自建博客，图片自动上传图床，提高网站访问速度。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;http://qiniu.youis.top/image-20200314211831488.png&#34; alt=&#34;image-20200314211831488&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
@@ -2663,7 +2756,7 @@ systemd进程的启动标识着引导过程的结束，也标识启动过程的�
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/anaconda-ru-men-yi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/anaconda-ru-men-yi/"" data-c="
           &lt;p&gt;Anaconda 是什么？&lt;br&gt;
 Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。&lt;br&gt;
 ⚽️⚽️⚽️&lt;/p&gt;
@@ -2756,7 +2849,7 @@ trusted-host= mirrors.aliyun.com
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/tensorflow20-ru-men/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/tensorflow20-ru-men/"" data-c="
           &lt;p&gt;包含前向传播，手写数字识别，以及遇到的一些错误的解决方法。&lt;/p&gt;
 &lt;!-- more  --&gt;
 &lt;h2 id=&#34;前向传播&#34;&gt;前向传播&lt;/h2&gt;
@@ -2923,7 +3016,7 @@ print(&#39;Test accuracy:&#39;, test_acc)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/oracle-de-an-zhuang-he-shi-yong/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/oracle-de-an-zhuang-he-shi-yong/"" data-c="
           &lt;h2 id=&#34;防火墙的关闭&#34;&gt;防火墙的关闭&lt;/h2&gt;
 &lt;p&gt;chkconfig iptables off（设置自动启动为关闭）&lt;/p&gt;
 &lt;p&gt;chkconfig iptables on（设置自动启动为启动）&lt;/p&gt;
@@ -2941,7 +3034,7 @@ print(&#39;Test accuracy:&#39;, test_acc)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/linear-regressionxian-xing-hui-gui/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/linear-regressionxian-xing-hui-gui/"" data-c="
           &lt;p&gt;这是一个 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;w&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;y=wx+b&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.625em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.66666em;vertical-align:-0.08333em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.02691em;&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;b&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的线性回归代码。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#conding:utf-8
@@ -3018,15 +3111,15 @@ if __name__ == &#39;__main__&#39;:
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/ip-jing-tai-lu-you/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/ip-jing-tai-lu-you/"" data-c="
           &lt;h1 id=&#34;ip静态路由&#34;&gt;ip静态路由&lt;/h1&gt;
 &lt;p&gt;网络拓扑图&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582598242156.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582598242156.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
 &lt;p&gt;命令的格式一般是ip route-static 目的网络 掩码 网关 preference 优先级 。&lt;/p&gt;
 &lt;p&gt;报文传递流程:&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582598256463.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582598256463.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;r1路由端口ip配置&#34;&gt;R1路由端口ip配置&lt;/h2&gt;
 &lt;p&gt;为GigabitEthernet0/0/0  端口配置ip:192.168.1.1&lt;/p&gt;
 &lt;p&gt;为GigabitEthernet0/0/1  端口配置ip:192.168.4.1&lt;/p&gt;
@@ -3076,11 +3169,11 @@ ip route-static 192.168.2.0 255.255.255.0 192.168.5.1&lt;/p&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/docker-bu-shu-php-wang-ye/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/docker-bu-shu-php-wang-ye/"" data-c="
           &lt;h2 id=&#34;docker-部署php网页&#34;&gt;docker 部署PHP网页&lt;/h2&gt;
 &lt;p&gt;准备好两个镜像&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582597946531.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://youis.top/post-images/1582597946531.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 然后创建两个容器:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;docker  run --name=&amp;quot;apachedemo&amp;quot;  -p 80:80   -d  nimmis/apache-php5
 
@@ -3088,11 +3181,11 @@ docker run --name mysqldemo -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysq
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;docker ps 查看两个容器的状态，如果docker ps 没有说明容器没有起来。&lt;/p&gt;
 &lt;p&gt;docker ps 默认查看的是正在运行的容器。&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582597959191.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582597959191.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;然后在游览器输入docker 宿主机的ip；docker  安装环境的ip；&lt;/p&gt;
 &lt;p&gt;（比如：虚拟机里面安装Linux，Linux里面安装docker ，你要访问网页应该输入Linux的ip）；&lt;/p&gt;
 &lt;p&gt;出现如下界面，则表示Apache服务安装没有问题。&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582597969085.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582597969085.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;​    在Linux上新建一个PHP 文件，这里我命名为 demo.php&lt;/p&gt;
 &lt;p&gt;输入一下内容。&lt;/p&gt;
 &lt;p&gt;ip地址根据自己的ip修改。&lt;/p&gt;
@@ -3119,7 +3212,7 @@ $result = mysqli_query($conn,$sql);
 &lt;p&gt;第一次访问可能会出现一下的错误：&lt;/p&gt;
 &lt;p&gt;这是因为mysql 没有开启远程登录权限。&lt;/p&gt;
 &lt;p&gt;我们进入mysql容器修改相应的权限。&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582597987851.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582597987851.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker exec -it 1ed50ef86354  /bin/bash
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;docker exec -it  加容器ID或者容器名字可以进入docker容器内。&lt;/p&gt;
@@ -3142,10 +3235,10 @@ insert into student values(1,&#39;Joy&#39;),(2,&#39;Tom&#39;),(3,&#39;James&#39;
 &lt;p&gt;再次访问会出现如下错误:&lt;/p&gt;
 &lt;p&gt;Server sent charset unknown to the client. Please, report to the developers&lt;/p&gt;
 &lt;p&gt;这是因为mysql最新版的字符默认字符编码 utf8mb4，所以我们要设置MySQL的默认字符集为老版本的utf8&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582598002887.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582598002887.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;还是在mysql容器内执行&lt;/p&gt;
 &lt;p&gt;mysql  --help | grep my.cnf&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582598035668.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://youis.top/post-images/1582598035668.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 查看mysql配置文件的路径那。&lt;/p&gt;
 &lt;p&gt;我安装的mysql-service精简到了连vi和vim也没有，所以需要自己手动安装。用yum安装就好了。由于没有配置yum源所以会很慢。&lt;/p&gt;
 &lt;p&gt;修改/etc/my.cnf&lt;/p&gt;
@@ -3164,7 +3257,7 @@ default_authentication_plugin=mysql_native_password
 &lt;p&gt;退出到Linux  系统，执行docker  restart mysqldemo&lt;/p&gt;
 &lt;p&gt;再次进入游览器，报错 The server requested authentication method unknown to the client。&lt;/p&gt;
 &lt;p&gt;是由于用户身份认证的加密方式不兼容导致的，&lt;code&gt;mysql8.0&lt;/code&gt;中默认方式为&lt;code&gt;caching_sha2_password&lt;/code&gt;，引起老版本兼容性问题，老版本加密方式为&lt;code&gt;mysql_native_password&lt;/code&gt;。&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582598046444.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582598046444.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mysql -uroot -p
  
 use mysql;
@@ -3173,12 +3266,12 @@ ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_passw
 &lt;p&gt;我们这里修改为&lt;/p&gt;
 &lt;p&gt;ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;&lt;/p&gt;
 &lt;p&gt;然后再次访问：&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582598055802.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582598055802.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 ">docker 部署PHP网页</a>
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/apm-geng-huan-wei-guo-nei-yuan/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/apm-geng-huan-wei-guo-nei-yuan/"" data-c="
           &lt;p&gt;要设置apm使用的软件源很简单，执行下列命令：&lt;br&gt;
 🙋‍♂&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -3191,12 +3284,12 @@ ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_passw
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;检查是否更换成功，出现&lt;/p&gt;
 &lt;p&gt;checking  foring  native build tools  done&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582597716712.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582597716712.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 ">apm 更换为国内源</a>
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/python-xue-xi-bi-ji/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/python-xue-xi-bi-ji/"" data-c="
           &lt;h2 id=&#34;列表list&#34;&gt;列表（list）&lt;/h2&gt;
 &lt;!-- more --&gt;
 &lt;pre&gt;&lt;code&gt;- 列表是Python中的一个对象
@@ -3284,7 +3377,7 @@ ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_passw
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/GitHub/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/GitHub/"" data-c="
           &lt;h1 id=&#34;github-上传项目&#34;&gt;GitHub 上传项目&lt;/h1&gt;
 &lt;h2 id=&#34;问题集合&#34;&gt;问题集合&lt;/h2&gt;
 &lt;h3 id=&#34;添加追踪文件&#34;&gt;添加追踪文件&lt;/h3&gt;
@@ -3360,7 +3453,7 @@ git pull origin master&lt;/p&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/pip/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/pip/"" data-c="
           &lt;h2 id=&#34;pip换源&#34;&gt;pip换源&lt;/h2&gt;
 &lt;h3 id=&#34;linux-下pip换源&#34;&gt;Linux 下pip换源&lt;/h3&gt;
 &lt;p&gt;在 &lt;em&gt;~/.pip/pip.conf&lt;/em&gt; 中编辑如下内容，如果文件不存在，使用命令创建改文件&lt;/p&gt;
@@ -3391,7 +3484,7 @@ trusted-host = pypi.tuna.tsinghua.edu.cn
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/next-zhuti/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/next-zhuti/"" data-c="
           &lt;h2 id=&#34;next-主题修改&#34;&gt;next 主题修改&lt;/h2&gt;
 &lt;p&gt;打开站点配置文件：站点根目录/_config.yml&lt;/p&gt;
 &lt;p&gt;然后搜索找到language属性，属性值配置成zh-Hans，表示中文&lt;/p&gt;
@@ -3431,7 +3524,7 @@ zh-TW.yml&lt;br&gt;
 &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;实际效果：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582538604970.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582538604970.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;去掉强推荐等文字&#34;&gt;去掉强推荐等文字&lt;/h3&gt;
 &lt;p&gt;在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;lt;!-- 这个是我已经注解好的代码 --&amp;gt;
@@ -3480,7 +3573,7 @@ setInterval(&amp;quot;createtime()&amp;quot;,250);
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/hexoBlog/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/hexoBlog/"" data-c="
           &lt;h3 id=&#34;实验环境&#34;&gt;🏡实验环境&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;* windows10
 * node v10.16.0
@@ -3529,7 +3622,7 @@ hexo g
 hexo s
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;第一次初始化的时候hexo已经帮我们写了一篇名为 Hello World 的文章，默认的主题比较丑，打开时就是这个样子：&lt;br&gt;
-&lt;img src=&#34;https://blog.youis.top/post-images/1582594567589.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://youis.top/post-images/1582594567589.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;修改主题&#34;&gt;修改主题&lt;/h3&gt;
 &lt;p&gt;​	上面那个是我已经修改过的界面，原版的界面相当的丑。&lt;/p&gt;
 &lt;p&gt;​	官方主题：&lt;a href=&#34;https://hexo.io/themes/&#34;&gt;主题&lt;/a&gt;&lt;/p&gt;
@@ -3538,7 +3631,7 @@ hexo s
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;修改&lt;code&gt;_config.yml&lt;/code&gt;中的&lt;code&gt;theme: landscape&lt;/code&gt;改为&lt;code&gt;theme: yilia&lt;/code&gt;，然后重新执行&lt;code&gt;hexo g&lt;/code&gt;来重新生成，&lt;strong&gt;：后面必须要有一个空格&lt;/strong&gt;。&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582594602953.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582594602953.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;如果出现一些莫名其妙的问题，可以先执行&lt;code&gt;hexo clean&lt;/code&gt;来清理一下public的内容，然后再来重新生成和发布。&lt;/p&gt;
 &lt;h3 id=&#34;常用的hexo命令&#34;&gt;常用的hexo命令&lt;/h3&gt;
 &lt;p&gt;常见命令&lt;/p&gt;
@@ -3572,7 +3665,7 @@ hexo d -g #生成并上传
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/hexo-next-zhuti/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/hexo-next-zhuti/"" data-c="
           &lt;h2 id=&#34;next-主题修改&#34;&gt;next 主题修改&lt;/h2&gt;
 &lt;h3 id=&#34;中文语言修改失败&#34;&gt;中文语言修改失败&lt;/h3&gt;
 &lt;p&gt;打开站点配置文件：站点根目录/_config.yml&lt;/p&gt;
@@ -3613,7 +3706,7 @@ zh-TW.yml&lt;br&gt;
 &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;实际效果：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582595730860.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582595730860.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;去掉强推荐等文字&#34;&gt;去掉强推荐等文字&lt;/h3&gt;
 &lt;p&gt;在主题文件夹 找到layout/footer.swig,注解或者删除如下代码：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&amp;lt;!-- 这个是我已经注解好的代码 --&amp;gt;
@@ -3664,7 +3757,7 @@ setInterval(&amp;quot;createtime()&amp;quot;,250);
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/github-SSH-key/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/github-SSH-key/"" data-c="
           &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ssh-keygen -t rsa -C &amp;quot;邮件地址&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这个邮件地址是你GitHub的邮件地址。&lt;/p&gt;
@@ -3676,10 +3769,10 @@ setInterval(&amp;quot;createtime()&amp;quot;,250);
 &lt;li&gt;输入密码短语（无密码短语为空）：&lt;/li&gt;
 &lt;li&gt;再次输入相同的密码：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582538362894.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582538362894.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;打开ssh key 的保存路径，找到id_rsa.pub文件，用记事本打开并复制里面的内容。打开你的GitHub主页，进入个人设置 -&amp;gt; SSH and GPG keys -&amp;gt; New SSH key：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582538389820.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://blog.youis.top/post-images/1582538401948.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582538389820.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://youis.top/post-images/1582538401948.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;将刚复制的内容粘贴到key那里，title随便填，保存。&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-git&#34;&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
@@ -3694,7 +3787,7 @@ $ git config --global user.email  &amp;quot;xxx@qq.com&amp;quot;// 填写你的g
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/nlp-xue-xi-yi/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/nlp-xue-xi-yi/"" data-c="
           &lt;p&gt;😂😂😂&lt;br&gt;
 机器学习，学习机器&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -3733,7 +3826,7 @@ $ git config --global user.email  &amp;quot;xxx@qq.com&amp;quot;// 填写你的g
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/t811ZgOaf/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/t811ZgOaf/"" data-c="
           &lt;p&gt;💻💻💻懒一点还是要写笔记的。&lt;br&gt;
 shell我觉得和python差不多。&lt;br&gt;
 shell要是有一个IDE就好了。vim现在我都还不熟练。😤😤&lt;/p&gt;
@@ -3783,7 +3876,7 @@ fi&lt;br&gt;
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/ct-wen-ti/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/ct-wen-ti/"" data-c="
           &lt;h3 id=&#34;问题一&#34;&gt;问题一&lt;/h3&gt;
 &lt;h4 id=&#34;什么是高通滤波&#34;&gt;什么是高通滤波？？？&lt;/h4&gt;
 &lt;p&gt;高通滤波(high-pass filter) 是一种过滤方式，规则为高频信号能正常通过，而低于设定临界值的低频&lt;/p&gt;
@@ -3803,7 +3896,7 @@ imagesc(b)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/about/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/about/"" data-c="
           &lt;blockquote&gt;
 &lt;p&gt;欢迎来到我的小站呀，很高兴遇见你！🤝&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -3819,7 +3912,7 @@ imagesc(b)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://blog.youis.top/post/hello-gridea/"" data-c="
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/hello-gridea/"" data-c="
           &lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;
 ✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;
 &lt;!-- more --&gt;
