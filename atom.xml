@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-08-31T12:44:31.884Z</updated>
+    <updated>2020-09-01T02:42:56.391Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -16,9 +16,11 @@
         <link href="https://youis.top/post/DHq7otHwc/">
         </link>
         <updated>2020-08-31T11:30:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>期末考试的案例代码总结</p>
+        <summary type="html"><![CDATA[<p>期末考试的案例代码总结<br>
+😁😁😁😁</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>期末考试的案例代码总结</p>
+        <content type="html"><![CDATA[<p>期末考试的案例代码总结<br>
+😁😁😁😁</p>
 <!-- more -->
 <pre><code>from random import randint
 '''
@@ -44,9 +46,8 @@ even = sorted(lis[::2], reverse=True)  # 偶数下标
 print(lis)
 print(even)
 j = 0
-for i in range(0, 20, 2):
-    lis[i] = even[j]
-    j += 1
+for i in range(0, 10):
+    lis[i*2] = even[i]
 print(lis)
 </code></pre>
 <pre><code class="language-python">'''
