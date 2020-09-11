@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-09-01T02:42:56.391Z</updated>
+    <updated>2020-09-11T01:44:45.372Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -22,7 +22,7 @@
         <content type="html"><![CDATA[<p>期末考试的案例代码总结<br>
 😁😁😁😁</p>
 <!-- more -->
-<pre><code>from random import randint
+<pre><code class="language-Python">from random import randint
 '''
 编写程序，生成包含1000个0到100之间的随机整数，并统计每个元素出现的次数
 '''
@@ -31,21 +31,22 @@ for i in set(lis):
     print(i, &quot;:&quot;, lis.count(i))
 </code></pre>
 <pre><code class="language-python">    '''
-编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。
+编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，
+后10个元素降序排列，并输出结果。
 '''
 from random import randint
 lis = [randint(0, 100) for i in range(0, 20)]
-print(sorted(lis[:9])+sorted(lis[10:],reverse=True))
+print(sorted(lis[:10])+sorted(lis[10:],reverse=True))
 </code></pre>
 <pre><code class="language-python">'''
-编写程序，生成一个包含 20 个随机整数的列表，然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
+编写程序，生成一个包含 20 个随机整数的列表，
+然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
 '''
 from random import randint
 lis = [randint(0, 100) for i in range(0, 20)]
 even = sorted(lis[::2], reverse=True)  # 偶数下标
 print(lis)
 print(even)
-j = 0
 for i in range(0, 10):
     lis[i*2] = even[i]
 print(lis)
@@ -53,7 +54,6 @@ print(lis)
 <pre><code class="language-python">'''
 判断字符串是否为回文，使用切片实现。
 '''
-
 oldstr = &quot;123aba321&quot;
 if oldstr == oldstr[::-1]:
     print(&quot;是回文字符串&quot;)

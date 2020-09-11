@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="keywords" content="Eden">
+<meta name="keywords" content="Eden的博客">
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1598928166410">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1599788664985">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -673,7 +673,7 @@ hljs.initHighlightingOnLoad();
           &lt;p&gt;期末考试的案例代码总结&lt;br&gt;
 😁😁😁😁&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;pre&gt;&lt;code&gt;from random import randint
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;from random import randint
 &#39;&#39;&#39;
 编写程序，生成包含1000个0到100之间的随机整数，并统计每个元素出现的次数
 &#39;&#39;&#39;
@@ -682,21 +682,22 @@ for i in set(lis):
     print(i, &amp;quot;:&amp;quot;, lis.count(i))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    &#39;&#39;&#39;
-编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，后10个元素降序排列，并输出结果。
+编写程序，生成包含20个随机数的列表，然后将前10个元素升序排列，
+后10个元素降序排列，并输出结果。
 &#39;&#39;&#39;
 from random import randint
 lis = [randint(0, 100) for i in range(0, 20)]
-print(sorted(lis[:9])+sorted(lis[10:],reverse=True))
+print(sorted(lis[:10])+sorted(lis[10:],reverse=True))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;&#39;&#39;
-编写程序，生成一个包含 20 个随机整数的列表，然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
+编写程序，生成一个包含 20 个随机整数的列表，
+然后对其中偶数下标的元素进行降序排列，奇数下标的元素不变。
 &#39;&#39;&#39;
 from random import randint
 lis = [randint(0, 100) for i in range(0, 20)]
 even = sorted(lis[::2], reverse=True)  # 偶数下标
 print(lis)
 print(even)
-j = 0
 for i in range(0, 10):
     lis[i*2] = even[i]
 print(lis)
@@ -704,7 +705,6 @@ print(lis)
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;&#39;&#39;
 判断字符串是否为回文，使用切片实现。
 &#39;&#39;&#39;
-
 oldstr = &amp;quot;123aba321&amp;quot;
 if oldstr == oldstr[::-1]:
     print(&amp;quot;是回文字符串&amp;quot;)
@@ -3444,8 +3444,8 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，在pip 目录下新建文件pip.ini，内容如下，或者按照网友的建议：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[global]
 timeout = 6000
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-trusted-host = pypi.tuna.tsinghua.edu.cn
+index-url = https://mirrors.aliyun.com/pypi/simple/
+trusted-host = mirrors.aliyun.com
 &lt;/code&gt;&lt;/pre&gt;
 ">pip 换源</a>
       </div>
