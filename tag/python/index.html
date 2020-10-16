@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1599788664985">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1602814297161">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -194,19 +194,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">42</span>
+        <span class="site-item-stat-count">43</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">28</span>
+        <span class="site-item-stat-count">29</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">28</span>
+        <span class="site-item-stat-count">29</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -264,6 +264,23 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
+      
+      <a href="https://youis.top/post/KXGXsI0Gv/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              10-16
+              <small>pytorch测试demo</small>
+            </h1>
+          </div>
+        </div>
+      </a>
+      
+      
       
       
       
@@ -667,6 +684,141 @@ hljs.initHighlightingOnLoad();
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/KXGXsI0Gv/"" data-c="
+          &lt;p&gt;pytorch一个简单的测试代码。&lt;br&gt;
+手写数字识别&lt;br&gt;
+😁😁😁😁&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# coding: utf-8
+import torch
+import torch.nn as nn
+import torchvision.datasets as dsets
+import torchvision.transforms as transforms
+from torch.autograd import Variable
+import torch.utils.data as Data
+import matplotlib.pyplot as plt
+
+input_size = 784  # 输入大小
+hidden_size = 500  # 第一层的神经元个数
+num_classes = 10  # 类别个数
+num_epochs = 5  # 迭代次数
+batch_size = 100  # 每一批的数目
+learning_rate = 0.001  # 学习率
+
+train_dataset = dsets.MNIST(root=&#39;./data&#39;, train=True,
+                            transform=transforms.ToTensor(), download=True)  # 加载数据集
+test_dataset = dsets.MNIST(root=&#39;./data&#39;, train=False,
+                           transform=transforms.ToTensor(), download=True)  # 加载测试集
+
+train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
+                                           batch_size=batch_size, shuffle=True)  # shuffle为True：在每个epoch重新排列数据
+test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
+                                          batch_size=batch_size, shuffle=False)
+
+
+# In[4]:
+
+
+class Net(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+
+        return out
+
+
+# In[5]:
+
+
+net = Net(input_size, hidden_size, num_classes)  # 创建模型
+criterion = nn.CrossEntropyLoss()  # 创建损失函数（用的交叉熵）
+optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)  # 梯度下降
+
+# In[6]:
+
+
+for epoch in range(num_epochs):
+    for i, (images, labels) in enumerate(train_loader):
+        images = Variable(images.view(-1, 28 * 28))
+        label = Variable(labels)
+
+        optimizer.zero_grad()  # 将权重初始化为0
+        outputs = net(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        optimizer.step()  # 更新权重
+
+        if (i + 1) % 100 == 0:
+            print(&#39;Epoch [%d/%d], Step [%d/%d],Loss:%.4f&#39; % (epoch + 1, num_epochs, i + 1,
+                                                             len(train_dataset) // batch_size, loss.item()))
+
+# In[7]:
+
+
+# 预测数据
+correct = 0
+total = 0
+for images, labels in test_loader:
+    images = Variable(images.view(-1, 28 * 28))
+    outputs = net(images)
+    _, predicted = torch.max(outputs.data, 1)
+    total += labels.size(0)
+    correct += (predicted == labels).sum()
+print(&#39;Accuracy of the network on the 10000 test images:%d %%&#39; % (100 * correct // total))
+
+# In[8]:
+
+
+plt.imshow(test_dataset.data[-25].numpy(), cmap=&#39;gray&#39;)
+plt.title(&#39;%i &#39; % (predicted[-25]))
+
+plt.show()
+
+# In[9]:
+
+
+# 储存模型
+torch.save(net, &#39;model1.pkl&#39;)
+
+# In[10]:
+
+
+# 加载模型
+model = torch.load(&#39;model1.pkl&#39;)
+
+# In[11]:
+
+
+# 预测数据
+correct = 0
+total = 0
+for images, labels in test_loader:
+    images = Variable(images.view(-1, 28 * 28))
+    outputs = model(images)
+    _, predicted = torch.max(outputs.data, 1)
+    total += labels.size(0)
+    correct += (predicted == labels).sum()
+print(&#39;Accuracy of the network on the 10000 test images:%d %%&#39; % (100 * torch.true_divide(correct, total)))
+
+# In[12]:
+
+
+torch.save(net.state_dict(), &#39;model2.pkl&#39;)
+net.load_state_dict(torch.load(&#39;model2.pkl&#39;))
+
+&lt;/code&gt;&lt;/pre&gt;
+">pytorch测试demo</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://youis.top/post/DHq7otHwc/"" data-c="

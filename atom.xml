@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-09-11T01:44:45.372Z</updated>
+    <updated>2020-10-16T03:15:14.463Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -10,6 +10,148 @@
     <logo>https://youis.top/images/avatar.png</logo>
     <icon>https://youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[pytorch测试demo]]></title>
+        <id>https://youis.top/post/KXGXsI0Gv/</id>
+        <link href="https://youis.top/post/KXGXsI0Gv/">
+        </link>
+        <updated>2020-10-16T02:09:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>pytorch一个简单的测试代码。<br>
+手写数字识别<br>
+😁😁😁😁</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>pytorch一个简单的测试代码。<br>
+手写数字识别<br>
+😁😁😁😁</p>
+<!-- more -->
+<pre><code class="language-python"># coding: utf-8
+import torch
+import torch.nn as nn
+import torchvision.datasets as dsets
+import torchvision.transforms as transforms
+from torch.autograd import Variable
+import torch.utils.data as Data
+import matplotlib.pyplot as plt
+
+input_size = 784  # 输入大小
+hidden_size = 500  # 第一层的神经元个数
+num_classes = 10  # 类别个数
+num_epochs = 5  # 迭代次数
+batch_size = 100  # 每一批的数目
+learning_rate = 0.001  # 学习率
+
+train_dataset = dsets.MNIST(root='./data', train=True,
+                            transform=transforms.ToTensor(), download=True)  # 加载数据集
+test_dataset = dsets.MNIST(root='./data', train=False,
+                           transform=transforms.ToTensor(), download=True)  # 加载测试集
+
+train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
+                                           batch_size=batch_size, shuffle=True)  # shuffle为True：在每个epoch重新排列数据
+test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
+                                          batch_size=batch_size, shuffle=False)
+
+
+# In[4]:
+
+
+class Net(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+
+        return out
+
+
+# In[5]:
+
+
+net = Net(input_size, hidden_size, num_classes)  # 创建模型
+criterion = nn.CrossEntropyLoss()  # 创建损失函数（用的交叉熵）
+optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)  # 梯度下降
+
+# In[6]:
+
+
+for epoch in range(num_epochs):
+    for i, (images, labels) in enumerate(train_loader):
+        images = Variable(images.view(-1, 28 * 28))
+        label = Variable(labels)
+
+        optimizer.zero_grad()  # 将权重初始化为0
+        outputs = net(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        optimizer.step()  # 更新权重
+
+        if (i + 1) % 100 == 0:
+            print('Epoch [%d/%d], Step [%d/%d],Loss:%.4f' % (epoch + 1, num_epochs, i + 1,
+                                                             len(train_dataset) // batch_size, loss.item()))
+
+# In[7]:
+
+
+# 预测数据
+correct = 0
+total = 0
+for images, labels in test_loader:
+    images = Variable(images.view(-1, 28 * 28))
+    outputs = net(images)
+    _, predicted = torch.max(outputs.data, 1)
+    total += labels.size(0)
+    correct += (predicted == labels).sum()
+print('Accuracy of the network on the 10000 test images:%d %%' % (100 * correct // total))
+
+# In[8]:
+
+
+plt.imshow(test_dataset.data[-25].numpy(), cmap='gray')
+plt.title('%i ' % (predicted[-25]))
+
+plt.show()
+
+# In[9]:
+
+
+# 储存模型
+torch.save(net, 'model1.pkl')
+
+# In[10]:
+
+
+# 加载模型
+model = torch.load('model1.pkl')
+
+# In[11]:
+
+
+# 预测数据
+correct = 0
+total = 0
+for images, labels in test_loader:
+    images = Variable(images.view(-1, 28 * 28))
+    outputs = model(images)
+    _, predicted = torch.max(outputs.data, 1)
+    total += labels.size(0)
+    correct += (predicted == labels).sum()
+print('Accuracy of the network on the 10000 test images:%d %%' % (100 * torch.true_divide(correct, total)))
+
+# In[12]:
+
+
+torch.save(net.state_dict(), 'model2.pkl')
+net.load_state_dict(torch.load('model2.pkl'))
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python期末考试案例代码]]></title>
         <id>https://youis.top/post/DHq7otHwc/</id>
@@ -1187,138 +1329,6 @@ main(){
     update_kernel;
 }
 main
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python尼姆游戏]]></title>
-        <id>https://youis.top/post/python-ni-mu-you-xi/</id>
-        <link href="https://youis.top/post/python-ni-mu-you-xi/">
-        </link>
-        <updated>2020-05-03T07:49:10.000Z</updated>
-        <summary type="html"><![CDATA[<p>五一小长假都有作业。<br>
-假中假可还行，还没开学就放假</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>五一小长假都有作业。<br>
-假中假可还行，还没开学就放假</p>
-<!-- more -->
-<h1 id="第三题-绘制菱形">第三题 绘制菱形</h1>
-<p>编写代码，输出由星号*组成的菱形图案，并且可以灵活控制图案的大小。</p>
-<pre><code class="language-python">
-n = 6  # 菱形得到大小
-for i in range(n):
-    print((' * ' * i).center(n * 3))
-for i in range(n, 0, -1):
-    print((' * ' * i).center(n * 3))
-</code></pre>
-<h1 id="第四题-组合计算">第四题  组合计算</h1>
-<pre><code class="language-python"># encoding: utf-8
-&quot;&quot;&quot;
-@author: Eden
-@contact: .....
-@time: 2020/5/2 12:11
-@file: problem_04.py
-@desc:
-4．编写程序，计算组合数C(n,i)，即从n个元素中任选i个，有多少种选法。
-&quot;&quot;&quot;
-
-import math
-
-n, m = 6, 2
-print(math.factorial(n) // (math.factorial(m) * math.factorial(n - m)))
-
-</code></pre>
-<h1 id="第五题-比赛成绩">第五题  比赛成绩</h1>
-<p>模拟决赛现场最终成绩的计算过程。<br>
-有至少3个评委，<br>
-打分规则为删除最高分和最低分之后计算剩余分数的平均分。</p>
-<pre><code class="language-python">
-# 评分
-while True:
-    scores = input(&quot;请录入分数，以空格间隔分数: &quot;).split()
-    scores = list(map(float, scores))
-    if len(scores) &lt; 3:
-        print(&quot;评委人数小于3人,请重新录入分数&quot;)
-    else:
-        break
-score_max = max(scores)
-score_min = min(scores)
-print(&quot;去掉一个最高分 %0.2f&quot; % score_max)
-print(&quot;去掉一个最低分 %0.2f&quot; % score_min)
-scores.remove(score_max)
-scores.remove(score_min)
-scores_sum = sum(scores)
-final_score = scores_sum / len(scores)
-print(&quot;最后得分  %0.2f&quot; % final_score)
-</code></pre>
-<h1 id="第六题-尼姆游戏">第六题  尼姆游戏</h1>
-<p>只有一堆棋子<br>
-每次从尼姆堆中拿走的棋子数量不能超过尼姆堆中棋子数量的一半<br>
-但至少取走一个<br>
-最后不能再取的就是输家。<br>
-(待补充尼姆游戏必胜算法)<br>
-可以先参考此文章👉👉👉<a href="https://www.cnblogs.com/strong-1-1-python/p/7825973.html">点击阅读</a></p>
-<pre><code class="language-python"># encoding: utf-8
-from random import randint
-from math import floor, log2
-
-
-def answer_n(x):
-    return floor(log2(x / 3))
-
-
-def smart(n):
-    if n &lt;= 3:
-        return 1
-    if log2((n + 1) / 3) % 1 == 0:
-        # 处于必输状态，随机数量
-        return randint(1, n // 2)
-    else:
-        # 按玩家必输模式计算出机器人应拿走的数量
-        return n - (3 * 2 ** answer_n(n) - 1)
-
-
-def re_input():
-    while True:
-        try:
-            nums = int(input(&quot;该你了，你要拿走:&quot;))
-            return nums
-        except ValueError:
-            print(&quot;请输入一个数字！！！&quot;)
-
-
-def nim_game(n):
-    while True:
-        print(&quot;现在共有&quot; + str(n) + &quot;个棋子&quot;)
-        nim = smart(n)
-        print(&quot;Eden拿走了&quot; + str(nim) + &quot;个&quot;)
-        n -= nim
-        print(&quot;现在共有&quot; + str(n) + &quot;个棋子&quot;)
-        if n == 0:
-            print(&quot;你输了！&quot;)
-            return
-
-        you = re_input()
-        while True:
-            if 1 &lt;= you &lt;= n / 2 or n == 1:
-                print(&quot;你拿走了&quot; + str(you) + &quot;个&quot;)
-                break
-            if you &lt; 1:
-                print(&quot;至少要拿走一个棋子！&quot;)
-            else:
-                print(&quot;最多只能拿走一半的棋子！&quot;)
-            you = re_input()
-
-        n -= you
-        if n == 0:
-            print(&quot;现在共有&quot; + str(n) + &quot;个棋子&quot;)
-            print(&quot;你赢了！&quot;)
-            return
-
-
-if __name__ == '__main__':
-    num = int(input(&quot;请输入棋子的总数: &quot;))
-    nim_game(num)
 </code></pre>
 ]]></content>
     </entry>
