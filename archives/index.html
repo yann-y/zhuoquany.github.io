@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1602819918461">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1603076827752">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -195,7 +195,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">43</span>
+        <span class="site-item-stat-count">44</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -262,7 +262,7 @@
   <div class="archive-timeline-box">
     <div class="archive-timeline-title">
       
-        <h2 class="language" data-lan="archives" data-count="43">非常好！目前共计43篇日志，继续努力！</h2>
+        <h2 class="language" data-lan="archives" data-count="44">非常好！目前共计44篇日志，继续努力！</h2>
       
     </div>
     
@@ -272,6 +272,19 @@
           <h2 class="tag-year">2020</h2>
         </div>    
         
+      
+      <a href="https://youis.top/post/Kc4zbUSnd/">
+        <div class="motion-warpper tag-archive-node">
+          <div class="tag-node">
+            <h1>
+              10-16
+              <small>python实现二维码</small>
+            </h1>
+          </div>  
+      </div>
+      </a>
+    
+      
       
       <a href="https://youis.top/post/KXGXsI0Gv/">
         <div class="motion-warpper tag-archive-node">
@@ -1059,6 +1072,76 @@ hljs.initHighlightingOnLoad();
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/Kc4zbUSnd/"" data-c="
+          &lt;p&gt;实现二维码，&lt;br&gt;
+四位二维码，前两位数字，后两位大写字母。&lt;br&gt;
+😁😁😁效果如下：&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/test.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+是不是很有哪味🤞🤞🤞&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# encoding: utf-8
+&amp;quot;&amp;quot;&amp;quot;
+@author: Eden
+@contact: .....
+@time: 2020/10/15 14:52
+@file: test06.py
+@desc: 
+&amp;quot;&amp;quot;&amp;quot;
+from PIL import Image, ImageDraw, ImageFont
+import random
+
+
+# 生成验证码
+
+# ASCII 字符的对应值
+# 生成随机字母
+def randomchar(x):
+    if i &amp;lt;= 1:  # 前两位是数字
+        return chr(random.randint(48, 57))  # 随机生成数字
+    else:  # 其他的是A~Z
+        return chr(random.randint(65, 90))  # 随即生成A~Z
+    # 数字0~9的字符对应48~57
+    # 小写字母对应97~122
+
+
+def randomcl1():
+    return (random.randint(64, 255),
+            random.randint(64, 255),
+            random.randint(64, 255))
+
+
+def randomcl2():
+    return (random.randint(0, 127),
+            random.randint(0, 127),
+            random.randint(0, 127))
+
+
+width = 240
+height = 100
+
+# 创建画板
+img = Image.new(&amp;quot;RGB&amp;quot;, (width, height), (255, 255, 255))
+# 创建画笔
+draw = ImageDraw.Draw(img)
+# 创建字体
+font = ImageFont.truetype(&amp;quot;arial.ttf&amp;quot;, 60)
+
+# 填充像素
+for x in range(width):
+    for y in range(height):
+        draw.point((x, y), randomcl1())
+
+# 生成验证码，填充颜色
+for i in range(4):
+    draw.text((60 * i, 15), randomchar(x), randomcl2(), font)
+img.show()
+img.save(&amp;quot;test.jpg&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;
+">python实现二维码</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://youis.top/post/KXGXsI0Gv/"" data-c="
@@ -2445,7 +2528,8 @@ if __name__ == &#39;__main__&#39;:
         <a class="result-title" style="opacity: 0;" href="https://youis.top/post/0TQcnCohv/"" data-c="
           &lt;p&gt;收作业不清楚谁没交，一个一个的数，太麻烦。&lt;br&gt;
 😏😏😏&lt;br&gt;
-写一个程序搞定他。&lt;/p&gt;
+写一个程序搞定他。&lt;br&gt;
+&lt;img src=&#34;https://image.youis.top/20201019110213.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# encoding: utf-8
 &amp;quot;&amp;quot;&amp;quot;
@@ -2511,6 +2595,86 @@ if __name__ == &#39;__main__&#39;:
     t.join()
     unpaid = set(df) - work_list
     reprint()
+    # elapsed = (time.clock() - start)
+    # print(&amp;quot;Time used:&amp;quot;, elapsed)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改版代码：&lt;br&gt;
+1、 解决了文件路径带有其他数字的bug。&lt;br&gt;
+2、目录不在进行扫描。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# encoding: utf-8
+&amp;quot;&amp;quot;&amp;quot;
+@author: Eden
+@contact: .....
+@time: 2020/3/26 17:56
+@file: homeWork.py
+@desc:      作业查收，扫描文件夹，利用正则表达式，匹配唯一id学号
+        然后遍历名单，获取未交作业人员
+&amp;quot;&amp;quot;&amp;quot;
+import os
+import pandas as pd
+import re
+import threading
+import zipfile
+import time
+
+
+def listdir(path, list_name):
+    &amp;quot;&amp;quot;&amp;quot;
+    @param path:  str
+    @param list_name: list
+    &amp;quot;&amp;quot;&amp;quot;
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        if os.path.isdir(file_path):
+            # 判断对象是否是一个目录
+            # 修改建议，目录直接压缩，判断压缩后的文件是否已经存在。？？？？
+            # listdir(file_path, list_name)
+            print(&amp;quot;目录不做检查&amp;quot;)
+        else:
+            filepath, fullflname = os.path.split(file_path)
+            # print(fullflname)
+            file_path = fullflname
+            try:
+                file_path = re.findall(r&amp;quot;\d+&amp;quot;, file_path)[0]  # /d匹配数字，+匹配多次
+            except IndexError:
+                print(file_path, &amp;quot;没有学号&amp;quot;)
+            if len(file_path) != 10:  # 如果学号不是10位数字，代表学号错误。
+                print(file_path + &amp;quot;是一个错误的学号,文件名 &amp;quot;, fullflname)
+            # print(file)
+            # print(file_path)
+            else:
+                list_name.add(int(file_path))
+
+
+def reprint(unpaid):
+    set_len = len(unpaid)
+    if set_len &amp;gt; 0:
+        print(&amp;quot;还有%d名同学没有教作业！！&amp;quot; % set_len)
+        for index in unpaid:
+            print(index, df[index])
+    else:
+        print(&amp;quot;作业已经交齐了。&amp;quot;)
+
+
+if __name__ == &#39;__main__&#39;:
+    # start = time.clock()
+    work_path = r&amp;quot;E:\study\大数据决策\作业\大作业&amp;quot;
+    # work_path = r&amp;quot;C:\Users\Eden\Desktop\笔记\自动化运维笔记&amp;quot;
+    work_list = set()
+    t = threading.Thread(target=listdir, args=(work_path, work_list))
+    t.start()
+    # listdir(work_path, work_list)
+    excel_path = r&amp;quot;RenYuanMingDan.xlsx&amp;quot;  # 人员名单
+    df = pd.read_excel(excel_path, usecols=[u&amp;quot;姓名&amp;quot;, u&amp;quot;学号&amp;quot;])
+    df = df.set_index([u&amp;quot;学号&amp;quot;])
+    df = df.to_dict()
+    df = df[u&amp;quot;姓名&amp;quot;]
+    t.join()
+    set_df = set(df)
+    # reprint(work_list)
+    print_set = set(df) - work_list
+    reprint(print_set)
     # elapsed = (time.clock() - start)
     # print(&amp;quot;Time used:&amp;quot;, elapsed)
 
@@ -4401,7 +4565,9 @@ imagesc(b)
 &lt;h2 id=&#34;兴趣爱好&#34;&gt;⛹ 兴趣爱好&lt;/h2&gt;
 &lt;p&gt;平时喜欢打打羽毛球，唱歌很难听但是喜欢唱（也没机会唱）。&lt;/p&gt;
 &lt;h2 id=&#34;联系我呀&#34;&gt;📬 联系我呀&lt;/h2&gt;
-&lt;p&gt;联系qq:1316944090&lt;/p&gt;
+&lt;p&gt;联系qq:1316944090&lt;br&gt;
+邮箱：1316944090@qq.com&lt;br&gt;
+github: &lt;a href=&#34;https://github.com/zhuoquany&#34;&gt;https://github.com/zhuoquany&lt;/a&gt;&lt;/p&gt;
 ">关于</a>
       </div>
       

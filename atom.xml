@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2020-10-16T03:45:22.708Z</updated>
+    <updated>2020-10-19T03:07:15.392Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -10,6 +10,85 @@
     <logo>https://youis.top/images/avatar.png</logo>
     <icon>https://youis.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[python实现二维码]]></title>
+        <id>https://youis.top/post/Kc4zbUSnd/</id>
+        <link href="https://youis.top/post/Kc4zbUSnd/">
+        </link>
+        <updated>2020-10-16T06:20:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>实现二维码，<br>
+四位二维码，前两位数字，后两位大写字母。<br>
+😁😁😁效果如下：<br>
+<img src="https://image.youis.top/test.jpg" alt="" loading="lazy"><br>
+是不是很有哪味🤞🤞🤞</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>实现二维码，<br>
+四位二维码，前两位数字，后两位大写字母。<br>
+😁😁😁效果如下：<br>
+<img src="https://image.youis.top/test.jpg" alt="" loading="lazy"><br>
+是不是很有哪味🤞🤞🤞</p>
+<!-- more -->
+<pre><code class="language-python"># encoding: utf-8
+&quot;&quot;&quot;
+@author: Eden
+@contact: .....
+@time: 2020/10/15 14:52
+@file: test06.py
+@desc: 
+&quot;&quot;&quot;
+from PIL import Image, ImageDraw, ImageFont
+import random
+
+
+# 生成验证码
+
+# ASCII 字符的对应值
+# 生成随机字母
+def randomchar(x):
+    if i &lt;= 1:  # 前两位是数字
+        return chr(random.randint(48, 57))  # 随机生成数字
+    else:  # 其他的是A~Z
+        return chr(random.randint(65, 90))  # 随即生成A~Z
+    # 数字0~9的字符对应48~57
+    # 小写字母对应97~122
+
+
+def randomcl1():
+    return (random.randint(64, 255),
+            random.randint(64, 255),
+            random.randint(64, 255))
+
+
+def randomcl2():
+    return (random.randint(0, 127),
+            random.randint(0, 127),
+            random.randint(0, 127))
+
+
+width = 240
+height = 100
+
+# 创建画板
+img = Image.new(&quot;RGB&quot;, (width, height), (255, 255, 255))
+# 创建画笔
+draw = ImageDraw.Draw(img)
+# 创建字体
+font = ImageFont.truetype(&quot;arial.ttf&quot;, 60)
+
+# 填充像素
+for x in range(width):
+    for y in range(height):
+        draw.point((x, y), randomcl1())
+
+# 生成验证码，填充颜色
+for i in range(4):
+    draw.text((60 * i, 15), randomchar(x), randomcl2(), font)
+img.show()
+img.save(&quot;test.jpg&quot;)
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[pytorch测试demo]]></title>
         <id>https://youis.top/post/KXGXsI0Gv/</id>
@@ -1045,290 +1124,6 @@ for addr in $(seq 1 1254);do
 		echo &quot;当前扫描的第$addr 是非活动地址!!&quot;
 	fi
 done
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[shell脚本作业]]></title>
-        <id>https://youis.top/post/shell-jiao-ben-zuo-ye/</id>
-        <link href="https://youis.top/post/shell-jiao-ben-zuo-ye/">
-        </link>
-        <updated>2020-05-09T08:19:02.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="if-第一题">if 第一题</h1>
-<p>设计一个shell程序，执行一次将备份并压缩/etc目录下的所有内容，存放在/root/bak目录里，且文件名为如下形式yymmdd_etc，yy为年，mm为月，dd为日。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="if-第一题">if 第一题</h1>
-<p>设计一个shell程序，执行一次将备份并压缩/etc目录下的所有内容，存放在/root/bak目录里，且文件名为如下形式yymmdd_etc，yy为年，mm为月，dd为日。</p>
-<!-- more -->
-<p>提示：<br>
-1、注意判断备份目录是否存在，不存在则创建；<br>
-2、注意备份文件命名格式。</p>
-<pre><code>#!/bin/bash
-if [ ! -e &quot;/root/bak&quot; ];
-then
-mkdir /root/bak
-fi
-cd /root/bak    
-YY=$(date +%Y)  
-mm=$(date +%m)
-DD=$(date +%d)
-backupdir=&quot;$YY$mm$DD&quot;_etc.tar.gz  
-echo $backupdir
-tar -zcvf $backupdir /etc/ 
-</code></pre>
-<h1 id="if和-while-第二题">if和 while 第二题</h1>
-<p>设计一个shell程序，添加一个新用户组为usergroup01，然后添加属于这个组的30个用户，用户名的形式为userxx，其中xx从01到30。<br>
-提示：<br>
-1、注意新建用户时会自动创建用户主目录；<br>
-2、注意01和1的区别。</p>
-<pre><code>#!/bin/bash
-ug=usergroup01
-groupadd $ug
-for x in `seq -w 1 30`;
-do 
- useradd user$x  -g $ug
-done
-</code></pre>
-<h1 id="case-第三题">case 第三题</h1>
-<p>设计一个脚本，可根据所列清单提示，输入相应编号，以不同的颜色打印清单名称。如果输入不正确或者不输入的话就打印帮助。例如：打印一个如下的水果菜单<br>
-(1) banana<br>
-(2) apple<br>
-(3) pear<br>
-(4) cherry<br>
-实现结果：要求：输入1，则打印黄色字体banana；输入2，则打印红色字体apple；输入3，则打印绿色字体orange；输入4，则打印蓝色字体cherry。</p>
-<pre><code>#!/bin/bash
-echo &quot;#####################&quot;
-echo &quot;	1.banana&quot;
-echo &quot;	2.apple&quot;
-echo &quot;	3.pear&quot;
-echo &quot;	4.cherry&quot;
-echo &quot;#####################&quot;
-echo 
-echo &quot;please select a num:&quot;
-read Num
-case $Num in
-	1) echo -e &quot;\033[33m banana \033[0m&quot;
-	;;
-	2) echo -e &quot;\033[31m apple \033[0m&quot;
-	;;
-	3) echo -e &quot;\033[32m pear \033[0m&quot;
-	;;
-	4) echo -e &quot;\033[35m cherry \033[0m&quot;
-	;;
-	*) echo &quot;please input {1|2|3|4}&quot;
-	;;
-esac
-</code></pre>
-<h1 id="for-第四题">for 第四题</h1>
-<p>设计一个脚本，把/var 目录下所有的文件递归罗列出来。</p>
-<pre><code>#!/bin/bash
-function travFolder(){
-	cd $1
-        path=`pwd`
-	flist=`ls $pwd`
-	for f in $flist
-	do
-		if [ -d $f ]
-		then
-			echo &quot;dir: $path&quot;
-			travFolder $f
-                        cd ..
-		else
-			echo &quot;flie:$f&quot;
-		fi
-	done
-}
-travFolder /var
-</code></pre>
-<h1 id="while和break-第五题">while和break 第五题</h1>
-<p>设计一个shell脚本，执行后，打印一行提示“Please input a number:&quot;，要求用户输入数值，然后打印出该数值，然后再次要求用户输入数值，再打印出该数值，直到用户输入&quot;end&quot;停止。<br>
-提示：<br>
-1、注意测试符的使用；<br>
-2、read的用法。</p>
-<pre><code>#!/bin/bash
-echo &quot;Please input a number:&quot;
-read Num
-while [ &quot;$Num&quot; !=  &quot;end&quot;  ]
-do
-	echo &quot;Your number: $Num&quot;
-	echo &quot;Please input a number:&quot;
-	read Num
-done
-</code></pre>
-<h1 id="until-第六题">until 第六题</h1>
-<p>设计一个脚本，执行脚本时，根据提示输入局域网内需要测试的IP地址段，判断同网段的所有主机有多少存活，就是有哪些IP地址是可以ping通的，并打印结果。</p>
-<pre><code>#!/bin/bash
-a=1
-until [ $a -eq 256 ]
-do
-	ping 192.168.3.$a -c 2 | grep -q &quot;ttl=&quot; &amp;&amp; echo &quot;192.168.3.$a yes&quot; || echo &quot;192.168.3.$a no&quot; &gt;&gt; ip.txt
-	let &quot;a++&quot;
-done
-</code></pre>
-<h1 id="函数-if-第七题">函数、if 第七题</h1>
-<p>设计一个监控脚本，若http服务出现异常则重新启动该服务。</p>
-<pre><code>#! /bin/sh
-	    proc_name=&quot;./server&quot;            #进程名
-	    proc_num()                      #查询进程数量
-	    {
-	    	num=$(ps -ef |  grep gdms |grep $proc_name | grep -v &quot;grep&quot; | wc -l)
-	    	echo $num
-	        return $num
-	    }
-	    proc_num
-	    number=$?                       #获取进程数量  
-	    if [ $number -eq 0 ]            #如果进程数量为0
-	    then                            #重新启动服务器，或者扩展其它内容。  
-	        cd /home/liudongwei/workspace/server2.0/dist
-	        nohup ./server &amp;  
-	    fi
-
-</code></pre>
-<h1 id="if和continue-第八题">if和continue 第八题：</h1>
-<p>设计一个脚本，利用循环和continue，计算100以内能被3整除的数之和。</p>
-<pre><code>#!/bin/bash
-s=0
-for((i=1;i&lt;100;i++));
-do
-        if [ `expr $i % 3` -eq 0 ]
-        then
-                echo &quot;能被3整除的数：$i&quot;
-                s=`expr $s + $i`
-        fi
-done
-echo &quot;100以内能被3整除的数之和：$s&quot;
-</code></pre>
-<h1 id="函数-shift和while-第九题">函数、shift和while 第九题</h1>
-<p>设计一个脚本，脚本中调用函数，利用shift计算所有函数参数乘积，假设参数均为整数，分别为3、5、7、9。</p>
-<pre><code>#!/bin/bash
-s=1
-func(){
-	while (($#&gt;0))
-	do
-		let s=s*$1
-		shift
-	done
-}
-func 3 5 7 9
-echo &quot;$s&quot;
-</code></pre>
-<h1 id="函数-第十题">函数 第十题</h1>
-<p>下面脚本用于新装Linux的相关配置工作，比如更换默认yum源，优化系统内核、停掉一些没必要启动的系统服务等。此脚本尤其适合大批新安装的CentOS系列的服务器。适用于Centos7。执行并分析下面脚本内容，对关键语句，给出正确的注释。并打印执行结果。</p>
-<pre><code>#!/bin/bash
-#1.__________________________ 
-if [ `whoami` != &quot;root&quot; ];then
-echo &quot; only root can run it&quot;
-exit 1
-fi
-#2._______________________ 
-echo -e &quot;\033[31m 这是centos7系统初始化脚本，将更新系统内核至最新版本，请慎重运行！\033[0m&quot; 
-read -s -n1 -p &quot;Press any key to continue or ctrl+C to cancel&quot;
-echo &quot;Your inputs: $REPLY&quot;
-#3._______________________________
-yum_config(){
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-yum clean all &amp;&amp; yum makecache
-}
-#4._____________________________________
-ntp_config(){
-yum -y install chrony
-systemctl start chronyd &amp;&amp; systemctl enable chronyd
-timedatectl set-timezone Asia/Shanghai &amp;&amp; timedatectl set-ntp yes
-}
-#5.__________________________________________
-close_firewalld(){
-systemctl stop firewalld.service &amp;&gt; /dev/null
-systemctl disable firewalld.service &amp;&gt; /dev/null
-}
-#6.___________________________________
-close_selinux(){
-setenforce 0
-sed -i 's/enforcing/disabled/g' /etc/selinux/config
-}
-#7.________________________________________
-yum_tools(){
-yum install -y vim wget curl curl-devel bash-completion lsof iotop iostat unzip bzip2 bzip2-devel
-yum install -y gcc gcc-c++ make cmake autoconf openssl-devel openssl-perl net-tools
-source /usr/share/bash-completion/bash_completion
-}
-#8.___________________________________
-update_kernel (){
-rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
-yum --enablerepo=elrepo-kernel install -y kernel-ml
-grub2-set-default 0
-grub2-mkconfig -o /boot/grub2/grub.cfg
-}
-#9.__________________________________
-main(){
-    yum_config;
-    ntp_config;
-    close_firewalld;
-    close_selinux;
-    yum_tools;
-    update_kernel;
-}
-main
-</code></pre>
-<p>脚本打印结果截图：（如果系统默认未安装wget，找出解决方法然后修改脚本）</p>
-<pre><code>#!/bin/bash
-yum -y install wget 
-#1._____判断是否为root用户_____________________ 
-if [ `whoami` != &quot;root&quot; ];then
-echo &quot; only root can run it&quot;
-exit 1
-fi
-#2.______温馨提示_________________ 
-echo -e &quot;\033[31m 这是centos7系统初始化脚本，将更新系统内核至最新版本，请慎重运行！\033[0m&quot; 
-read -s -n1 -p &quot;Press any key to continue or ctrl+C to cancel&quot;
-echo &quot;Your inputs: $REPLY&quot;
-#3.______配置yum源_________________________
-yum_config(){
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-yum clean all &amp;&amp; yum makecache
-}
-#4.______配置ntp_______________________________
-ntp_config(){
-yum -y install chrony
-systemctl start chronyd &amp;&amp; systemctl enable chronyd
-timedatectl set-timezone Asia/Shanghai &amp;&amp; timedatectl set-ntp yes
-}
-#5.______关闭防火墙____________________________________
-close_firewalld(){
-systemctl stop firewalld.service &amp;&gt; /dev/null
-systemctl disable firewalld.service &amp;&gt; /dev/null
-}
-#6._______关闭selinux____________________________
-close_selinux(){
-setenforce 0
-sed -i 's/enforcing/disabled/g' /etc/selinux/config
-}
-#7._______安装yum工具_________________________________
-yum_tools(){
-yum install -y vim wget curl curl-devel bash-completion lsof iotop iostat unzip bzip2 bzip2-devel
-yum install -y gcc gcc-c++ make cmake autoconf openssl-devel openssl-perl net-tools
-source /usr/share/bash-completion/bash_completion
-}
-#8.________更新内核___________________________
-update_kernel (){
-rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
-yum --enablerepo=elrepo-kernel install -y kernel-ml
-grub2-set-default 0
-grub2-mkconfig -o /boot/grub2/grub.cfg
-}
-#9.________主函数执行之前定义的脚本__________________________
-main(){
-    yum_config;
-    ntp_config;
-    close_firewalld;
-    close_selinux;
-    yum_tools;
-    update_kernel;
-}
-main
 </code></pre>
 ]]></content>
     </entry>
