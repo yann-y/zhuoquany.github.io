@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>python课堂案列 | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1603076827752">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1610335119546">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -205,26 +205,26 @@
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/images/avatar.png"/>
-    <p class="site-author-name">Eden</p>
+    <p class="site-author-name">yanfive</p>
     
   </div>
   <div class="sidebar-item side-item-stat right-motion">
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">44</span>
+        <span class="site-item-stat-count">46</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">29</span>
+        <span class="site-item-stat-count">30</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">29</span>
+        <span class="site-item-stat-count">30</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -932,7 +932,7 @@ if __name__ == '__main__':
   <ul class="post-copyright">
     <li class="post-copyright-author">
       <strong class="language" data-lan="author">本文作者：</strong>
-      Eden
+      yanfive
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
@@ -1245,6 +1245,103 @@ hljs.initHighlightingOnLoad();
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/QsOATQYns/"" data-c="
+          &lt;p&gt;实习期间遇到oracle转换SQL的情况。&lt;br&gt;
+😁😁😁&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;oracle-decode转换&#34;&gt;oracle decode转换&lt;/h2&gt;
+&lt;p&gt;例如orcale的这样的一个sql句子：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select * from （表) where id in(&#39;4538862&#39;,&#39;4588585&#39;,&#39;4883586&#39;,&#39;4883582&#39;,&#39;4993555&#39;,&#39;4993421&#39;,&#39;4993464&#39;)
+    order by decode(id  ,&#39;4538862&#39;,&#39;0&#39;,&#39;4883585&#39;,&#39;1&#39;,&#39;4883586&#39;,&#39;2&#39;,&#39;4883582&#39;,&#39;3&#39;,&#39;4993555&#39;,&#39;4&#39;,&#39;4993421&#39;,&#39;5&#39;,&#39;4993464&#39;,&#39;6&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;而mysql沒有decode这样的函数，则转为mysql的一样的语句，可以如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select * from （表) where id in(&#39;4538862&#39;,&#39;4588585&#39;,&#39;4883586&#39;,&#39;4883582&#39;,&#39;4993555&#39;,&#39;4993421&#39;,&#39;4993464&#39;)
+    order by field(id ,&#39;4538862&#39;,&#39;4588585&#39;,&#39;4883586&#39;,&#39;4883582&#39;,&#39;4993555&#39;,&#39;4993421&#39;,&#39;4993464&#39;);
+    ```
+所以mysql有field()函数自定义排序，格式为field(value,str1,str2,str3,str4)。&lt;/code&gt;&lt;/pre&gt;
+">oracle SQL语句转换为mysql  语句</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://youis.top/post/3xMFr7DRj/"" data-c="
+          &lt;p&gt;2020年10月19日 赛虎实习记录&lt;br&gt;
+搭建一个七层网络，卷积图片。&lt;br&gt;
+💪💪&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import torch
+import torch.nn as nn
+
+from PIL import Image
+import torchvision.transforms as trs
+
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()  # 调用父类的构造方法
+        # 开始搭建网络层
+        # 中间层
+        self.layers = nn.Sequential(
+            # 中间层第一层
+            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=0),
+            nn.ReLU(),  # 激活函数：给网络层提供非线性能力
+            nn.MaxPool2d(2, 2),  # 池化层：加速卷积，N,16,15,15
+            #
+            nn.Conv2d(16, 64, 3, 1),  # N, 64,13,13
+            nn.ReLU(),
+            #
+            nn.Conv2d(64, 70, 3, 1),
+            nn.ReLU(),
+            #
+            nn.Conv2d(70, 80, 3, 1),  # N,80,12,12
+            nn.ReLU(),
+            #
+            nn.Conv2d(80, 128, 3, 1),
+            nn.ReLU(),
+            # 第六层
+            nn.Conv2d(128, 80, 3, 1),
+            nn.ReLU(),
+            # 第七层
+            nn.Conv2d(80, 128, 3, 1),
+            nn.ReLU()
+        )
+        # 输出层，根据中间层最后的形状进行定义
+        self.output_layer = nn.Sequential(
+            # 线性层
+            # nn.Linear(80 * 80 * 3, 10)
+            nn.Linear(128 * 169 * 237, 10)  # （接收的特征数，输出结果数）
+        )
+
+    def forward(self, x):  # 前向计算
+        h = self.layers(x)  # 中间层，卷积(NCHW)
+        print(h.shape)  # 获取中间层最后的形状
+        # 转换形状NCHW为NV
+        h = h.reshape(-1, 128 * 169 * 237)  # 转换形状NCHW为NV
+        h = self.output_layer(h)  # 输出层，线性(NV)
+        return h
+
+
+if __name__ == &#39;__main__&#39;:
+    net = Net()
+    img = Image.open(&amp;quot;pic.jpg&amp;quot;)
+    # 转化  image图片  为  tensor矩阵
+    x = trs.ToTensor()(img)
+    print(x.shape)  # 查看形状CHW
+    x = x.reshape(1, 3, 365, 500)  # 变形为NCHW
+    print(x.shape)
+    y = net(x)
+    print(y)
+    print(y.shape)
+
+    # x = torch.randn(1,3,32,32) #创建随机数据 1张3层的32*32的图片
+    # y = net(x)
+    # print(y.shape)
+    # print(y)
+
+&lt;/code&gt;&lt;/pre&gt;
+">pytorch卷积一张图片</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://youis.top/post/Kc4zbUSnd/"" data-c="
