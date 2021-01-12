@@ -9,7 +9,7 @@
 <meta name="description" content="浮生若梦，人生几何">
 <meta name="theme-color" content="#000">
 <title>Python检索关键字 | Eden的博客</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1610335119546">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/favicon.ico?v=1610444152359">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhuoquany/zhuoquany.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -766,8 +766,7 @@ hljs.initHighlightingOnLoad();
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://youis.top/post/QsOATQYns/"" data-c="
-          &lt;p&gt;实习期间遇到oracle转换SQL的情况。&lt;br&gt;
-😁😁😁&lt;/p&gt;
+          &lt;p&gt;实习期间遇到oracle转换SQL的情况。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;oracle-decode转换&#34;&gt;oracle decode转换&lt;/h2&gt;
 &lt;p&gt;例如orcale的这样的一个sql句子：&lt;/p&gt;
@@ -777,8 +776,11 @@ hljs.initHighlightingOnLoad();
 &lt;p&gt;而mysql沒有decode这样的函数，则转为mysql的一样的语句，可以如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select * from （表) where id in(&#39;4538862&#39;,&#39;4588585&#39;,&#39;4883586&#39;,&#39;4883582&#39;,&#39;4993555&#39;,&#39;4993421&#39;,&#39;4993464&#39;)
     order by field(id ,&#39;4538862&#39;,&#39;4588585&#39;,&#39;4883586&#39;,&#39;4883582&#39;,&#39;4993555&#39;,&#39;4993421&#39;,&#39;4993464&#39;);
-    ```
-所以mysql有field()函数自定义排序，格式为field(value,str1,str2,str3,str4)。&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所以mysql有field()函数自定义排序，格式为field(value,str1,str2,str3,str4)。&lt;/p&gt;
+&lt;h2 id=&#34;substr&#34;&gt;substr&lt;/h2&gt;
+&lt;p&gt;oracle里面的substr和mysql不一样，oracle的是零开始算第一个，而mysql是1。&lt;br&gt;
+SUBSTR(str,pos,len);从pos开始的位置，截取len个字符(空白也算字符)&lt;/p&gt;
 ">oracle SQL语句转换为mysql  语句</a>
       </div>
       

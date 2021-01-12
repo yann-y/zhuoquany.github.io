@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2021-01-11T03:19:08.855Z</updated>
+    <updated>2021-01-12T09:36:01.224Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -16,11 +16,9 @@
         <link href="https://youis.top/post/QsOATQYns/">
         </link>
         <updated>2021-01-11T03:11:58.000Z</updated>
-        <summary type="html"><![CDATA[<p>实习期间遇到oracle转换SQL的情况。<br>
-😁😁😁</p>
+        <summary type="html"><![CDATA[<p>实习期间遇到oracle转换SQL的情况。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>实习期间遇到oracle转换SQL的情况。<br>
-😁😁😁</p>
+        <content type="html"><![CDATA[<p>实习期间遇到oracle转换SQL的情况。</p>
 <!-- more -->
 <h2 id="oracle-decode转换">oracle decode转换</h2>
 <p>例如orcale的这样的一个sql句子：</p>
@@ -30,8 +28,11 @@
 <p>而mysql沒有decode这样的函数，则转为mysql的一样的语句，可以如下：</p>
 <pre><code class="language-sql">select * from （表) where id in('4538862','4588585','4883586','4883582','4993555','4993421','4993464')
     order by field(id ,'4538862','4588585','4883586','4883582','4993555','4993421','4993464');
-    ```
-所以mysql有field()函数自定义排序，格式为field(value,str1,str2,str3,str4)。</code></pre>
+</code></pre>
+<p>所以mysql有field()函数自定义排序，格式为field(value,str1,str2,str3,str4)。</p>
+<h2 id="substr">substr</h2>
+<p>oracle里面的substr和mysql不一样，oracle的是零开始算第一个，而mysql是1。<br>
+SUBSTR(str,pos,len);从pos开始的位置，截取len个字符(空白也算字符)</p>
 ]]></content>
     </entry>
     <entry>
