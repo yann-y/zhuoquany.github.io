@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://youis.top</id>
     <title>Eden的博客</title>
-    <updated>2021-01-12T09:36:01.224Z</updated>
+    <updated>2021-03-24T10:23:29.170Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://youis.top"/>
     <link rel="self" href="https://youis.top/atom.xml"/>
@@ -10,6 +10,128 @@
     <logo>https://youis.top/images/avatar.png</logo>
     <icon>https://youis.top/favicon.ico</icon>
     <rights>All rights reserved 2021, Eden的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[selenium保存验证码]]></title>
+        <id>https://youis.top/post/71n23tXXt/</id>
+        <link href="https://youis.top/post/71n23tXXt/">
+        </link>
+        <updated>2021-03-24T10:14:06.000Z</updated>
+        <summary type="html"><![CDATA[<p>selenuim是支持保存图片的。<br>
+不用定位截图什么的骚操作。<br>
+screenshot_as_png方法就可以很好的保存图片。比如保存验证码<br>
+不多说直接附上代码。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>selenuim是支持保存图片的。<br>
+不用定位截图什么的骚操作。<br>
+screenshot_as_png方法就可以很好的保存图片。比如保存验证码<br>
+不多说直接附上代码。</p>
+<!-- more -->
+<pre><code class="language-python">code1 = driver.find_element_by_xpath('//*[@id=&quot;app&quot;]/div/div[3]/div[5]/div/img')  # 定位验证码
+screenshot_as_bytes = code1.screenshot_as_png
+ # 图片地址
+image = &quot;elemenent.png&quot;
+ # 覆盖写入照片
+with open(image, 'wb') as f:
+         f.write(screenshot_as_bytes)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[docker部署Flink]]></title>
+        <id>https://youis.top/post/Mvd5xLHrv/</id>
+        <link href="https://youis.top/post/Mvd5xLHrv/">
+        </link>
+        <updated>2021-03-04T06:54:20.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>docker pull flink<br>
+新建文件夹docker-flink，文件夹下新建文件docker-compose.yml，内容如下：</p>
+<pre><code>version: &quot;2.1&quot;
+services:
+  jobmanager:
+    image: flink
+    expose:
+      - &quot;6123&quot;
+    ports:
+      - &quot;8081:8081&quot;
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+ 
+  taskmanager:
+    image: flink
+    expose:
+      - &quot;6121&quot;
+      - &quot;6122&quot;
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    links:
+      - &quot;jobmanager:jobmanager&quot;
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      ```
+docker-compose up -d
+http访问端口8081.  ip:8081就能访问。</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[docker部署kafka]]></title>
+        <id>https://youis.top/post/_YPMmlbGK/</id>
+        <link href="https://youis.top/post/_YPMmlbGK/">
+        </link>
+        <updated>2021-03-04T06:42:19.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>第一步拉取kafka镜像<br>
+docker pull wurstmeister/kafka<br>
+第二步启动kafka镜像生成容器<br>
+docker run -d --restart=always --log-driver json-file --log-opt max-size=100m --log-opt max-file=2 --name kafka <br>  -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=172.22.46.189:2181/kafka <br>  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.22.46.189:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 <br>  -v /etc/localtime:/etc/localtime wurstmeister/kafka<br>
+参数说明：<br>
+-e KAFKA_BROKER_ID=0  在kafka集群中，每个kafka都有一个BROKER_ID来区分自己<br>
+-e KAFKA_ZOOKEEPER_CONNECT=172.20.10.10:2181/kafka 配置zookeeper管理kafka的路径172.20.10.10:2181/kafka<br>
+-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.22.46.189:9092  把kafka的地址端口注册给zookeeper，如果是远程访问要改成外网IP,类如Java程序访问出现无法连接。<br>
+-e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 配置kafka的监听端口<br>
+-v /etc/localtime:/etc/localtime 容器时间同步虚拟机的时间<br>
+5、验证kafka是否可以使用<br>
+5.1、进入容器<br>
+$ docker exec -it kafka bash</p>
+<p>5.2、进入 /opt/kafka_2.12-2.3.0/bin/ 目录下<br>
+$ cd /opt/kafka_2.12-2.3.0/bin/</p>
+<p>5.3、运行kafka生产者发送消息<br>
+$ ./kafka-console-producer.sh --broker-list localhost:9092 --topic sun</p>
+<p>发送消息</p>
+<blockquote>
+<p>hello word!</p>
+</blockquote>
+<p>5.4、运行kafka消费者接收消息<br>
+$ ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --from-beginning</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql记录]]></title>
+        <id>https://youis.top/post/rkqmey8YJ/</id>
+        <link href="https://youis.top/post/rkqmey8YJ/">
+        </link>
+        <updated>2021-01-12T09:40:43.000Z</updated>
+        <summary type="html"><![CDATA[<p>SQL的一些记录<br>
+程序员SQL很重要，不管干什么总要接触到数据库。<br>
+可视化界面不是万能的，SQL语句才是永恒不变的真理。<br>
+昨天解决了N多个bug没有记录就很烦。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>SQL的一些记录<br>
+程序员SQL很重要，不管干什么总要接触到数据库。<br>
+可视化界面不是万能的，SQL语句才是永恒不变的真理。<br>
+昨天解决了N多个bug没有记录就很烦。</p>
+<!-- more -->
+<h2 id="数据单位">数据单位</h2>
+<p>要解决的问题: 某表某字段用来表示交易金额,不同记录的金额相差很大,有的只有几元几角几分,有的却上亿.如果直接就把数值在页面上展示出来,则可读性不佳.因此我们需要将其单位展示出来,如1.23元,3.45万,4.56亿等.<br>
+解决方法:用case when判断数值所在区间,用convert函数将计算后的数值留下两位小数,用concat函数将计算后的数值和单位连接在一起.<br>
+形成的SQL语句是:</p>
+<pre><code class="language-sql">select id,value,(case when value&lt;10000  then concat(convert(value,decimal(12,2)),'元')
+             when value&lt;100000000 then concat(convert(value/10000,decimal(12,2)),'万')
+             else concat(convert(value/100000000,decimal(12,2)),'亿') end) as newCol from tb_number ;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[oracle SQL语句转换为mysql  语句]]></title>
         <id>https://youis.top/post/QsOATQYns/</id>
@@ -413,406 +535,6 @@ else:
 <p>由于Markdown不好编排，我附上Word连接<br>
 👇👇👇👇<br>
 <a href="http://cloud.youis.top/?r=/download&amp;path=L0Fuc2libGUvQW5zaWJsZemDqOe9sks4c192MS4xOC40546v5aKDMjAyMDA2MjTvvIjoh6rliqjljJbohJrmnKzvvIkuZG9jeA%3D%3D">Ansible部署K8s_v1.18.4环境.docx</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python检索关键字]]></title>
-        <id>https://youis.top/post/nqFG2uASl/</id>
-        <link href="https://youis.top/post/nqFG2uASl/">
-        </link>
-        <updated>2020-06-20T02:04:51.000Z</updated>
-        <summary type="html"><![CDATA[<p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>找到在某个目录下面所有的文件内容里面有关键字&quot;info&quot;的文件，将这些文件路径存储在一个t1.pkl的文件里面</p>
-<!-- more -->
-<pre><code class="language-python"># encoding: utf-8
-&quot;&quot;&quot;
-@author: Eden
-@contact: .....
-@time: 2020/6/20 9:21
-@file: test.py
-@desc:
-&quot;&quot;&quot;
-import os
-import re
-
-
-def listdir(path):
-    &quot;&quot;&quot;
-    遍历出，目录下所有文件
-    @param path:  str
-    &quot;&quot;&quot;
-    for file in os.listdir(path):
-        file_path = os.path.join(path, file)
-        if os.path.isdir(file_path):  # 如果该文件是目录
-            # print(file_path)
-            listdir(file_path)  # 继续递归遍历
-        else:
-            # print(file_path)
-            keyword_search(file_path)  # 读取文件，搜索关键字。
-
-
-def keyword_search(file_path):
-    &quot;&quot;&quot;
-    打开文件，搜索关键字。
-    @param file_path:
-    &quot;&quot;&quot;
-    f1 = open(file_path, &quot;r&quot;, encoding=&quot;utf-8&quot;)
-    content = f1.read()
-    # print(&quot;输出文件内容：\n&quot;, content)  # 输出文件内容
-    count = len(re.findall(keyword, content))
-    # re.findall()返回的是一个列表
-    if count != 0:  # 如果个数不为 0
-        print(file_path)
-        with open('t1.pkl', 'a+') as f:
-            f.write(file_path + '\n')  # 保存到该文件
-
-
-if __name__ == '__main__':
-    # start = time.clock()
-    work_path = r&quot;D:\python\TestProject\PythonClassroom\work20\test&quot;  # 待检索的目录
-    keyword = &quot;info&quot;  # 检索的关键字
-    if os.path.isdir(work_path):
-        listdir(work_path)  # 目录遍历
-    else:
-        print(&quot;请输入一个目录！！&quot;)
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[解决pycurl安装错误]]></title>
-        <id>https://youis.top/post/HYW8Js4p1/</id>
-        <link href="https://youis.top/post/HYW8Js4p1/">
-        </link>
-        <updated>2020-06-03T06:43:49.000Z</updated>
-        <summary type="html"><![CDATA[<p>由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>由于libcurl的源码编译因素，在安装pycurl可能会导致以下两种错误。</p>
-<!-- more -->
-<p>错误1：</p>
-<p>ImportError: pycurl: libcurl link-time ssl backend (<strong>openssl</strong>) is different from compile-time ssl backend (none/other)</p>
-<p>解决办法：</p>
-<p>错误1的解决办法如下：</p>
-<pre><code class="language-shell"> pip uninstall pycurl
-#export PYCURL_SSL_LIBRARY=[nss|openssl|ssl|gnutls]
-#参数由报错信息括号里面的内容决定。这里括号里面是  openssl
-export PYCURL_SSL_LIBRARY=openssl
-
-pip install pycurl
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[python实现查找和排序]]></title>
-        <id>https://youis.top/post/dfjsdhfbjdsbfj/</id>
-        <link href="https://youis.top/post/dfjsdhfbjdsbfj/">
-        </link>
-        <updated>2020-05-24T02:04:44.000Z</updated>
-        <summary type="html"><![CDATA[<p>学习python的同时顺便复习数据结构。<br>
-🙌没人<br>
-👐比我<br>
-👌更懂<br>
-👆复习😜<br>
-未完待续。。。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>学习python的同时顺便复习数据结构。<br>
-🙌没人<br>
-👐比我<br>
-👌更懂<br>
-👆复习😜<br>
-未完待续。。。</p>
-<!-- more -->
-<h1 id="顺序查找">顺序查找</h1>
-<h1 id="折半查找">折半查找</h1>
-<p>def binary_search(nums, key):<br>
-left, right = 0, len(nums) - 1<br>
-while left &lt;= right:<br>
-mid = (left + right) // 2<br>
-if nums[mid] == key:<br>
-# 返回索引位置<br>
-return mid<br>
-elif nums[mid] &lt; key:<br>
-left = mid + 1<br>
-elif nums[mid] &gt; key:<br>
-right = mid - 1<br>
-return -1  # 没有找到返回 -1</p>
-<p>if <strong>name</strong> == '<strong>main</strong>':<br>
-lis = [2, 3, 4, 5, 5, 5, 6, 7, 23, 45, 90]<br>
-print(binary_search(lis, 110))</p>
-<h1 id="分块查找">分块查找</h1>
-<h1 id="直接插入排序">直接插入排序</h1>
-<h1 id="折半插入排序">折半插入排序</h1>
-<h1 id="希尔排序">希尔排序</h1>
-<h1 id="冒泡排序">冒泡排序</h1>
-<p>相信冒泡排序已经被大家所熟知,下面的代码对冒泡排序进行了简单优化。</p>
-<pre><code class="language-python">def bubble_sort(nums):
-    for i in range(len(nums) - 1):
-        ex_flag = False
-        for j in range(len(nums) - 1 - i):
-            if nums[j] &gt; nums[j + 1]:
-                nums[j], nums[j + 1] = nums[j + 1], nums[j]
-                ex_flag = True
-        if not ex_flag:
-            return nums
-    return nums
-
-
-if __name__ == '__main__':
-    lis = [2, 4, 5, 6, 7, 3, 5, 90, 45, 23, 5]
-    print(bubble_sort(lis))
-</code></pre>
-<h1 id="快速排序">快速排序</h1>
-<h1 id="简单选择排序">简单选择排序</h1>
-<p>def select_sort(nums):<br>
-for i in range(len(nums)):<br>
-nums_min = i<br>
-for j in range(i + 1, len(nums)):<br>
-if nums[j] &lt; nums[nums_min]:<br>
-nums_min = j<br>
-nums[i], nums[nums_min] = nums[nums_min], nums[i]<br>
-return nums</p>
-<p>if <strong>name</strong> == '<strong>main</strong>':<br>
-lis = [2, 4, 5, 6, 7, 3, 5, 90, 45, 23, 5]<br>
-print(select_sort(lis))</p>
-<h1 id="堆排序">堆排序</h1>
-<h1 id="归并排序">归并排序</h1>
-<h1 id="基数排序">基数排序</h1>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[系统巡检脚本]]></title>
-        <id>https://youis.top/post/xi-tong-xun-jian-jiao-ben/</id>
-        <link href="https://youis.top/post/xi-tong-xun-jian-jiao-ben/">
-        </link>
-        <updated>2020-05-20T14:00:29.000Z</updated>
-        <summary type="html"><![CDATA[<p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>在生产环境中，作为日常巡检任务，时刻要注意主机的各种硬件状态，如果是规模较大的服务集群，一般使用zabbix等健康工具，如果只是一些小规模的服务主机，shell就会表现的更灵活，也更适用，下面是一个常用的系统巡检脚本。试运行，找出其中的错误，并修改，然后打印出执行结果。</p>
-<!-- more -->
-<p>vi syscheck.sh</p>
-<pre><code class="language-sh">#!/bin/bash
-
-function system(){
-echo &quot;#########################系统信息#########################&quot;
-OS_TYPE=`uname`
-OS_VER=`cat /etc/redhat-release`
-OS_KER=`uname -a|awk '{print $3}'`
-OS_TIME=`date +%F_%T`
-OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
-OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
-OS_HOSTNAME=`hostname`
-
-echo &quot;    系统类型：$OS_TYPE&quot;
-echo &quot;    系统版本：$OS_VER&quot;
-echo &quot;    系统内核：$OS_KER&quot;
-echo &quot;    当前时间：$OS_TIME&quot;
-echo &quot;    运行时间：$OS_RUN_TIME&quot;
-echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
-echo &quot;    本机名称：$OS_HOSTNAME&quot;
-
-function network(){
-
-echo &quot;#########################网络信息#########################&quot;
-INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
-for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
-do 
-  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
-  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
-done
-curl -I http://www.baidu.com &amp;&gt;/dev/null
-if [ $? -eq 0 ]
-then echo &quot;    访问外网：成功&quot;
-else echo &quot;    访问外网：失败&quot;
-
-}
-
-function hardware(){
-
-echo &quot;#########################硬件信息#########################&quot;
-CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
-CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
-CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
-
-echo &quot;     CPU数量: $CPUID&quot;
-echo &quot;     CPU核心:$CPUCORES&quot;
-echo &quot;     CPU型号:$CPUMODE&quot;
-
-MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
-MEMFREE=`free -m|grep Mem|awk '{print $7}'`
-
-echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
-echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
-
-disksize=0
-swapsize=`free|grep Swap|awk {'print $2'}`
-partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
-for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
-do
-disksize=`expr $disksize + ${partitionsize[$i]}`
-done
-((disktotal=\($disksize+$swapsize\)/1024/1024))
-
-echo &quot;  磁盘总容量: ${disktotal}GB&quot;
-
-diskfree=0
-swapfree=`free|grep Swap|awk '{print $4}'`
-partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
-for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
-do
-diskfree=`expr $diskfree + ${partitionfree[$i]}`
-done
-
-((freetotal=\($diskfree+$swapfree\)/1024/1024))
-
-echo &quot;剩余磁盘容量：${freetotal}GB&quot;
-}
-
-
-function secure(){
-echo &quot;#########################安全信息#########################&quot;
-
-countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
-for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
-do echo &quot;当前登录用户：${countuser[$i]}&quot;
-done
-
-md5sum /etc/passwd &gt; /opt/passwd.db
-md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
-if [ $? -eq 0 ]
-then echo &quot;    用户异常：否&quot;
-else echo &quot;    用户异常：是&quot;
-fi
-}
-
-function chksys(){
-system
-network
-hardware
-secure
-}
-</code></pre>
-<p>提示一：<br>
-<img src="https://image.youis.top/20200520220351.png" alt="" loading="lazy"><br>
-if函数没有结尾  34行添加  fi<br>
-提示二：</p>
-<p><img src="https://image.youis.top/20200520220403.png" alt="" loading="lazy"><br>
-函数 system 缺少  }  20行添加  }<br>
-提示三：<br>
-<img src="https://image.youis.top/20200520220416.png" alt="" loading="lazy"><br>
-函数没有调用 在函数末尾调用 chksys函数<br>
-提示四：<br>
-<img src="https://image.youis.top/20200520220429.png" alt="" loading="lazy"></p>
-<p>第9行 OS_RUN_TIME=<code>uptime |awk '{print $3}'|awk -F '{print $1}'</code>  AWK 存在管道信息,-F后面没有参数<br>
-提示五：<br>
-<img src="https://image.youis.top/20200520220439.png" alt="" loading="lazy"><br>
-第43行 #CPUMODE=<code>grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'</code><br>
-awk   -F  没有更参数</p>
-<figure data-type="image" tabindex="1"><img src="https://image.youis.top/20200520215758.png" alt="" loading="lazy"></figure>
-<p>修正代码：</p>
-<pre><code class="language-sh">#!/bin/bash
-
-function system(){
-echo &quot;#########################系统信息#########################&quot;
-OS_TYPE=`uname`
-OS_VER=`cat /etc/redhat-release`
-OS_KER=`uname -a|awk '{print $3}'`
-OS_TIME=`date +%F_%T`
-#OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F '{print $1}'`
-OS_RUN_TIME=`uptime |awk '{print $3}'|awk -F,  '{print $1}'`
-OS_LAST_REBOOT_TIME=`who -b|awk '{print $2,$3}'`
-OS_HOSTNAME=`hostname`
-
-echo &quot;    系统类型：$OS_TYPE&quot;
-echo &quot;    系统版本：$OS_VER&quot;
-echo &quot;    系统内核：$OS_KER&quot;
-echo &quot;    当前时间：$OS_TIME&quot;
-echo &quot;    运行时间：$OS_RUN_TIME&quot;
-echo &quot;最后重启时间：$OS_LAST_REBOOT_TIME&quot;
-echo &quot;    本机名称：$OS_HOSTNAME&quot;
-}
-function network(){
-
-echo &quot;#########################网络信息#########################&quot;
-INTERNET=(`ifconfig|grep ens|awk -F: '{print $1}'`)
-for((i=0;i&lt;`echo ${#INTERNET[*]}`;i++))
-do 
-  OS_IP=`ifconfig ${INTERNET[$i]}|head -2|grep inet|awk '{print $2}'`
-  echo &quot;      本机IP：${INTERNET[$i]}: $OS_IP&quot;
-done
-curl -I http://www.baidu.com &amp;&gt;/dev/null
-if [ $? -eq 0 ]
-then echo &quot;    访问外网：成功&quot;
-else echo &quot;    访问外网：失败&quot;
-fi
-}
-
-function hardware(){
-
-echo &quot;#########################硬件信息#########################&quot;
-CPUID=`grep &quot;physical id&quot; /proc/cpuinfo |sort|uniq|wc -l`
-CPUCORES=`grep &quot;cores&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
-#CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F '{print $2}'`
-CPUMODE=`grep &quot;model name&quot; /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'`
-
-echo &quot;     CPU数量: $CPUID&quot;
-echo &quot;     CPU核心:$CPUCORES&quot;
-echo &quot;     CPU型号:$CPUMODE&quot;
-
-MEMTOTAL=`free -m|grep Mem|awk '{print $2}'`
-MEMFREE=`free -m|grep Mem|awk '{print $7}'`
-
-echo &quot;  内存总容量: ${MEMTOTAL}MB&quot;
-echo &quot;剩余内存容量: ${MEMFREE}MB&quot;
-
-disksize=0
-swapsize=`free|grep Swap|awk {'print $2'}`
-partitionsize=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk {'print $3'}`)
-for ((i=0;i&lt;`echo ${#partitionsize[*]}`;i++))
-do
-disksize=`expr $disksize + ${partitionsize[$i]}`
-done
-((disktotal=\($disksize+$swapsize\)/1024/1024))
-
-echo &quot;  磁盘总容量: ${disktotal}GB&quot;
-
-diskfree=0
-swapfree=`free|grep Swap|awk '{print $4}'`
-partitionfree=(`df -T|sed 1d|egrep -v &quot;tmpfs|sr0&quot;|awk '{print $5}'`)
-for ((i=0;i&lt;`echo ${#partitionfree[*]}`;i++))
-do
-diskfree=`expr $diskfree + ${partitionfree[$i]}`
-done
-
-((freetotal=\($diskfree+$swapfree\)/1024/1024))
-
-echo &quot;剩余磁盘容量：${freetotal}GB&quot;
-}
-
-
-function secure(){
-echo &quot;#########################安全信息#########################&quot;
-
-countuser=(`last|grep &quot;still logged in&quot;|awk '{print $1}'|sort|uniq`)
-for ((i=0;i&lt;`echo ${#countuser[*]}`;i++))
-do echo &quot;当前登录用户：${countuser[$i]}&quot;
-done
-
-md5sum /etc/passwd &gt; /opt/passwd.db
-md5sum -c --quiet /opt/passwd.db &amp;&gt;/dev/null
-if [ $? -eq 0 ]
-then echo &quot;    用户异常：否&quot;
-else echo &quot;    用户异常：是&quot;
-fi
-}
-
-function chksys(){
-system
-network
-hardware
-secure
-}
-chksys
-</code></pre>
 ]]></content>
     </entry>
 </feed>
